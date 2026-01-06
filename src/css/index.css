@@ -1,11 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   gap: 0;
+  text-decoration: none;
 }
 
+:root {
+  --primary-color: #38572c;
+  --light-color: #f5f5f5;
+  --dark-color: #151515;
+  --gray-color: #b3b3b3;
+  --background: #000000;
+  --background-card: #0a0a0a;
+  --border-color: #202020;
+  --danger-color: #ae3939;
+  --shadow: #00000061;
+  --border: 7px;
+  --transition-2s: all 0.2s ease;
+  --transition-3s: all 0.3s ease;
+}
 
-body{
-  background: #000;
+body {
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  background: var(--background);
+  justify-content: center;
+  color: var(--light-color);
+}
+
+.header-main {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  border-bottom: 1.5px solid var(--border-color);
+  background: var(--background-card);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.header-content-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-content-left img {
+  display: flex;
+  width: 30px;
+}
+
+.header-content-left p{
+  color: #252525;
+}
+
+.header-content-left a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--light-color);
+  transition: var(--transition-2s);
+}
+
+.header-content-left a:hover {
+  color: var(--light-color);
+}
+
+.header-content-right {
+  display: flex;
+  gap: 10px;
+}
+
+.header-content-right a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 27px;
+  height: 27px;
+  font-size: 0.8rem;
+  color: var(--gray-color);
+  border: 1px solid #252525;
+  border-radius: 50%;
+  transition: var(--transition-2s);
+}
+
+.header-content-right a:hover {
+  border-color: var(--light-color);
+  color: var(--light-color);
+}
+
+.header-main nav {
+  display: flex;
+  padding: 5px 15px 0px 15px;
+}
+
+.header-main nav ul {
+  display: flex;
+
+}
+
+.header-main nav ul a {
+  display: flex;
+  width: fit-content;
+  padding: 0px 10px 10px 10px;
+  font-size: 0.9rem;
+  color: #969696;
+  transition: var(--transition-2s);
+}
+
+.header-main nav ul a:hover{
+  color: var(--light-color);
+}
+
+.header-main nav ul a.active {
+  color: var(--light-color);
+  border-bottom: 1.5px solid var(--light-color);
 }
