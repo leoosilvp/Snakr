@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import logo from '../assets/svg/icon.svg'
 
@@ -12,16 +13,26 @@ const Header = () => {
 
     const location = useLocation()
     const currentRoute = routeNames[location.pathname] || ''
+    const [isScrolled, setIsScrolled] = useState(false)
+
+    useEffect(() => {
+        const onScroll = () => {
+            setIsScrolled(window.scrollY > 64)
+        }
+
+        window.addEventListener('scroll', onScroll)
+        return () => window.removeEventListener('scroll', onScroll)
+    }, [])
 
     return (
-        <header className="header-main">
+        <header className={`header-main ${isScrolled ? 'header-main-scrolled' : ''}`}>
             <section className='header-content'>
                 <article className='header-content-left'>
                     <a href="">
                         <img src={logo} alt="logo Snakr" />
                     </a>
                     <p>/</p>
-                    <Link>{currentRoute}</Link>
+                    <h2>{currentRoute}</h2>
                 </article>
 
                 <article className='header-content-right'>
