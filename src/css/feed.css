@@ -1,0 +1,12 @@
+.feed{
+    display: flex;
+    flex-direction: column;
+    width: 1240px;
+    height: 100px;
+    background: #1e1e1e;
+}
+
+.sec-most-popular.title{
+    display: flex;
+    font-size: 1rem;
+}

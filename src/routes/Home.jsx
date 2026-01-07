@@ -1,5 +1,4 @@
 import Header from "../components/Header"
-import Ads from "../components/Ads";
 
 const Home = () => {
   return (
@@ -7,17 +6,15 @@ const Home = () => {
       <Header />
 
       <section className="content">
-        <aside className="aside-left">
-          <Ads />
-        </aside>
 
-        <section className="feed">
-        </section>
+        <div className="feed">
+          <section className="sec-most-popular">
+            <h1 className="title">Most popular</h1>
+            
+          </section>
+        </div>
 
-        <aside className="aside-right">
-        </aside>
       </section>
-
     </main>
   )
 }

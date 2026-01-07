@@ -1,7 +1,7 @@
 .ads {
     display: flex;
     flex-direction: column;
-    width: 270px;
+    width: 100%;
     overflow: hidden;
     border: 1px solid var(--border-color);
     border-radius: var(--border);
@@ -24,12 +24,12 @@
 }
 
 .ads-content h1 {
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 600;
 }
 
 .ads-content p {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--gray-color);
 }
 

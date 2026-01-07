@@ -14,7 +14,7 @@
   --dark-color: #151515;
   --gray-color: #b3b3b3;
   --background: #000000;
-  --background-card: #0a0a0a;
+  --background-card: #080808;
   --border-color: #202020;
   --danger-color: #ae3939;
   --shadow: #00000061;
@@ -37,6 +37,7 @@ body {
 .content {
   display: flex;
   padding: 130px 0 0 0;
+  gap: 20px;
 }
 
 @keyframes skeleton-loading {
