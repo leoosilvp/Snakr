@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import logo from '../assets/svg/icon.svg'
+import logo from '../assets/svg/logo.svg'
 
 const routeNames = {
     '/home': 'Home',

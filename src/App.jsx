@@ -1,7 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import Home from "./routes/Home"
+import ChangeIcon from './hooks/ChangeIcon'
 
 function App() {
+  
+  ChangeIcon();
 
   return (
     <BrowserRouter>
