@@ -18,7 +18,7 @@
   --border-color: #202020;
   --danger-color: #ae3939;
   --shadow: #00000061;
-  --border: 7px;
+  --border: 8px;
   --transition-2s: all 0.2s ease;
   --transition-3s: all 0.3s ease;
 }
@@ -32,6 +32,11 @@ body {
   background: var(--background);
   color: var(--light-color);
   overflow-x: hidden;
+}
+
+.content{
+  display: flex;
+  padding: 130px 0 0 0;
 }
 
 .header-main {

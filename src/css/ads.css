@@ -1,0 +1,52 @@
+.ads{
+    display: flex;
+    flex-direction: column;
+    width: 270px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border);
+}
+
+.ads video{
+    display: flex;
+    width: 100%;
+    cursor: pointer;
+}
+
+.ads video::-webkit-media-controls {
+    opacity: 0;
+}
+
+.ads-content{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.ads-content h1{
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.ads-content p{
+    font-size: 0.8rem;
+    color: var(--gray-color);
+}
+
+.ads-content a{
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 2px 10px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--dark-color);
+    border-radius: 4px;
+    background: var(--light-color);
+    transition: var(--transition-2s);
+}
+
+.ads-content a:hover{
+    background: var(--gray-color);
+}
