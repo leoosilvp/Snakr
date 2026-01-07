@@ -34,9 +34,25 @@ body {
   overflow-x: hidden;
 }
 
-.content{
+.content {
   display: flex;
   padding: 130px 0 0 0;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 100% 0;
+    opacity: 0.4;
+  }
+
+  50%{
+    opacity: 0.8;
+  }
+
+  100% {
+    background-position: 0 0;
+    opacity: 0.4;
+  }
 }
 
 .header-main {
@@ -141,7 +157,7 @@ body {
   flex-direction: initial;
 }
 
-.header-main-scrolled .header-content-left{
+.header-main-scrolled .header-content-left {
   gap: 0;
 }
 
