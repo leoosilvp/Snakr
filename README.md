@@ -4,7 +4,7 @@
     </a>
 </div>
 
-access: [snakr.com](https://snakr.vercel.app/)
+access: [snakr.com](https://snakr-im.vercel.app/)
 
 
 # 🗂️ About
