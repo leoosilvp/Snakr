@@ -11,6 +11,7 @@
 :root {
   --primary-color: #006efe;
   --light-color: #f5f5f5;
+  --black: #000;
   --dark-color: #151515;
   --gray-color: #b3b3b3;
   --background: #000000;
@@ -268,6 +269,18 @@ body::-webkit-scrollbar-thumb {
   font-weight: 400;
   color: var(--primary-color);
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* error */
 .error-page {

@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import Home from "./routes/Home"
 import ChangeIcon from './hooks/ChangeIcon'
 import Error from "./routes/Error";
+import Status from "./routes/Status";
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
         <Route path="*" element={<Error />} />
         <Route path="/" element={<Navigate to='/home' />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/status" element={<Status />} />
       </Routes>
     </BrowserRouter>
   )
