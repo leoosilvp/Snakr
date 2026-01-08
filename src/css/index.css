@@ -38,13 +38,13 @@ body {
   overflow-x: hidden;
 }
 
-body::-webkit-scrollbar{
+body::-webkit-scrollbar {
   display: flex;
   width: 5px;
   background: var(--background-card);
 }
 
-body::-webkit-scrollbar-thumb{
+body::-webkit-scrollbar-thumb {
   border-radius: 50px;
   background: #0f0f0f;
   cursor: pointer;
@@ -63,7 +63,7 @@ body::-webkit-scrollbar-thumb{
     opacity: 0.4;
   }
 
-  50%{
+  50% {
     opacity: 0.8;
   }
 
@@ -205,7 +205,7 @@ body::-webkit-scrollbar-thumb{
 }
 
 /* Footer */
-.footer-main{
+.footer-main {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -215,33 +215,33 @@ body::-webkit-scrollbar-thumb{
   border-top: 1.5px solid var(--border-color);
 }
 
-.footer-nav{
+.footer-nav {
   display: flex;
   gap: 12px;
 }
 
-.footer-nav img{
+.footer-nav img {
   display: flex;
   width: 30px;
 }
 
-.footer-nav ul{
+.footer-nav ul {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
-.footer-nav a{
+.footer-nav a {
   font-size: 0.85rem;
   color: var(--gray-color);
   transition: var(--transition-2s);
 }
 
-.footer-nav a:hover{
+.footer-nav a:hover {
   color: var(--light-color);
 }
 
-.btn-system-status{
+.btn-system-status {
   display: flex;
   align-items: center;
   padding: 4px 10px;
@@ -251,11 +251,11 @@ body::-webkit-scrollbar-thumb{
   transition: var(--transition-2s);
 }
 
-.btn-system-status:hover{
+.btn-system-status:hover {
   background: var(--dark-color);
 }
 
-.btn-system-status div{
+.btn-system-status div {
   display: flex;
   width: 7px;
   height: 7px;
@@ -263,8 +263,100 @@ body::-webkit-scrollbar-thumb{
   background: var(--primary-color);
 }
 
-.btn-system-status h1{
+.btn-system-status h1 {
   font-size: 0.85rem;
   font-weight: 400;
   color: var(--primary-color);
+}
+
+/* error */
+.error-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.error-page header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 15px 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100vw;
+}
+
+.error-page header img {
+  display: flex;
+  width: 75px;
+}
+
+.error-page header a {
+  font-size: 0.85rem;
+  color: var(--gray-color);
+}
+
+.error-page-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-page-content h1 {
+  font-size: 1.6rem;
+}
+
+.error-page-content img {
+  margin: 30px 0;
+  display: flex;
+  width: 200px;
+}
+
+.error-page-content p {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--gray-color);
+}
+
+.error-page-btns {
+  margin-top: 20px;
+  display: flex;
+  gap: 30px;
+}
+
+.error-page-btns a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  border: 1px solid var(--gray-color);
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--gray-color);
+  transition: var(--transition-2s);
+}
+
+.error-page-btns a:hover {
+  border-color: var(--light-color);
+  background: var(--light-color);
+  color: var(--background);
+  box-shadow: 0 0 10px 0 #ffffff35;
+}
+
+.error-page-btns a:first-child {
+  border-color: var(--light-color);
+  background: var(--light-color);
+  color: var(--background);
+  box-shadow: 0 0 10px 0 #ffffff35;
+}
+
+.error-page-btns a:first-child:hover{
+  border-color: var(--gray-color);
+  background: var(--gray-color);
 }
