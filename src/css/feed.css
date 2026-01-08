@@ -3,10 +3,23 @@
     flex-direction: column;
     width: 1240px;
     height: 100px;
-    background: #1e1e1e;
 }
 
-.sec-most-popular.title{
+.most-popular-header{
     display: flex;
-    font-size: 1rem;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.most-popular-header h1{
+    display: flex;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.most-popular-header div{
+    display: flex;
+    width: 60px;
+    height: 2.5px;
+    background: #fff;
 }

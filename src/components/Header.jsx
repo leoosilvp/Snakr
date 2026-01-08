@@ -6,7 +6,8 @@ const routeNames = {
     '/home': 'Home',
     '/catalog': 'Catalog',
     '/library': 'Library',
-    '/settings': 'Settings'
+    '/settings': 'Settings',
+    '/support': 'Support'
 }
 
 const Header = () => {
@@ -48,6 +49,7 @@ const Header = () => {
                     <NavLink to='/catalog' className={({ isActive }) => isActive ? 'active' : ''}>Catalog</NavLink>
                     <NavLink to='/library' className={({ isActive }) => isActive ? 'active' : ''}>Library</NavLink>
                     <NavLink to='/settings' className={({ isActive }) => isActive ? 'active' : ''}>Settings</NavLink>
+                    <NavLink to='/support' className={({ isActive }) => isActive ? 'active' : ''}>Support</NavLink>
                 </ul>
             </nav>
         </header>

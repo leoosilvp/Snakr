@@ -6,14 +6,14 @@ const Home = () => {
       <Header />
 
       <section className="content">
-
         <div className="feed">
-          <section className="sec-most-popular">
-            <h1 className="title">Most popular</h1>
-            
+          <section className="most-popular">
+            <header className="most-popular-header">
+              <h1>Most popular</h1>
+              <div />
+            </header>
           </section>
         </div>
-
       </section>
     </main>
   )

@@ -29,7 +29,9 @@ body {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  background: var(--background);
+  background-image: url('https://anonymousai-hub.github.io/DB/img/bg-snakr.png');
+  background-size: cover;
+  background-repeat: no-repeat;
   color: var(--light-color);
   overflow-x: hidden;
 }
