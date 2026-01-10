@@ -5,6 +5,7 @@ import { useState } from 'react'
 
 const Login = () => {
   const [mode, setMode] = useState('register')
+  const [showPass, SetShowPass] = useState()
 
   return (
     <main className="login-main">
@@ -63,8 +64,8 @@ const Login = () => {
             </article>
 
             <article className='login-right-input'>
-              <i className='fa-regular fa-eye-slash' />
-              <input type="password" placeholder='Password' />
+              <i className={`fa-regular ${showPass ? 'fa-eye' : 'fa-eye-slash'}`} onClick={() => SetShowPass(prev => !prev)} />
+              <input type={showPass ? 'text' : 'password'} placeholder='Password' />
             </article>
           </section>
 
