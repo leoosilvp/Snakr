@@ -5,6 +5,9 @@
     justify-content: center;
     width: 100vw;
     height: 100vh;
+    background-image: linear-gradient(#000000d3), url('https://img.freepik.com/vetores-gratis/fundo-preto-com-linhas-onduladas_52683-76524.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .login-card {
@@ -12,7 +15,7 @@
     height: 450px;
     border: 1px solid var(--border-color);
     border-radius: 10px 0 0 10px;
-    box-shadow: 0 0 10px 0 var(--shadow);
+    box-shadow: 0 0 10px 0 #0b0b0b;
     overflow: hidden;
 }
 
@@ -102,18 +105,18 @@
     cursor: default;
 }
 
-.login-right-header{
+.login-right-header {
     margin: 40px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.login-right-header h1{
+.login-right-header h1 {
     font-size: 1.4rem;
 }
 
-.login-right-header h2{
+.login-right-header h2 {
     font-size: 1rem;
     font-weight: 400;
     color: var(--gray-color);
@@ -126,7 +129,7 @@
     gap: 10px;
 }
 
-.login-right-input{
+.login-right-input {
     display: flex;
     align-items: center;
     width: 370px;
@@ -135,12 +138,12 @@
     gap: 20px;
 }
 
-.login-right-input i{
+.login-right-input i {
     font-size: 1rem;
     color: var(--gray-color);
 }
 
-.login-right-input input{
+.login-right-input input {
     display: flex;
     width: 100%;
     height: 28px;
@@ -150,7 +153,7 @@
     color: var(--light-color);
 }
 
-.login-right button{
+.login-right button {
     margin-top: 50px;
     display: flex;
     align-items: center;
@@ -161,14 +164,135 @@
     border-radius: var(--border);
     font-size: 0.9rem;
     font-weight: 600;
-    color: var(--light-color);
-    background: var(--black);
+    color: var(--black);
+    background: var(--light-color);
+    box-shadow: 0 0 10px 0 #ffffff35;
     transition: var(--transition-2s);
     cursor: pointer;
 }
 
-.login-right button:hover{
-    background: var(--light-color);
-    color: var(--black);
-    box-shadow: 0 0 10px 0 #ffffff35;
+.login-right button:hover {
+    background: var(--black);
+    color: var(--light-color);
+}
+
+.login-switch{
+    display: none;
+}
+
+@media (width < 720px) {
+
+    .login-card {
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        background-image: linear-gradient(#000000a4), url('https://img.freepik.com/vetores-gratis/fundo-preto-com-linhas-onduladas_52683-76524.jpg');
+        background-size: 100%;
+        background-repeat: no-repeat;
+    }
+
+    .login-left {
+        width: 100%;
+        padding: 30px 0;
+        background: transparent;
+    }
+
+    .login-left-header {
+        gap: 13px;
+    }
+
+    .login-left-header img {
+        width: 70px;
+        filter: invert(1);
+    }
+
+    .login-left-header h2 {
+        color: #b3b3b3;
+        font-size: 0.75rem;
+    }
+
+    .login-left-content{
+        display: none;
+    }
+
+    .login-right {
+        width: 100%;
+        height: 100vh;
+        background: var(--light-color);
+        padding: 30px 20px;
+        border-radius: 80px 0px 0px 0px;
+    }
+
+    .login-right-header {
+        margin: 10px 0;
+    }
+
+    .login-right-header h1 {
+        font-size: 1.5rem;
+        color: var(--black);
+    }
+
+    .login-right-header h2 {
+        font-size: 0.95rem;
+        color: #353535;
+    }
+
+    .login-inputs {
+        margin-top: 30px;
+        width: 100%;
+        gap: 15px;
+    }
+
+    .login-right-input {
+        width: 100%;
+        background: #ededed;
+        padding: 12px 14px;
+    }
+
+    .login-right-input i {
+        color: #777;
+    }
+
+    .login-right-input input {
+        color: var(--black);
+        font-size: 0.95rem;
+    }
+
+    .login-right button {
+        width: 100%;
+        margin-top: 55px;
+        padding: 12px;
+        border: 1.5px solid var(--black);
+        border-radius: var(--border);
+        background: var(--black);
+        font-size: 1.1rem;
+        color: var(--light-color);
+    }
+
+    .login-right button:hover{
+        background: var(--black);
+        color: var(--light-color);
+
+    }
+
+    .login-right button:active{
+        background: var(--light-color);
+        color: var(--black);
+    }
+
+    .login-switch{
+        display: flex;
+        margin-top: 10px;
+        font-size: 0.9rem;
+        font-weight: 400;
+        color: #6b6b6b;
+        gap: 5px;
+    }
+
+    .login-switch span{
+        font-weight: 600;
+    }
 }

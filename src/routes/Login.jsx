@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 
 const Login = () => {
-  const [mode, setMode] = useState('register')
+  const [mode, setMode] = useState('login')
   const [showPass, SetShowPass] = useState()
 
   return (
@@ -72,6 +72,22 @@ const Login = () => {
           <button>
             {mode === 'login' ? 'Login' : 'Register'}
           </button>
+
+          {mode === 'login' ? (
+            <p className="login-switch">
+              Don’t have an account?
+              <span onClick={() => setMode('register')}>
+                Register
+              </span>
+            </p>
+          ) : (
+            <p className="login-switch">
+              Already have an account?
+              <span onClick={() => setMode('login')}>
+                Login
+              </span>
+            </p>
+          )}
         </section>
       </section>
     </main>
