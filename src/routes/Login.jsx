@@ -1,8 +1,11 @@
 import '../css/login.css'
 import icon from '../assets/svg/icon-dark.svg'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
 
 const Login = () => {
+  const [mode, setMode] = useState('register')
+
   return (
     <main className="login-main">
       <section className='login-card'>
@@ -13,10 +16,22 @@ const Login = () => {
           </header>
 
           <section className='login-left-content'>
-            <h1>It's so good to have you back!</h1>
-            <p>Access your account right now.</p>
+            <h1>
+              {mode === 'login'
+                ? 'Create your account'
+                : "It's good to have you back."}
+            </h1>
 
-            <button>Login</button>
+            <p>
+              {mode === 'login'
+                ? 'Join Snakr and centralize all your games.'
+                : 'Access your account right now.'}
+            </p>
+
+            <button onClick={() => setMode(prev => prev === 'login' ? 'register' : 'login')}>
+              {mode === 'login' ? 'Register' : 'Login'}
+            </button>
+
 
             <Link>I forgot my password.</Link>
           </section>
@@ -24,15 +39,23 @@ const Login = () => {
 
         <section className='login-right'>
           <header className='login-right-header'>
-            <h1>Create your account</h1>
-            <h2>Fill in your details.</h2>
+            <h1>
+              {mode === 'login' ? 'Sign in' : 'Create your account'}
+            </h1>
+            <h2>
+              {mode === 'login'
+                ? 'Enter your credentials.'
+                : 'Fill in your details.'}
+            </h2>
           </header>
 
           <section className='login-inputs'>
-            <article className='login-right-input'>
-              <i className='fa-regular fa-user' />
-              <input type="text" placeholder='Name' />
-            </article>
+            {mode === 'register' && (
+              <article className='login-right-input'>
+                <i className='fa-regular fa-user' />
+                <input type="text" placeholder='Name' />
+              </article>
+            )}
 
             <article className='login-right-input'>
               <i className='fa-regular fa-envelope' />
@@ -45,7 +68,9 @@ const Login = () => {
             </article>
           </section>
 
-          <button>Register</button>
+          <button>
+            {mode === 'login' ? 'Login' : 'Register'}
+          </button>
         </section>
       </section>
     </main>

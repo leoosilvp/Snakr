@@ -114,8 +114,9 @@
 }
 
 .login-right-header h2{
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 400;
+    color: var(--gray-color);
 }
 
 .login-inputs {
