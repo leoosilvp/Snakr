@@ -21,16 +21,10 @@ export default async function handler(req, res) {
     { expiresIn: '7d' }
   )
 
-  res.setHeader('Set-Cookie', `
-    session=${token};
-    HttpOnly;
-    Secure;
-    SameSite=Lax;
-    Path=/;
-    Max-Age=604800
-  `)
+  res.setHeader(
+    'Set-Cookie',
+    `session=${token}; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=604800`
+  )
 
-  return res.status(200).json({
-    success: true
-  })
+  return res.status(200).json({ success: true })
 }
