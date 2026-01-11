@@ -30,5 +30,7 @@ export default async function handler(req, res) {
     Max-Age=604800
   `)
 
-  res.status(204).end()
+  return res.status(200).json({
+    success: true
+  })
 }

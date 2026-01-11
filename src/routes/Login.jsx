@@ -48,6 +48,7 @@ const Login = () => {
       const res = await fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
         body: JSON.stringify(payload)
       })
 
@@ -57,20 +58,12 @@ const Login = () => {
         throw new Error(data.error || 'Something went wrong')
       }
 
-      const sessionUser = {
-        id: data.id,
-        name: data.name,
-        email: data.email,
-        avatar_url: data.avatar_url
-      }
-
-      if (mode === 'login') {
-        localStorage.setItem('user', JSON.stringify(sessionUser))
-      }
-
       if (mode === 'register') {
         setMode('login')
+        return
       }
+
+      window.location.href = '/home'
 
     } catch (err) {
       setError(err.message)
@@ -78,6 +71,7 @@ const Login = () => {
       setLoading(false)
     }
   }
+
 
   return (
     <main className="login-main">
