@@ -1,40 +1,34 @@
-import bcrypt from 'bcrypt'
-import { supabase } from '../lib/supabaseClient.js'
+import jwt from 'jsonwebtoken'
+import { supabase } from '../_lib/supabase'
 
 export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' })
-  }
+  if (req.method !== 'POST') return res.status(405).end()
 
   const { email, password } = req.body
 
-  if (!email || !password) {
-    return res.status(400).json({ error: 'Missing credentials' })
-  }
-
-  const { data: user, error } = await supabase
-    .from('users')
-    .select('*')
-    .eq('email', email)
-    .single()
-
-  if (error || !user) {
-    return res.status(401).json({ error: 'Invalid credentials' })
-  }
-
-  const validPassword = await bcrypt.compare(password, user.password_hash)
-
-  if (!validPassword) {
-    return res.status(401).json({ error: 'Invalid credentials' })
-  }
-
-  return res.json({
-    id: user.id,
-    name: user.name,
-    email: user.email,
-    avatar_url: user.avatar_url,
-    bio: user.bio,
-    games: user.games,
-    created_at: user.created_at
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password
   })
+
+  if (error) {
+    return res.status(401).json({ error: 'Invalid credentials' })
+  }
+
+  const token = jwt.sign(
+    { sub: data.user.id },
+    process.env.JWT_SECRET,
+    { expiresIn: '7d' }
+  )
+
+  res.setHeader('Set-Cookie', `
+    session=${token};
+    HttpOnly;
+    Secure;
+    SameSite=Lax;
+    Path=/;
+    Max-Age=604800
+  `)
+
+  res.status(204).end()
 }

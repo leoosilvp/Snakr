@@ -36,14 +36,14 @@ const Login = () => {
       const payload =
         mode === 'login'
           ? {
-              email: form.email,
-              password: form.password
-            }
+            email: form.email,
+            password: form.password
+          }
           : {
-              name: form.name,
-              email: form.email,
-              password: form.password
-            }
+            name: form.name,
+            email: form.email,
+            password: form.password
+          }
 
       const res = await fetch(endpoint, {
         method: 'POST',
@@ -57,8 +57,15 @@ const Login = () => {
         throw new Error(data.error || 'Something went wrong')
       }
 
+      const sessionUser = {
+        id: data.id,
+        name: data.name,
+        email: data.email,
+        avatar_url: data.avatar_url
+      }
+
       if (mode === 'login') {
-        localStorage.setItem('user', JSON.stringify(data))
+        localStorage.setItem('user', JSON.stringify(sessionUser))
       }
 
       if (mode === 'register') {
