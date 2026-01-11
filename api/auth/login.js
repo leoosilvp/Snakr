@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import { supabase } from '../_lib/supabase'
+import { supabase } from '../_lib/supabase.js'
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end()

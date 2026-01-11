@@ -1,5 +1,5 @@
-import { supabase } from '../_lib/supabase'
-import { getUserId } from '../_lib/auth'
+import { supabase } from '../_lib/supabase.js'
+import { getUserId } from '../_lib/auth.js'
 
 export default async function handler(req, res) {
   const userId = getUserId(req)
