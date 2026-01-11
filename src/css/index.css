@@ -86,6 +86,7 @@ body::-webkit-scrollbar-thumb {
   gap: 15px;
   border-bottom: 1.5px solid var(--border-color);
   background: var(--background-card);
+  cursor: default;
 }
 
 .header-content {

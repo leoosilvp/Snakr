@@ -23,7 +23,9 @@ const Login = () => {
     }))
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
     setError(null)
     setLoading(true)
 
@@ -108,7 +110,7 @@ const Login = () => {
           </section>
         </section>
 
-        <section className='login-right'>
+        <form className='login-right' onSubmit={handleSubmit}>
           <header className='login-right-header'>
             <h1>
               {mode === 'login' ? 'Sign in' : 'Create your account'}
@@ -188,7 +190,7 @@ const Login = () => {
               </span>
             </p>
           )}
-        </section>
+        </form>
       </section>
     </main>
   )
