@@ -4,6 +4,7 @@ import ChangeIcon from './hooks/ChangeIcon'
 import Error from "./routes/Error";
 import Status from "./routes/Status";
 import Login from "./routes/Login";
+import Profile from "./routes/Profile";
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Navigate to='/login' />} />
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/status" element={<Status />} />
       </Routes>
     </BrowserRouter>

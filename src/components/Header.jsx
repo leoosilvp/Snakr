@@ -43,9 +43,9 @@ const Header = () => {
                 </article>
 
                 <article className='header-content-right'>
-                    <Link to='/notifications'><i className='fa-regular fa-bell' /></Link>
-                    <Link to='/wish-list'><i className='fa-regular fa-bookmark' /></Link>
-                    <Link to='https://github.com/leoosilvp'><i className='fa-regular fa-building' /></Link>
+                    <Link to='/notifications' title='Notifications'><i className='fa-regular fa-bell' /></Link>
+                    <Link to='/wish-list' title='Wish-list'><i className='fa-regular fa-bookmark' /></Link>
+                    <Link to='/profile' title='Profile'><img src="https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg" /></Link>
                 </article>
             </section>
 

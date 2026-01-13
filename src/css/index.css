@@ -130,18 +130,24 @@ body::-webkit-scrollbar-thumb {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 27px;
-  height: 27px;
-  font-size: 0.8rem;
+  width: 30px;
+  height: 30px;
+  font-size: 0.85rem;
   color: var(--gray-color);
   border: 1px solid #252525;
   border-radius: 50%;
   transition: var(--transition-2s);
+  overflow: hidden;
 }
 
 .header-content-right a:hover {
   border-color: var(--light-color);
   color: var(--light-color);
+}
+
+.header-content-right img{
+  display: flex;
+  width: 100%;
 }
 
 .header-main nav {
