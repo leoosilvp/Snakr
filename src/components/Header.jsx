@@ -8,12 +8,13 @@ const routeNames = {
     '/library': 'Library',
     '/settings': 'Settings',
     '/support': 'Support',
+    '/profile': 'Profile',
 
     '/Home': 'Home',
     '/Catalog': 'Catalog',
     '/Library': 'Library',
     '/Settings': 'Settings',
-    '/Support': 'Support'
+    '/Profile': 'Profile'
 }
 
 const Header = () => {

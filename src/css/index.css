@@ -36,6 +36,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   color: var(--light-color);
+  overflow-y: auto;
   overflow-x: hidden;
 }
 
@@ -87,6 +88,7 @@ body::-webkit-scrollbar-thumb {
   border-bottom: 1.5px solid var(--border-color);
   background: var(--background-card);
   cursor: default;
+  z-index: 1;
 }
 
 .header-content {
