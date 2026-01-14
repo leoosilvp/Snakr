@@ -7,7 +7,7 @@ export default async function handler(req, res) {
 
   const { data } = await supabase
     .from('users')
-    .select('id, name, photo, bio, created_at')
+    .select('id, username, name, photo, bio, created_at')
     .eq('id', userId)
     .single()
 

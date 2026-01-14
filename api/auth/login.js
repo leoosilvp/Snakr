@@ -4,10 +4,20 @@ import { supabase } from '../_lib/supabase.js'
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end()
 
-  const { email, password } = req.body
+  const { username, password } = req.body
+
+  const { data: user, error: userError } = await supabase
+    .from('users')
+    .select('email, id')
+    .eq('username', username)
+    .single()
+
+  if (userError || !user) {
+    return res.status(401).json({ error: 'Invalid credentials' })
+  }
 
   const { data, error } = await supabase.auth.signInWithPassword({
-    email,
+    email: user.email,
     password
   })
 

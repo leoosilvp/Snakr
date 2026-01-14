@@ -3,11 +3,16 @@ import { supabase } from '../_lib/supabase.js'
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end()
 
-  const { name, email, password } = req.body
+  const { username, email, password } = req.body
 
   const { data, error } = await supabase.auth.signUp({
     email,
-    password
+    password,
+    options: {
+      data: {
+        username
+      }
+    }
   })
 
   if (error) {
@@ -16,11 +21,9 @@ export default async function handler(req, res) {
 
   await supabase.from('users').insert({
     id: data.user.id,
-    name,
+    username,
     email
   })
 
-  return res.status(201).json({
-    success: true
-  })
+  return res.status(201).json({ success: true })
 }

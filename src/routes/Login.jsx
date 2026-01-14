@@ -8,7 +8,7 @@ const Login = () => {
   const [showPass, setShowPass] = useState(false)
 
   const [form, setForm] = useState({
-    name: '',
+    username: '',
     email: '',
     password: ''
   })
@@ -38,14 +38,14 @@ const Login = () => {
       const payload =
         mode === 'login'
           ? {
-            email: form.email,
-            password: form.password
-          }
+              username: form.username,
+              password: form.password
+            }
           : {
-            name: form.name,
-            email: form.email,
-            password: form.password
-          }
+              username: form.username,
+              email: form.email,
+              password: form.password
+            }
 
       const res = await fetch(endpoint, {
         method: 'POST',
@@ -73,7 +73,6 @@ const Login = () => {
       setLoading(false)
     }
   }
-
 
   return (
     <main className="login-main">
@@ -127,25 +126,40 @@ const Login = () => {
               <article className='login-right-input'>
                 <i className='fa-regular fa-user' />
                 <input
-                  name="name"
+                  name="username"
                   type="text"
-                  placeholder='Name'
-                  value={form.name}
+                  placeholder='Username'
+                  value={form.username}
                   onChange={handleChange}
                 />
               </article>
             )}
 
-            <article className='login-right-input'>
-              <i className='fa-regular fa-envelope' />
-              <input
-                name="email"
-                type="email"
-                placeholder='Email'
-                value={form.email}
-                onChange={handleChange}
-              />
-            </article>
+            {mode === 'login' && (
+              <article className='login-right-input'>
+                <i className='fa-regular fa-user' />
+                <input
+                  name="username"
+                  type="text"
+                  placeholder='Username'
+                  value={form.username}
+                  onChange={handleChange}
+                />
+              </article>
+            )}
+
+            {mode === 'register' && (
+              <article className='login-right-input'>
+                <i className='fa-regular fa-envelope' />
+                <input
+                  name="email"
+                  type="email"
+                  placeholder='Email'
+                  value={form.email}
+                  onChange={handleChange}
+                />
+              </article>
+            )}
 
             <article className='login-right-input'>
               <i
