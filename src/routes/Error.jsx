@@ -21,7 +21,7 @@ const Error = () => {
       </section>
 
       <section className='error-page-btns'>
-        <Link to='/'>Home</Link>
+        <Link to='/home'>Home</Link>
         <Link to='/docs'>Contact us</Link>
       </section>
     </main>

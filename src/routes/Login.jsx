@@ -32,8 +32,8 @@ const Login = () => {
     try {
       const endpoint =
         mode === 'login'
-          ? '/api/auth/login'
-          : '/api/auth/register'
+          ? 'https://backend-snakr.vercel.app/api/auth/login'
+          : 'https://backend-snakr.vercel.app/api/auth/register'
 
       const payload =
         mode === 'login'

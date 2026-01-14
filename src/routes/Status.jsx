@@ -10,7 +10,7 @@ const Status = () => {
     useEffect(() => {
         const fetchStatus = async () => {
             try {
-                const res = await fetch('/api/status')
+                const res = await fetch('https://backend-snakr.vercel.app/api/status')
                 if (!res.ok) return
 
                 const data = await res.json()

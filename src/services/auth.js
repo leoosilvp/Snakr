@@ -1,5 +1,5 @@
 export async function login(username, password) {
-  const res = await fetch('/api/auth/login', {
+  const res = await fetch('https://backend-snakr.vercel.app/api/auth/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     credentials: 'include',
@@ -16,7 +16,7 @@ export async function login(username, password) {
 
 
 export async function getMe() {
-  const res = await fetch('/api/auth/me', {
+  const res = await fetch('https://backend-snakr.vercel.app/api/auth/me', {
     credentials: 'include'
   })
 
@@ -25,7 +25,7 @@ export async function getMe() {
 }
 
 export async function logout() {
-  await fetch('/api/auth/logout', {
+  await fetch('https://backend-snakr.vercel.app/api/auth/logout', {
     method: 'POST',
     credentials: 'include'
   })
