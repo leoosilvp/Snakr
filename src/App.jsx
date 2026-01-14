@@ -5,6 +5,7 @@ import Error from "./routes/Error";
 import Status from "./routes/Status";
 import Login from "./routes/Login";
 import Profile from "./routes/Profile";
+import ProtectedRoute from "./routes/ProtectedRoute";
 
 function App() {
 
@@ -14,10 +15,12 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="*" element={<Error />} />
-        <Route path="/" element={<Navigate to='/login' />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/" element={<Navigate to='/home' />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/home" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
+        </Route>
         <Route path="/status" element={<Status />} />
       </Routes>
     </BrowserRouter>

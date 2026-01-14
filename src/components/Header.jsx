@@ -36,9 +36,9 @@ const Header = () => {
         <header className={`header-main ${isScrolled ? 'header-main-scrolled' : ''}`}>
             <section className='header-content'>
                 <article className='header-content-left'>
-                    <a href="">
+                    <Link to='/home'>
                         <img src={logo} alt="logo Snakr" />
-                    </a>
+                    </Link>
                     <p>/</p>
                     <h2>{currentRoute}</h2>
                 </article>
