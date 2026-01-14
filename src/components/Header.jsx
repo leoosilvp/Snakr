@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import logo from '../assets/svg/logo.svg'
+import ModalProfile from './ModalProfile'
 
 const routeNames = {
     '/home': 'Home',
@@ -9,57 +10,94 @@ const routeNames = {
     '/settings': 'Settings',
     '/support': 'Support',
     '/profile': 'Profile',
-
-    '/Home': 'Home',
-    '/Catalog': 'Catalog',
-    '/Library': 'Library',
-    '/Settings': 'Settings',
-    '/Profile': 'Profile'
 }
 
 const Header = () => {
-
     const location = useLocation()
     const currentRoute = routeNames[location.pathname] || ''
     const [isScrolled, setIsScrolled] = useState(false)
 
-    useEffect(() => {
-        const onScroll = () => {
-            setIsScrolled(window.scrollY > 64)
-        }
+    const [showProfileModal, setShowProfileModal] = useState(false)
+    const [modalInteracted, setModalInteracted] = useState(false)
 
+    const hoverTimeoutRef = useRef(null)
+    const modalRef = useRef(null)
+
+    useEffect(() => {
+        const onScroll = () => setIsScrolled(window.scrollY > 64)
         window.addEventListener('scroll', onScroll)
         return () => window.removeEventListener('scroll', onScroll)
     }, [])
 
+    useEffect(() => {
+        if (!showProfileModal) return
+
+        const handleClickOutside = (e) => {
+            if (modalRef.current && !modalRef.current.contains(e.target)) {
+                setShowProfileModal(false)
+            }
+        }
+
+        document.addEventListener('mousedown', handleClickOutside)
+        return () => document.removeEventListener('mousedown', handleClickOutside)
+    }, [showProfileModal])
+
+    const handleAvatarMouseEnter = () => {
+        hoverTimeoutRef.current = setTimeout(() => {
+            setShowProfileModal(true)
+            setModalInteracted(false)
+        }, 650)
+    }
+
+    const handleAvatarMouseLeave = () => {
+        clearTimeout(hoverTimeoutRef.current)
+    }
+
+    const handleModalMouseEnter = () => {
+        setModalInteracted(true)
+    }
+
+    const handleModalMouseLeave = () => {
+        if (modalInteracted) {
+            setShowProfileModal(false)
+        }
+    }
+
     return (
         <header className={`header-main ${isScrolled ? 'header-main-scrolled' : ''}`}>
-            <section className='header-content'>
-                <article className='header-content-left'>
-                    <Link to='/home'>
+            <section className="header-content">
+                <article className="header-content-left">
+                    <Link to="/home">
                         <img src={logo} alt="logo Snakr" />
                     </Link>
                     <p>/</p>
                     <h2>{currentRoute}</h2>
                 </article>
 
-                <article className='header-content-right'>
-                    <Link to='/notifications' title='Notifications'><i className='fa-regular fa-bell' /></Link>
-                    <Link to='/wish-list' title='Wish-list'><i className='fa-regular fa-bookmark' /></Link>
-                    <Link to='/profile' title='Profile'><img src="https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg" /></Link>
+                <article className="header-content-right">
+                    <Link to="/notifications"><i className="fa-regular fa-bell" /></Link>
+                    <Link to="/wish-list"><i className="fa-regular fa-bookmark" /></Link>
+
+                    <div onMouseEnter={handleAvatarMouseEnter} onMouseLeave={handleAvatarMouseLeave}>
+                        <Link to="/profile">
+                            <img src="https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg" alt="Profile" />
+                        </Link>
+                    </div>
                 </article>
             </section>
 
             <nav>
                 <ul>
-                    <NavLink to='/home' className={({ isActive }) => isActive ? 'active' : ''}>Home</NavLink>
-                    <NavLink to='/catalog' className={({ isActive }) => isActive ? 'active' : ''}>Catalog</NavLink>
-                    <NavLink to='/library' className={({ isActive }) => isActive ? 'active' : ''}>Library</NavLink>
-                    <NavLink to='/profile' className={({ isActive }) => isActive ? 'active' : ''}>Profile</NavLink>
-                    <NavLink to='/settings' className={({ isActive }) => isActive ? 'active' : ''}>Settings</NavLink>
-                    <NavLink to='/support' className={({ isActive }) => isActive ? 'active' : ''}>Support</NavLink>
+                    <NavLink to="/home">Home</NavLink>
+                    <NavLink to="/catalog">Catalog</NavLink>
+                    <NavLink to="/library">Library</NavLink>
+                    <NavLink to="/profile">Profile</NavLink>
+                    <NavLink to="/settings">Settings</NavLink>
+                    <NavLink to="/support">Support</NavLink>
                 </ul>
             </nav>
+
+            <ModalProfile ref={modalRef} isOpen={showProfileModal} onMouseEnter={handleModalMouseEnter} onMouseLeave={handleModalMouseLeave} />
         </header>
     )
 }

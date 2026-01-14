@@ -13,7 +13,7 @@
   --light-color: #f5f5f5;
   --black: #000;
   --dark-color: #151515;
-  --gray-color: #b3b3b3;
+  --gray-color: #969696;
   --background: #000000;
   --background-card: #080808;
   --border-color: #202020;
@@ -80,17 +80,15 @@ body::-webkit-scrollbar-thumb {
   flex-direction: column;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(
-    -45deg,
-    #000000 25%,
-    #0f0f0f 37%,
-    #000000 63%
-  );
+  background: linear-gradient(-45deg,
+      #000000 25%,
+      #0f0f0f 37%,
+      #000000 63%);
   background-size: 400% 100%;
   animation: skeleton 1.5s infinite linear;
 }
 
-.skeleton-header{
+.skeleton-header {
   position: absolute;
   top: 0;
   left: 0;
@@ -173,7 +171,7 @@ body::-webkit-scrollbar-thumb {
   color: var(--light-color);
 }
 
-.header-content-right img{
+.header-content-right img {
   display: flex;
   width: 100%;
 }
@@ -191,8 +189,9 @@ body::-webkit-scrollbar-thumb {
   display: flex;
   width: fit-content;
   padding: 0px 10px 10px 10px;
+  border-bottom: 1.5px solid transparent;
   font-size: 0.9rem;
-  color: #969696;
+  color: var(--gray-color);
   transition: var(--transition-2s);
 }
 
@@ -202,7 +201,7 @@ body::-webkit-scrollbar-thumb {
 
 .header-main nav ul a.active {
   color: var(--light-color);
-  border-bottom: 1.5px solid var(--light-color);
+  border-color: var(--light-color);
 }
 
 .header-main-scrolled {
@@ -239,6 +238,82 @@ body::-webkit-scrollbar-thumb {
 .header-main-scrolled nav ul a {
   padding: 12px;
 }
+
+/* modal profile */
+.modal-profile {
+  position: fixed;
+  top: 55px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  padding-bottom: 5px;
+  background: var(--background-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.modal-profile-info {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+}
+
+.modal-profile-info img {
+  display: flex;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.modal-profile-info h1 {
+  font-size: 1rem;
+  font-weight: 400
+}
+
+.modal-profile-info h2 {
+  margin-top: -3px;
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--gray-color);
+}
+
+.modal-profile-btns {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-profile-btns hr {
+  display: flex;
+  margin: 5px 0;
+  border: 1px solid var(--border-color);
+}
+
+.modal-profile-btns a {
+  margin: 0 5px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px;
+  font-size: 0.85rem;
+  border-radius: var(--border);
+  color: var(--light-color);
+}
+
+.modal-profile-btns a:hover {
+  background: var(--dark-color);
+}
+
+.modal-profile-btns .active, .modal-profile-btns .active i {
+  color: #ca5555;
+}
+
+.modal-profile-btns a i {
+  color: #828282;
+}
+
 
 /* Footer */
 .footer-main {
@@ -404,7 +479,7 @@ body::-webkit-scrollbar-thumb {
   box-shadow: 0 0 10px 0 #ffffff35;
 }
 
-.error-page-btns a:first-child:hover{
+.error-page-btns a:first-child:hover {
   border-color: var(--gray-color);
   background: var(--gray-color);
 }
