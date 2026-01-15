@@ -270,7 +270,8 @@ body::-webkit-scrollbar-thumb {
 
 .modal-profile-info h1 {
   font-size: 1rem;
-  font-weight: 400
+  font-weight: 400;
+  color: var(--light-color);
 }
 
 .modal-profile-info h2 {
@@ -300,6 +301,7 @@ body::-webkit-scrollbar-thumb {
   font-size: 0.85rem;
   border-radius: var(--border);
   color: var(--light-color);
+  cursor: pointer;
 }
 
 .modal-profile-btns a:hover {

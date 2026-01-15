@@ -128,6 +128,7 @@ const Login = () => {
                 <input
                   name="username"
                   type="text"
+                  maxLength={20}
                   placeholder='Username'
                   value={form.username}
                   onChange={handleChange}
@@ -141,6 +142,7 @@ const Login = () => {
                 <input
                   name="username"
                   type="text"
+                  maxLength={20}
                   placeholder='Username'
                   value={form.username}
                   onChange={handleChange}
