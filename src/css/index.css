@@ -34,7 +34,7 @@ body {
   background: #000;
   background-image: url('https://anonymousai-hub.github.io/DB/img/bg-snakr.png');
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
   color: var(--light-color);
   overflow-y: auto;
   overflow-x: hidden;
@@ -97,6 +97,85 @@ body::-webkit-scrollbar-thumb {
   height: 100px;
   background: var(--background-card);
   border-bottom: 1.5px solid var(--border-color);
+}
+
+.modal-confirm-ctn{
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.modal-confirm{
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: fit-content;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border);
+  background: var(--background-card);
+  box-shadow: 0 0 10px 0 #00000050;
+}
+
+.modal-confirm-content{
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-confirm-content h1{
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.modal-confirm-content h2{
+  margin-top: 15px;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.modal-confirm-content h3{
+  margin-top: 10px;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--gray-color);
+}
+
+.modal-confirm-btn{
+  display: flex;
+  justify-content: end;
+  gap: 15px;
+}
+
+.modal-confirm-btn button{
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 50px;
+  background: transparent;
+  font-size: 0.9rem;
+  color: var(--light-color);
+  cursor: pointer;
+  transition: var(--transition-2s);
+}
+
+.modal-confirm-btn button:hover{
+  background: var(--dark-color);
+}
+
+.modal-confirm-btn button.active{
+  background: #dd1f1f;
+}
+
+.modal-confirm-btn button.active:hover{
+  background: #a41818;
 }
 
 /* Header */
