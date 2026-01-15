@@ -52,7 +52,8 @@ export function useUser() {
           username: data.username,
           name: data.name,
           email: data.email,
-          photo: data.photo
+          photo: data.photo,
+          background: data.background
         }
 
         lastFetch = Date.now()
