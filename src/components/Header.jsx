@@ -6,6 +6,7 @@ import ModalProfile from './ModalProfile'
 
 const routeNames = {
     '/home': 'Home',
+    '/notifications': 'Notifications',
     '/catalog': 'Catalog',
     '/library': 'Library',
     '/settings': 'Settings',

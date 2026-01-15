@@ -6,6 +6,7 @@ import Status from "./routes/Status";
 import Login from "./routes/Login";
 import Profile from "./routes/Profile";
 import ProtectedRoute from "./routes/ProtectedRoute";
+import Notifications from "./routes/Notifications";
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Navigate to='/home' />} />
         <Route element={<ProtectedRoute />}>
+          <Route path="/notifications" element={<Notifications />} />
           <Route path="/home" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
         </Route>
