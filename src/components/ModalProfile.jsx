@@ -1,10 +1,12 @@
 import { forwardRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { logout } from '../services/auth'
+import { useUser } from '../hooks/useUser'
 
-const ModalProfile = forwardRef(
-  ({ isOpen, onMouseEnter, onMouseLeave }, ref) => {
+const ModalProfile = forwardRef(({ isOpen, onMouseEnter, onMouseLeave }, ref) => {
+
     const navigate = useNavigate()
+    const { user } = useUser()
 
     const handleLogout = async (e) => {
       e.preventDefault()
@@ -27,10 +29,10 @@ const ModalProfile = forwardRef(
         onMouseLeave={onMouseLeave}
       >
         <Link to='/profile' className="modal-profile-info">
-          <img src="https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg" />
+          <img src={user?.photo || 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'} />
           <div>
-            <h1>user5679</h1>
-            <h2>usuario@gmail.com</h2>
+            <h1>{user?.username || 'Falha ao buscar'}</h1>
+            <h2>{user?.email || 'Falha ao buscar'}</h2>
           </div>
         </Link>
 

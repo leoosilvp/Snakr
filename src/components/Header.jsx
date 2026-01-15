@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
+import { useUser } from '../hooks/useUser'
 import logo from '../assets/svg/logo.svg'
 import ModalProfile from './ModalProfile'
 
@@ -13,6 +14,8 @@ const routeNames = {
 }
 
 const Header = () => {
+    const { user } = useUser()
+
     const location = useLocation()
     const currentRoute = routeNames[location.pathname] || ''
     const [isScrolled, setIsScrolled] = useState(false)
@@ -80,7 +83,7 @@ const Header = () => {
 
                     <div onMouseEnter={handleAvatarMouseEnter} onMouseLeave={handleAvatarMouseLeave}>
                         <Link to="/profile">
-                            <img src="https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg" alt="Profile" />
+                            <img src={user?.photo || 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'} />
                         </Link>
                     </div>
                 </article>
