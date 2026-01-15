@@ -31,8 +31,8 @@ const ModalProfile = forwardRef(({ isOpen, onMouseEnter, onMouseLeave }, ref) =>
       <Link to='/profile' className="modal-profile-info">
         <img src={user?.photo || 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'} />
         <div>
-          <h1>{user?.username || 'Falha ao buscar'}</h1>
-          <h2>{user?.email || 'Falha ao buscar'}</h2>
+          <h1>{user?.username || '...'}</h1>
+          <h2>{user?.email || '@email.com'}</h2>
         </div>
         {user.steam_id ? (<i className='fa-brands fa-steam-symbol'/>) : ''}
       </Link>
