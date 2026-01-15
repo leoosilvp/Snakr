@@ -99,7 +99,7 @@ body::-webkit-scrollbar-thumb {
   border-bottom: 1.5px solid var(--border-color);
 }
 
-.modal-confirm-ctn{
+.modal-confirm-ctn {
   position: absolute;
   top: 0;
   left: 0;
@@ -110,7 +110,7 @@ body::-webkit-scrollbar-thumb {
   height: 100vh;
 }
 
-.modal-confirm{
+.modal-confirm {
   display: flex;
   flex-direction: column;
   width: 500px;
@@ -122,36 +122,36 @@ body::-webkit-scrollbar-thumb {
   box-shadow: 0 0 10px 0 #00000050;
 }
 
-.modal-confirm-content{
+.modal-confirm-content {
   display: flex;
   flex-direction: column;
 }
 
-.modal-confirm-content h1{
+.modal-confirm-content h1 {
   font-size: 1.3rem;
   font-weight: 500;
 }
 
-.modal-confirm-content h2{
+.modal-confirm-content h2 {
   margin-top: 15px;
   font-size: 1.05rem;
   font-weight: 500;
 }
 
-.modal-confirm-content h3{
+.modal-confirm-content h3 {
   margin-top: 10px;
   font-size: 0.9rem;
   font-weight: 400;
   color: var(--gray-color);
 }
 
-.modal-confirm-btn{
+.modal-confirm-btn {
   display: flex;
   justify-content: end;
   gap: 15px;
 }
 
-.modal-confirm-btn button{
+.modal-confirm-btn button {
   margin-top: 30px;
   display: flex;
   align-items: center;
@@ -166,15 +166,15 @@ body::-webkit-scrollbar-thumb {
   transition: var(--transition-2s);
 }
 
-.modal-confirm-btn button:hover{
+.modal-confirm-btn button:hover {
   background: var(--dark-color);
 }
 
-.modal-confirm-btn button.active{
+.modal-confirm-btn button.active {
   background: #dd1f1f;
 }
 
-.modal-confirm-btn button.active:hover{
+.modal-confirm-btn button.active:hover {
   background: #a41818;
 }
 
@@ -360,6 +360,17 @@ body::-webkit-scrollbar-thumb {
   color: var(--gray-color);
 }
 
+.modal-profile-info i{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  font-size: 0.9rem;
+  color: var(--gray-color);
+}
+
+
 .modal-profile-btns {
   display: flex;
   flex-direction: column;
@@ -387,7 +398,8 @@ body::-webkit-scrollbar-thumb {
   background: var(--dark-color);
 }
 
-.modal-profile-btns .active, .modal-profile-btns .active i {
+.modal-profile-btns .active,
+.modal-profile-btns .active i {
   color: #ca5555;
 }
 

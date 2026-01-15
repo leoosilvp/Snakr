@@ -51,6 +51,7 @@ export function useUser() {
           id: data.id,
           username: data.username,
           name: data.name,
+          steam_id: data.steam_id,
           email: data.email,
           photo: data.photo,
           background: data.background
