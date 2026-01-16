@@ -7,7 +7,16 @@ import Login from "./routes/Login";
 import Profile from "./routes/Profile";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import Notifications from "./routes/Notifications";
+
 import Settings from "./routes/Settings";
+import General from "./components/settings/General";
+import Account from "./components/settings/Account";
+import Notification from "./components/settings/Notifications";
+import Apparence from "./components/settings/Apparence";
+import Security from "./components/settings/Security";
+import Support from "./components/settings/Support";
+import Accessibility from "./components/settings/Accessibility";
+import TermsPrivacy from "./components/settings/TermsPrivacy";
 
 function App() {
 
@@ -25,7 +34,16 @@ function App() {
           <Route path="/profile" element={<Profile />} />
 
           <Route path="/settings" element={<Settings />} >
-            
+            <Route index element={<Navigate to='general' />} />
+            <Route path="general" element={<General />} />
+            <Route path="account" element={<Account />} />
+            <Route path="notifications" element={<Notification />} />
+            <Route path="apparence" element={<Apparence />} />
+            <Route path="security" element={<Security />} />
+            <Route path="support" element={<Support />} />
+            <Route path="accessibility" element={<Accessibility />} />
+            <Route path="terms and privacy" element={<TermsPrivacy />} />
+
           </Route>
         </Route>
         <Route path="/status" element={<Status />} />

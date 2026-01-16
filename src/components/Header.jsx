@@ -15,22 +15,20 @@ const routeNames = {
 }
 
 const subRouteNames = {
-    '/general': 'General',
-    '/account': 'Account',
-    '/notifications': 'Notifications',
-    '/apparence': 'Apparence',
-    '/security': 'Security',
-    '/support': 'Support',
-    '/accessibility': 'Accessibility',
-    '/terms and privacy': 'Terms and privacy',
+    '/settings/general': 'General',
+    '/settings/account': 'Account',
+    '/settings/notifications': 'Notifications',
+    '/settings/apparence': 'Apparence',
+    '/settings/security': 'Security',
+    '/settings/support': 'Support',
+    '/settings/accessibility': 'Accessibility',
+    '/settings/terms%20and%20privacy': 'Terms and privacy',
 }
 
-const Header = ({ sub }) => {
+const Header = () => {
     const { user } = useUser()
 
     const location = useLocation()
-    const currentRoute = routeNames[location.pathname] || ''
-    const currentSubRoute = subRouteNames[location.pathname] || ''
     const [isScrolled, setIsScrolled] = useState(false)
 
     const [showProfileModal, setShowProfileModal] = useState(false)
@@ -38,6 +36,18 @@ const Header = ({ sub }) => {
 
     const hoverTimeoutRef = useRef(null)
     const modalRef = useRef(null)
+
+    const breadcrumbs = location.pathname
+        .split('/')
+        .filter(Boolean)
+        .map((_, index, arr) => {
+            const path = '/' + arr.slice(0, index + 1).join('/')
+            return {
+                path,
+                label: subRouteNames[path] || routeNames[path],
+            }
+        })
+        .filter(b => b.label)
 
     useEffect(() => {
         const onScroll = () => setIsScrolled(window.scrollY > 64)
@@ -86,10 +96,13 @@ const Header = ({ sub }) => {
                     <Link to="/home">
                         <img src={logo} alt="logo Snakr" />
                     </Link>
-                    <p>/</p>
-                    <h2>{currentRoute}</h2>
-                    {sub ? (<p>/</p>) : '' }
-                    <h2>{currentSubRoute}</h2>
+
+                    {breadcrumbs.map((item) => (
+                        <span key={item.path} className="breadcrumb">
+                            <p>/</p>
+                            <h2>{item.label}</h2>
+                        </span>
+                    ))}
                 </article>
 
                 <article className="header-content-right">

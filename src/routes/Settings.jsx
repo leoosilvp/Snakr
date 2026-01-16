@@ -6,7 +6,7 @@ import Footer from "../components/Footer"
 const Settings = () => {
     return (
         <main className="settings-main">
-            <Header sub />
+            <Header />
 
             <section className='settings-main-content'>
                 <div className='settings-main-header'>

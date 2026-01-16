@@ -211,19 +211,21 @@ body::-webkit-scrollbar-thumb {
   width: 30px;
 }
 
-.header-content-left p {
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.breadcrumb p {
   color: #252525;
 }
 
-.header-content-left h2 {
+.breadcrumb h2 {
   font-size: 0.9rem;
   font-weight: 500;
   color: var(--light-color);
   transition: var(--transition-2s);
-}
-
-.header-content-left a:hover {
-  color: var(--light-color);
 }
 
 .header-content-right {
@@ -360,7 +362,7 @@ body::-webkit-scrollbar-thumb {
   color: var(--gray-color);
 }
 
-.modal-profile-info i{
+.modal-profile-info i {
   display: flex;
   align-items: center;
   justify-content: center;
