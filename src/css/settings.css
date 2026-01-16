@@ -1,4 +1,4 @@
-.settings-main{
+.settings-main {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,13 +17,13 @@
     width: 1200px;
 }
 
-.settings-main-content hr{
+.settings-main-content hr {
     display: flex;
     width: 100vw;
     border: 1px solid #151515;
 }
 
-.settings-main-header{
+.settings-main-header {
     display: flex;
     width: 100%;
     padding: 30px 0;
@@ -34,13 +34,13 @@
     font-weight: 400;
 }
 
-.settings-main-area{
+.settings-main-area {
     display: flex;
     width: 100%;
     justify-content: space-between;
 }
 
-.settings-main-nav{
+.settings-main-nav {
     position: sticky;
     top: 40px;
     display: flex;
@@ -50,7 +50,7 @@
     flex-direction: column;
 }
 
-.settings-main-nav a{
+.settings-main-nav a {
     display: flex;
     align-items: center;
     width: 100%;
@@ -61,19 +61,136 @@
     gap: 6px;
 }
 
-.settings-main-nav a:hover{
+.settings-main-nav a:hover {
     background: #101010;
     color: var(--light-color);
 }
 
-.settings-main-nav a.active{
+.settings-main-nav a.active {
     background: var(--dark-color);
     color: var(--light-color);
 }
 
-.settings-area{
+.settings-area {
     display: flex;
     flex-direction: column;
     width: 900px;
     padding: 30px 0;
+}
+
+/* settings account */
+.settings-account {
+    display: flex;
+    width: 100%;
+}
+
+.settings-account-left {
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+}
+
+.settings-account-left h1{
+    margin-top: 15px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.settings-account-left p{
+    margin-top: 5px;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--gray-color);
+}
+
+.settings-account-left input,
+.settings-account-left textarea{
+    margin-top: 5px;
+    display: flex;
+    width: 500px;
+    max-width: 500px;
+    min-width: 500px;
+    padding: 7px 10px;
+    background: var(--background-card);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: var(--light-color);
+}
+
+.settings-account-left textarea{
+    height: 80px;
+    min-height: 60px;
+    max-height: 100px;
+}
+
+.settings-account-left button{
+    margin-top: 20px;
+    display: flex;
+    width: fit-content;
+    padding: 7px 10px;
+    border: none;
+    border-radius: 4px;
+    background: #277628;
+    color: var(--light-color);
+    cursor: pointer;
+    transition: var(--transition-2s);
+}
+
+.settings-account-left button:hover{
+    background: #2f9731;
+}
+
+.settings-account-left select{
+    margin-top: 5px;
+    display: flex;
+    background: var(--background-card);
+    width: 500px;
+    padding: 7px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--light-color);
+}
+
+
+
+.settings-account-right {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    gap: 10px;
+}
+
+.settings-account-right h1{
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.settings-account-right img{
+    display: flex;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+}
+
+.settings-account-right button{
+    position: absolute;
+    margin-top: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 9px;
+    background: var(--background);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 0.85rem;
+    color: var(--gray-color);
+    gap: 7px;
+    cursor: pointer;
+    transition: var(--transition-2s);
+}
+
+.settings-account-right button:hover{
+    color: var(--light-color);
 }

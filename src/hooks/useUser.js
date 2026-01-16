@@ -53,6 +53,9 @@ export function useUser() {
           name: data.name,
           steam_id: data.steam_id,
           email: data.email,
+          bio: data.bio,
+          gender: data.gender,
+          country: data.country,
           photo: data.photo,
           background: data.background
         }
