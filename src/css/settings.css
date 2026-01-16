@@ -90,13 +90,13 @@
     width: 600px;
 }
 
-.settings-account-left h1{
+.settings-account-left h1 {
     margin-top: 15px;
     font-size: 0.9rem;
     font-weight: 500;
 }
 
-.settings-account-left p{
+.settings-account-left p {
     margin-top: 5px;
     font-size: 0.75rem;
     font-weight: 400;
@@ -104,7 +104,7 @@
 }
 
 .settings-account-left input,
-.settings-account-left textarea{
+.settings-account-left textarea {
     margin-top: 5px;
     display: flex;
     width: 500px;
@@ -118,13 +118,13 @@
     color: var(--light-color);
 }
 
-.settings-account-left textarea{
+.settings-account-left textarea {
     height: 80px;
     min-height: 60px;
     max-height: 100px;
 }
 
-.settings-account-left button{
+.settings-account-left button {
     margin-top: 20px;
     display: flex;
     width: fit-content;
@@ -137,11 +137,11 @@
     transition: var(--transition-2s);
 }
 
-.settings-account-left button:hover{
+.settings-account-left button:hover {
     background: #2f9731;
 }
 
-.settings-account-left select{
+.settings-account-left select {
     margin-top: 5px;
     display: flex;
     background: var(--background-card);
@@ -161,12 +161,12 @@
     gap: 10px;
 }
 
-.settings-account-right h1{
+.settings-account-right h1 {
     font-size: 0.9rem;
     font-weight: 500;
 }
 
-.settings-account-right img{
+.settings-account-right img {
     display: flex;
     width: 220px;
     height: 220px;
@@ -174,7 +174,7 @@
     border: 1px solid var(--border-color);
 }
 
-.settings-account-right button{
+.settings-account-right button {
     position: absolute;
     margin-top: 200px;
     display: flex;
@@ -191,7 +191,7 @@
     transition: var(--transition-2s);
 }
 
-.settings-account-right button:hover{
+.settings-account-right button:hover {
     color: var(--light-color);
 }
 
@@ -199,7 +199,7 @@
 
 
 /* settings support */
-.settings-support h1{
+.settings-support h1 {
     text-decoration: underline;
     text-underline-offset: 5px;
     margin-top: 15px;
@@ -207,36 +207,36 @@
     font-weight: 500;
 }
 
-.settings-support hr{
+.settings-support hr {
     margin: 30px 0;
     display: flex;
     width: 100%;
 }
 
-.settings-support h2{
+.settings-support h2 {
     margin-top: 15px;
     font-size: 0.85rem;
     font-weight: 500;
 }
 
-.settings-support p{
+.settings-support p {
     font-size: 0.8rem;
     font-weight: 300;
     color: var(--gray-color);
 }
 
-.settings-support ul{
+.settings-support ul {
     margin-top: 3px;
 }
 
-.settings-support ul li{
+.settings-support ul li {
     margin-left: 15px;
     font-size: 0.8rem;
     font-weight: 300;
     color: var(--light-color);
 }
 
-.settings-support a{
+.settings-support a {
     margin-top: 7px;
     display: flex;
     align-items: center;
@@ -253,14 +253,127 @@
     transition: var(--transition-2s);
 }
 
-.settings-support a:hover{
-    box-shadow: 0 0 10px 0 #ffffff6c;
+.settings-support a:hover {
+    box-shadow: 0 0 15px 0 #ffffff6c;
 }
 
+/* settings security */
+.settings-security i.persona{
+    margin-top: 50px;
+    margin-left: 700px;
+    position: absolute;
+    font-size: 6rem;
+    color: var(--dark-color);
+}
 
+.settings-security h1 {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.settings-security input {
+    margin-top: 5px;
+    width: 500px;
+    padding: 7px 10px;
+    background: var(--background-card);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: var(--light-color);
+}
+
+.settings-security input.readOnly {
+    outline: none;
+}
+
+.settings-security button.reset-password {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--gray-color);
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition-2s);
+}
+
+.settings-security button.reset-password:hover {
+    background: var(--light-color);
+    border-color: var(--light-color);
+    color: var(--black);
+    box-shadow: 0 0 15px 0 #ffffff6c;
+}
+
+.settings-security hr {
+    width: 100%;
+    margin: 30px 0;
+}
+
+.settings-security-session {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.settings-security-session h2 {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.settings-security-session button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    padding: 7px;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    font-size: 0.9rem;
+    color: var(--gray-color);
+    cursor: pointer;
+    transition: var(--transition-2s);
+}
+
+.settings-security-session button:hover {
+    background: var(--light-color);
+    border-color: var(--light-color);
+    color: var(--black);
+    box-shadow: 0 0 15px 0 #ffffff6c;
+}
+
+.settings-security-session button.active {
+    border-color: #ca5555;
+    color: #ca5555;
+}
+
+.settings-security-session button.active:hover {
+    border-color: #5f1919;
+    background: #d03636;
+    color: var(--light-color);
+    box-shadow: none;
+}
+
+.settings-security-all-session {
+    display: flex;
+    flex-direction: column;
+}
+
+.settings-security-all-session p {
+    margin-top: 10px;
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: var(--gray-color);
+}
 
 /* settings support */
-.settings-terms-privacy h1{
+.settings-terms-privacy h1 {
     text-decoration: underline;
     text-underline-offset: 5px;
     margin-top: 15px;
@@ -268,36 +381,36 @@
     font-weight: 500;
 }
 
-.settings-terms-privacy hr{
+.settings-terms-privacy hr {
     margin: 30px 0;
     display: flex;
     width: 100%;
 }
 
-.settings-terms-privacy h2{
+.settings-terms-privacy h2 {
     margin-top: 15px;
     font-size: 0.85rem;
     font-weight: 500;
 }
 
-.settings-terms-privacy p{
+.settings-terms-privacy p {
     font-size: 0.8rem;
     font-weight: 300;
     color: var(--gray-color);
 }
 
-.settings-terms-privacy ul{
+.settings-terms-privacy ul {
     margin-top: 3px;
 }
 
-.settings-terms-privacy ul li{
+.settings-terms-privacy ul li {
     margin-left: 15px;
     font-size: 0.8rem;
     font-weight: 300;
     color: var(--light-color);
 }
 
-.settings-terms-privacy a{
+.settings-terms-privacy a {
     margin-top: 7px;
     display: flex;
     align-items: center;
@@ -314,6 +427,6 @@
     transition: var(--transition-2s);
 }
 
-.settings-terms-privacy a:hover{
-    box-shadow: 0 0 10px 0 #ffffff6c;
+.settings-terms-privacy a:hover {
+    box-shadow: 0 0 15px 0 #ffffff6c;
 }
