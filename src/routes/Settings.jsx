@@ -1,5 +1,5 @@
 import '../css/settings.css'
-import { Link, Outlet } from 'react-router-dom'
+import { NavLink, Outlet } from 'react-router-dom'
 import Header from "../components/Header"
 import Footer from "../components/Footer"
 
@@ -18,14 +18,14 @@ const Settings = () => {
                 <section className='settings-main-area'>
                     <aside className='settings-main-nav'>
                         <ul>
-                            <Link to='general'><i className='fa-solid fa-gear' /> General</Link>
-                            <Link to='account'><i className='fa-regular fa-circle-user' /> Account</Link>
-                            <Link to='notifications'><i className='fa-regular fa-bell' /> Notifications</Link>
-                            <Link to='apparence'><i className='fa-solid fa-paintbrush' /> Apparence</Link>
-                            <Link to='security'><i className='fa-solid fa-fingerprint' /> Security</Link>
-                            <Link to='support'><i className='fa-regular fa-life-ring' /> Support</Link>
-                            <Link to='accessibility'><i className='fa-solid fa-person' /> Accessibility</Link>
-                            <Link to='terms and privacy'><i className='fa-regular fa-address-book' /> Terms and privacy</Link>
+                            <NavLink to='general'><i className='fa-solid fa-gear' /> General</NavLink>
+                            <NavLink to='account'><i className='fa-regular fa-circle-user' /> Account</NavLink>
+                            <NavLink to='notifications'><i className='fa-regular fa-bell' /> Notifications</NavLink>
+                            <NavLink to='apparence'><i className='fa-solid fa-paintbrush' /> Apparence</NavLink>
+                            <NavLink to='security'><i className='fa-solid fa-fingerprint' /> Security</NavLink>
+                            <NavLink to='support'><i className='fa-regular fa-life-ring' /> Support</NavLink>
+                            <NavLink to='accessibility'><i className='fa-solid fa-person' /> Accessibility</NavLink>
+                            <NavLink to='terms and privacy'><i className='fa-regular fa-address-book' /> Terms and privacy</NavLink>
                         </ul>
                     </aside>
 
