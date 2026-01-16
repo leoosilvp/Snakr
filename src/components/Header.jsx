@@ -14,11 +14,23 @@ const routeNames = {
     '/profile': 'Profile',
 }
 
-const Header = () => {
+const subRouteNames = {
+    '/general': 'General',
+    '/account': 'Account',
+    '/notifications': 'Notifications',
+    '/apparence': 'Apparence',
+    '/security': 'Security',
+    '/support': 'Support',
+    '/accessibility': 'Accessibility',
+    '/terms and privacy': 'Terms and privacy',
+}
+
+const Header = ({ sub }) => {
     const { user } = useUser()
 
     const location = useLocation()
     const currentRoute = routeNames[location.pathname] || ''
+    const currentSubRoute = subRouteNames[location.pathname] || ''
     const [isScrolled, setIsScrolled] = useState(false)
 
     const [showProfileModal, setShowProfileModal] = useState(false)
@@ -76,6 +88,8 @@ const Header = () => {
                     </Link>
                     <p>/</p>
                     <h2>{currentRoute}</h2>
+                    {sub ? (<p>/</p>) : '' }
+                    <h2>{currentSubRoute}</h2>
                 </article>
 
                 <article className="header-content-right">

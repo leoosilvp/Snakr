@@ -7,6 +7,7 @@ import Login from "./routes/Login";
 import Profile from "./routes/Profile";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import Notifications from "./routes/Notifications";
+import Settings from "./routes/Settings";
 
 function App() {
 
@@ -22,6 +23,10 @@ function App() {
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/home" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
+
+          <Route path="/settings" element={<Settings />} >
+            
+          </Route>
         </Route>
         <Route path="/status" element={<Status />} />
       </Routes>
