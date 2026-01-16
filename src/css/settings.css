@@ -194,3 +194,65 @@
 .settings-account-right button:hover{
     color: var(--light-color);
 }
+
+
+
+
+/* settings support */
+.settings-support h1{
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    margin-top: 15px;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.settings-support hr{
+    margin: 30px 0;
+    display: flex;
+    width: 100%;
+}
+
+.settings-support h2{
+    margin-top: 15px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.settings-support p{
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--gray-color);
+}
+
+.settings-support ul{
+    margin-top: 3px;
+}
+
+.settings-support ul li{
+    margin-left: 15px;
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--light-color);
+}
+
+.settings-support a{
+    margin-top: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--black);
+    background: var(--light-color);
+    gap: 5px;
+    transition: var(--transition-2s);
+}
+
+.settings-support a:hover{
+    box-shadow: 0 0 10px 0 #ffffff6c;
+}
