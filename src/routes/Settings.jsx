@@ -21,10 +21,8 @@ const Settings = () => {
                             <NavLink to='general'><i className='fa-solid fa-gear' /> General</NavLink>
                             <NavLink to='account'><i className='fa-regular fa-circle-user' /> Account</NavLink>
                             <NavLink to='notifications'><i className='fa-regular fa-bell' /> Notifications</NavLink>
-                            <NavLink to='apparence'><i className='fa-solid fa-paintbrush' /> Apparence</NavLink>
                             <NavLink to='security'><i className='fa-solid fa-fingerprint' /> Security</NavLink>
                             <NavLink to='support'><i className='fa-regular fa-life-ring' /> Support</NavLink>
-                            <NavLink to='accessibility'><i className='fa-solid fa-person' /> Accessibility</NavLink>
                             <NavLink to='terms and privacy'><i className='fa-regular fa-address-book' /> Terms and privacy</NavLink>
                         </ul>
                     </aside>

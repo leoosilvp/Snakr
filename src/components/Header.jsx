@@ -18,10 +18,8 @@ const subRouteNames = {
     '/settings/general': 'General',
     '/settings/account': 'Account',
     '/settings/notifications': 'Notifications',
-    '/settings/apparence': 'Apparence',
     '/settings/security': 'Security',
     '/settings/support': 'Support',
-    '/settings/accessibility': 'Accessibility',
     '/settings/terms%20and%20privacy': 'Terms and privacy',
 }
 
