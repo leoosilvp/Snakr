@@ -29,6 +29,17 @@ const Account = () => {
         </select>
 
         <button>Save changes</button>
+
+        <section className='delete-account-content'>
+          <h1>DANGER AREA!</h1>
+          <hr />
+          <div className='delete-account'>
+            <h2>Delete account</h2>
+            <button>Delete</button>
+          </div>
+          <p>Ao excluir sua conta, todos os seus dados serão permanentemente removidos, incluindo perfil, configurações, biblioteca, histórico e integrações associadas.</p>
+          <p>Esta ação não poderá ser desfeita. Após a exclusão, não será possível recuperar sua conta ou qualquer informação vinculada a ela.</p>
+        </section>
       </div>
       <div className="settings-account-right">
         <h1>Profile picture</h1>

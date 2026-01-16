@@ -131,7 +131,7 @@
     padding: 7px 10px;
     border: none;
     border-radius: 4px;
-    background: #277628;
+    background: #29612a;
     color: var(--light-color);
     cursor: pointer;
     transition: var(--transition-2s);
@@ -152,12 +152,73 @@
     color: var(--light-color);
 }
 
+.delete-account-content {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    width: 900px;
+}
+
+.delete-account-content h1 {
+    margin-bottom: -20px;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #d03636;
+}
+
+.delete-account-content hr {
+    margin: 30px 0;
+    width: 100%;
+    border: 1px solid #d03636;
+}
+
+.delete-account {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.delete-account h2 {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.delete-account-content p {
+    margin-top: 0;
+    font-size: 0.75rem;
+    font-weight: 300;
+}
+
+.delete-account button {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    padding: 7px;
+    background: transparent;
+    border: 1px solid #ca5555;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    color: #ca5555;
+    cursor: pointer;
+    transition: var(--transition-2s);
+}
+
+.delete-account button:hover{
+    border-color: #5f1919;
+    background: #d03636;
+    color: var(--light-color);
+}
+
 
 
 .settings-account-right {
     display: flex;
     flex-direction: column;
     width: 300px;
+    height: 300px;
     gap: 10px;
 }
 
@@ -197,7 +258,7 @@
 
 
 /* settings security */
-.settings-security i.persona{
+.settings-security i.persona {
     margin-top: 50px;
     margin-left: 700px;
     position: absolute;
