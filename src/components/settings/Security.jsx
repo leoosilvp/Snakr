@@ -9,7 +9,7 @@ const Security = () => {
       <i class="fa-solid fa-fingerprint persona" />
 
       <h1>E-mail</h1>
-      <input type="text" value={user?.email} />
+      <input type="text" defaultValue={user?.email} />
 
       <h1>Password</h1>
       <input className='readOnly' type="password" value={'**************'} readOnly />

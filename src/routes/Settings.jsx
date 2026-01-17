@@ -20,7 +20,7 @@ const Settings = () => {
                         <ul>
                             <NavLink to='general'><i className='fa-solid fa-gear' /> General</NavLink>
                             <NavLink to='account'><i className='fa-regular fa-circle-user' /> Account</NavLink>
-                            <NavLink to='notifications'><i className='fa-regular fa-bell' /> Notifications</NavLink>
+                            <a className='disable'><i className='fa-regular fa-bell' /> Notifications</a>
                             <NavLink to='steam'><i className='fa-brands fa-steam-symbol' /> Steam</NavLink>
                             <NavLink to='security'><i className='fa-solid fa-fingerprint' /> Security</NavLink>
                             <NavLink to='support'><i className='fa-regular fa-life-ring' /> Support</NavLink>

@@ -59,6 +59,7 @@
     border-radius: var(--border);
     color: #b0b0b0;
     gap: 6px;
+    cursor: pointer;
 }
 
 .settings-main-nav a:hover {
@@ -69,6 +70,10 @@
 .settings-main-nav a.active {
     background: var(--dark-color);
     color: var(--light-color);
+}
+
+.settings-main-nav a.disable{
+    cursor: not-allowed;
 }
 
 .settings-area {
@@ -150,6 +155,7 @@
     border: 1px solid var(--border-color);
     border-radius: 4px;
     color: var(--light-color);
+    cursor: pointer;
 }
 
 .delete-account-content {

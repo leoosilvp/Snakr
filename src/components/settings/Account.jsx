@@ -8,24 +8,24 @@ const Account = () => {
     <section className="settings-account">
       <div className="settings-account-left" >
         <h1>Username</h1>
-        <input type="text" value={user?.username} />
+        <input type="text" defaultValue={user?.username} />
         <p>Your primary identifier. Use it so your friends can find you.</p>
 
         <h1>Name</h1>
-        <input type="text" value={user?.name} />
+        <input type="text" defaultValue={user?.name} />
         <p>Your name will be visible to everyone who follows you.</p>
 
         <h1>Bio</h1>
-        <textarea value={user?.bio} maxLength={295} />
+        <textarea defaultValue={user?.bio} maxLength={295} />
 
         <h1>Country</h1>
-        <input type="text" value={user?.country} />
+        <input type="text" defaultValue={user?.country} />
         <p>We use this to recommend events near you.</p>
 
         <h1>Gender</h1>
-        <select value={user?.gender}>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
+        <select defaultValue={user?.gender}>
+          <option defaultValue="Male">Male</option>
+          <option defaultValue="Female">Female</option>
         </select>
 
         <button>Save changes</button>

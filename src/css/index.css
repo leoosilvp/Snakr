@@ -350,16 +350,22 @@ body::-webkit-scrollbar-thumb {
 }
 
 .modal-profile-info h1 {
+  display: flex;
+  width: 150px;
   font-size: 1rem;
   font-weight: 400;
   color: var(--light-color);
+  overflow: hidden;
 }
 
 .modal-profile-info h2 {
   margin-top: -3px;
+  display: flex;
+  width: 150px;
   font-size: 0.8rem;
   font-weight: 300;
   color: var(--gray-color);
+  overflow: hidden;
 }
 
 .modal-profile-info i {
@@ -370,6 +376,7 @@ body::-webkit-scrollbar-thumb {
   height: 30px;
   font-size: 0.9rem;
   color: var(--gray-color);
+  box-shadow: -15px 0px 10px 5px var(--background-card);
 }
 
 
