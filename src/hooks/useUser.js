@@ -49,15 +49,11 @@ export function useUser() {
 
         cachedUser = {
           id: data.id,
-          username: data.username,
-          name: data.name,
           steam_id: data.steam_id,
+          username: data.username,
           email: data.email,
-          bio: data.bio,
-          gender: data.gender,
-          country: data.country,
-          photo: data.photo,
-          background: data.background
+          profile:data.profile,
+          settings: data.settings,
         }
 
         lastFetch = Date.now()

@@ -72,7 +72,7 @@
     color: var(--light-color);
 }
 
-.settings-main-nav a.disable{
+.settings-main-nav a.disable {
     cursor: not-allowed;
 }
 
@@ -82,6 +82,77 @@
     width: 900px;
     padding: 30px 0;
 }
+
+/* settings general */
+.settings-general h1 {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.settings-general hr{
+    margin: 7px 0;
+    margin-bottom: -5px;
+    width: 100%;
+    color: var(--border-color);
+}
+
+.settings-general a{
+    display: flex;
+    align-items: center;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--primary-color);
+    gap: 7px;
+}
+
+.settings-general a div{
+    display: flex;
+    width: 7px;
+    height: 7px;
+    background: var(--primary-color);
+    border-radius: 50%;
+}
+
+.settings-general h2{
+    margin-top: 35px;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+.settings-general p {
+    margin-top: 5px;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--gray-color);
+}
+
+.settings-general select {
+    margin-top: 5px;
+    display: flex;
+    background: var(--background-card);
+    width: 500px;
+    padding: 7px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--light-color);
+    cursor: pointer;
+}
+
+.settings-general input {
+    margin-top: 5px;
+    display: flex;
+    width: 500px;
+    max-width: 500px;
+    min-width: 500px;
+    padding: 7px 10px;
+    background: var(--background-card);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: var(--light-color);
+}
+
 
 /* settings account */
 .settings-account {
@@ -212,7 +283,7 @@
     transition: var(--transition-2s);
 }
 
-.delete-account button:hover{
+.delete-account button:hover {
     border-color: #5f1919;
     background: #d03636;
     color: var(--light-color);
@@ -263,19 +334,19 @@
 }
 
 /* settings steam */
-.settings-steam-header{
+.settings-steam-header {
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: space-between;
 }
 
-.settings-steam-header img{
+.settings-steam-header img {
     display: flex;
     width: 130px;
 }
 
-.settings-steam-header a{
+.settings-steam-header a {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -288,23 +359,23 @@
     color: var(--gray-color);
 }
 
-.settings-steam-header a:hover{
+.settings-steam-header a:hover {
     background: var(--light-color);
     border-color: var(--light-color);
     color: var(--black);
     box-shadow: 0 0 15px 0 #ffffff6c;
 }
 
-.settings-steam-content{
+.settings-steam-content {
     margin-top: 10px;
 }
 
-.settings-steam-content h1{
+.settings-steam-content h1 {
     font-size: 0.95rem;
     font-weight: 500;
 }
 
-.settings-steam-content h3{
+.settings-steam-content h3 {
     display: flex;
     align-items: center;
     margin-top: 7px;
@@ -313,7 +384,7 @@
     gap: 10px;
 }
 
-.settings-steam-content h3 span{
+.settings-steam-content h3 span {
     display: flex;
     align-items: center;
     padding: 5px 10px;
@@ -331,13 +402,13 @@
     color: var(--gray-color);
 }
 
-.settings-steam-content h2{
+.settings-steam-content h2 {
     margin-top: 10px;
     font-size: 0.9rem;
     font-weight: 500;
 }
 
-.settings-steam-content ul li{
+.settings-steam-content ul li {
     margin-left: 15px;
     font-size: 0.85rem;
     font-weight: 300;

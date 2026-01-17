@@ -12,20 +12,16 @@ const Account = () => {
         <p>Your primary identifier. Use it so your friends can find you.</p>
 
         <h1>Name</h1>
-        <input type="text" defaultValue={user?.name} />
+        <input type="text" defaultValue={user?.profile?.name} />
         <p>Your name will be visible to everyone who follows you.</p>
 
         <h1>Bio</h1>
-        <textarea defaultValue={user?.bio} maxLength={295} />
-
-        <h1>Country</h1>
-        <input type="text" defaultValue={user?.country} />
-        <p>We use this to recommend events near you.</p>
+        <textarea defaultValue={user?.profile?.bio} maxLength={295} />
 
         <h1>Gender</h1>
-        <select defaultValue={user?.gender}>
-          <option defaultValue="Male">Male</option>
-          <option defaultValue="Female">Female</option>
+        <select value={user?.profile?.gender}>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
         </select>
 
         <button>Save changes</button>
@@ -43,7 +39,7 @@ const Account = () => {
       </div>
       <div className="settings-account-right">
         <h1>Profile picture</h1>
-        <img src={user?.photo} alt="Profile picture" />
+        <img src={user?.profile?.photo} alt="Profile picture" />
         <button><i className="fa-solid fa-pencil" /> Edit</button>
       </div>
     </section>
