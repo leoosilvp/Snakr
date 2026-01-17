@@ -15,6 +15,7 @@ import Notification from "./components/settings/Notifications";
 import Security from "./components/settings/Security";
 import Support from "./components/settings/Support";
 import TermsPrivacy from "./components/settings/TermsPrivacy";
+import Steam from "./components/settings/Steam";
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
             <Route path="general" element={<General />} />
             <Route path="account" element={<Account />} />
             <Route path="notifications" element={<Notification />} />
+            <Route path="steam" element={<Steam />} />
             <Route path="security" element={<Security />} />
             <Route path="support" element={<Support />} />
             <Route path="terms and privacy" element={<TermsPrivacy />} />
