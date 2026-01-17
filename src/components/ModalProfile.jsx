@@ -29,7 +29,7 @@ const ModalProfile = forwardRef(({ isOpen, onMouseEnter, onMouseLeave }, ref) =>
       onMouseLeave={onMouseLeave}
     >
       <Link to='/profile' className="modal-profile-info">
-        <img src={user?.photo || 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'} />
+        <img src={user?.profile?.photo || 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'} />
         <div>
           <h1>{user?.username || '...'}</h1>
           <h2>{user?.email || '@email.com'}</h2>
