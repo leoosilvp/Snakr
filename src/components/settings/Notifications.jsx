@@ -1,11 +1,19 @@
+import { useUser } from '../../hooks/useUser'
 
 const Notifications = () => {
+
+  const { user } = useUser();
+
+  const email = user?.settings?.notifications?.email
+  const inApp = user?.settings?.notifications?.inApp
+  const push = user?.settings?.notifications?.push
+
   return (
     <section className="settings-notifications">
       <h1>Notifications</h1>
-      <select >
+      <select value={user?.settings?.notifications?.enabled}>
         <option value={true}>Enabled</option>
-        <option value={true}>Disabled</option>
+        <option value={false}>Disabled</option>
       </select>
       <h2>Enable or disable all Snakr notifications at once.</h2>
 
@@ -14,7 +22,7 @@ const Notifications = () => {
       <div className="settings-notifications-checkbox">
         <div>
           <label className="switch">
-            <input id="security-alerts" type="checkbox" />
+            <input id="security-alerts" checked={email?.securityAlerts} type="checkbox" />
             <span className="slider" />
           </label>
           <label htmlFor="security-alerts">Security alerts</label>
@@ -23,7 +31,7 @@ const Notifications = () => {
 
         <div>
           <label className="switch">
-            <input id="product-updates" type="checkbox" />
+            <input id="product-updates" checked={email?.productUpdates} type="checkbox" />
             <span className="slider" />
           </label>
           <label htmlFor="product-updates">Product updates</label>
@@ -32,7 +40,7 @@ const Notifications = () => {
 
         <div>
           <label className="switch">
-            <input id="marketing-emails" type="checkbox" />
+            <input id="marketing-emails" checked={email?.marketing} type="checkbox" />
             <span className="slider" />
           </label>
           <label htmlFor="marketing-emails">Marketing emails</label>
@@ -45,7 +53,7 @@ const Notifications = () => {
       <div className="settings-notifications-checkbox">
         <div>
           <label className="switch">
-            <input id="achievements" type="checkbox" />
+            <input id="achievements" checked={inApp?.achievements} type="checkbox" />
             <span className="slider" />
           </label>
           <label htmlFor="achievements">Achievements</label>
@@ -54,7 +62,7 @@ const Notifications = () => {
 
         <div>
           <label className="switch">
-            <input id="friends-activity" type="checkbox" />
+            <input id="friends-activity" checked={inApp?.friendsActivity} type="checkbox" />
             <span className="slider" />
           </label>
           <label htmlFor="friends-activity">Friends activity</label>
@@ -63,7 +71,7 @@ const Notifications = () => {
 
         <div>
           <label className="switch">
-            <input id="library-activity" type="checkbox" />
+            <input id="library-activity" checked={inApp?.libraryActivity} type="checkbox" />
             <span className="slider" />
           </label>
           <label htmlFor="library-activity">Library activity</label>
@@ -76,7 +84,7 @@ const Notifications = () => {
       <div className="settings-notifications-checkbox">
         <div>
           <label className="switch">
-            <input id="enable-push" type="checkbox" />
+            <input id="enable-push" checked={push?.enabled} type="checkbox" />
             <span className="slider" />
           </label>
           <label htmlFor="enable-push">Enable push notifications</label>
