@@ -10,7 +10,7 @@ const Profile = () => {
   const { user } = useUser();
 
   return (
-    <main className="profile-main" style={{'--background-img' : `url(${user?.background || background})`}}> 
+    <main className="profile-main" style={{'--background-img' : `url(${user?.settings?.appearance?.background || background})`}}> 
       <Header />
 
       <section className='profile-content'>

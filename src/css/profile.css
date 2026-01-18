@@ -6,10 +6,10 @@
     width: 100vw;
     min-height: 100vh;
     background-image: linear-gradient(#00000035), var(--background-img);
-    background-size: 1280px 533px;
+    background-size: 100%;
     background-repeat: no-repeat;
     background-position-x: center;
-    background-position-y: 350px;
+    background-position-y: center;
     overflow-y: auto;
 }
 
@@ -29,7 +29,8 @@
     display: flex;
     width: 920px;
     height: 1000px;
-    background: #0000004a;
+    background: #000000a4;
+    backdrop-filter: blur(1px);
     border: 1px solid #0d0d0d;
     border-radius: var(--border);
     box-shadow: 0 0 20px 2px #000000d9;

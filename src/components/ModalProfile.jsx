@@ -49,7 +49,7 @@ const ModalProfile = forwardRef(({ isOpen, onMouseEnter, onMouseLeave }, ref) =>
         <Link to="/settings/support"><i className="fa-regular fa-life-ring" />Support</Link>
         <Link to="/docs"><i className="fa-solid fa-book-open" />Docs</Link>
         <hr />
-        <Link to="/settings/apparence"><i className="fa-solid fa-paintbrush" />Apparence</Link>
+        <Link to="/settings/general#appearance"><i className="fa-solid fa-paintbrush" />Appearence</Link>
         <hr />
 
         <a className="active" onClick={handleLogout}>
