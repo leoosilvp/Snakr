@@ -1,45 +1,26 @@
-import { useState } from 'react'
+import { useCallback } from 'react'
+import { useUser } from './useUser'
 
-export const useUpdateUser = () => {
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
-  const [success, setSuccess] = useState(false)
+export function useUpdateUser() {
+  const { user, refreshUser } = useUser()
 
-  const updateUser = async (path, value) => {
-    try {
-      setLoading(true)
-      setError(null)
-      setSuccess(false)
+  const updateUser = useCallback(async (path, value) => {
+    if (!user) return
 
-      const res = await fetch('https://backend-snakr.vercel.app/api/user/update', {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          updates: {
-            [path]: value
-          }
-        })
-      })
+    const res = await fetch('https://backend-snakr.vercel.app/api/user/update', {
+      method: 'PATCH',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ path, value })
+    })
 
-      if (!res.ok) {
-        const err = await res.json()
-        throw new Error(err.error || 'Update failed')
-      }
-
-      setSuccess(true)
-    } catch (err) {
-      setError(err.message)
-    } finally {
-      setLoading(false)
+    if (!res.ok) {
+      console.error('Failed to update user')
+      return
     }
-  }
 
-  return {
-    updateUser,
-    loading,
-    error,
-    success
-  }
+    await refreshUser()
+  }, [user, refreshUser])
+
+  return { updateUser }
 }

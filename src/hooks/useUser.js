@@ -6,13 +6,19 @@ let pendingPromise = null
 const CACHE_TTL = 1000 * 60 * 5
 
 export function useUser() {
-  const [user, setUser] = useState(cachedUser)
+  const [user, setUserState] = useState(cachedUser)
   const [loading, setLoading] = useState(!cachedUser)
   const [error, setError] = useState(null)
 
+  const setUser = (newUser) => {
+    cachedUser = newUser
+    lastFetch = Date.now()
+    setUserState(newUser)
+  }
+
   const fetchUser = useCallback(async () => {
     if (cachedUser && Date.now() - lastFetch < CACHE_TTL) {
-      setUser(cachedUser)
+      setUserState(cachedUser)
       setLoading(false)
       return
     }
@@ -20,7 +26,7 @@ export function useUser() {
     if (pendingPromise) {
       setLoading(true)
       const data = await pendingPromise
-      setUser(data)
+      setUserState(data)
       setLoading(false)
       return
     }
@@ -28,13 +34,10 @@ export function useUser() {
     setLoading(true)
     setError(null)
 
-    pendingPromise = fetch(
-      'https://backend-snakr.vercel.app/api/auth/me',
-      {
-        method: 'GET',
-        credentials: 'include'
-      }
-    )
+    pendingPromise = fetch('https://backend-snakr.vercel.app/api/auth/me', {
+      method: 'GET',
+      credentials: 'include'
+    })
       .then(async res => {
         if (!res.ok) {
           if (res.status === 401) {
@@ -52,7 +55,7 @@ export function useUser() {
           steam_id: data.steam_id,
           username: data.username,
           email: data.email,
-          profile:data.profile,
+          profile: data.profile,
           settings: data.settings,
         }
 
@@ -65,10 +68,10 @@ export function useUser() {
 
     try {
       const data = await pendingPromise
-      setUser(data)
+      setUserState(data)
     } catch (err) {
       setError(err.message)
-      setUser(null)
+      setUserState(null)
     } finally {
       setLoading(false)
     }
@@ -81,11 +84,12 @@ export function useUser() {
   const clearUserCache = () => {
     cachedUser = null
     lastFetch = 0
-    setUser(null)
+    setUserState(null)
   }
 
   return {
     user,
+    setUser,
     loading,
     error,
     refreshUser: fetchUser,

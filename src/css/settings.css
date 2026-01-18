@@ -383,6 +383,11 @@
     gap: 10px;
 }
 
+.settings-notifications-checkbox.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
 /* settings steam */
 .settings-steam-header {
     display: flex;
