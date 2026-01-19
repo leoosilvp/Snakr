@@ -176,6 +176,11 @@
     color: var(--light-color);
 }
 
+.login-right button img{
+    display: flex;
+    width: 18px;
+}
+
 .login-switch{
     display: none;
 }

@@ -52,13 +52,6 @@ body::-webkit-scrollbar-thumb {
   cursor: pointer;
 }
 
-.content {
-  display: flex;
-  justify-content: center;
-  padding: 130px 0 0 0;
-  gap: 20px;
-}
-
 @keyframes skeleton {
   0% {
     background-position: 100% 0;
@@ -73,6 +66,23 @@ body::-webkit-scrollbar-thumb {
     background-position: 0 0;
     opacity: 0.5;
   }
+}
+
+@keyframes loop {
+  0% {
+    transform: rotateZ(0deg);
+  }
+
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  padding: 130px 0 0 0;
+  gap: 20px;
 }
 
 .switch {
@@ -109,11 +119,11 @@ body::-webkit-scrollbar-thumb {
   transition: transform 0.25s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
   background-color: var(--primary-color);
 }
 
-input:checked + .slider::before {
+input:checked+.slider::before {
   transform: translateX(15px);
 }
 

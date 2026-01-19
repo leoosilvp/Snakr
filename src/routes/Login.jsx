@@ -1,11 +1,14 @@
 import '../css/login.css'
 import icon from '../assets/svg/icon-dark.svg'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { useState } from 'react'
+import { useUser } from '../hooks/useUser'
 
 const Login = () => {
   const [mode, setMode] = useState('login')
   const [showPass, setShowPass] = useState(false)
+
+  const { user } = useUser()
 
   const [form, setForm] = useState({
     username: '',
@@ -23,6 +26,10 @@ const Login = () => {
     }))
   }
 
+  if (user) {
+    return window.history.back(), window.location.reload()
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -38,14 +45,14 @@ const Login = () => {
       const payload =
         mode === 'login'
           ? {
-              username: form.username,
-              password: form.password
-            }
+            username: form.username,
+            password: form.password
+          }
           : {
-              username: form.username,
-              email: form.email,
-              password: form.password
-            }
+            username: form.username,
+            email: form.email,
+            password: form.password
+          }
 
       const res = await fetch(endpoint, {
         method: 'POST',
@@ -184,8 +191,7 @@ const Login = () => {
           )}
 
           <button onClick={handleSubmit} disabled={loading}>
-            {loading
-              ? 'Please wait...'
+            {loading ? (<img src='https://media2.giphy.com/media/v1.Y2lkPTZjMDliOTUyZzA3bnk5ZjBhOGdkZTJuaXBrZnJyb2s1NDFqeDV4aXlwemo3b202diZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/L05HgB2h6qICDs5Sms/source.gif' />)
               : mode === 'login'
                 ? 'Login'
                 : 'Register'}
