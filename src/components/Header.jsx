@@ -70,7 +70,7 @@ const Header = () => {
         hoverTimeoutRef.current = setTimeout(() => {
             setShowProfileModal(true)
             setModalInteracted(false)
-        }, 650)
+        }, 500)
     }
 
     const handleAvatarMouseLeave = () => {
@@ -108,7 +108,7 @@ const Header = () => {
                     <Link to="/wish-list"><i className="fa-regular fa-bookmark" /></Link>
 
                     <div onMouseEnter={handleAvatarMouseEnter} onMouseLeave={handleAvatarMouseLeave}>
-                        <Link to="/profile">
+                        <Link to="/profile" title={user?.profile?.username}>
                             <img src={user?.profile?.photo || 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'} />
                         </Link>
                     </div>
