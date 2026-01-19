@@ -394,6 +394,7 @@
     border-radius: 4px;
     font-size: 0.9rem;
     color: var(--gray-color);
+    transition: var(--transition-2s);
 }
 
 .settings-steam-header a:hover {
@@ -401,6 +402,12 @@
     border-color: var(--light-color);
     color: var(--black);
     box-shadow: 0 0 15px 0 #ffffff6c;
+}
+
+.settings-steam-header a.active {
+    background: var(--light-color);
+    border-color: var(--light-color);
+    color: var(--black);
 }
 
 .settings-steam-content {
