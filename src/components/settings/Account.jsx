@@ -81,6 +81,7 @@ const Account = () => {
           value={account.profile.gender}
           onChange={e => updateSetting('profile.gender', e.target.value)}
         >
+          <option value="undefined">Undefined</option>
           <option value="male">Male</option>
           <option value="female">Female</option>
         </select>
@@ -100,9 +101,7 @@ const Account = () => {
       <div className="settings-account-right">
         <h1>Profile picture</h1>
 
-        {account.profile.photo && (
-          <img src={account.profile.photo} alt="Profile picture" />
-        )}
+        <img src={account.profile.photo || 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'} alt="Profile picture" />
 
         <button>
           <i className="fa-solid fa-pencil" /> Edit
