@@ -200,23 +200,6 @@
     max-height: 100px;
 }
 
-.settings-account-left button {
-    margin-top: 20px;
-    display: flex;
-    width: fit-content;
-    padding: 7px 10px;
-    border: none;
-    border-radius: 4px;
-    background: #29612a;
-    color: var(--light-color);
-    cursor: pointer;
-    transition: var(--transition-2s);
-}
-
-.settings-account-left button:hover {
-    background: #2f9731;
-}
-
 .settings-account-left select {
     margin-top: 5px;
     display: flex;
@@ -230,21 +213,20 @@
 }
 
 .delete-account-content {
-    margin-top: 50px;
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
     width: 900px;
 }
 
 .delete-account-content h1 {
-    margin-bottom: -20px;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 400;
     color: #d03636;
 }
 
 .delete-account-content hr {
-    margin: 30px 0;
+    margin: 10px 0 20px 0;
     width: 100%;
     border: 1px solid #d03636;
 }

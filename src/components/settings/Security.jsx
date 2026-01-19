@@ -10,6 +10,7 @@ const Security = () => {
 
       <h1>E-mail</h1>
       <input type="text" defaultValue={user?.email} />
+      <button className='reset-password'>Change email address</button>
 
       <h1>Password</h1>
       <input className='readOnly' type="password" value={'**************'} readOnly />
