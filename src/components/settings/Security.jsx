@@ -9,7 +9,7 @@ const Security = () => {
       <i class="fa-solid fa-fingerprint persona" />
 
       <h1>E-mail</h1>
-      <input type="text" defaultValue={user?.email} />
+      <input className='readOnly' type="text" defaultValue={user?.email} readOnly />
       <button className='reset-password'>Change email address</button>
 
       <h1>Password</h1>
