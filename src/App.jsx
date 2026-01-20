@@ -7,6 +7,8 @@ import Login from "./routes/Login";
 import Profile from "./routes/Profile";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import Notifications from "./routes/Notifications";
+import Gifts from "./routes/Gifts";
+import News from "./routes/News";
 
 import Settings from "./routes/Settings";
 import General from "./components/settings/General";
@@ -14,9 +16,8 @@ import Account from "./components/settings/Account";
 import Notification from "./components/settings/Notifications";
 import Security from "./components/settings/Security";
 import Support from "./components/settings/Support";
-import TermsPrivacy from "./components/settings/TermsPrivacy";
 import Steam from "./components/settings/Steam";
-import News from "./routes/News";
+import TermsPrivacy from "./components/settings/TermsPrivacy";
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/news" element={<News />} />
+          <Route path="/gifts" element={<Gifts />} />
           <Route path="/settings" element={<Settings />} >
             <Route index element={<Navigate to='general' />} />
             <Route path="general" element={<General />} />

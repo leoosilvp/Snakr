@@ -11,6 +11,7 @@ const routeNames = {
     '/friends': 'Friends',
     '/profile': 'Profile',
     '/wish-list': 'Wish list',
+    '/gifts': 'Gifts',
     '/news': 'News',
     '/settings': 'Settings',
     '/notifications': 'Notifications',
@@ -126,6 +127,7 @@ const Header = () => {
                     <NavLink to="/friends">Friends</NavLink>
                     <NavLink to="/profile">Profile</NavLink>
                     <NavLink to="/wish-list">Wish-list</NavLink>
+                    <NavLink to="/gifts">Gifts</NavLink>
                     <NavLink to="/news">News</NavLink>
                     <NavLink to="/settings">Settings</NavLink>
                 </ul>
