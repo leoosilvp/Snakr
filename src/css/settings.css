@@ -694,3 +694,120 @@
 .settings-terms-privacy a:hover {
     box-shadow: 0 0 15px 0 #ffffff6c;
 }
+
+/* modal change profile picture */
+.change-profile-picture{
+    position: fixed;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    background: #00000096;
+    backdrop-filter: blur(5px);
+    z-index: 1;
+}
+
+.modal-change-profile-picture{
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border);
+    background: var(--background-card);
+    box-shadow: 0 0 10px 2px #000;
+}
+
+.modal-change-profile-picture-header{
+    display: flex;
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-change-profile-picture-header h1{
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.modal-change-profile-picture-content {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.modal-change-profile-picture-content p{
+    font-size: 0.85rem;
+    font-weight: 400;
+}
+
+.modal-change-profile-picture-content ul{
+    margin-top: 3px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-change-profile-picture-content ul li{
+    display: flex;
+    gap: 10px;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--gray-color);
+}
+
+.modal-change-profile-picture-content ul li p{
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--gray-color);
+}
+
+.modal-change-profile-picture-content label{
+    margin-top: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.modal-change-profile-picture-content input{
+    margin-top: 5px;
+    display: flex;
+    width: 100%;
+    padding: 7px 10px;
+    background: #0e0e0e;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: var(--light-color);
+}
+
+.modal-change-profile-picture-btn{
+    margin-top: 25px;
+    display: flex;
+    justify-content: end;
+    gap: 15px;
+}
+
+.modal-change-profile-picture-btn button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 15px;
+    border: 1px solid var(--gray-color);
+    border-radius: 50px;
+    background: transparent;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--light-color);
+    cursor: pointer;
+    transition: var(--transition-2s);
+}
+
+.modal-change-profile-picture-btn button:hover{
+    border-color: var(--light-color);
+    box-shadow: 0 0 10px 0 #ffffff45;
+}
+
+.modal-change-profile-picture-btn button.active{
+    background: var(--light-color);
+    color: var(--black);
+}

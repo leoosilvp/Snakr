@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useUser } from '../../hooks/useUser'
 import { useUpdateUser } from '../../hooks/useUpdateUser'
+import ModalChangeProfilePic from './ModalChangeProfilePic'
 
 const DEFAULT_ACCOUNT = {
   profile: {
@@ -15,6 +16,8 @@ const DEFAULT_ACCOUNT = {
 const Account = () => {
   const { user } = useUser()
   const { updateUser } = useUpdateUser()
+  
+  const [showProfilePicModal, setShowProfilePicModal] = useState(false)
 
   const [account, setAccount] = useState(null)
 
@@ -103,10 +106,16 @@ const Account = () => {
 
         <img src={account.profile.photo || 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'} alt="Profile picture" />
 
-        <button>
+        <button onClick={() => setShowProfilePicModal(true)}>
           <i className="fa-solid fa-pencil" /> Edit
         </button>
       </div>
+
+      <ModalChangeProfilePic
+        open={showProfilePicModal}
+        onClose={() => setShowProfilePicModal(false)}
+      />
+
     </section>
   )
 }
