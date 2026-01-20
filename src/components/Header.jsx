@@ -6,12 +6,14 @@ import ModalProfile from './ModalProfile'
 
 const routeNames = {
     '/home': 'Home',
-    '/notifications': 'Notifications',
     '/catalog': 'Catalog',
     '/library': 'Library',
-    '/settings': 'Settings',
-    '/support': 'Support',
+    '/friends': 'Friends',
     '/profile': 'Profile',
+    '/wish-list': 'Wish list',
+    '/news': 'News',
+    '/settings': 'Settings',
+    '/notifications': 'Notifications',
 }
 
 const subRouteNames = {
@@ -19,6 +21,7 @@ const subRouteNames = {
     '/settings/account': 'Account',
     '/settings/notifications': 'Notifications',
     '/settings/security': 'Security',
+    '/settings/steam': 'Steam',
     '/settings/support': 'Support',
     '/settings/terms%20and%20privacy': 'Terms and privacy',
 }

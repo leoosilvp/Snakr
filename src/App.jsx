@@ -16,6 +16,7 @@ import Security from "./components/settings/Security";
 import Support from "./components/settings/Support";
 import TermsPrivacy from "./components/settings/TermsPrivacy";
 import Steam from "./components/settings/Steam";
+import News from "./routes/News";
 
 function App() {
 
@@ -31,7 +32,7 @@ function App() {
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/home" element={<Home />} />
           <Route path="/profile" element={<Profile />} />
-
+          <Route path="/news" element={<News />} />
           <Route path="/settings" element={<Settings />} >
             <Route index element={<Navigate to='general' />} />
             <Route path="general" element={<General />} />
@@ -41,7 +42,6 @@ function App() {
             <Route path="security" element={<Security />} />
             <Route path="support" element={<Support />} />
             <Route path="terms and privacy" element={<TermsPrivacy />} />
-
           </Route>
         </Route>
         <Route path="/status" element={<Status />} />
