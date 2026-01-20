@@ -18,6 +18,8 @@ const Gifts = () => {
                     <button>Android</button>
                     <button>iOS</button>
                 </header>
+                <h1>84 Snakr Gifts (2026)</h1>
+                <div className='trace' />
                 <section className='gifts-main-cards'>
                     <article className='gift-card'>
 
