@@ -120,9 +120,11 @@ const Header = () => {
                     <NavLink to="/home">Home</NavLink>
                     <NavLink to="/catalog">Catalog</NavLink>
                     <NavLink to="/library">Library</NavLink>
+                    <NavLink to="/friends">Friends</NavLink>
                     <NavLink to="/profile">Profile</NavLink>
+                    <NavLink to="/wish-list">Wish-list</NavLink>
+                    <NavLink to="/news">News</NavLink>
                     <NavLink to="/settings">Settings</NavLink>
-                    <NavLink to="/support">Support</NavLink>
                 </ul>
             </nav>
 

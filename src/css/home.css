@@ -1,5 +1,24 @@
-.home-main{
+.home-main {
     display: flex;
     flex-direction: column;
     width: 100%;
+}
+
+.most-popular-header {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.most-popular-header h1 {
+    display: flex;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.most-popular-header div {
+    display: flex;
+    width: 60px;
+    height: 2.5px;
+    background: var(--light-color);
 }

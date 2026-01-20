@@ -27,7 +27,10 @@ const Login = () => {
   }
 
   if (user) {
-    return window.history.back(), window.location.reload()
+    if (window.history.back()) {
+      return window.history.back(), window.location.reload()
+    }
+    return window.location.href = '/home'
   }
 
   const handleSubmit = async (e) => {
