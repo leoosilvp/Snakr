@@ -1,20 +1,20 @@
 <div align='center'>
     <a href='https://snakr-im.vercel.app/'>
-        <img src='./src/assets/svg/logo2.svg' width='300px' />
+        <img src='./src/assets/svg/logo3.svg' width='300px' />
     </a>
 </div>
 
 access: [snakr.com](https://snakr-im.vercel.app/)
 
 
-# 🗂️ About
+## About
 
 **Snakr** é uma plataforma de **centralização de bibliotecas de jogos**, criada para unificar, organizar e exibir todos os jogos de um usuário em um único lugar, independentemente da plataforma de origem.
 
 A aplicação vai permitir conectar contas de serviços como **Steam, Epic Games e outras**, reunindo jogos, conquistas, status e atividades em uma interface moderna, rápida e focada em experiência do usuário.
 
 
-# 📄 Purpose & Vision
+## Purpose & Vision
 
 - **Propósito:**  
   Eliminar a fragmentação entre plataformas de jogos, oferecendo um **hub único** onde o jogador possa visualizar sua biblioteca completa, acompanhar progresso e interagir socialmente.
@@ -26,12 +26,12 @@ A aplicação vai permitir conectar contas de serviços como **Steam, Epic Games
   - Evoluir para um ecossistema extensível com integrações contínuas.
 
 
-# 📑 Technical Architecture
+## Technical Architecture
 
 | Camada | Tecnologia / Ferramenta |
 |---|---|
 | Frontend | React, React Hooks, React Router, CSS customizado |
-| Backend | Node.js, Express, API REST |
+| Backend | Node.js, API REST |
 | Integrações | APIs externas (Steam, Epic Games, etc.) |
 | Hospedagem | Vercel |
 | Autenticação | OAuth / Tokens de acesso |
@@ -41,11 +41,11 @@ A aplicação vai permitir conectar contas de serviços como **Steam, Epic Games
 A arquitetura foi pensada para permitir **novas integrações de plataformas** sem impacto direto na base do sistema.
 
 
-# 📋 Future Roadmap
+## Future Roadmap
 
 - ✅ Estrutura base do front-end e back-end  
 - ✅ Deploy automatizado na Vercel  
-- 🔐 Autenticação completa com plataformas externas  
+- ✅ Autenticação completa com plataformas externas  
 - 🎮 Sincronização automática de bibliotecas  
 - 🏆 Conquistas globais e comparativos entre amigos  
 - 💬 Chat em tempo real e sistema de presença  
@@ -54,7 +54,7 @@ A arquitetura foi pensada para permitir **novas integrações de plataformas** s
 - 📱 Aplicação mobile
 
 
-# 🫱🏻‍🫲🏾 Join the Project
+## Join the Project
 
 O **Snakr** está aberto a colaborações com desenvolvedores interessados em:
 
@@ -63,13 +63,13 @@ O **Snakr** está aberto a colaborações com desenvolvedores interessados em:
 - Arquitetura e performance  
 - Experiência social e features multiplayer
 
-### 📬 Entre em contato
+### Entre em contato
 
 [![WhatsApp](https://img.shields.io/badge/WhatsApp-Contato-25D366?logo=whatsapp&logoColor=white)](https://wa.me/5511995786774)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Leonardo%20Silva-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/leeosilvp/)
 
 
-# 📜  License
+## License
 
 Este projeto, **Snakr**, é um software proprietário e todos os direitos são reservados a Leonardo Silva.
 
@@ -80,7 +80,7 @@ Este projeto, **Snakr**, é um software proprietário e todos os direitos são r
 Para mais detalhes, leia o arquivo completo de licença: [LICENSE](./LICENSE).
 
 
-# 👥 Credits & Contributors
+## Credits & Contributors
 
 O desenvolvimento do **Snakr** é fruto do trabalho colaborativo de pessoas dedicadas que acreditam no potencial de uma IA especializada em matemática.
 
