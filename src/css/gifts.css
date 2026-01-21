@@ -5,7 +5,7 @@
 }
 
 .gifts-main-content {
-    margin-top: 130px;
+    padding: 130px 0 70px 0;
     display: flex;
     flex-direction: column;
     width: 1200px;
@@ -32,20 +32,251 @@
 }
 
 .gifts-main-content-header button:hover {
-    box-shadow: 0 0 10px #ffffff25;
+    box-shadow: 0 0 15px #ffffff15;
     color: var(--light-color);
 }
 
-.gifts-main-content h1{
-    margin-top: 30px;
+.gifts-main-content h1 {
+    margin-top: 15px;
     font-size: 1.1rem;
     font-weight: 500;
 }
 
-.gifts-main-content .trace{
+.gifts-main-content .trace {
     margin-top: 5px;
     display: flex;
     width: 60px;
     height: 2.5px;
     background: var(--light-color);
+}
+
+.gifts-main-cards {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.gifts-main-cards-loading {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.card-loading {
+    display: flex;
+    width: 287px;
+    height: 295px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border);
+    background: linear-gradient(-45deg,
+            #000000 25%,
+            #0f0f0f 37%,
+            #000000 63%);
+    background-size: 400% 100%;
+    animation: skeleton 1.5s infinite linear;
+}
+
+.gifts-no-results {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 1200px;
+}
+
+.gifts-no-results i{
+    font-size: 2rem;
+    color: var(--gray-color);
+}
+
+.gifts-no-results p{
+    margin-top: 10px;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--gray-color);
+}
+
+.gift-card {
+    background: #0f0f0f;
+    border-radius: var(--border);
+    overflow: hidden;
+    transition: var(--transition-2s);
+}
+
+.gift-card:hover {
+    transform: scale(1.02);
+    background: var(--dark-color);
+}
+
+.gift-thumbnail {
+    position: relative;
+}
+
+.gift-thumbnail img {
+    width: 100%;
+    display: block;
+}
+
+.gift-badge-top-left {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #000000ce;
+    color: var(--light-color);
+    padding: 4px 8px;
+    font-size: 0.7rem;
+    border-radius: 5px;
+}
+
+.gift-platforms {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 5px;
+}
+
+.gift-platforms span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #00000099;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    color: var(--light-color);
+}
+
+.gift-rarity {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: #111;
+    border: 1.5px solid #326aa3;
+    color: #4799eb;
+    padding: 2px 8px;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    border-radius: 5px;
+}
+
+.gift-content {
+    padding: 10px;
+    cursor: default;
+}
+
+.gift-title {
+    margin-bottom: 5px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.gift-price {
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+    gap: 5px;
+}
+
+.gift-price s {
+    text-decoration: line-through;
+    color: var(--gray-color);
+}
+
+.gift-free {
+    display: flex;
+    border: 1px solid #aaa;
+    color: #aaa;
+    border-radius: 5px;
+    padding: 0px 6px;
+    font-weight: 500;
+}
+
+.gift-type {
+    margin-left: auto;
+    background: #555;
+    padding: 1px 6px;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--background-card);
+}
+
+.gift-description {
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+    color: var(--gray-color);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.gift-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.gift-claim {
+    margin-left: auto;
+    border: 1px solid #777;
+    padding: 6px 10px;
+    border-radius: 6px;
+    color: #777;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: var(--transition-2s);
+}
+
+.gift-claim:hover {
+    border-color: var(--light-color);
+    background: var(--light-color);
+    color: var(--black);
+    box-shadow: 0 0 10px 0 #ffffff3e;
+}
+
+.gift-claimed {
+    display: flex;
+    margin-top: 8px;
+}
+
+.gift-claimed p {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #777;
+    gap: 3px;
+}
+
+.gift-claimed p i {
+    font-size: 0.6rem;
+}
+
+.gift-card.expired {
+    opacity: 0.4;
+    filter: grayscale(0.5);
+    pointer-events: none;
+}
+
+.gift-expired {
+    position: absolute;
+    margin-top: 0px;
+    margin-left: 70px;
+    transform: rotateZ(45deg);
+    color: red;
+    padding: 5px 10px;
+    font-size: 2rem;
+    border: 1.5px solid red;
+    z-index: 2;
 }
