@@ -31,6 +31,12 @@ const Gifts = () => {
     const [platform, setPlatform] = useState(null)
     const { gifts, loading, error } = useGifts({ platform, sortBy: 'date' })
 
+    const isLoading = loading
+    const hasError = !!error
+    const hasResults = !loading && !error && gifts.length > 0
+    const showEmpty = !loading && !error && gifts.length === 0
+
+
     const isExpired = item => {
         if (!item.end_date || item.end_date === 'N/A') return false
         const end = new Date(item.end_date)
@@ -87,68 +93,81 @@ const Gifts = () => {
                 <div className="trace" />
 
                 <section className="gifts-main-cards">
-                    {loading && <div className='gifts-main-cards-loading'><div className='card-loading' /><div className='card-loading' /><div className='card-loading' /><div className='card-loading' /> </div>}
-                    {error && <p>{error}</p>}
+                    {hasError && <p>{error}</p>}
 
-                    {!loading && !error && gifts.length === 0 && (
-                        <div className="gifts-no-results"><i className='fa-regular fa-face-tired' /><p>No results</p></div>
+                    {isLoading && (
+                        <div className="gifts-main-cards-loading">
+                            <div className="card-loading" />
+                            <div className="card-loading" />
+                            <div className="card-loading" />
+                            <div className="card-loading" />
+                        </div>
                     )}
 
-                    {sortGifts(gifts).map(item => {
-                        const platforms = item.platforms?.toLowerCase() || ''
-                        return (
-                            <article key={item.id} className={`gift-card ${isExpired(item) ? 'expired' : ''}`}>
-                                <section className="gift-thumbnail">
-                                    <a href={item.open_giveaway_url} target="_blank" rel="noreferrer">
-                                        <img src={item.image} alt={item.title} />
-                                    </a>
+                    {showEmpty && (
+                        <div className="gifts-no-results">
+                            <i className="fa-regular fa-face-tired" />
+                            <p>No results</p>
+                        </div>
+                    )}
 
-                                    {formatEndDate(item.end_date) && !isExpired(item) && (
-                                        <span className="gift-badge-top-left">
-                                            {formatEndDate(item.end_date)}
-                                        </span>
-                                    )}
-
-                                    <div className="gift-platforms">
-                                        {PLATFORM_ICONS
-                                            .filter(p => p.key !== 'epic-store')
-                                            .map(p =>
-                                                platforms.includes(p.key) ? (
-                                                    <span key={p.key} title={p.label}>
-                                                        <i className={`fa-brands ${p.icon}`} />
-                                                    </span>
-                                                ) : null
-                                            )}
-                                    </div>
-
-                                    <span className="gift-rarity">
-                                        {item.worth === 'N/A' ? 'Free' : 'Deal'}
-                                    </span>
-                                    {isExpired(item) && (
-                                        <p className='gift-expired'>EXPIRED</p>
-                                    )}
-                                </section>
-
-                                <section className="gift-content">
-                                    <h3 className="gift-title">{item.title}</h3>
-                                    <div className="gift-price">
-                                        <span className="gift-free">FREE</span>
-                                        {item.worth !== 'N/A' && <s>{item.worth}</s>}
-                                        <span className="gift-type">{item.type}</span>
-                                    </div>
-                                    <p className="gift-description">{item.description}</p>
-                                    <div className="gift-actions">
-                                        <a href={item.open_giveaway_url} target="_blank" rel="noreferrer" className="gift-claim">
-                                            Claim Gift
+                    {hasResults &&
+                        sortGifts(gifts).map(item => {
+                            const platforms = item.platforms?.toLowerCase() || ''
+                            return (
+                                <article key={item.id} className={`gift-card ${isExpired(item) ? 'expired' : ''}`}>
+                                    <section className="gift-thumbnail">
+                                        <a href={item.open_giveaway_url} target="_blank" rel="noreferrer">
+                                            <img src={item.image} alt={item.title} />
                                         </a>
-                                    </div>
-                                    <div className="gift-claimed">
-                                        <p><i className='fa-solid fa-user' />{item.users?.toLocaleString()}+ Claimed</p>
-                                    </div>
-                                </section>
-                            </article>
-                        )
-                    })}
+
+                                        {formatEndDate(item.end_date) && !isExpired(item) && (
+                                            <span className="gift-badge-top-left">
+                                                {formatEndDate(item.end_date)}
+                                            </span>
+                                        )}
+
+                                        <div className="gift-platforms">
+                                            {PLATFORM_ICONS
+                                                .filter(p => p.key !== 'epic-store')
+                                                .map(p =>
+                                                    platforms.includes(p.key) ? (
+                                                        <span key={p.key} title={p.label}>
+                                                            <i className={`fa-brands ${p.icon}`} />
+                                                        </span>
+                                                    ) : null
+                                                )}
+                                        </div>
+
+                                        <span className="gift-rarity">
+                                            {item.worth === 'N/A' ? 'Free' : 'Deal'}
+                                        </span>
+                                        {isExpired(item) && (
+                                            <p className='gift-expired'>EXPIRED</p>
+                                        )}
+                                    </section>
+
+                                    <section className="gift-content">
+                                        <h3 className="gift-title">{item.title}</h3>
+                                        <div className="gift-price">
+                                            <span className="gift-free">FREE</span>
+                                            {item.worth !== 'N/A' && <s>{item.worth}</s>}
+                                            <span className="gift-type">{item.type}</span>
+                                        </div>
+                                        <p className="gift-description">{item.description}</p>
+                                        <div className="gift-actions">
+                                            <a href={item.open_giveaway_url} target="_blank" rel="noreferrer" className="gift-claim">
+                                                Claim Gift
+                                            </a>
+                                        </div>
+                                        <div className="gift-claimed">
+                                            <p><i className='fa-solid fa-user' />{item.users?.toLocaleString()}+ Claimed</p>
+                                        </div>
+                                    </section>
+                                </article>
+                            )
+                        })
+                    }
                 </section>
             </section>
             <Footer />

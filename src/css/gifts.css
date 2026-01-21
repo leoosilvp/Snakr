@@ -58,9 +58,9 @@
 }
 
 .gifts-main-cards-loading {
-    display: flex;
+    display: grid;
     width: 100%;
-    min-height: 100vh;
+    min-height: 100%;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
@@ -88,12 +88,12 @@
     width: 1200px;
 }
 
-.gifts-no-results i{
+.gifts-no-results i {
     font-size: 2rem;
     color: var(--gray-color);
 }
 
-.gifts-no-results p{
+.gifts-no-results p {
     margin-top: 10px;
     font-size: 1.1rem;
     font-weight: 400;
@@ -271,12 +271,72 @@
 
 .gift-expired {
     position: absolute;
-    margin-top: 0px;
-    margin-left: 70px;
+    top: 110px;
+    left: 40px;
     transform: rotateZ(45deg);
     color: red;
-    padding: 5px 10px;
-    font-size: 2rem;
-    border: 1.5px solid red;
+    padding: 5px 15px;
+    font-size: 3rem;
+    border: 3px solid red;
     z-index: 2;
+}
+
+@media (width < 720px) {
+
+    .gifts-main-content {
+        padding: 130px 20px 30px 20px;
+        width: 100vw;
+    }
+
+    .gifts-main-content-header {
+        display: flex;
+        justify-content: start;
+        overflow: auto;
+        padding: 10px 0;
+    }
+
+    .gifts-main-content-header::-webkit-scrollbar {
+        display: flex;
+        height: 0;
+    }
+
+    .gifts-main-content-header button {
+        display: flex;
+        padding: 5px 10px;
+        font-size: 0.8rem;
+        min-width: max-content !important;
+        height: fit-content;
+    }
+
+    .gifts-main-content-header button:hover {
+        box-shadow: none;
+        color: var(--gray-color);
+    }
+
+    .gifts-main-cards {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .gifts-main-cards-loading {
+        width: 100%;
+        min-height: 100%;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .card-loading {
+        display: flex;
+        width: 100%;
+        height: 340px;
+    }
+
+    .gifts-no-results {
+        margin-top: 100px;
+        width: 100%;
+    }
+
+    .gift-expired {
+        top: 120px;
+        font-size: 3.5rem;
+        border: 4px solid red;
+    }
 }

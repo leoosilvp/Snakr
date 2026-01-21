@@ -9,7 +9,7 @@ export const useGifts = (options = {}) => {
   } = options
 
   const [gifts, setGifts] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
 
   const fetchGifts = useCallback(async () => {
