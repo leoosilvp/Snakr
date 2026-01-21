@@ -637,3 +637,72 @@ input:checked+.slider::before {
   border-color: var(--gray-color);
   background: var(--gray-color);
 }
+
+@media (width < 720px) {
+
+  /* Header */
+  .header-main {
+    width: 100vw;
+    padding: 15px 15px 0 15px;
+  }
+
+  .header-content-left img {
+    display: flex;
+    width: 30px;
+  }
+  
+  .breadcrumb h2 {
+    width: max-content;
+    max-width: 90px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .header-content-right a:hover {
+    border-color: #252525;
+    color: var(--gray-color);
+  }
+
+  .header-content-right a:active {
+    border-color: var(--light-color);
+    color: var(--light-color);
+  }
+
+  .header-main nav {
+    width: 100%;
+    overflow: auto;
+    padding: 5px 0px 0 0px; 
+  }
+
+  .header-main nav::-webkit-scrollbar{
+    display: flex;
+    height: 0;
+  }
+
+  .header-main nav ul a {
+    width: max-content;
+  }
+
+  .header-main nav ul a:hover {
+    color: var(--gray-color);
+  }
+
+  .header-main nav ul a:active {
+    color: var(--light-color);
+  }
+
+  .header-main nav ul a.active {
+    color: var(--light-color);
+    border-color: var(--light-color);
+  }
+
+  .header-main-scrolled {
+    padding: 0 15px;
+    gap: 10px;
+  }
+
+  .header-main-scrolled nav {
+    padding: 0;
+  }
+}
