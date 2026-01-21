@@ -650,7 +650,7 @@ input:checked+.slider::before {
     display: flex;
     width: 30px;
   }
-  
+
   .breadcrumb h2 {
     width: max-content;
     max-width: 90px;
@@ -672,10 +672,10 @@ input:checked+.slider::before {
   .header-main nav {
     width: 100%;
     overflow: auto;
-    padding: 5px 0px 0 0px; 
+    padding: 5px 0px 0 0px;
   }
 
-  .header-main nav::-webkit-scrollbar{
+  .header-main nav::-webkit-scrollbar {
     display: flex;
     height: 0;
   }
@@ -704,5 +704,50 @@ input:checked+.slider::before {
 
   .header-main-scrolled nav {
     padding: 0;
+  }
+
+
+
+  /* Footer */
+  .footer-main {
+    padding: 15px;
+  }
+
+  .footer-nav {
+    display: flex;
+    width: 250px;
+    align-items: center;
+    padding: 0 15px 0 0;
+    overflow: auto;
+    gap: 12px;
+  }
+
+  .footer-nav::-webkit-scrollbar {
+    display: flex;
+    height: 0;
+  }
+
+  .footer-nav a {
+    width: max-content;
+  }
+
+  .footer-nav a:hover {
+    color: var(--gray-color);
+  }
+
+  .footer-nav a:active {
+    color: var(--light-color);
+  }
+
+  .btn-system-status {
+    box-shadow: -15px 0 10px var(--background-card);
+  }
+
+  .btn-system-status:hover {
+    background: var(--background-card);
+  }
+
+  .btn-system-status:active {
+    background: var(--gray-color);
   }
 }
