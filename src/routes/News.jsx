@@ -20,7 +20,7 @@ const News = () => {
                 <p className="news-content-scroll-date">Highlights</p>
 
                 {error && <p className="news-error">{error}</p>}
-                {loading && <div className="news-loading"><div className='news-loading-card' /><div className='news-loading-card' /><div className='news-loading-card' /><div className='news-loading-card active' /></div>}
+                {loading && <div className="news-loading"><div className='news-loading-card' /><div className='news-loading-card mobActive' /><div className='news-loading-card' /><div className='news-loading-card active' /></div>}
 
                 {!loading && news.length > 0 && (
                     <CardsNews news={news} from={0} to={15} />
@@ -33,7 +33,7 @@ const News = () => {
                     </>
                 }
 
-                {loading && <div className="news-loading"><div className='news-loading-card' /><div className='news-loading-card' /><div className='news-loading-card' /><div className='news-loading-card active' /></div>}
+                {loading && <div className="news-loading"><div className='news-loading-card' /><div className='news-loading-card mobActive' /><div className='news-loading-card' /><div className='news-loading-card active' /></div>}
                 {!loading && news.length > 0 && (
                     <>
                         <CardsNews news={news} from={15} to={30} />
