@@ -154,6 +154,44 @@
 .card-news-smooth {
     position: relative;
     display: flex;
-    height: 300px;
-    box-shadow: -20px 0px 15px 20px var(--black);
+    height: 290px;
+    box-shadow: -15px 0px 20px 25px var(--black);
+}
+
+.news-loading {
+    padding: 10px 0;
+    display: flex;
+    gap: 20px;
+}
+
+.news-loading-card {
+    display: flex;
+    width: 350px;
+    height: 308px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border);
+    background: linear-gradient(-45deg,
+            #000000 25%,
+            #0f0f0f 37%,
+            #000000 63%);
+    background-size: 400% 100%;
+    animation: skeleton 1.5s infinite linear;
+}
+
+.news-loading-card.active {
+  width: 150px;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(
+      -45deg,
+      #000000 25%,
+      #0f0f0f 37%,
+      #000000 63%
+    ) padding-box,
+    linear-gradient(90deg, var(--border-color), var(--black)) border-box;
+  background-size:
+    400% 100%,
+    100% 100%;
+  animation: skeleton 1.5s infinite linear;
+  box-shadow: inset -15px 0 20px #000000;
 }
