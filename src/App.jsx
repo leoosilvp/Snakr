@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
-import Home from "./routes/Home"
+import { ConsoleBanner } from './hooks/ConsoleBanner'
 import ChangeIcon from './hooks/ChangeIcon'
+import Home from "./routes/Home"
 import Error from "./routes/Error";
 import Status from "./routes/Status";
 import Login from "./routes/Login";
@@ -20,7 +21,7 @@ import Steam from "./components/settings/Steam";
 import TermsPrivacy from "./components/settings/TermsPrivacy";
 
 function App() {
-
+  ConsoleBanner()
   ChangeIcon();
 
   return (
