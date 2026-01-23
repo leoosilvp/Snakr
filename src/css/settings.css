@@ -696,7 +696,7 @@
 }
 
 /* modal change profile picture */
-.change-profile-picture{
+.change-profile-picture {
     position: fixed;
     display: flex;
     width: 100vw;
@@ -710,7 +710,7 @@
     z-index: 1;
 }
 
-.modal-change-profile-picture{
+.modal-change-profile-picture {
     display: flex;
     flex-direction: column;
     width: 600px;
@@ -720,13 +720,13 @@
     box-shadow: 0 0 10px 2px #000;
 }
 
-.modal-change-profile-picture-header{
+.modal-change-profile-picture-header {
     display: flex;
     padding: 10px 15px;
     border-bottom: 1px solid var(--border-color);
 }
 
-.modal-change-profile-picture-header h1{
+.modal-change-profile-picture-header h1 {
     font-size: 1rem;
     font-weight: 500;
 }
@@ -737,18 +737,18 @@
     padding: 10px;
 }
 
-.modal-change-profile-picture-content p{
+.modal-change-profile-picture-content p {
     font-size: 0.85rem;
     font-weight: 400;
 }
 
-.modal-change-profile-picture-content ul{
+.modal-change-profile-picture-content ul {
     margin-top: 3px;
     display: flex;
     flex-direction: column;
 }
 
-.modal-change-profile-picture-content ul li{
+.modal-change-profile-picture-content ul li {
     display: flex;
     gap: 10px;
     font-size: 0.8rem;
@@ -756,19 +756,19 @@
     color: var(--gray-color);
 }
 
-.modal-change-profile-picture-content ul li p{
+.modal-change-profile-picture-content ul li p {
     font-size: 0.8rem;
     font-weight: 400;
     color: var(--gray-color);
 }
 
-.modal-change-profile-picture-content label{
+.modal-change-profile-picture-content label {
     margin-top: 20px;
     font-size: 0.9rem;
     font-weight: 500;
 }
 
-.modal-change-profile-picture-content input{
+.modal-change-profile-picture-content input {
     margin-top: 5px;
     display: flex;
     width: 100%;
@@ -780,14 +780,14 @@
     color: var(--light-color);
 }
 
-.modal-change-profile-picture-btn{
+.modal-change-profile-picture-btn {
     margin-top: 25px;
     display: flex;
     justify-content: end;
     gap: 15px;
 }
 
-.modal-change-profile-picture-btn button{
+.modal-change-profile-picture-btn button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -802,12 +802,144 @@
     transition: var(--transition-2s);
 }
 
-.modal-change-profile-picture-btn button:hover{
+.modal-change-profile-picture-btn button:hover {
     border-color: var(--light-color);
     box-shadow: 0 0 10px 0 #ffffff45;
 }
 
-.modal-change-profile-picture-btn button.active{
+.modal-change-profile-picture-btn button.active {
     background: var(--light-color);
     color: var(--black);
+}
+
+/* =========================================================
+   SETTINGS – MOBILE RESPONSIVE ( < 720px )
+   ========================================================= */
+
+@media (width < 720px) {
+
+    .settings-main {
+        width: 100vw;
+        min-height: 100vh;
+    }
+
+    .settings-main-content {
+        width: 100%;
+    }
+
+    .settings-main-header {
+        display: none;
+    }
+
+    .settings-main-area {
+        flex-direction: column;
+    }
+
+    .settings-main-nav {
+        position: sticky;
+        top: 47px;
+        width: 100%;
+        padding: 10px 20px;
+        overflow-x: auto;
+        background: #000;
+        border-bottom: 1px solid var(--border-color);
+        z-index: 1;
+    }
+
+    .settings-main-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .settings-main-nav ul {
+        display: flex;
+        gap: 5px;
+    }
+
+    .settings-main-nav a {
+        white-space: nowrap;
+        font-size: 0.75rem;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+
+    .settings-area {
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .settings-general select,
+    .settings-general input,
+    .settings-account-left input,
+    .settings-account-left textarea,
+    .settings-account-left select,
+    .settings-notifications select,
+    .settings-security input {
+        margin-top: 7px;
+        width: 100%;
+        min-width: unset;
+        max-width: unset;
+    }
+
+    .settings-general h2 {
+        margin-top: 25px;
+        font-size: 1.05rem;
+    }
+
+    .settings-general h1 {
+        font-size: 0.85rem;
+    }
+
+    .settings-general p {
+        font-size: 0.72rem;
+    }
+
+    .settings-account {
+        flex-direction: column-reverse;
+        gap: 30px;
+    }
+
+    .settings-account-left{
+        width: 100%;
+    }
+
+    .settings-account-right{
+        margin-top: 30px;
+        height: fit-content;
+    }
+
+    .settings-account-right img {
+        width: 160px;
+        height: 160px;
+    }
+
+    .settings-account-right button {
+        top: 120px;
+        margin-left: 110px;
+    }
+
+    .delete-account-content {
+        width: 100%;
+        gap: 5px;
+    }
+
+    .delete-account button {
+        width: 200px;
+    }
+
+    .settings-security i.persona {
+        display: none;
+    }
+
+    .settings-security-all-session{
+        margin-top: 30px;
+    }
+
+    .settings-security-session button {
+        width: 150px;
+    }
+
+    .modal-change-profile-picture {
+        width: 95%;
+    }
+
 }

@@ -13,7 +13,7 @@ const Settings = () => {
                     <h1>Settings</h1>
                 </div>
 
-                <hr />
+                <hr className='settings-header-line' />
 
                 <section className='settings-main-area'>
                     <aside className='settings-main-nav'>

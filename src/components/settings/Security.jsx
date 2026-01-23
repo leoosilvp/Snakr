@@ -6,7 +6,7 @@ const Security = () => {
 
   return (
     <section className="settings-security">
-      <i class="fa-solid fa-fingerprint persona" />
+      <i className="fa-solid fa-fingerprint persona" />
 
       <h1>E-mail</h1>
       <input className='readOnly' type="text" defaultValue={user?.email} readOnly />
