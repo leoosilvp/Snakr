@@ -15,6 +15,7 @@ const routeNames = {
     '/news': 'News',
     '/settings': 'Settings',
     '/notifications': 'Notifications',
+    '/contribute': 'Contribute',
 }
 
 const subRouteNames = {

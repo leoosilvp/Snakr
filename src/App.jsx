@@ -19,6 +19,7 @@ import Security from "./components/settings/Security";
 import Support from "./components/settings/Support";
 import Steam from "./components/settings/Steam";
 import TermsPrivacy from "./components/settings/TermsPrivacy";
+import Contribute from "./routes/Contribute";
 
 function App() {
   ConsoleBanner()
@@ -46,6 +47,7 @@ function App() {
             <Route path="support" element={<Support />} />
             <Route path="terms and privacy" element={<TermsPrivacy />} />
           </Route>
+          <Route path='/contribute' element={<Contribute />}/>
         </Route>
         <Route path="/status" element={<Status />} />
       </Routes>
