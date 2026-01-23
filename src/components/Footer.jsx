@@ -12,9 +12,9 @@ const Footer = () => {
                     <Link to='/home'>Home</Link>
                     <Link to='/docs'>Docs</Link>
                     <Link to='/settings'>Settings</Link>
-                    <Link to='/docs/help'>Help</Link>
-                    <Link to='/docs'>policy and privacy</Link>
-                    <Link to='/docs'>Contribute</Link>
+                    <Link to='/settings/support'>Help</Link>
+                    <Link to='/settings/terms and privacy'>policy and privacy</Link>
+                    <Link to='/contribute'>Contribute</Link>
                 </ul>
             </section>
 
