@@ -4,3 +4,10 @@
     width: 1200px;
     min-height: 100vh;
 }
+
+@media (width < 720px) {
+    .feed {
+        width: 100%;
+        padding: 0 20px;
+    }
+}
