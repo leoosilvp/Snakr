@@ -7,7 +7,7 @@ export function useNews(options = {}) {
   } = options
 
   const [news, setNews] = useState([])
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
   const abortRef = useRef(null)
