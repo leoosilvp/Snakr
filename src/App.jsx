@@ -20,6 +20,7 @@ import Support from "./components/settings/Support";
 import Steam from "./components/settings/Steam";
 import TermsPrivacy from "./components/settings/TermsPrivacy";
 import Contribute from "./routes/Contribute";
+import PasswordReset from "./routes/PasswordReset";
 
 function App() {
   ConsoleBanner()
@@ -29,8 +30,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="*" element={<Error />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/" element={<Navigate to='/home' />} />
+        <Route path="/login" element={<Login />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/home" element={<Home />} />
@@ -47,8 +48,9 @@ function App() {
             <Route path="support" element={<Support />} />
             <Route path="terms and privacy" element={<TermsPrivacy />} />
           </Route>
-          <Route path='/contribute' element={<Contribute />}/>
+          <Route path='/contribute' element={<Contribute />} />
         </Route>
+        <Route path='/security/password-reset' element={<PasswordReset />} />
         <Route path="/status" element={<Status />} />
       </Routes>
     </BrowserRouter>
