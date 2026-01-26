@@ -1,22 +1,35 @@
-import { useState } from 'react'
-import { useSearchParams, Link, useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import '../css/password-reset.css'
 import logo from '../assets/svg/logo3.svg'
 
 const ResetPassword = () => {
-    const [searchParams] = useSearchParams()
     const navigate = useNavigate()
 
-    const accessToken = searchParams.get('access_token')
-    const refreshToken = searchParams.get('refresh_token')
+    const hashParams = new URLSearchParams(
+        window.location.hash.replace('#', '')
+    )
 
-    const isRecovery = accessToken && refreshToken
+    const accessToken = hashParams.get('access_token')
+    const refreshToken = hashParams.get('refresh_token')
+
+    const isRecovery = Boolean(accessToken && refreshToken)
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
     const [success, setSuccess] = useState(false)
     const [error, setError] = useState('')
+
+    useEffect(() => {
+        if (isRecovery) {
+            window.history.replaceState(
+                null,
+                '',
+                window.location.pathname
+            )
+        }
+    }, [isRecovery])
 
     async function sendResetEmail() {
         setError('')
@@ -78,7 +91,6 @@ const ResetPassword = () => {
             if (!res.ok) throw new Error()
 
             setSuccess(true)
-
             setTimeout(() => navigate('/login'), 2500)
         } catch {
             setError('Invalid or expired recovery link.')
