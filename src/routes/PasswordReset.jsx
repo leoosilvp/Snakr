@@ -15,7 +15,15 @@ const PasswordReset = () => {
                 </section>
             </header>
             <section className='password-reset-main-content'>
-
+                <article className='password-reset-main-card'>
+                    <h1>I forgot my password.</h1>
+                    <input type="email" placeholder='E-mail or Phone number' />
+                    <p>We will send a verification code to this email or phone number if it matches a Snakr account.</p>
+                    <section className='password-reset-main-card-btns'>
+                    <button className='active'>Send e-mail</button>
+                    <button onClick={() => window.location.href='/login'}>Back</button>
+                    </section>
+                </article>
             </section>
             <footer className='password-reset-main-footer'>
                 <div>
