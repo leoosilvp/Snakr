@@ -124,7 +124,7 @@ const Login = () => {
               {mode === 'login' ? 'Register' : 'Login'}
             </button>
 
-            <Link to='/security/password-reset'>I forgot my password.</Link>
+            <Link to='/security/reset-password'>I forgot my password.</Link>
           </section>
         </section>
 

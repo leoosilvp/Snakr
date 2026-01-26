@@ -20,7 +20,7 @@ import Support from "./components/settings/Support";
 import Steam from "./components/settings/Steam";
 import TermsPrivacy from "./components/settings/TermsPrivacy";
 import Contribute from "./routes/Contribute";
-import PasswordReset from "./routes/PasswordReset";
+import ResetPassword from "./routes/ResetPassword";
 
 function App() {
   ConsoleBanner()
@@ -50,7 +50,7 @@ function App() {
           </Route>
           <Route path='/contribute' element={<Contribute />} />
         </Route>
-        <Route path='/security/password-reset' element={<PasswordReset />} />
+        <Route path='/security/reset-password' element={<ResetPassword />} />
         <Route path="/status" element={<Status />} />
       </Routes>
     </BrowserRouter>
