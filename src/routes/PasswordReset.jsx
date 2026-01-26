@@ -6,12 +6,12 @@ const PasswordReset = () => {
     return (
         <main className="password-reset-main">
             <header className='password-reset-main-header'>
-                <Link to='/home'>
+                <Link to='/login'>
                     <img src={logo} alt="logo Snakr" />
                 </Link>
                 <section className='password-reset-main-header-btns'>
-                    <button>Login</button>
-                    <button className='active'>Join now</button>
+                    <Link to='/login'>Login</Link>
+                    <Link to='/login?view=register' className='active'>Join now</Link>
                 </section>
             </header>
             <section className='password-reset-main-content'>

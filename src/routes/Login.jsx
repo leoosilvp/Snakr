@@ -1,7 +1,7 @@
 import '../css/login.css'
 import icon from '../assets/svg/icon-dark.svg'
 import { Link, Navigate } from 'react-router-dom'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useUser } from '../hooks/useUser'
 
 const Login = () => {
@@ -18,6 +18,15 @@ const Login = () => {
 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
+
+  const params = new URLSearchParams(window.location.search);
+  const view = params.get("view");
+
+  useEffect(() => {
+    if (view === "register") {
+      setMode(view === "register" ? "register" : "login");
+    }
+  }, [view]);
 
   const handleChange = (e) => {
     setForm(prev => ({
@@ -115,7 +124,7 @@ const Login = () => {
               {mode === 'login' ? 'Register' : 'Login'}
             </button>
 
-            <Link>I forgot my password.</Link>
+            <Link to='/security/password-reset'>I forgot my password.</Link>
           </section>
         </section>
 
