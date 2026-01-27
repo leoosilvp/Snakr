@@ -6,14 +6,9 @@ import logo from '../assets/svg/logo3.svg'
 const ResetPassword = () => {
     const navigate = useNavigate()
 
-    const hashParams = new URLSearchParams(
-        window.location.hash.replace('#', '')
-    )
-
-    const accessToken = hashParams.get('access_token')
-    const refreshToken = hashParams.get('refresh_token')
-
-    const isRecovery = Boolean(accessToken && refreshToken)
+    const [accessToken, setAccessToken] = useState(null)
+    const [refreshToken, setRefreshToken] = useState(null)
+    const [isRecovery, setIsRecovery] = useState(false)
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -22,14 +17,28 @@ const ResetPassword = () => {
     const [error, setError] = useState('')
 
     useEffect(() => {
-        if (isRecovery) {
+        const hash = window.location.hash
+
+        if (!hash) return
+
+        const params = new URLSearchParams(hash.replace('#', ''))
+
+        const at = params.get('access_token')
+        const rt = params.get('refresh_token')
+        const type = params.get('type')
+
+        if (at && rt && type === 'recovery') {
+            setAccessToken(at)
+            setRefreshToken(rt)
+            setIsRecovery(true)
+
             window.history.replaceState(
                 null,
                 '',
                 window.location.pathname
             )
         }
-    }, [isRecovery])
+    }, [])
 
     async function sendResetEmail() {
         setError('')
@@ -149,7 +158,9 @@ const ResetPassword = () => {
                                     {loading ? 'Sending...' : 'Send e-mail'}
                                 </button>
 
-                                <button onClick={() => navigate('/login')}>Back</button>
+                                <button onClick={() => navigate('/login')}>
+                                    Back
+                                </button>
                             </section>
                         </>
                     )}
