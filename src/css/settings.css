@@ -513,6 +513,10 @@
     box-shadow: 0 0 15px 0 #ffffff6c;
 }
 
+.settings-security button.reset-password.disabled{
+    cursor: not-allowed;
+}
+
 .settings-security hr {
     width: 100%;
     margin: 30px 0;
@@ -812,10 +816,6 @@
     color: var(--black);
 }
 
-/* =========================================================
-   SETTINGS – MOBILE RESPONSIVE ( < 720px )
-   ========================================================= */
-
 @media (width < 720px) {
 
     .settings-main {
@@ -898,11 +898,11 @@
         gap: 30px;
     }
 
-    .settings-account-left{
+    .settings-account-left {
         width: 100%;
     }
 
-    .settings-account-right{
+    .settings-account-right {
         margin-top: 30px;
         height: fit-content;
     }
@@ -930,7 +930,7 @@
         display: none;
     }
 
-    .settings-security-all-session{
+    .settings-security-all-session {
         margin-top: 30px;
     }
 

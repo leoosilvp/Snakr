@@ -10,11 +10,11 @@ const Security = () => {
 
       <h1>E-mail</h1>
       <input className='readOnly' type="text" defaultValue={user?.email} readOnly />
-      <button className='reset-password'>Change email address</button>
+      <button className='reset-password disabled'>Change email address</button>
 
       <h1>Password</h1>
       <input className='readOnly' type="password" value={'**************'} readOnly />
-      <button className='reset-password'>Reset password</button>
+      <button className='reset-password' onClick={() => window.location.href='/security/reset-password'}>Reset password</button>
 
       <hr />
 
