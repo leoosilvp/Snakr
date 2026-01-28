@@ -1,4 +1,4 @@
-.profile-main{
+.profile-main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -13,25 +13,211 @@
     overflow-y: auto;
 }
 
-.profile-main::-webkit-scrollbar{
+.profile-main::-webkit-scrollbar {
     display: flex;
     width: 4px;
 }
 
-.profile-main::-webkit-scrollbar-thumb:hover{
+.profile-main::-webkit-scrollbar-thumb:hover {
     background: #0f0f0f;
     cursor: pointer;
 }
 
-.profile-content{
-    margin: 130px 0;
+.profile {
+    margin: 99px 0 -1px;
     margin-left: 4px;
     display: flex;
-    width: 920px;
-    height: 1000px;
-    background: #000000a4;
+    justify-content: space-between;
+    width: 1000px;
+    height: 100%;
+    min-height: 100vh;
+    padding: 15px;
+    background: #0f0f0fed;
     backdrop-filter: blur(1px);
-    border: 1px solid #0d0d0d;
-    border-radius: var(--border);
-    box-shadow: 0 0 20px 2px #000000d9;
+    border: 1px solid var(--dark-color);
+    box-shadow: 0 0 20px 2px #000000e9;
+}
+
+.profile-header {
+    display: flex;
+    height: 200px;
+}
+
+.frame {
+    position: absolute;
+    background-image: var(--background-img);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    top: 10px;
+    left: 10px;
+    width: 208px;
+    height: 208px;
+    z-index: 2;
+}
+
+.profile-header img {
+    margin: 15px;
+    display: flex;
+    width: 170px;
+    height: 170px;
+    border-radius: 5px;
+    border: 1px solid var(--light-color);
+    overflow: hidden;
+}
+
+.profile-header-content {
+    padding: 20px 20px 20px 40px;
+    display: flex;
+    cursor: default;
+}
+
+.profile-header-content div {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-header-content div h1 {
+    font-size: 1.7rem;
+    font-weight: 300;
+}
+
+.profile-header-content div p {
+    margin-top: 20px;
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+
+
+
+.profile-aside {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    padding: 20px 0;
+    cursor: default;
+}
+
+.profile-aside-header {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    gap: 10px;
+}
+
+.profile-aside-header h1 {
+    display: flex;
+    align-items: center;
+    font-size: 1.7rem;
+    font-weight: 300;
+    gap: 10px;
+}
+
+.profile-aside-header h1 span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #c74040;
+    border-radius: 50px;
+    font-size: 1rem;
+}
+
+.profile-aside-header a {
+    display: flex;
+    width: fit-content;
+    padding: 4px 11px;
+    border: 1px solid #000;
+    background: #040404;
+    font-size: 0.85rem;
+    color: #c3c3c3;
+    border-radius: 4px;
+    transition: var(--transition-2s);
+}
+
+.profile-aside-header a:hover {
+    color: var(--light-color);
+    background: #1e1e1e;
+    border-color: var(--dark-color);
+}
+
+.profile-aside-info {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 12px 10px;
+    background: #00000045;
+    border-radius: 5px;
+    gap: 50px;
+}
+
+.profile-aside-info h1 {
+    font-size: 1.15rem;
+    font-weight: 300;
+    color: #4399c7;
+}
+
+.profile-aside-awards {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-aside-info a {
+    display: flex;
+    font-size: 0.85rem;
+    font-weight: 450;
+    color: #d5d5d5;
+    gap: 10px;
+}
+
+.profile-aside-info a span {
+    margin-top: -15px;
+    margin-bottom: -5px;
+    font-size: 1.7rem;
+    font-weight: 300;
+    color: #757575;
+}
+
+.profile-aside-info a p:hover{
+    text-decoration: underline;
+}
+
+.profile-awards {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    width: 250px;
+    height: 50px;
+    border-radius: 2px;
+    overflow: hidden;
+    gap: 10px;
+}
+
+.award{
+    display: flex;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+}
+
+.award img{
+    display: flex;
+    width: 100%;
+}
+
+.profile-aside-info ul {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.profile-aside-list-friends {
+    margin-top: 3px;
+    display: flex;
+    width: 100%;
+    height: 60px;
+    border-radius: 2px;
 }

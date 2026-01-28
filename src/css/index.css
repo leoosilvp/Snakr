@@ -479,6 +479,7 @@ input:checked+.slider::before {
   padding: 20px;
   background: var(--background-card);
   border-top: 1.5px solid var(--border-color);
+  z-index: 1;
 }
 
 .footer-nav {

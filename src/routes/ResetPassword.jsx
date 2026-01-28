@@ -18,14 +18,7 @@ const ResetPassword = () => {
     const [loading, setLoading] = useState(false)
     const [success, setSuccess] = useState(false)
     const [error, setError] = useState('')
-
-    const [isLogged, setIsLogged] = useState(false)
-
-    useEffect(() => {
-        if (!user) {
-            setIsLogged(true)
-        }
-    }, [user])
+    const isLogged = Boolean(user)
 
     useEffect(() => {
         const hash = window.location.hash
