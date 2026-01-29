@@ -88,6 +88,102 @@
     font-weight: 300;
 }
 
+.profile-collection{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    width: 655px;
+    border-radius: 4px;
+    background: #06060669;
+    overflow: hidden;
+}
+
+.profile-collection-header{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    background: #050505;
+    padding: 10px;
+}
+
+.profile-collection-header h1{
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--light-color);
+}
+
+.profile-collection:hover .profile-collection-header a{
+    display: flex;
+}
+
+.profile-collection-header a{
+    display: none;
+    align-items: center;
+    font-size: 0.9rem;
+    gap: 5px;
+    color: var(--gray-color);
+    cursor: pointer;
+    transition: var(--transition-2s);
+}
+
+.profile-collection-header a:hover{
+    color: var(--light-color);
+}
+
+.profile-collection-content{
+    display: flex;
+    flex-direction: column;
+    padding: 15px 10px;
+    gap: 15px;
+}
+
+.profile-statistics-in-collection{
+    display: flex;
+    background: #070707;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.profile-statistics-in-collection div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.profile-statistics-in-collection div h1{
+    font-size: 2.5rem;
+    font-weight: 200;
+    color: #c3c3c3;
+}
+
+.profile-statistics-in-collection div a{
+    display: flex;
+    width: max-content;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--gray-color);
+}
+
+.profile-ctn-featured-games{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.profile-ctn-featured-games h1{
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--gray-color);
+}
+
+.profile-featured-games{
+    display: flex;
+    gap: 10px;
+    height: 70px;
+}
+
 
 
 
@@ -149,7 +245,7 @@
     flex-direction: column;
     width: 100%;
     padding: 12px 10px;
-    background: #00000045;
+    background: #06060669;
     border-radius: 5px;
     gap: 50px;
 }
