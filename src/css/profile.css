@@ -31,7 +31,7 @@
     width: 1000px;
     height: 100%;
     min-height: 100vh;
-    padding: 15px;
+    padding: 25px 15px;
     background: #0f0f0fed;
     backdrop-filter: blur(1px);
     border: 1px solid var(--dark-color);
@@ -49,7 +49,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    top: 10px;
+    top: 20px;
     left: 10px;
     width: 208px;
     height: 208px;
@@ -96,6 +96,7 @@
     border-radius: 4px;
     background: #06060669;
     overflow: hidden;
+    cursor: default;
 }
 
 .profile-collection-header{
