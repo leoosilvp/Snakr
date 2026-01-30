@@ -6,14 +6,13 @@ import { useUser } from '../hooks/useUser'
 import { Link } from 'react-router-dom'
 
 import Collection from '../components/profile/Collection'
+import RecentActivity from '../components/profile/RecentActivity'
 
 
 const Profile = () => {
 
   const { user } = useUser();
   const awards = user?.awards?.awards ?? []
-  console.log('USER:', user)
-
 
   return (
     <main className="profile-main" style={{ '--background-img': `url(${user?.settings?.appearance?.background || background})` }}>
@@ -32,7 +31,7 @@ const Profile = () => {
           </header>
 
           <Collection />
-
+          <RecentActivity />
         </section>
         <aside className='profile-aside'>
           <header className='profile-aside-header'>
