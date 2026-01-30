@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 
-const API_URL = 'https://backend-snakr.vercel.app/api/gifts'
+const API_URL = '/api/gifts'
 
 export const useGifts = (options = {}) => {
   const {

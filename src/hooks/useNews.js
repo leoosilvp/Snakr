@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 export function useNews(options = {}) {
   const {
     autoFetch = true,
-    endpoint = 'https://backend-snakr.vercel.app/api/news'
+    endpoint = '/api/news'
   } = options
 
   const [news, setNews] = useState([])
