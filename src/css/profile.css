@@ -278,7 +278,7 @@
     cursor: default;
 }
 
-.profile-aside-header {
+.profile-header-aside {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
@@ -287,7 +287,7 @@
     gap: 10px;
 }
 
-.profile-aside-header h1 {
+.profile-header-aside h1 {
     display: flex;
     align-items: center;
     font-size: 1.7rem;
@@ -295,7 +295,7 @@
     gap: 10px;
 }
 
-.profile-aside-header h1 span {
+.profile-header-aside h1 span {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -306,7 +306,7 @@
     font-size: 1rem;
 }
 
-.profile-aside-header a {
+.profile-header-aside a {
     display: flex;
     width: fit-content;
     padding: 4px 11px;
@@ -318,7 +318,7 @@
     transition: var(--transition-2s);
 }
 
-.profile-aside-header a:hover {
+.profile-header-aside a:hover {
     color: var(--light-color);
     background: #1e1e1e;
     border-color: var(--dark-color);
@@ -334,7 +334,7 @@
     gap: 50px;
 }
 
-.profile-aside-info-content{
+.profile-aside-info-content {
     display: flex;
     flex-direction: column;
     gap: 50px;
@@ -427,25 +427,11 @@
         flex-direction: column;
     }
 
-    .profile-aside-header {
+    .profile-header {
         display: flex;
-        flex-direction: column-reverse;
-        height: fit-content;
         width: 100%;
-    }
-
-    .profile-aside-header a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-    }
-
-    .profile-aside-header h1 {
-        display: flex;
-        align-items: center;
-        padding: 10px 15px;
-        background: #06060669;
+        padding: 0 5px;
+        gap: 20px;
     }
 
     .frame {
@@ -458,16 +444,17 @@
     .profile-header img {
         width: 113px;
         height: 113px;
-        border-radius: 4px;
+        border-radius: 3px;
     }
 
     .profile-header-content {
-        padding: 20px;
+        width: fit-content;
+        padding: 20px 0;
     }
 
     .profile-header-content div h1 {
         display: flex;
-        width: 200px;
+        width: fit-content;
         font-size: 1.4rem;
         font-weight: 300;
         overflow: hidden;
@@ -478,11 +465,33 @@
         margin-top: 10px;
         font-size: 0.9rem;
         font-weight: 200;
-        width: 200px;
+        width: fit-content;
         max-height: 70px;
         overflow: hidden;
         text-overflow: ellipsis;
         color: #c3c3c3;
+    }
+
+    .profile-header-aside {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column-reverse;
+        height: fit-content;
+        width: 100%;
+    }
+
+    .profile-header-aside a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .profile-header-aside h1 {
+        display: flex;
+        align-items: center;
+        padding: 10px 15px;
+        background: #06060669;
     }
 
     .profile-content {
@@ -490,6 +499,9 @@
         flex-direction: column-reverse;
         margin-top: 15px;
     }
+
+
+    /* aside */
 
     .profile-aside {
         display: flex;
@@ -506,6 +518,20 @@
         gap: 10px;
     }
 
+    .profile-aside-info h1 {
+        display: flex;
+        width: 100%;
+        padding: 10px 15px;
+        background: #060606d2;
+        border-radius: 4px;
+    }
+
+    .profile-aside-info a span {
+        margin-top: -7px;
+        font-size: 1.3rem;
+        color: #757575;
+    }
+
     .profile-aside-info-content {
         margin-top: 5px;
         display: grid;
@@ -513,19 +539,16 @@
         gap: 7px;
     }
 
-    .profile-aside-info h1 {
-        display: flex;
+    .profile-aside-awards {
         width: 100%;
         padding: 10px 15px;
         background: #060606a2;
         border-radius: 4px;
     }
 
-    .profile-aside-awards {
-        width: 100%;
-        padding: 10px 15px;
-        background: #060606a2;
-        border-radius: 4px;
+    .award {
+        width: 40px;
+        height: 40px;
     }
 
     .profile-aside-info-content ul {
@@ -549,7 +572,6 @@
     }
 
 
-
     /* profile collection */
 
     .profile-collection {
@@ -569,7 +591,7 @@
     .profile-statistics-in-collection div a {
         text-align: center;
         width: fit-content;
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         font-weight: 400;
         color: var(--gray-color);
     }

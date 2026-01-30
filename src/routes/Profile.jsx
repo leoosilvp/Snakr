@@ -4,7 +4,6 @@ import Footer from "../components/Footer"
 import background from '../assets/img/background-default.png'
 import { useUser } from '../hooks/useUser'
 import { Link } from 'react-router-dom'
-
 import Collection from '../components/profile/Collection'
 import RecentActivity from '../components/profile/RecentActivity'
 
@@ -20,8 +19,10 @@ const Profile = () => {
       <article className='profile'>
         <header className='profile-header-ctn'>
           <div className='profile-header'>
-            <div className='frame' style={{ '--background-img': `url(${user?.settings?.appearance?.frame || 'https://shared.fastly.steamstatic.com/community_assets/images/items/2753900/6e37c8dab514359635b1fe97590e61aec467f8d9.png'})` }} />
-            <img src={user?.profile?.photo || 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'} />
+            <div>
+              <div className='frame' style={{ '--background-img': `url(${user?.settings?.appearance?.frame || 'https://shared.fastly.steamstatic.com/community_assets/images/items/2753900/6e37c8dab514359635b1fe97590e61aec467f8d9.png'})` }} />
+              <img src={user?.profile?.photo || 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'} />
+            </div>
             <section className='profile-header-content'>
               <div>
                 <h1>{user?.profile?.username}</h1>
@@ -29,10 +30,10 @@ const Profile = () => {
               </div>
             </section>
           </div>
-          <header className='profile-aside-header'>
+          <div className='profile-header-aside'>
             <h1>Level <span>{user?.profile?.accountLevel}</span></h1>
             <Link to='/settings/account'>Edit profile</Link>
-          </header>
+          </div>
         </header>
 
         <section className='profile-content'>
@@ -40,11 +41,9 @@ const Profile = () => {
             <Collection />
             <RecentActivity />
           </div>
-
           <aside className='profile-aside'>
             <section className='profile-aside-info'>
               <h1>On-line</h1>
-
               <div className='profile-aside-info-content'>
                 <article className='profile-aside-awards'>
                   <Link><p>Awards</p> <span>{awards.length}</span></Link>
@@ -69,7 +68,6 @@ const Profile = () => {
                 <article className='profile-aside-friends'>
                   <Link><p>Friends</p> <span>0</span></Link>
                   <section className='profile-aside-list-friends'>
-
                   </section>
                 </article>
               </div>
