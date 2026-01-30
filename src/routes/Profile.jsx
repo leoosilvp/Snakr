@@ -25,7 +25,7 @@ const Profile = () => {
             <section className='profile-header-content'>
               <div>
                 <h1>{user?.profile?.username}</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis veniam amet corrupti quidem atque omnis harum hic quos magni recusandae eveniet quia neque voluptates cumque ea, velit enim eius doloribus?</p>
+                <p>{user?.profile?.bio}</p>
               </div>
             </section>
           </div>
@@ -44,31 +44,35 @@ const Profile = () => {
           <aside className='profile-aside'>
             <section className='profile-aside-info'>
               <h1>On-line</h1>
-              <article className='profile-aside-awards'>
-                <Link><p>Awards</p> <span>{awards.length}</span></Link>
-                <section className='profile-awards'>
-                  {awards.slice(0, 4).map((award) => (
-                    <Link className='award' key={award.id} title={`${award.title} - ${award.rarity}`}>
-                      <img src={award.badgeUrl} alt={award.title} />
-                    </Link>
-                  ))}
-                </section>
-              </article>
 
-              <ul>
-                <Link><p>Games</p> <span>0</span></Link>
-                <Link><p>Achievements</p> <span>0</span></Link>
-                <Link><p>Screenshot</p></Link>
-                <Link><p>Videos</p></Link>
-                <Link><p>Arts</p></Link>
-              </ul>
+              <div className='profile-aside-info-content'>
+                <article className='profile-aside-awards'>
+                  <Link><p>Awards</p> <span>{awards.length}</span></Link>
+                  <section className='profile-awards'>
+                    {awards.slice(0, 4).map((award) => (
+                      <Link className='award' key={award.id} title={`${award.title} - ${award.rarity}`}>
+                        <img src={award.badgeUrl} alt={award.title} />
+                      </Link>
+                    ))}
+                  </section>
+                </article>
 
-              <article className='profile-aside-friends'>
-                <Link><p>Friends</p> <span>0</span></Link>
-                <section className='profile-aside-list-friends'>
+                <ul>
+                  <Link><p>Games</p> <span>0</span></Link>
+                  <Link><p>Achievements</p> <span>0</span></Link>
+                  <Link><p>Library</p></Link>
+                  <Link><p>Screenshot</p></Link>
+                  <Link><p>Videos</p></Link>
+                  <Link><p>Arts</p></Link>
+                </ul>
 
-                </section>
-              </article>
+                <article className='profile-aside-friends'>
+                  <Link><p>Friends</p> <span>0</span></Link>
+                  <section className='profile-aside-list-friends'>
+
+                  </section>
+                </article>
+              </div>
             </section>
           </aside>
         </section>

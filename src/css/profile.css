@@ -44,7 +44,7 @@
     gap: 10px;
 }
 
-.profile-header{
+.profile-header {
     display: flex;
 }
 
@@ -98,7 +98,7 @@
     text-overflow: ellipsis;
 }
 
-.profile-content{
+.profile-content {
     margin-top: 20px;
     display: flex;
     gap: 15px;
@@ -334,6 +334,12 @@
     gap: 50px;
 }
 
+.profile-aside-info-content{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
 .profile-aside-info h1 {
     font-size: 1.15rem;
     font-weight: 300;
@@ -428,14 +434,14 @@
         width: 100%;
     }
 
-    .profile-aside-header a{
+    .profile-aside-header a {
         display: flex;
         align-items: center;
         justify-content: center;
         width: 100%;
     }
 
-    .profile-aside-header h1{
+    .profile-aside-header h1 {
         display: flex;
         align-items: center;
         padding: 10px 15px;
@@ -452,7 +458,7 @@
     .profile-header img {
         width: 113px;
         height: 113px;
-        border-radius: 3px;
+        border-radius: 4px;
     }
 
     .profile-header-content {
@@ -479,35 +485,104 @@
         color: #c3c3c3;
     }
 
-    .profile-content{
+    .profile-content {
         display: flex;
         flex-direction: column-reverse;
         margin-top: 15px;
     }
 
-    .profile-aside{
+    .profile-aside {
         display: flex;
         width: 100%;
     }
 
-    .profile-aside-info{
-        display: flex;
+    .profile-aside-info {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        flex-direction: unset;
         background: transparent;
         padding: 0;
-        gap: 15px;
+        gap: 10px;
     }
 
-    .profile-aside-info h1{
+    .profile-aside-info-content {
+        margin-top: 5px;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 7px;
+    }
+
+    .profile-aside-info h1 {
         display: flex;
+        width: 100%;
         padding: 10px 15px;
-        background: #06060669;
+        background: #060606a2;
         border-radius: 4px;
     }
 
-    .profile-aside-awards{
+    .profile-aside-awards {
+        width: 100%;
         padding: 10px 15px;
-        background: #06060669;
+        background: #060606a2;
+        border-radius: 4px;
+    }
+
+    .profile-aside-info-content ul {
+        display: grid;
+        gap: 7px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .profile-aside-info-content ul a {
+        background: #060606a2;
+        padding: 10px 15px;
+        width: 100%;
+        border-radius: 4px;
+    }
+
+    .profile-aside-friends {
+        width: 100%;
+        background: #060606a2;
+        padding: 10px 15px;
+        border-radius: 4px;
     }
 
 
+
+    /* profile collection */
+
+    .profile-collection {
+        width: 100%;
+        background: #06060669;
+    }
+
+    .profile-statistics-in-collection div {
+        align-items: center;
+        height: max-content;
+    }
+
+    .profile-statistics-in-collection div h1 {
+        font-size: 2rem;
+    }
+
+    .profile-statistics-in-collection div a {
+        text-align: center;
+        width: fit-content;
+        font-size: 0.8rem;
+        font-weight: 400;
+        color: var(--gray-color);
+    }
+
+
+    /* profile recent activity */
+
+    .profile-recent-activity {
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    .no-games-played-recently i {
+        font-size: 1.5rem;
+    }
 }
