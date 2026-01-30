@@ -1,12 +1,18 @@
+import { useState } from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import '../css/contribute.css'
 
 const Contribute = () => {
-    const pixKey = ''
+
+    const [copied, setCopied] = useState(false)
+
+    const pixKey = '00020126580014br.gov.bcb.pix013662634705-bd28-4c02-83d0-538823828c845204000053039865802BR5923Leonardo da Silva Pinto6002NA62070503***6304EC92'
 
     const copyPix = async () => {
         await navigator.clipboard.writeText(pixKey)
+        setCopied(true)
+        setTimeout(() => setCopied(false), 1000)
     }
 
     return (
@@ -56,13 +62,13 @@ const Contribute = () => {
                     <hr />
 
                     <div className="contribute-payment">
-                        <img src='' alt="QR Code PIX" />
+                        <img src='https://anonymousai-hub.github.io/DB/img/PIX-QrCode.png' alt="QR Code PIX" />
 
                         <div className="contribute-payment-info">
                             <span>PIX key</span>
                             <code>{pixKey}</code>
 
-                            <button onClick={copyPix}>Copy PIX key</button>
+                            <button onClick={copyPix}>{copied ? (<i className='fa-solid fa-check-double'/>) : 'Copy PIX key'}</button>
 
                             <p>After payment, there is no need to send proof of payment. Your contribution is already part of the ongoing support for the project.</p>
                             <div>
