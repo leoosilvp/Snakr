@@ -818,13 +818,17 @@
 
 @media (width < 720px) {
 
-    .settings-main {
+    .settings-main { 
         width: 100vw;
         min-height: 100vh;
     }
 
     .settings-main-content {
         width: 100%;
+    }
+
+    hr.settings-header-line{
+        display: none;
     }
 
     .settings-main-header {
