@@ -42,7 +42,7 @@ const Profile = () => {
             <h1>On-line</h1>
 
             <article className='profile-aside-awards'>
-              <Link><p>awards</p> <span>{awards.length}</span></Link>
+              <Link><p>Awards</p> <span>{awards.length}</span></Link>
               <section className='profile-awards'>
                 {awards.slice(0, 4).map((award) => (
                   <Link className='award' key={award.id} title={`${award.title} - ${award.rarity}`}>

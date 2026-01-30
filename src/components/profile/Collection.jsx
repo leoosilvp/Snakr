@@ -29,6 +29,7 @@ const Collection = () => {
         <section className='profile-ctn-featured-games'>
           <h1>Featured games</h1>
           <section className='profile-featured-games'>
+            <span className="no-featured-games">No featured games.</span>
           </section>
         </section>
       </section>
