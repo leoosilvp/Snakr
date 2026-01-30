@@ -494,6 +494,7 @@
         display: flex;
         background: transparent;
         padding: 0;
+        gap: 15px;
     }
 
     .profile-aside-info h1{
