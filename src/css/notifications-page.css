@@ -1,10 +1,10 @@
-.notifications-main{
+.notifications-main {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.notifications-content{
+.notifications-content {
     margin: 130px 0 -2px 0;
     display: flex;
     flex-direction: column;
@@ -13,20 +13,20 @@
     min-height: 80vh;
 }
 
-.notifications-content-header{
+.notifications-content-header {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
 }
 
-.notifications-content-header h1{
+.notifications-content-header h1 {
     display: flex;
     font-size: 1.3rem;
     font-weight: 500;
 }
 
-.notifications-filter{
+.notifications-filter {
     display: flex;
     padding: 2px;
     border: 1px solid #181818;
@@ -47,16 +47,16 @@
     cursor: pointer;
 }
 
-.notifications-filter button:hover{
+.notifications-filter button:hover {
     color: var(--light-color);
 }
 
-.notifications-filter button.active{
+.notifications-filter button.active {
     color: var(--light-color);
     background: #1e1e1e;
 }
 
-.notifications-empty{
+.notifications-empty {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -66,12 +66,12 @@
     gap: 15px;
 }
 
-.notifications-empty h1{
+.notifications-empty h1 {
     font-size: 1.2rem;
     font-weight: 300;
 }
 
-.notifications-empty i{
+.notifications-empty i {
     font-size: 2rem;
 }
 
@@ -136,24 +136,4 @@
 
 .notifications video:hover::-webkit-media-controls {
     opacity: 1;
-}
-
-.notification {
-    display: flex;
-    flex-direction: column;
-    margin-top: 15px;
-}
-
-.notification h1 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #d4d4d4;
-}
-
-.notification p {
-    margin-top: 15px;
-    font-size: 0.85rem;
-    font-weight: 200;
-    line-height: 1.4;
-    color: #717171;
 }

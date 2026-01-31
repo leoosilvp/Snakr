@@ -1,4 +1,3 @@
-// src/services/notifications.service.js
 import { api } from '../lib/api'
 import { useNotificationsStore } from '../stores/notifications.store'
 
@@ -13,6 +12,14 @@ class NotificationsService {
 
     store.setNotifications(listRes.data)
     store.setUnread(unreadRes.unread)
+
+    const newestUnread = listRes.data.find((n) => !n.is_read)
+
+    if (newestUnread) {
+      store.setActiveNotification(newestUnread)
+
+      this.markAsRead(newestUnread.id)
+    }
   }
 
   async markAsRead(id) {
@@ -48,8 +55,6 @@ class NotificationsService {
     store.setUnread(0)
   }
 
-  /* ───────────── EVENTOS DE APLICAÇÃO ───────────── */
-
   system(title, message, link) {
     this._emitLocal({
       type: 'system',
@@ -75,8 +80,6 @@ class NotificationsService {
       message: `${username} começou a te seguir`
     })
   }
-
-  /* ───────────── interno ───────────── */
 
   _emitLocal(payload) {
     const store = useNotificationsStore.getState()
