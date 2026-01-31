@@ -309,6 +309,21 @@ input:checked+.slider::before {
   width: 100%;
 }
 
+.notification-count{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  margin-top: -25px;
+  margin-left: 22px;
+  background: var(--black);
+  border: 1px solid var(--border-color);
+  border-radius: 50px;
+  font-size: 0.6rem;
+}
+
 .header-main nav {
   display: flex;
   padding: 5px 0 0 0;

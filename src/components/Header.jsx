@@ -4,6 +4,8 @@ import { useUser } from '../hooks/useUser'
 import logo from '../assets/svg/logo.svg'
 import ModalProfile from './ModalProfile'
 
+import { useNotifications } from '../hooks/useNotifications'
+
 const routeNames = {
     '/home': 'Home',
     '/catalog': 'Catalog',
@@ -39,6 +41,8 @@ const Header = () => {
 
     const hoverTimeoutRef = useRef(null)
     const modalRef = useRef(null)
+
+    const { unread } = useNotifications()
 
     const breadcrumbs = location.pathname
         .split('/')
@@ -109,7 +113,7 @@ const Header = () => {
                 </article>
 
                 <article className="header-content-right">
-                    <Link to="/notifications"><i className="fa-regular fa-bell" /></Link>
+                    <Link to="/notifications"><i className="fa-regular fa-bell" /> {unread > 0 && (<div className="notification-count">{unread > 99 ? '99+' : unread}</div>)}</Link>
                     <Link to="/wish-list"><i className="fa-regular fa-bookmark" /></Link>
 
                     <div onMouseEnter={handleAvatarMouseEnter} onMouseLeave={handleAvatarMouseLeave}>
