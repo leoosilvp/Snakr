@@ -10,14 +10,14 @@ const Notification = () => {
 
   const [uiState, setUiState] = useState('idle')
 
-  useEffect(() => {
+  useEffect(() => { 
     if (!notification) {
       return
     }
 
     const openTimer = setTimeout(() => {
       setUiState('active')
-    }, 650)
+    }, 500)
 
     const closeTimer = setTimeout(() => {
       setUiState('closed')
@@ -26,7 +26,7 @@ const Notification = () => {
     const clearTimer = setTimeout(() => {
       clear()
       setUiState('')
-    }, 5000)
+    }, 6500)
 
     return () => {
       clearTimeout(openTimer)
