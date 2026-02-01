@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 const DEFAULT_GENERAL = {
   settings: {
     appearance: {
+      frame: '',
       theme: 'System',
       background: '',
       language: 'pt-BR'
@@ -88,6 +89,16 @@ const General = () => {
         }
       />
       <p>Personalize your profile by adding a background.</p>
+
+      <h1>Profile frame</h1>
+      <input
+        type="text"
+        value={general.settings.appearance.frame}
+        onChange={e =>
+          updateSetting('settings.appearance.frame', e.target.value)
+        }
+      />
+      <p>Personalize your profile with a unique profile frame.</p>
 
       <h2>Privacy</h2>
       <hr />
