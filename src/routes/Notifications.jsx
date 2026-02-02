@@ -23,15 +23,38 @@ const Notifications = () => {
                     <article className='notification'>
                         <section className='notification-left'>
                             <div />
-                            <i className='fa-regular fa-bell'/>
-                            <section>
-                                <h1>Versão 3.8.1 disponivel</h1>
-                                <h2>Aproveite o que o Snakr tem de melhor para oferecer.</h2>
-                                <p><i className='fa-regular fa-clock'/>3 dias</p>
-                            </section>                                
+                            <section className='notification-left-content'>
+                                <section className='notification-left-icon'>
+                                    <i className='fa-regular fa-bell' />
+                                </section>
+                                <section>
+                                    <h1>Versão 3.8.1 disponivel</h1>
+                                    <h2>Aproveite o que o Snakr tem de melhor para oferecer.</h2>
+                                    <p><i className='fa-regular fa-clock' />3 dias</p>
+                                </section>
+                            </section>
                         </section>
                         <section className='notification-right'>
-                            <button><i className='fa-solid fa-xmark'/></button>
+                            <button><i className='fa-solid fa-xmark' /></button>
+                        </section>
+                    </article>
+
+                    <article className='notification read'>
+                        <section className='notification-left'>
+                            <div />
+                            <section className='notification-left-content'>
+                                <section className='notification-left-icon'>
+                                    <i className='fa-regular fa-bell' />
+                                </section>
+                                <section>
+                                    <h1>🎉 Bem-vindo ao Snakr!</h1>
+                                    <h2>Olá user! Sua conta foi criada com sucesso. Explore a plataforma e aproveite!</h2>
+                                    <p><i className='fa-regular fa-clock' />5 dias</p>
+                                </section>
+                            </section>
+                        </section>
+                        <section className='notification-right'>
+                            <button><i className='fa-solid fa-xmark' /></button>
                         </section>
                     </article>
                 </section>
