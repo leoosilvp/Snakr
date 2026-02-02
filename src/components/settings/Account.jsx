@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useUser } from '../../hooks/useUser'
 import { useUpdateUser } from '../../hooks/useUpdateUser'
 import ModalChangeProfilePic from './ModalChangeProfilePic'
+import { Edit3 } from '@geist-ui/icons'
 
 const DEFAULT_ACCOUNT = {
   profile: {
@@ -107,7 +108,7 @@ const Account = () => {
         <img src={account.profile.photo || 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'} alt="Profile picture" />
 
         <button onClick={() => setShowProfilePicModal(true)}>
-          <i className="fa-solid fa-pencil" /> Edit
+          <Edit3 size={16}/> Edit
         </button>
       </div>
 

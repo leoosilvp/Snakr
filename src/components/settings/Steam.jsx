@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useUser } from '../../hooks/useUser'
+import { CheckSquare, Copy } from '@geist-ui/icons';
 
 const Steam = () => {
 
@@ -25,7 +26,7 @@ const Steam = () => {
             {isLogged ? (
                 <section className='settings-steam-content'>
                     <h1>Você ja está conectado com sua conta steam!</h1>
-                    <h3>Seu ID:<span onClick={handleCopy} ><i onClick={handleCopy} className={copied ? 'fa-solid fa-check' : 'fa-regular fa-copy'} />{user?.steam_id}</span></h3>
+                    <h3>Seu ID:<span onClick={handleCopy} >{copied ? < CheckSquare size={16}/> : < Copy size={16}/>}{user?.steam_id}</span></h3>
                 </section>
             ) : (
                 <section className='settings-steam-content'>

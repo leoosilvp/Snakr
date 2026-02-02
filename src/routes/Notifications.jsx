@@ -5,9 +5,12 @@ import { useState, useMemo, useCallback } from 'react'
 import { useNotifications } from '../hooks/useNotifications'
 import { notificationsService } from '../services/notifications.service'
 import { useNavigate } from 'react-router-dom'
+import { Bell, BellOff, Award, Gift, User, MessageCircle, AlertTriangle } from '@geist-ui/icons'
 
 const COOLDOWN_TIME = 20 * 60 * 1000 // 20 min
 const STORAGE_KEY = 'snakr:last-notification-action'
+
+const ICONS = { Bell, BellOff, Award, Gift, User, MessageCircle, AlertTriangle  }
 
 const Notifications = () => {
   const { notifications, unread, markAsRead, markAllAsRead } = useNotifications()
@@ -111,35 +114,42 @@ const Notifications = () => {
         <section className="notifications-grid">
           {filteredNotifications.length === 0 && (
             <div className='no-notifications'>
-            <i className='fa-regular fa-bell-slash'/>
-            <p className="notifications-empty">
-              {filter === 'unread' ? 'Nenhuma notificação não lida.' : 'Nenhuma notificação disponível.'}
-            </p>
+              <i className='fa-regular fa-bell-slash' />
+              <p className="notifications-empty">
+                {filter === 'unread' ? 'Nenhuma notificação não lida.' : 'Nenhuma notificação disponível.'}
+              </p>
             </div>
           )}
 
-          {filteredNotifications.map((notification) => (
-            <article key={notification?.id} className={`notification ${notification?.is_read ? 'read' : ''}`} onClick={() => handleNotificationClick(notification)}>
-              <section className="notification-left">
-                <div className="notification-indicator" />
-                <section className="notification-left-content">
-                  <section className="notification-left-icon">
-                    <i className={`${notification?.is_read ? 'fa-regular fa-bell-slash' : notification?.badge}`} />
-                  </section>
-                  <section className="notification-text">
-                    <h1>{notification?.title}</h1>
-                    <h2>{notification?.message}</h2>
-                    <p><i className="fa-regular fa-clock" />{formatNotificationDate(notification?.created_at)}</p>
+          {filteredNotifications.map((notification) => {
+            const BadgeIcon = ICONS[notification?.badge]
+            return (
+              <article key={notification?.id} className={`notification ${notification?.is_read ? 'read' : ''}`} onClick={() => handleNotificationClick(notification)}>
+                <section className="notification-left">
+                  <div className="notification-indicator" />
+                  <section className="notification-left-content">
+                    <section className="notification-left-icon">
+                      {notification?.is_read ?
+                        <BellOff />
+                        :
+                        <>{BadgeIcon && <BadgeIcon size={24} />}</>
+                      }
+                    </section>
+                    <section className="notification-text">
+                      <h1>{notification?.title}</h1>
+                      <h2>{notification?.message}</h2>
+                      <p><i className="fa-regular fa-clock" />{formatNotificationDate(notification?.created_at)}</p>
+                    </section>
                   </section>
                 </section>
-              </section>
-              <section className="notification-right">
-                <button onClick={(e) => handleDelete(notification.id, e)}>
-                  <i className="fa-solid fa-xmark" />
-                </button>
-              </section>
-            </article>
-          ))}
+                <section className="notification-right">
+                  <button onClick={(e) => handleDelete(notification.id, e)}>
+                    <i className="fa-solid fa-xmark" />
+                  </button>
+                </section>
+              </article>
+            )
+          })}
         </section>
       </section>
       <Footer />

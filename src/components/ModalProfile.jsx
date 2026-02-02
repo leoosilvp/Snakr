@@ -2,6 +2,7 @@ import { forwardRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { logout } from '../services/auth'
 import { useUser } from '../hooks/useUser'
+import { User, Home, Grid, Archive, Bookmark, Settings, LifeBuoy, BookOpen, LogOut, Layout } from '@geist-ui/icons'
 
 const ModalProfile = forwardRef(({ isOpen, onMouseEnter, onMouseLeave }, ref) => {
 
@@ -39,21 +40,21 @@ const ModalProfile = forwardRef(({ isOpen, onMouseEnter, onMouseLeave }, ref) =>
 
       <section className="modal-profile-btns">
         {user.steam_id ? '' : (<a href="https://backend-snakr.vercel.app/api/auth/steam"><i className="fa-brands fa-steam-symbol" />Conect Steam</a>)}
-        <Link to="/profile"><i className="fa-regular fa-user" />Profile</Link>
-        <Link to="/home"><i className="fa-regular fa-home" />Home</Link>
-        <Link to="/catalog"><i className="fa-solid fa-list" />Catalog</Link>
-        <Link to="/library"><i className="fa-solid fa-grip" />Library</Link>
-        <Link to="/wish-list"><i className="fa-regular fa-bookmark" />Wish list</Link>
+        <Link to="/profile"><User size={16} color='var(--gray-color)'/> Profile</Link>
+        <Link to="/home"><Home size={16} color='var(--gray-color)'/> Home</Link>
+        <Link to="/catalog"><Grid size={16} color='var(--gray-color)'/> Catalog</Link>
+        <Link to="/library"><Archive size={16} color='var(--gray-color)'/>Library</Link>
+        <Link to="/wish-list"><Bookmark size={16} color='var(--gray-color)'/>Wish list</Link>
         <hr />
-        <Link to="/settings"><i className="fa-solid fa-gear" />Settings</Link>
-        <Link to="/settings/support"><i className="fa-regular fa-life-ring" />Support</Link>
-        <Link to="/docs"><i className="fa-solid fa-book-open" />Docs</Link>
+        <Link to="/settings"><Settings size={16} color='var(--gray-color)'/>Settings</Link>
+        <Link to="/settings/support"><LifeBuoy size={16} color='var(--gray-color)'/>Support</Link>
+        <Link to="/docs"><BookOpen size={16} color='var(--gray-color)'/>Docs</Link>
         <hr />
-        <Link to="/settings/general#appearance"><i className="fa-solid fa-paintbrush" />Appearence</Link>
+        <Link to="/settings/general#appearance"><Layout size={16} color='var(--gray-color)'/>Appearence</Link>
         <hr />
 
         <a className="active" onClick={handleLogout}>
-          <i className="fa-solid fa-arrow-right-from-bracket" />
+          <LogOut size={16} color='#ca5555'/>
           Sign Out
         </a>
       </section>

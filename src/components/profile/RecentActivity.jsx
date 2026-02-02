@@ -1,3 +1,5 @@
+import { Frown } from "@geist-ui/icons"
+
 const RecentActivity = () => {
     return (
         <section className="profile-recent-activity">
@@ -6,7 +8,7 @@ const RecentActivity = () => {
                 <h1>0 hours last week</h1>
             </header>
             <section className="profile-recent-activity-content">
-                <span className="no-games-played-recently"><i className="fa-regular fa-face-tired" /> No games played recently.</span>
+                <span className="no-games-played-recently"><Frown size={30} /> No games played recently.</span>
             </section>
         </section>
     )

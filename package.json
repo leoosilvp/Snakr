@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@geist-ui/icons": "^1.0.2",
     "@supabase/supabase-js": "^2.90.1",
     "bcrypt": "^6.0.0",
     "react": "^19.2.0",

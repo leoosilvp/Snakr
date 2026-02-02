@@ -1,3 +1,4 @@
+import { Edit3 } from "@geist-ui/icons"
 import { Link } from "react-router-dom"
 
 const Collection = () => {
@@ -5,7 +6,7 @@ const Collection = () => {
     <section className='profile-collection'>
       <header className='profile-collection-header'>
         <h1>My collection</h1>
-        <Link><i className='fa-solid fa-pencil' /> Edit collection</Link>
+        <Link><Edit3 size={16} /> Edit collection</Link>
       </header>
       <section className='profile-collection-content'>
         <section className='profile-statistics-in-collection'>

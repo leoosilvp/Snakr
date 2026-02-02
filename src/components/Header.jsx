@@ -5,6 +5,7 @@ import logo from '../assets/svg/logo.svg'
 import ModalProfile from './ModalProfile'
 
 import { useNotifications } from '../hooks/useNotifications'
+import { Bell, Bookmark } from '@geist-ui/icons'
 
 const routeNames = {
     '/home': 'Home',
@@ -113,8 +114,8 @@ const Header = () => {
                 </article>
 
                 <article className="header-content-right">
-                    <Link to="/notifications"><i className="fa-regular fa-bell" /> {unread > 0 && (<div className="notification-count">{unread > 99 ? '99+' : unread}</div>)}</Link>
-                    <Link to="/wish-list"><i className="fa-regular fa-bookmark" /></Link>
+                    <Link to="/notifications"><Bell size={16} /> {unread > 0 && (<div className="notification-count">{unread > 99 ? '99+' : unread}</div>)}</Link>
+                    <Link to="/wish-list"><Bookmark size={16} /></Link>
 
                     <div onMouseEnter={handleAvatarMouseEnter} onMouseLeave={handleAvatarMouseLeave}>
                         <Link to="/profile" title={user?.profile?.username}>
