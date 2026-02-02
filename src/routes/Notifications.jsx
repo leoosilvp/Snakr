@@ -19,6 +19,22 @@ const Notifications = () => {
                         <button>Clear all</button>
                     </section>
                 </header>
+                <section className='notifications-grid'>
+                    <article className='notification'>
+                        <section className='notification-left'>
+                            <div />
+                            <i className='fa-regular fa-bell'/>
+                            <section>
+                                <h1>Versão 3.8.1 disponivel</h1>
+                                <h2>Aproveite o que o Snakr tem de melhor para oferecer.</h2>
+                                <p><i className='fa-regular fa-clock'/>3 dias</p>
+                            </section>                                
+                        </section>
+                        <section className='notification-right'>
+                            <button><i className='fa-solid fa-xmark'/></button>
+                        </section>
+                    </article>
+                </section>
             </section>
             <Footer />
         </main>
