@@ -60,16 +60,10 @@ class NotificationsService {
 
     const store = useNotificationsStore.getState()
 
-    store.setNotifications(
-      store.notifications.filter((n) => n.id !== id)
-    )
+    const updatedNotifications = store.notifications.filter((n) => n.id !== id)
+    store.setNotifications(updatedNotifications)
 
-    store.setUnread(
-      Math.max(
-        store.notifications.filter((n) => !n.is_read).length - 1,
-        0
-      )
-    )
+    store.setUnread(updatedNotifications.filter((n) => !n.is_read).length)
   }
 
   async clearAll() {
@@ -83,12 +77,13 @@ class NotificationsService {
     store.setUnread(0)
   }
 
-  system(title, message, link) {
+  system(title, message, link, badge) {
     this._emitLocal({
       type: 'system',
       title,
       message,
-      link
+      link,
+      badge
     })
   }
 
@@ -97,7 +92,8 @@ class NotificationsService {
       type: 'comment',
       title: 'Novo comentário',
       message: `${author} comentou no seu post`,
-      link: `/post/${postId}`
+      link: `/post/${postId}`,
+      badge: 'fa-regular fa-coments'
     })
   }
 
@@ -105,7 +101,8 @@ class NotificationsService {
     this._emitLocal({
       type: 'follow',
       title: 'Novo seguidor',
-      message: `${username} começou a te seguir`
+      message: `${username} começou a te seguir`,
+      badge: 'fa-regular fa-user'
     })
   }
 

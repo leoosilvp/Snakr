@@ -3,9 +3,11 @@ import '../css/notification.css'
 import logo from '../assets/svg/logo.svg'
 import { useEffect, useState } from 'react'
 import { useNotificationsStore } from '../stores/notifications.store'
+import { useNotifications } from '../hooks/useNotifications'
 
 const Notification = () => {
   const notification = useNotificationsStore((s) => s.activeNotification)
+  const { markAsRead } = useNotifications()
 
   const [uiState, setUiState] = useState('idle')
 
@@ -32,6 +34,11 @@ const Notification = () => {
       clearTimeout(clearTimer)
     }
   }, [notification])
+
+  useEffect(() => {
+    if (!notification || notification.is_read) return
+    markAsRead(notification.id)
+  }, [notification, markAsRead])
 
   if (!notification || uiState === '') return null
 
