@@ -6,11 +6,10 @@ import { useNotificationsStore } from '../stores/notifications.store'
 
 const Notification = () => {
   const notification = useNotificationsStore((s) => s.activeNotification)
-  const clear = useNotificationsStore((s) => s.clearActiveNotification)
 
   const [uiState, setUiState] = useState('idle')
 
-  useEffect(() => { 
+  useEffect(() => {
     if (!notification) {
       return
     }
@@ -24,7 +23,6 @@ const Notification = () => {
     }, 5000)
 
     const clearTimer = setTimeout(() => {
-      clear()
       setUiState('')
     }, 6500)
 
@@ -33,7 +31,7 @@ const Notification = () => {
       clearTimeout(closeTimer)
       clearTimeout(clearTimer)
     }
-  }, [notification, clear])
+  }, [notification])
 
   if (!notification || uiState === '') return null
 

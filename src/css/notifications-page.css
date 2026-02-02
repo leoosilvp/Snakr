@@ -113,7 +113,7 @@
 }
 
 .notification.read{
-    opacity: 0.5;
+    opacity: 0.7;
 }
 
 .notification.read div{
@@ -121,7 +121,7 @@
 }
 
 .notification.read:hover{
-    opacity: 0.65;
+    opacity: 0.8;
 }
 
 .notification-left {

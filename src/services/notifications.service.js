@@ -17,8 +17,6 @@ class NotificationsService {
 
     if (newestUnread) {
       store.setActiveNotification(newestUnread)
-
-      this.markAsRead(newestUnread.id)
     }
   }
 
@@ -52,6 +50,36 @@ class NotificationsService {
       }))
     )
 
+    store.setUnread(0)
+  }
+
+  async delete(id) {
+    await api(`https://backend-snakr.vercel.app/api/notifications?id=${id}`, {
+      method: 'DELETE'
+    })
+
+    const store = useNotificationsStore.getState()
+
+    store.setNotifications(
+      store.notifications.filter((n) => n.id !== id)
+    )
+
+    store.setUnread(
+      Math.max(
+        store.notifications.filter((n) => !n.is_read).length - 1,
+        0
+      )
+    )
+  }
+
+  async clearAll() {
+    await api('https://backend-snakr.vercel.app/api/notifications', {
+      method: 'DELETE'
+    })
+
+    const store = useNotificationsStore.getState()
+
+    store.setNotifications([])
     store.setUnread(0)
   }
 
