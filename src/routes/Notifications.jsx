@@ -110,9 +110,12 @@ const Notifications = () => {
 
         <section className="notifications-grid">
           {filteredNotifications.length === 0 && (
+            <div className='no-notifications'>
+            <i className='fa-regular fa-bell-slash'/>
             <p className="notifications-empty">
               {filter === 'unread' ? 'Nenhuma notificação não lida.' : 'Nenhuma notificação disponível.'}
             </p>
+            </div>
           )}
 
           {filteredNotifications.map((notification) => (
