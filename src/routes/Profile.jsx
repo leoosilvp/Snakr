@@ -20,7 +20,7 @@ const Profile = () => {
         <header className='profile-header-ctn'>
           <div className='profile-header'>
             <div>
-              <div className='frame' style={{ '--background-img': `url(${user?.settings?.appearance?.frame || 'https://shared.fastly.steamstatic.com/community_assets/images/items/2753900/6e37c8dab514359635b1fe97590e61aec467f8d9.png'})` }} />
+              <div className='frame' style={{ '--background-img': `url(${user?.settings?.appearance?.frame || ''})` }} />
               <img src={user?.profile?.photo || 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'} />
             </div>
             <section className='profile-header-content'>
@@ -31,7 +31,7 @@ const Profile = () => {
             </section>
           </div>
           <div className='profile-header-aside'>
-            <h1>Level <span>{user?.profile?.accountLevel}</span></h1>
+            <h1>Level <span className={`${user?.profile?.accountLevel >= 10 && user?.profile?.accountLevel < 99 ? 'medium' : user?.profile?.accountLevel >= 100 ? 'pro' : ''}`}>{user?.profile?.accountLevel}</span></h1>
             <Link to='/settings/account'>Edit profile</Link>
           </div>
         </header>

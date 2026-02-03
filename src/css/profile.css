@@ -66,8 +66,8 @@
     display: flex;
     width: 170px;
     height: 170px;
-    border-radius: 5px;
-    border: 1px solid var(--light-color);
+    border-radius: 3px;
+    border: 1px solid #252525;
     overflow: hidden;
 }
 
@@ -121,9 +121,18 @@
     justify-content: center;
     width: 30px;
     height: 30px;
-    border: 2px solid #c74040;
+    border: 2px solid #696969;
     border-radius: 50px;
     font-size: 1rem;
+}
+
+.profile-header-aside h1 span.medium{
+    border-color: #c74040;
+}
+
+.profile-header-aside h1 span.pro{
+    border-color: #ffcc00;
+    font-size: 0.85rem;
 }
 
 .profile-header-aside a {
