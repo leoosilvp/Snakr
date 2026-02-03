@@ -55,7 +55,7 @@
     background-position: center;
     background-repeat: no-repeat;
     top: 20px;
-    left: 10px;
+    left: 11px;
     width: 208px;
     height: 208px;
     z-index: 2;
@@ -69,6 +69,7 @@
     border-radius: 3px;
     border: 1px solid #252525;
     overflow: hidden;
+    box-shadow: 0 0 10px #000000a4;
 }
 
 .profile-header-content {

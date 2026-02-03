@@ -261,6 +261,7 @@ input:checked+.slider::before {
 .header-content-left img {
   display: flex;
   width: 30px;
+  height: 30px;
 }
 
 .breadcrumb {
