@@ -98,22 +98,18 @@
     gap: 10px;
 }
 
-.no-notifications{
+.no-notifications {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 60vh;
-    gap: 10px;
+    gap: 15px;
     color: var(--gray-color);
 }
 
-.no-notifications i{
-    font-size: 2rem;
-}
-
-.no-notifications p{
+.no-notifications p {
     font-size: 1rem;
     font-weight: 300;
 }
@@ -134,15 +130,15 @@
     background: #0b0b0ba6;
 }
 
-.notification.read{
+.notification.read {
     opacity: 0.6;
 }
 
-.notification.read div{
+.notification.read div {
     display: none;
 }
 
-.notification.read:hover{
+.notification.read:hover {
     opacity: 0.8;
 }
 
@@ -171,8 +167,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50px;
-    height: 50px;
+    min-width: 50px;
+    min-height: 50px;
     background: var(--dark-color);
     border-radius: var(--border);
     font-size: 1.5rem;
@@ -219,4 +215,70 @@
 
 .notification-right button:hover {
     background: #1e1e1e;
+}
+
+@media (width < 720px) {
+
+    .notifications-main {
+        width: 100vw;
+    }
+
+    .notifications-content {
+        margin: 115px 0 0;
+        width: 100%;
+        min-height: 100vh;
+    }
+
+    .notifications-content-header {
+        justify-content: space-between;
+        padding: 0 15px;
+    }
+
+    .notifications-content-header-left {
+        gap: 10px;
+    }
+
+    .notifications-content-header-right {
+        gap: 10px;
+    }
+
+    .notification {
+        border: 1px solid var(--border-color);
+        border-radius: 0;
+    }
+
+    .notification-left div {
+        width: 3px;
+        box-shadow: 0 0 15px #f5f5f552;
+    }
+
+    .notification-left-content {
+        margin-left: 20px;
+        padding: 10px 15px 10px 0px;
+        gap: 20px;
+    }
+
+    .notification-left-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 50px;
+        min-height: 50px;
+        background: var(--dark-color);
+        border-radius: var(--border);
+        font-size: 1.5rem;
+    }
+
+    .notification-left-content h1 {
+        font-size: 0.95rem;
+    }
+
+    .notification-left-content h2 {
+        font-size: 0.8rem;
+        font-weight: 200;
+    }
+
+    .notification-right {
+        display: none;
+    }
 }

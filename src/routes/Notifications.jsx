@@ -42,7 +42,7 @@ const Notifications = () => {
 
   const filteredNotifications = useMemo(() => {
     let list = [...notifications]
-
+ 
     if (filter === 'unread') {
       list = list.filter((n) => !n.is_read)
     }
@@ -114,7 +114,7 @@ const Notifications = () => {
         <section className="notifications-grid">
           {filteredNotifications.length === 0 && (
             <div className='no-notifications'>
-              <i className='fa-regular fa-bell-slash' />
+              <BellOff size={40}/>
               <p className="notifications-empty">
                 {filter === 'unread' ? 'Nenhuma notificação não lida.' : 'Nenhuma notificação disponível.'}
               </p>
