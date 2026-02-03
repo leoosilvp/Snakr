@@ -23,13 +23,15 @@ import Contribute from "./routes/Contribute";
 import ResetPassword from "./routes/ResetPassword";
 
 import Notification from "./components/Notification";
+import ChangeTitle from "./hooks/ChangeTitle";
 
 function App() {
   ConsoleBanner()
   ChangeIcon();
-
+  
   return (
     <BrowserRouter>
+    <ChangeTitle />
       <Routes>
         <Route path="*" element={<Error />} />
         <Route path="/" element={<Navigate to='/home' />} />
