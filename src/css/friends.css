@@ -40,7 +40,7 @@
     border-radius: 2px;
 }
 
-.friends-main-me h1 {
+.friends-main-me a {
     font-size: 1.3rem;
     font-weight: 400;
     color: var(--light-color);

@@ -25,6 +25,7 @@ import ResetPassword from "./routes/ResetPassword";
 import Notification from "./components/Notification";
 import ChangeTitle from "./hooks/ChangeTitle";
 import Friends from "./routes/Friends";
+import MyFriends from "./components/friends/MyFriends";
 
 function App() {
   ConsoleBanner()
@@ -40,10 +41,13 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route path="/notifications" element={<PageNotifications />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/friends" element={<Friends />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/news" element={<News />} />
           <Route path="/gifts" element={<Gifts />} />
+          <Route path="/friends" element={<Friends />} >
+            <Route index element={<Navigate to='my-friends' />} />
+            <Route path="my-friends" element={<MyFriends />} />
+          </Route>
           <Route path="/settings" element={<Settings />} >
             <Route index element={<Navigate to='general' />} />
             <Route path="general" element={<General />} />
