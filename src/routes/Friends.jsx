@@ -3,6 +3,7 @@ import { socialService } from '../services/social.service'
 import '../css/friends.css'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import { Search } from '@geist-ui/icons'
 
 export default function Friends() {
     const [friends, setFriends] = useState([])
@@ -17,8 +18,16 @@ export default function Friends() {
             <section className='friends-main-content'>
                 <section className='friends'>
                     <header className='friends-main-header'>
-                        <h1>My friends <span>2</span></h1>
-                        <div />
+                        <section className='friends-main-header-title'>
+                            <h1>My friends <span>2</span></h1>
+                            <div />
+                        </section>
+                        <section className='friends-main-header-search'>
+                            <div>
+                                <Search size={20} color='#c3c3c3' />
+                                <input type="text" placeholder='Search for friends by username.' />
+                            </div>
+                        </section>
                     </header>
 
                     <header className='friends-header-status'>
