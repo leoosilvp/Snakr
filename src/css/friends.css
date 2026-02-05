@@ -1,0 +1,148 @@
+.friends-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.friends-main-content{
+    margin: 130px 0 70px 0;
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    min-height: 100vh;
+}
+
+.friends-main-header {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.friends-main-header h1 {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+    gap: 10px;
+}
+
+.friends-main-header h1 span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-size: 0.65rem;
+    color: var(--gray-color);
+    background: #101010;
+}
+
+.friends-main-header div {
+    display: flex;
+    width: 60px;
+    height: 2.5px;
+    background: var(--light-color);
+}
+
+.friends-header-status h1{
+    margin-top: 30px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--gray-color);
+}
+
+.friend-card{
+    display: flex;
+    align-items: center;
+    border: 1px solid #0f0f0f;
+    border-radius: 2px;
+    overflow: hidden;
+    background: #101010;
+    width: 300px;
+    opacity: 0.8;
+    transition: var(--transition-2s);
+    cursor: pointer;
+}
+
+.friend-card:hover{
+    opacity: 1;
+    transform: scale(1.02);
+}
+
+.friend-card.online,.playing {
+    opacity: 1;
+}
+
+.friend-img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.friend-img img{
+    display: flex;
+    width: 50px;
+    height: 50px;
+}
+
+.friend-card div{
+    display: flex;
+    width: 3px;
+    height: 50px;
+    background: #969696;
+}
+
+.friend-card.playing div{
+    display: flex;
+    width: 3px;
+    height: 50px;
+    background: #2db42a;
+}
+
+.friend-card.online div{
+    display: flex;
+    width: 3px;
+    height: 50px;
+    background: #47ade4;
+}
+
+.friend-card-content{
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+}
+
+.friend-card-content{
+    color: #969696;
+}
+
+.friend-card-content.playing{
+    color: #2db42a;
+}
+
+.friend-card-content.online{
+    color: #47ade4;
+}
+
+.friend-card-content h1{
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.friend-card-content h2{
+    font-size: 0.85rem;
+    font-weight: 500;
+    width: 225px;
+    text-overflow: ellipsis;
+}
+
+.friends-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 5px 0;
+    gap: 15px;
+}
