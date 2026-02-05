@@ -99,6 +99,10 @@
     transform: scale(1.02);
 }
 
+.friend-card:hover .friend-remove-btn {
+    opacity: 1;
+}
+
 .friend-card.online,
 .playing {
     opacity: 1;
@@ -145,10 +149,19 @@
     display: flex;
     flex-direction: column;
     margin-left: 15px;
+    color: #969696;
 }
 
-.friend-card-content {
-    color: #969696;
+.friend-remove-btn{
+    opacity: 0;
+    display: flex;
+    padding: 5px;
+    border-radius: 4px;
+    transition: var(--transition-2s);
+}
+
+.friend-remove-btn:hover{
+    background: #181818;
 }
 
 .friend-card-content.playing {
@@ -167,7 +180,7 @@
 .friend-card-content h2 {
     font-size: 0.85rem;
     font-weight: 500;
-    width: 225px;
+    width: 195px;
     text-overflow: ellipsis;
 }
 

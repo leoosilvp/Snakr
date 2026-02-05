@@ -3,7 +3,7 @@ import { socialService } from '../services/social.service'
 import '../css/friends.css'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import { Search } from '@geist-ui/icons'
+import { Search, UserMinus } from '@geist-ui/icons'
 
 export default function Friends() {
     const [friends, setFriends] = useState([])
@@ -47,6 +47,9 @@ export default function Friends() {
                                     <section className='friend-card-content playing'>
                                         <h1>{user.profile.username}</h1>
                                         <h2>GTA IV</h2>
+                                    </section>
+                                    <section className='friend-remove-btn' title='remove friend'>
+                                        <UserMinus size={16} color='#db3939' onClick='' />
                                     </section>
                                 </article>
                             )
