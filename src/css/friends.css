@@ -5,13 +5,108 @@
 }
 
 .friends-main-content {
-    margin: 130px 0 70px 0;
+    margin: 100px 0 70px 0;
     display: flex;
     flex-direction: column;
+    align-items: center;
     width: 1200px;
-    min-height: 100vh;
+    gap: 20px;
 }
 
+.friends-ctn {
+    display: flex;
+    justify-content: space-between;
+    max-width: 100%;
+    min-height: 100vh;
+    width: 100%;
+    gap: 15px;
+}
+
+
+/* banner user */
+.friends-main-me {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 20px 0;
+    background-image: linear-gradient(90deg, #000, #0b0b0b, #000);
+    gap: 15px;
+}
+
+.friends-main-me img {
+    display: flex;
+    width: 60px;
+    height: 60px;
+    border-radius: 2px;
+}
+
+.friends-main-me h1 {
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--light-color);
+}
+
+
+/* aside nav */
+.friends-main-aside {
+    position: sticky;
+    top: 30px;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    height: fit-content;
+    gap: 15px;
+}
+
+.friends-main-aside h1 {
+    display: flex;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--gray-color);
+    gap: 10px;
+}
+
+.friends-main-aside ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.friends-main-aside ul a{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    padding: 8px 10px;
+    font-size: 0.86rem;
+    border-radius: 5px;
+    color: #454545;
+    cursor: pointer;
+}
+
+.friends-main-aside ul a span{
+    display: flex;
+    align-items: center;
+    color: #b0b0b0;
+    gap: 6px;
+}
+
+.friends-main-aside ul a:hover {
+    background: #101010;
+}
+
+.friends-main-aside ul a:hover span{
+    color: var(--light-color);
+}
+
+.friends-main-aside ul a.active {
+    background: var(--dark-color);
+}
+
+.friends-main-aside ul a.active span{
+    color: var(--light-color);
+}
+
+/* Header main */
 .friends-main-header {
     display: flex;
     width: 100%;
@@ -32,17 +127,6 @@
     gap: 10px;
 }
 
-.friends-main-header-title h1 span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2px 7px;
-    border-radius: 5px;
-    font-size: 0.65rem;
-    color: var(--gray-color);
-    background: #101010;
-}
-
 .friends-main-header-title div {
     display: flex;
     width: 60px;
@@ -54,7 +138,7 @@
     display: flex;
 }
 
-.friends-main-header-search div{
+.friends-main-header-search div {
     display: flex;
     align-items: center;
     padding: 0 7px;
@@ -63,7 +147,7 @@
     border-radius: 5px;
 }
 
-.friends-main-header-search div input{
+.friends-main-header-search div input {
     display: flex;
     width: 200px;
     border: none;
@@ -84,10 +168,10 @@
 .friend-card {
     display: flex;
     align-items: center;
-    border: 1px solid #0f0f0f;
+    border: 1px solid #040404;
     border-radius: 2px;
     overflow: hidden;
-    background: #101010;
+    background: #0b0b0b;
     width: 300px;
     opacity: 0.8;
     transition: var(--transition-2s);
@@ -152,7 +236,7 @@
     color: #969696;
 }
 
-.friend-remove-btn{
+.friend-remove-btn {
     opacity: 0;
     display: flex;
     padding: 5px;
@@ -160,7 +244,7 @@
     transition: var(--transition-2s);
 }
 
-.friend-remove-btn:hover{
+.friend-remove-btn:hover {
     background: #181818;
 }
 

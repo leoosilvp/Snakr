@@ -1,6 +1,6 @@
 const API_URL = 'https://backend-snakr.vercel.app'
 
-const FRIENDS_CACHE_TTL = 60 * 1000 // 1 min
+const FRIENDS_CACHE_TTL = 2 * 60 * 1000 // 1 min
 
 let cachedFriends = null
 let lastFetch = 0
