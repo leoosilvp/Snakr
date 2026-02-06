@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { ConsoleBanner } from './hooks/ConsoleBanner'
+import { useOfflineOnUnload } from "./hooks/useOfflineOnUnload";
 import ChangeIcon from './hooks/ChangeIcon'
 import Home from "./routes/Home"
 import Error from "./routes/Error";
@@ -28,10 +29,17 @@ import Friends from "./routes/Friends";
 import MyFriends from "./components/friends/MyFriends";
 import AddFriends from "./components/friends/AddFriends";
 import Invitation from "./components/friends/Invitation";
+import { useUserStatus } from "./hooks/useUserStatus";
 
 function App() {
   ConsoleBanner()
   ChangeIcon();
+  useOfflineOnUnload();
+
+  const isPlaying = false
+  const gameName = null
+
+  useUserStatus({ isPlaying, gameName })
   
   return (
     <BrowserRouter>
