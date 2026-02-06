@@ -20,7 +20,7 @@ export default function Friends() {
                         <ul>
                             <NavLink to='my-friends'><span><User size={16} /> Friends</span> 1</NavLink>
                             <NavLink to='add-friends'><span><UserPlus size={16} /> Add friends</span></NavLink>
-                            <NavLink to='invites'><span><Mail size={16} /> Pending invites</span> 0</NavLink>
+                            <NavLink to='invitations'><span><Mail size={16} /> Pending invites</span> 0</NavLink>
                         </ul>
                     </aside>
                     <section className='friends-content'>
