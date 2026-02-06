@@ -26,6 +26,7 @@ import Notification from "./components/Notification";
 import ChangeTitle from "./hooks/ChangeTitle";
 import Friends from "./routes/Friends";
 import MyFriends from "./components/friends/MyFriends";
+import AddFriends from "./components/friends/AddFriends";
 
 function App() {
   ConsoleBanner()
@@ -47,6 +48,7 @@ function App() {
           <Route path="/friends" element={<Friends />} >
             <Route index element={<Navigate to='my-friends' />} />
             <Route path="my-friends" element={<MyFriends />} />
+            <Route path="add-friends" element={<AddFriends />} />
           </Route>
           <Route path="/settings" element={<Settings />} >
             <Route index element={<Navigate to='general' />} />

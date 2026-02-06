@@ -18,9 +18,9 @@ export default function Friends() {
                     <aside className='friends-main-aside'>
                         <h1>Friends</h1>
                         <ul>
-                            <NavLink to='/friends'><span><User size={16} /> Friends</span> 1</NavLink>
-                            <NavLink to='/friends/add-friends'><span><UserPlus size={16} /> Add friends</span></NavLink>
-                            <NavLink to='/friends/invites'><span><Mail size={16} /> Pending invites</span> 0</NavLink>
+                            <NavLink to='my-friends'><span><User size={16} /> Friends</span> 1</NavLink>
+                            <NavLink to='add-friends'><span><UserPlus size={16} /> Add friends</span></NavLink>
+                            <NavLink to='invites'><span><Mail size={16} /> Pending invites</span> 0</NavLink>
                         </ul>
                     </aside>
                     <section className='friends-content'>

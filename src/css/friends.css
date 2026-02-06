@@ -71,7 +71,7 @@
     flex-direction: column;
 }
 
-.friends-main-aside ul a{
+.friends-main-aside ul a {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -83,7 +83,7 @@
     cursor: pointer;
 }
 
-.friends-main-aside ul a span{
+.friends-main-aside ul a span {
     display: flex;
     align-items: center;
     color: #b0b0b0;
@@ -94,7 +94,7 @@
     background: #101010;
 }
 
-.friends-main-aside ul a:hover span{
+.friends-main-aside ul a:hover span {
     color: var(--light-color);
 }
 
@@ -102,11 +102,12 @@
     background: var(--dark-color);
 }
 
-.friends-main-aside ul a.active span{
+.friends-main-aside ul a.active span {
     color: var(--light-color);
 }
 
-/* Header main */
+
+/* my friends */
 .friends-main-header {
     display: flex;
     width: 100%;
@@ -163,6 +164,13 @@
     font-size: 0.9rem;
     font-weight: 400;
     color: var(--gray-color);
+}
+
+.friends-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 5px 0;
+    gap: 15px;
 }
 
 .friend-card {
@@ -268,9 +276,138 @@
     text-overflow: ellipsis;
 }
 
-.friends-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    padding: 5px 0;
+
+/* add friend */
+.add-friends-main {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    background: #080808;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.add-friends-main-header {
+    display: flex;
+    width: 935px;
+    padding: 7px 15px;
+    background: #101010;
+}
+
+.add-friends-main-header h1 {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.add-friends-main-header input {
+    display: flex;
+}
+
+.add-friend-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+}
+
+.add-friend-content h1 {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: #c3c3c3;
+}
+
+.add-friend-content p {
+    margin-top: 10px;
+    display: flex;
+    width: 890px;
+    font-size: 0.8rem;
+    font-weight: 200;
+    color: var(--gray-color);
+}
+
+.add-friend-content input {
+    margin-top: 5px;
+    display: flex;
+    padding: 0 10px;
+    width: 450px;
+    height: 40px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: var(--background-card);
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--light-color);
+}
+
+.add-friend-list {
+    margin-top: 2px;
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    height: 150px;
+    padding: 5px;
+    overflow-y: scroll;
+    background: #0e0e0e;
+    border-radius: 0 0 7px 7px;
+    gap: 10px;
+}
+
+.add-friend-list::-webkit-scrollbar{
+    display: flex;
+    width: 3px;
+}
+
+.add-friend-list::-webkit-scrollbar-thumb{
+    background: var(--dark-color);
+    border-radius: 50px;
+}
+
+.add-friend-list hr{
+    border: 1px solid var(--dark-color);
+}
+
+.add-friend-card{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 60px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-friend-card:hover{
+    background: var(--dark-color);
+}
+
+.add-friend-card div{
+    display: flex;
+    align-items: center;
     gap: 15px;
+}
+
+.add-friend-card div img{
+    display: flex;
+    width: 60px;
+    height: 60px;
+    border-radius: 2px;
+}
+
+.add-friend-card button{
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    transition: var(--transition-2s);
+    color: var(--gray-color);
+    cursor: pointer;
+}
+
+.add-friend-card button:hover{
+    color: var(--light-color);
+    background: #202020;
 }
