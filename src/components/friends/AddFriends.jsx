@@ -121,7 +121,6 @@ const AddFriends = () => {
                                 e.target.value = ""
                             }
                         }}
-                        disabled={true}
                     />
                 </section>
 
