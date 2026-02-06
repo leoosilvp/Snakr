@@ -1,6 +1,6 @@
 const API_URL = 'https://backend-snakr.vercel.app'
 
-const FRIENDS_CACHE_TTL = 2 * 60 * 1000 // 1 min
+const FRIENDS_CACHE_TTL = 2 * 60 * 1000 // 2 min
 
 let cachedFriends = null
 let lastFetch = 0
@@ -25,39 +25,40 @@ async function request(path, options = {}) {
 }
 
 export const socialService = {
-  /* ================= USERS ================= */
 
   listUsers() {
     return request('/api/user/list', { method: 'GET' })
   },
 
-  /* ================= FRIENDS ================= */
-
-  async listFriends({ force = false } = {}) {
+  async listFriends({ force = false, myUserId }) {
     const now = Date.now()
 
-    if (
-      !force &&
-      cachedFriends &&
-      now - lastFetch < FRIENDS_CACHE_TTL
-    ) {
+    if (!force && cachedFriends && now - lastFetch < FRIENDS_CACHE_TTL) {
       return cachedFriends
     }
 
-    if (pendingFriendsPromise) {
-      return pendingFriendsPromise
-    }
+    if (pendingFriendsPromise) return pendingFriendsPromise
 
-    pendingFriendsPromise = request('/api/friends', {
-      method: 'GET',
-    })
-      .then((data) => {
-        cachedFriends = data
+    pendingFriendsPromise = request('/api/friends', { method: 'GET' })
+      .then(data => {
+        // Normaliza: sempre o outro usuário como "users"
+        const normalized = data
+          .map(f => {
+            let user = null
+            if (f.requester_id === myUserId) user = f.addressee
+            else if (f.addressee_id === myUserId) user = f.requester
+            else return null // ignora se não é nem requester nem addressee
+
+            return { ...f, users: user } // adiciona "users" para o componente
+          })
+          .filter(Boolean)
+
+        cachedFriends = normalized
         lastFetch = Date.now()
         pendingFriendsPromise = null
-        return data
+        return normalized
       })
-      .catch((err) => {
+      .catch(err => {
         pendingFriendsPromise = null
         throw err
       })
@@ -71,10 +72,7 @@ export const socialService = {
       body: JSON.stringify({ targetUserId }),
     })
 
-    // invalida cache
-    cachedFriends = null
-    lastFetch = 0
-
+    this.invalidateFriendsCache()
     return res
   },
 
@@ -84,15 +82,23 @@ export const socialService = {
       body: JSON.stringify({ requestId }),
     })
 
-    // invalida cache
-    cachedFriends = null
-    lastFetch = 0
+    this.invalidateFriendsCache()
+    return res
+  },
 
+  async removeFriend(friendId) {
+    const res = await request('/api/friends', {
+      method: 'DELETE',
+      body: JSON.stringify({ friendId }),
+    })
+
+    this.invalidateFriendsCache()
     return res
   },
 
   invalidateFriendsCache() {
     cachedFriends = null
     lastFetch = 0
+    pendingFriendsPromise = null
   },
 }

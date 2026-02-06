@@ -168,6 +168,7 @@
 
 .friends-grid {
     display: grid;
+    width: 935px;
     grid-template-columns: repeat(3, 1fr);
     padding: 5px 0;
     gap: 15px;
@@ -519,4 +520,10 @@
 .no-invitations p{
     font-size: 0.9rem;
     font-weight: 300;
+}
+
+.friends-empty{
+    font-size: 0.85rem;
+    font-weight: 200;
+    color: #454545;
 }

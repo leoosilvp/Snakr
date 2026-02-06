@@ -56,6 +56,7 @@ export function useUser() {
           friend_code: data.friend_code,
           email: data.email,
           awards: data.awards,
+          status:data.status,
           profile: data.profile,
           settings: data.settings,
         }
