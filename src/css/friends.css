@@ -291,7 +291,7 @@
     display: flex;
     width: 935px;
     padding: 7px 15px;
-    background: #101010;
+    background: #0e0e0e;
 }
 
 .add-friends-main-header h1 {
@@ -307,7 +307,6 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 20px;
 }
 
 .add-friend-content h1 {
@@ -326,7 +325,6 @@
 }
 
 .add-friend-content input {
-    margin-top: 5px;
     display: flex;
     padding: 0 10px;
     width: 450px;
@@ -352,21 +350,21 @@
     gap: 10px;
 }
 
-.add-friend-list::-webkit-scrollbar{
+.add-friend-list::-webkit-scrollbar {
     display: flex;
     width: 3px;
 }
 
-.add-friend-list::-webkit-scrollbar-thumb{
+.add-friend-list::-webkit-scrollbar-thumb {
     background: var(--dark-color);
     border-radius: 50px;
 }
 
-.add-friend-list hr{
+.add-friend-list hr {
     border: 1px solid var(--dark-color);
 }
 
-.add-friend-card{
+.add-friend-card {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -376,24 +374,24 @@
     cursor: pointer;
 }
 
-.add-friend-card:hover{
+.add-friend-card:hover {
     background: var(--dark-color);
 }
 
-.add-friend-card div{
+.add-friend-card div {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
-.add-friend-card div img{
+.add-friend-card div img {
     display: flex;
     width: 60px;
     height: 60px;
     border-radius: 2px;
 }
 
-.add-friend-card button{
+.add-friend-card button {
     margin-right: 10px;
     display: flex;
     align-items: center;
@@ -407,7 +405,50 @@
     cursor: pointer;
 }
 
-.add-friend-card button:hover{
+.add-friend-card button:hover {
     color: var(--light-color);
     background: #202020;
+}
+
+.add-friend-bycode {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background: #060606;
+}
+
+.friend-code {
+    margin: 10px 0 15px;
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    padding: 10px 15px;
+    border-radius: 4px;
+    background: #0e0e0e;
+    gap: 250px;
+}
+
+.friend-code h2 {
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--light-color);
+}
+
+.friend-code button {
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--gray-color);
+}
+
+.add-friend-bycode input {
+    margin-top: 15px;
+}
+
+.add-friend-byusername{
+    padding: 20px;
+}
+
+.add-friend-byusername input{
+    margin-top: 5px;
 }

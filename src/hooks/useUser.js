@@ -53,6 +53,7 @@ export function useUser() {
         cachedUser = {
           id: data.id,
           steam_id: data.steam_id,
+          friend_code: data.friend_code,
           email: data.email,
           awards: data.awards,
           profile: data.profile,
