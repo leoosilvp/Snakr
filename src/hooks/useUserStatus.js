@@ -22,10 +22,8 @@ export function useUserStatus({ isPlaying, gameName }) {
 
       try {
         if (cancelled) return
-
         await statusService.updateStatus(nextStatus)
         lastStatusRef.current = nextStatus
-
       } catch (err) {
         console.error('[useUserStatus] failed to sync status', err)
       }
@@ -33,7 +31,7 @@ export function useUserStatus({ isPlaying, gameName }) {
 
     syncStatus()
 
-    const interval = setInterval(syncStatus, 60_000)
+    const interval = setInterval(syncStatus, 30_000)
 
     return () => {
       cancelled = true

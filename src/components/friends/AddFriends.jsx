@@ -1,6 +1,6 @@
 import { Check, Copy, UserPlus } from "@geist-ui/icons"
 import { useUser } from "../../hooks/useUser"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { socialService } from "../../services/social.service"
 
 const AddFriends = () => {
@@ -10,8 +10,8 @@ const AddFriends = () => {
     const [searchResults, setSearchResults] = useState([])
     const [modalOpen, setModalOpen] = useState(false)
     const [sendingRequest, setSendingRequest] = useState(false)
+    const modalRef = useRef(null)
 
-    // Remove aspas de friend_code
     function removeQuotes(str) {
         if (!str || typeof str !== "string") return str
         return str.replace(/^["']|["']$/g, "").trim()
@@ -19,7 +19,15 @@ const AddFriends = () => {
 
     const FriendCode = removeQuotes(user?.friend_code)
 
-    // Copiar friend code
+    function hasRelationshipWith(userId) {
+        const cached = socialService.getCachedFriends?.()
+        if (!cached || !userId) return false
+        return cached.some(f =>
+            (f.requester_id === userId || f.addressee_id === userId) &&
+            (f.status === "accepted" || f.status === "pending")
+        )
+    }
+
     const copyFriendCode = async () => {
         if (!FriendCode) return
         await navigator.clipboard.writeText(FriendCode)
@@ -27,23 +35,17 @@ const AddFriends = () => {
         setTimeout(() => setCopied(false), 1000)
     }
 
-    // Enviar pedido por friend code
     const sendRequestByCode = async code => {
         if (!code) return
         code = code.replace(/^["']|["']$/g, "").trim()
-        if (!code) {
-            alert("Friend code is required")
-            return
-        }
-        if (code === FriendCode) {
-            alert("You can't send a friend request to yourself")
-            return
-        }
+        if (!code) return alert("Friend code is required")
+        if (code === FriendCode) return alert("You can't send a friend request to yourself")
 
         setSendingRequest(true)
         try {
             await socialService.sendFriendRequest(code, null)
             alert("Friend request sent!")
+            socialService.invalidateFriendsCache()
         } catch (err) {
             alert(err.message || "Failed to send friend request")
         } finally {
@@ -51,7 +53,6 @@ const AddFriends = () => {
         }
     }
 
-    // Enviar pedido por username
     const sendRequestByUsername = async username => {
         if (!username) return
         if (username.toLowerCase() === user.profile?.username?.toLowerCase()) {
@@ -59,10 +60,17 @@ const AddFriends = () => {
             return
         }
 
+        const targetUser = searchResults.find(u => u.profile?.username === username)
+        if (targetUser && hasRelationshipWith(targetUser.id)) {
+            alert("You already have a relationship with this user")
+            return
+        }
+
         setSendingRequest(true)
         try {
             await socialService.sendFriendRequest(null, username)
             alert("Friend request sent!")
+            socialService.invalidateFriendsCache()
         } catch (err) {
             alert(err.message || "Failed to send friend request")
         } finally {
@@ -70,7 +78,6 @@ const AddFriends = () => {
         }
     }
 
-    // Busca usuários ao digitar username
     useEffect(() => {
         if (!searchUsername) {
             setSearchResults([])
@@ -82,17 +89,32 @@ const AddFriends = () => {
             try {
                 const users = await socialService.listUsers()
                 const results = users
-                    .filter(u => u.profile?.username?.toLowerCase().includes(searchUsername.toLowerCase()))
+                    .filter(
+                        u =>
+                            u.id !== user.id &&
+                            u.profile?.username?.toLowerCase().includes(searchUsername.toLowerCase())
+                    )
                     .slice(0, 5)
+
                 setSearchResults(results)
                 setModalOpen(results.length > 0)
             } catch (err) {
                 console.error("Failed to search users", err)
             }
-        }, 200)
+        }, 10)
 
         return () => clearTimeout(timeout)
-    }, [searchUsername])
+    }, [searchUsername, user?.id])
+
+    useEffect(() => {
+        const handler = e => {
+            if (modalRef.current && !modalRef.current.contains(e.target)) {
+                setModalOpen(false)
+            }
+        }
+        document.addEventListener("mousedown", handler)
+        return () => document.removeEventListener("mousedown", handler)
+    }, [])
 
     return (
         <main className="add-friends-main">
@@ -101,9 +123,9 @@ const AddFriends = () => {
             </header>
 
             <section className="add-friend-content">
-                {/* Adicionar por Friend Code */}
                 <section className="add-friend-bycode">
                     <h1>A unique 8-digit code used to add friends.</h1>
+
                     <div className="friend-code">
                         <h2>{FriendCode || "N/A"}</h2>
                         <button onClick={copyFriendCode}>
@@ -124,7 +146,6 @@ const AddFriends = () => {
                     />
                 </section>
 
-                {/* Adicionar por Username */}
                 <section className="add-friend-byusername">
                     <h1>Enter a friend's username to send an invitation.</h1>
                     <input
@@ -135,7 +156,7 @@ const AddFriends = () => {
                     />
 
                     {modalOpen && (
-                        <section className="add-friend-list">
+                        <section ref={modalRef} className="add-friend-list">
                             {searchResults.map(u => (
                                 <div key={u.id} className="add-friend-card">
                                     <div>
@@ -152,12 +173,14 @@ const AddFriends = () => {
                             ))}
                         </section>
                     )}
+
                     <p>
-                        By adding friends on Snakr, you can keep track of shared profiles, games, achievements, and activities.
-                        Friends can view shared information, interact with you, and receive notifications about news and updates.
-                        <br />
-                        <br />
-                        Friend requests must be accepted for a connection to be established. You can manage your friends and interference at any time in your account settings.
+                        By adding friends on Snakr, you can keep track of shared profiles, games,
+                        achievements, and activities. Friends can view shared information,
+                        interact with you, and receive notifications about news and updates.
+                        Friend requests must be accepted for a connection to be established.
+                        You can manage your friends and interference at any time in your account
+                        settings.
                     </p>
                 </section>
             </section>

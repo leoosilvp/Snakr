@@ -2,17 +2,21 @@ import { useEffect } from 'react'
 
 export function useOfflineOnUnload() {
   useEffect(() => {
-    const handleUnload = () => {
+    const sendOffline = () => {
       navigator.sendBeacon(
-        'https://backend-snakr.vercel.app/api/user/status',
-        JSON.stringify({
-          status: { status: 'offline', playing: null },
-        })
+        'https://backend-snakr.vercel.app/api/user/status'
       )
     }
 
-    window.addEventListener('beforeunload', handleUnload)
-    return () =>
-      window.removeEventListener('beforeunload', handleUnload)
+    window.addEventListener('pagehide', sendOffline)
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'hidden') {
+        sendOffline()
+      }
+    })
+
+    return () => {
+      window.removeEventListener('pagehide', sendOffline)
+    }
   }, [])
 }

@@ -1,92 +1,122 @@
-import { useEffect, useState, useCallback } from "react"
+import { useEffect, useState, useCallback } from 'react'
 import { socialService } from '../../services/social.service'
-import { Frown, Check, X } from "@geist-ui/icons"
-import { useUser } from "../../hooks/useUser"
+import { Frown, Check, X } from '@geist-ui/icons'
+import { useUser } from '../../hooks/useUser'
 
 const Invitation = () => {
     const [received, setReceived] = useState([])
     const [sent, setSent] = useState([])
     const [loading, setLoading] = useState(true)
 
-    const { user } = useUser();
+    const { user } = useUser()
     const myUserId = user?.id
 
-    // Carrega todos os convites
-    const loadInvitations = useCallback(async () => {
-        setLoading(true)
-        try {
-            const friends = await socialService.listFriends({ myUserId, force: true })
+    function resolveUser(inv) {
+        if (inv.users) return inv.users
 
-            // Convites recebidos
+        if (inv.requester_id === myUserId) return inv.addressee || null
+        if (inv.addressee_id === myUserId) return inv.requester || null
+
+        return null
+    }
+
+    useEffect(() => {
+        if (!myUserId) return
+        if (typeof socialService.getCachedFriends !== 'function') return
+
+        const cached = socialService.getCachedFriends()
+        if (!cached) return
+
+        const receivedRequests = cached.filter(
+            f => f.direction === 'received' && f.status === 'pending'
+        )
+
+        const sentRequests = cached.filter(
+            f => f.direction === 'sent' && f.status === 'pending'
+        )
+
+        setReceived(receivedRequests)
+        setSent(sentRequests)
+        setLoading(false)
+    }, [myUserId])
+
+    const loadInvitations = useCallback(async () => {
+        if (!myUserId) return
+
+        try {
+            const friends = await socialService.listFriends({
+                myUserId,
+                force: false,
+            })
+
             const receivedRequests = friends.filter(
-                f => f.direction === "received" && f.status === "pending"
+                f => f.direction === 'received' && f.status === 'pending'
             )
 
-            // Convites enviados
             const sentRequests = friends.filter(
-                f => f.direction === "sent" && f.status === "pending"
+                f => f.direction === 'sent' && f.status === 'pending'
             )
 
             setReceived(receivedRequests)
             setSent(sentRequests)
         } catch (err) {
-            console.error("Failed to load invitations:", err)
+            console.error('Failed to load invitations:', err)
         } finally {
             setLoading(false)
         }
     }, [myUserId])
 
-    // Atualiza quando monta ou muda myUserId
     useEffect(() => {
         loadInvitations()
     }, [loadInvitations])
 
-    // Aceita pedido de amizade
-    const handleAccept = async (requestId) => {
+    const handleAccept = async requestId => {
         try {
             await socialService.acceptFriendRequest(requestId)
-            await loadInvitations()
+            socialService.invalidateFriendsCache()
+            loadInvitations()
         } catch (err) {
-            console.error("Failed to accept invitation:", err)
+            console.error('Failed to accept invitation:', err)
         }
     }
 
-    // Recusa pedido ou remove enviado
-    const handleRemove = async (friendId) => {
+    const handleRemove = async friendId => {
         try {
             await socialService.removeFriend(friendId)
-            await loadInvitations()
+            socialService.invalidateFriendsCache()
+            loadInvitations()
         } catch (err) {
-            console.error("Failed to remove invitation:", err)
+            console.error('Failed to remove invitation:', err)
         }
     }
 
-    if (loading) return (
-        <div className="invitations-main">
-            <section className="invitations-sec">
-                <header className="invitations-sec-header">
-                    <h1>Invitations received</h1>
-                </header>
-                <section className="invitations">
-                    <div className="no-invitations">
-                        <Frown />
-                        <p>We're sorry, there are no pending friend requests.</p>
-                    </div>
+    if (loading) {
+        return (
+            <div className="invitations-main">
+                <section className="invitations-sec">
+                    <header className="invitations-sec-header">
+                        <h1>Invitations received</h1>
+                    </header>
+                    <section className="invitations">
+                        <div className="no-invitations">
+                            <Frown />
+                            <p>We're sorry, there are no pending friend requests.</p>
+                        </div>
+                    </section>
                 </section>
-            </section>
 
-            <section className="invitations-sec">
-                <header className="invitations-sec-header">
-                    <h1>Invitations sent</h1>
-                </header>
-                <section className="invitations" />
-            </section>
-        </div>
-    )
+                <section className="invitations-sec">
+                    <header className="invitations-sec-header">
+                        <h1>Invitations sent</h1>
+                    </header>
+                    <section className="invitations" />
+                </section>
+            </div>
+        )
+    }
 
     return (
         <div className="invitations-main">
-            {/* Convites recebidos */}
             <section className="invitations-sec">
                 <header className="invitations-sec-header">
                     <h1>Invitations received</h1>
@@ -96,6 +126,7 @@ const Invitation = () => {
                         </button>
                     )}
                 </header>
+
                 <section className="invitations">
                     {received.length === 0 ? (
                         <div className="no-invitations">
@@ -103,53 +134,75 @@ const Invitation = () => {
                             <p>We're sorry, there are no pending friend requests.</p>
                         </div>
                     ) : (
-                        received.map(inv => (
-                            <article key={inv.id} className="invitations-card">
-                                <div>
-                                    <img
-                                        src={inv.users.profile?.photo || "https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg"}
-                                        alt={inv.users.profile?.username || "Unknown"}
-                                    />
-                                    <h1>{inv.users.profile?.username || "Unknown"}</h1>
-                                </div>
-                                <section className="invitations-card-btns">
-                                    <button onClick={() => handleAccept(inv.id)}>
-                                        <Check size={16} />
-                                    </button>
-                                    <button className="recuse" onClick={() => handleRemove(inv.id)}>
-                                        <X size={16} />
-                                    </button>
-                                </section>
-                            </article>
-                        ))
+                        received.map(inv => {
+                            const u = resolveUser(inv)
+                            if (!u || !u.profile) return null
+
+                            return (
+                                <article key={inv.id} className="invitations-card">
+                                    <div>
+                                        <img
+                                            src={
+                                                u.profile.photo ||
+                                                'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'
+                                            }
+                                            alt={u.profile.username}
+                                        />
+                                        <h1>{u.profile.username}</h1>
+                                    </div>
+
+                                    <section className="invitations-card-btns">
+                                        <button onClick={() => handleAccept(inv.id)}>
+                                            <Check size={16} />
+                                        </button>
+                                        <button
+                                            className="recuse"
+                                            onClick={() => handleRemove(inv.id)}
+                                        >
+                                            <X size={16} />
+                                        </button>
+                                    </section>
+                                </article>
+                            )
+                        })
                     )}
                 </section>
             </section>
 
-            {/* Convites enviados */}
             <section className="invitations-sec">
                 <header className="invitations-sec-header">
                     <h1>Invitations sent</h1>
                 </header>
+
                 <section className="invitations">
-                    {
-                        sent.map(inv => (
+                    {sent.map(inv => {
+                        const u = resolveUser(inv)
+                        if (!u || !u.profile) return null
+
+                        return (
                             <article key={inv.id} className="invitations-card">
                                 <div>
                                     <img
-                                        src={inv.users.profile?.photo || "https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg"}
-                                        alt={inv.users.profile?.username || "Unknown"}
+                                        src={
+                                            u.profile.photo ||
+                                            'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'
+                                        }
+                                        alt={u.profile.username}
                                     />
-                                    <h1>{inv.users.profile?.username || "Unknown"}</h1>
+                                    <h1>{u.profile.username}</h1>
                                 </div>
+
                                 <section className="invitations-card-btns">
-                                    <button className="recuse" onClick={() => handleRemove(inv.id)}>
+                                    <button
+                                        className="recuse"
+                                        onClick={() => handleRemove(inv.id)}
+                                    >
                                         <X size={16} />
                                     </button>
                                 </section>
                             </article>
-                        ))
-                    }
+                        )
+                    })}
                 </section>
             </section>
         </div>

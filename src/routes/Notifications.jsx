@@ -5,12 +5,32 @@ import { useState, useMemo, useCallback } from 'react'
 import { useNotifications } from '../hooks/useNotifications'
 import { notificationsService } from '../services/notifications.service'
 import { useNavigate } from 'react-router-dom'
-import { Bell, BellOff, Award, Gift, User, MessageCircle, AlertTriangle } from '@geist-ui/icons'
+import {
+  Bell,
+  BellOff,
+  Award,
+  Gift,
+  User,
+  UserPlus,
+  UserCheck,
+  MessageCircle,
+  AlertTriangle
+} from '@geist-ui/icons'
 
 const COOLDOWN_TIME = 20 * 60 * 1000 // 20 min
 const STORAGE_KEY = 'snakr:last-notification-action'
 
-const ICONS = { Bell, BellOff, Award, Gift, User, MessageCircle, AlertTriangle  }
+const ICONS = {
+  Bell,
+  BellOff,
+  Award,
+  Gift,
+  User,
+  UserPlus,
+  UserCheck,
+  MessageCircle,
+  AlertTriangle
+}
 
 const Notifications = () => {
   const { notifications, unread, markAsRead, markAllAsRead } = useNotifications()
@@ -20,13 +40,22 @@ const Notifications = () => {
   const formatNotificationDate = (dateString) => {
     const createdAt = new Date(dateString)
     const now = new Date()
-    const diffMs = now - createdAt
 
+    const diffMs = now - createdAt
+    const diffMinutes = Math.floor(diffMs / (1000 * 60))
     const diffHours = Math.floor(diffMs / (1000 * 60 * 60))
     const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24))
 
+    if (diffMinutes < 1) {
+      return '1 min'
+    }
+
+    if (diffMinutes < 60) {
+      return `${diffMinutes} min${diffMinutes === 1 ? '' : 's'}`
+    }
+
     if (diffHours < 24) {
-      return `${diffHours <= 1 ? 1 : diffHours} hora${diffHours === 1 ? '' : 's'}`
+      return `${diffHours} hora${diffHours === 1 ? '' : 's'}`
     }
 
     if (diffDays === 1) {
@@ -42,9 +71,9 @@ const Notifications = () => {
 
   const filteredNotifications = useMemo(() => {
     let list = [...notifications]
- 
+
     if (filter === 'unread') {
-      list = list.filter((n) => !n.is_read)
+      list = list.filter(n => !n.is_read)
     }
 
     return list.sort((a, b) => {
@@ -62,15 +91,14 @@ const Notifications = () => {
     const { lastId, timestamp } = JSON.parse(stored)
     const now = Date.now()
 
-    if (lastId === notificationId && now - timestamp < COOLDOWN_TIME) {
-      return false
-    }
-
-    return true
+    return !(lastId === notificationId && now - timestamp < COOLDOWN_TIME)
   }, [])
 
   const registerNotificationAction = useCallback((notificationId) => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ lastId: notificationId, timestamp: Date.now() }))
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({ lastId: notificationId, timestamp: Date.now() })
+    )
   }, [])
 
   const handleNotificationClick = async (notification) => {
@@ -82,7 +110,7 @@ const Notifications = () => {
       await markAsRead(notification?.id)
     }
 
-    if (notification.link) {
+    if (notification?.link) {
       navigate(notification?.link)
     }
   }
@@ -99,12 +127,24 @@ const Notifications = () => {
   return (
     <main className="notifications-main">
       <Header />
+
       <section className="notifications-content">
         <header className="notifications-content-header">
           <section className="notifications-content-header-left">
-            <button className={filter === 'all' ? 'active' : ''} onClick={() => setFilter('all')}>All</button>
-            <button className={filter === 'unread' ? 'active' : ''} onClick={() => setFilter('unread')}>Unread <span>{unread}</span></button>
+            <button
+              className={filter === 'all' ? 'active' : ''}
+              onClick={() => setFilter('all')}
+            >
+              All
+            </button>
+            <button
+              className={filter === 'unread' ? 'active' : ''}
+              onClick={() => setFilter('unread')}
+            >
+              Unread <span>{unread}</span>
+            </button>
           </section>
+
           <section className="notifications-content-header-right">
             <button onClick={markAllAsRead}>Mark all as read</button>
             <button onClick={handleClearAll}>Clear all</button>
@@ -113,35 +153,47 @@ const Notifications = () => {
 
         <section className="notifications-grid">
           {filteredNotifications.length === 0 && (
-            <div className='no-notifications'>
-              <BellOff size={40}/>
+            <div className="no-notifications">
+              <BellOff size={40} />
               <p className="notifications-empty">
-                {filter === 'unread' ? 'Nenhuma notificação não lida.' : 'Nenhuma notificação disponível.'}
+                {filter === 'unread'
+                  ? 'Nenhuma notificação não lida.'
+                  : 'Nenhuma notificação disponível.'}
               </p>
             </div>
           )}
 
-          {filteredNotifications.map((notification) => {
+          {filteredNotifications.map(notification => {
             const BadgeIcon = ICONS[notification?.badge]
+
             return (
-              <article key={notification?.id} className={`notification ${notification?.is_read ? 'read' : ''}`} onClick={() => handleNotificationClick(notification)}>
+              <article
+                key={notification?.id}
+                className={`notification ${notification?.is_read ? 'read' : ''}`}
+                onClick={() => handleNotificationClick(notification)}
+              >
                 <section className="notification-left">
                   <div className="notification-indicator" />
                   <section className="notification-left-content">
                     <section className="notification-left-icon">
-                      {notification?.is_read ?
+                      {notification?.is_read ? (
                         <BellOff />
-                        :
-                        <>{BadgeIcon && <BadgeIcon size={24} />}</>
-                      }
+                      ) : (
+                        BadgeIcon && <BadgeIcon size={24} />
+                      )}
                     </section>
+
                     <section className="notification-text">
                       <h1>{notification?.title}</h1>
                       <h2>{notification?.message}</h2>
-                      <p><i className="fa-regular fa-clock" />{formatNotificationDate(notification?.created_at)}</p>
+                      <p>
+                        <i className="fa-regular fa-clock" />
+                        {formatNotificationDate(notification?.created_at)}
+                      </p>
                     </section>
                   </section>
                 </section>
+
                 <section className="notification-right">
                   <button onClick={(e) => handleDelete(notification.id, e)}>
                     <i className="fa-solid fa-xmark" />
@@ -152,6 +204,7 @@ const Notifications = () => {
           })}
         </section>
       </section>
+
       <Footer />
     </main>
   )

@@ -1,3 +1,5 @@
+import { resolveUserStatus } from '../utils/resolveUserStatus'
+
 const API_URL = 'https://backend-snakr.vercel.app'
 
 const FRIENDS_CACHE_TTL = 2 * 60 * 1000 // 2 minutos
@@ -25,16 +27,32 @@ async function request(path, options = {}) {
 }
 
 export const socialService = {
-  // Lista todos os usuários da plataforma
+  // ==================== USERS ====================
+
   listUsers() {
     return request('/api/user/list', { method: 'GET' })
   },
 
-  // Lista amigos e convites
+  // ==================== FRIENDS ====================
+
+  getCachedFriends() {
+    return cachedFriends
+  },
+
   async listFriends({ force = false, myUserId }) {
+    if (!myUserId) {
+      throw new Error('myUserId is required')
+    }
+
     const now = Date.now()
-    if (!force && cachedFriends && now - lastFetch < FRIENDS_CACHE_TTL) return cachedFriends
-    if (pendingFriendsPromise) return pendingFriendsPromise
+
+    if (!force && cachedFriends && now - lastFetch < FRIENDS_CACHE_TTL) {
+      return cachedFriends
+    }
+
+    if (pendingFriendsPromise) {
+      return pendingFriendsPromise
+    }
 
     pendingFriendsPromise = request('/api/friends', { method: 'GET' })
       .then(data => {
@@ -42,18 +60,25 @@ export const socialService = {
           .map(f => {
             let user = null
             let direction = null
+
             if (f.requester_id === myUserId) {
               user = f.addressee
               direction = 'sent'
             } else if (f.addressee_id === myUserId) {
               user = f.requester
               direction = 'received'
-            } else return null
+            } else {
+              return null
+            }
+
             return {
               ...f,
-              users: user,
               direction,
               status: f.status,
+              user: {
+                ...user,
+                presence: resolveUserStatus(user),
+              },
             }
           })
           .filter(Boolean)
@@ -61,6 +86,7 @@ export const socialService = {
         cachedFriends = normalized
         lastFetch = Date.now()
         pendingFriendsPromise = null
+
         return normalized
       })
       .catch(err => {
@@ -71,12 +97,15 @@ export const socialService = {
     return pendingFriendsPromise
   },
 
-  // ==================== ENVIAR PEDIDO DE AMIZADE PELO FRIEND_CODE ====================
+  // ==================== FRIEND ACTIONS ====================
+
   async sendFriendRequest(friendCode = null, username = null) {
-    if (!friendCode && !username) throw new Error('Friend code or username is required')
+    if (!friendCode && !username) {
+      throw new Error('Friend code or username is required')
+    }
 
     const body = friendCode
-      ? { friendCode: friendCode.replace(/^["']|["']$/g, "").trim() }
+      ? { friendCode: friendCode.replace(/^['"]|['"]$/g, '').trim() }
       : { username }
 
     const res = await request('/api/friends', {
@@ -88,27 +117,28 @@ export const socialService = {
     return res
   },
 
-  // Aceita um pedido de amizade
   async acceptFriendRequest(requestId) {
     const res = await request('/api/friends', {
       method: 'PATCH',
       body: JSON.stringify({ requestId }),
     })
+
     this.invalidateFriendsCache()
     return res
   },
 
-  // Remove um amigo ou cancela um pedido de amizade
   async removeFriend(friendId) {
     const res = await request('/api/friends', {
       method: 'DELETE',
       body: JSON.stringify({ friendId }),
     })
+
     this.invalidateFriendsCache()
     return res
   },
 
-  // Limpa cache de amigos
+  // ==================== CACHE ====================
+
   invalidateFriendsCache() {
     cachedFriends = null
     lastFetch = 0

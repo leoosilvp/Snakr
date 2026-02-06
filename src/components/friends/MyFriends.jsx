@@ -1,24 +1,28 @@
 import { useEffect, useMemo, useState } from 'react'
 import { socialService } from '../../services/social.service'
-import { Search, UserMinus } from '@geist-ui/icons'
-import { useNavigate } from 'react-router-dom'
+import { Search, UserMinus, UserPlus } from '@geist-ui/icons'
+import { Link, useNavigate } from 'react-router-dom'
 import { useUser } from '../../hooks/useUser'
 
 const MyFriends = () => {
-  const [friends, setFriends] = useState([])
   const [search, setSearch] = useState('')
   const navigate = useNavigate()
   const { user } = useUser()
   const myUserId = user?.id
 
-  // Fetch friends
+
+  const [friends, setFriends] = useState(() => {
+    const cached = socialService.getCachedFriends?.()
+    return cached ? cached.filter(f => f.status === 'accepted') : []
+  })
+
+
   useEffect(() => {
     if (!myUserId) return
 
     async function fetchFriends() {
       try {
         const data = await socialService.listFriends({ force: true, myUserId })
-        // Filtra apenas amigos aceitos
         const acceptedFriends = data.filter(f => f.status === 'accepted')
         setFriends(acceptedFriends)
       } catch (err) {
@@ -29,7 +33,7 @@ const MyFriends = () => {
     fetchFriends()
   }, [myUserId])
 
-  // Normaliza para sempre mostrar o outro usuário
+
   const normalizedFriends = useMemo(() => {
     if (!myUserId) return []
 
@@ -44,8 +48,8 @@ const MyFriends = () => {
           statusObj.status === 'playing'
             ? 'playing'
             : statusObj.status === 'online'
-            ? 'online'
-            : 'offline'
+              ? 'online'
+              : 'offline'
 
         return {
           ...friend,
@@ -57,7 +61,6 @@ const MyFriends = () => {
       .filter(Boolean)
   }, [friends, myUserId])
 
-  // Filtro de busca
   const filteredFriends = useMemo(() => {
     const q = search.toLowerCase()
     return normalizedFriends.filter(f =>
@@ -65,7 +68,6 @@ const MyFriends = () => {
     )
   }, [normalizedFriends, search])
 
-  // Separar por status
   const playing = filteredFriends.filter(f => f._status === 'playing')
   const online = filteredFriends.filter(f => f._status === 'online')
   const offline = filteredFriends.filter(f => f._status === 'offline')
@@ -124,27 +126,28 @@ const MyFriends = () => {
 
   return (
     <>
-      {/* HEADER */}
       <header className='friends-main-header'>
         <section className='friends-main-header-title'>
           <h1>My friends</h1>
           <div />
         </section>
 
-        <section className='friends-main-header-search'>
-          <div>
-            <Search size={20} color='#c3c3c3' />
-            <input
-              type='text'
-              placeholder='Search for friends by username.'
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-            />
-          </div>
+        <section className='friends-main-header-actions'>
+          <section className='friends-main-header-search'>
+            <div>
+              <Search size={20} color='#c3c3c3' />
+              <input
+                type='text'
+                placeholder='Search for friends by username.'
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+              />
+            </div>
+          </section>
+          <Link to='/friends/add-friends'><UserPlus size={16} />Add friend</Link>
         </section>
       </header>
 
-      {/* PLAYING */}
       <header className='friends-header-status'>
         <h1>PLAYING</h1>
       </header>
@@ -155,7 +158,6 @@ const MyFriends = () => {
         ))}
       </section>
 
-      {/* ONLINE */}
       <header className='friends-header-status'>
         <h1>ONLINE</h1>
       </header>
@@ -166,7 +168,6 @@ const MyFriends = () => {
         ))}
       </section>
 
-      {/* OFFLINE */}
       <header className='friends-header-status'>
         <h1>OFFLINE</h1>
       </header>

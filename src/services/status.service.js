@@ -19,10 +19,10 @@ async function request(path, options = {}) {
 }
 
 export const statusService = {
-  updateStatus(status) {
+  updateStatus({ status, playing }) {
     return request('/api/user/status', {
       method: 'PATCH',
-      body: JSON.stringify({ status }),
+      body: JSON.stringify({ status, playing }),
     })
   },
 }
