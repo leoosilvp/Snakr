@@ -46,7 +46,7 @@ export default function Friends() {
             <Header />
             <section className='friends-main-content'>
                 <section className='friends-main-me'>
-                    <img src={user?.profile?.photo || "data:image/jpeg;base64,/9j/4AAQ..."} />
+                    <img src={user?.profile?.photo || "https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg"} />
                     <Link to='/profile'>{user?.profile?.username}</Link>
                 </section>
 
