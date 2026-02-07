@@ -30,6 +30,7 @@ import MyFriends from "./components/friends/MyFriends";
 import AddFriends from "./components/friends/AddFriends";
 import Invitation from "./components/friends/Invitation";
 import { useUserStatus } from "./hooks/useUserStatus";
+import Welcome from "./routes/Welcome";
 
 function App() {
   ConsoleBanner()
@@ -47,6 +48,7 @@ function App() {
       <Routes>
         <Route path="*" element={<Error />} />
         <Route path="/" element={<Navigate to='/home' />} />
+        <Route path="/welcome" element={<Welcome />} />
         <Route path="/login" element={<Login />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/notifications" element={<PageNotifications />} />

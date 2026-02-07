@@ -1,0 +1,136 @@
+.welcome-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(0deg, #000000, #00000075), url('https://www.shutterstock.com/image-illustration/binary-code-on-black-backdrop-600nw-2425782165.jpg');
+    overflow: auto;
+}
+
+.welcome-main-header{
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 95vw;
+    max-width: 1300px;
+    padding: 10px 15px;
+    border: 1px solid var(--dark-color);
+    border-radius: 7px;
+    background: #00000065;
+    backdrop-filter: blur(5px);
+}
+
+.welcome-main-header img{
+    display: flex;
+    width: 35px;
+}
+
+.welcome-main-header nav ul{
+    display: flex;
+    gap: 20px;
+}
+
+.welcome-main-header nav ul a{
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: #c3c3c3;
+    transition: var(--transition-2s);
+    gap: 5px;
+}
+
+.welcome-main-header nav ul a:hover{
+    color: var(--light-color);
+}
+
+.welcome-main-header-btn a{
+    display: flex;
+    align-items: center;
+    font-size: 0.6rem;
+    color: #c3c3c3;
+    transition: var(--transition-2s);
+}
+
+.welcome-main-header-btn a:hover{
+    color: var(--light-color);
+}
+
+.welcome-main-header-btn span{
+    position: absolute;
+    margin-left: -30px;
+    opacity: 0;
+    transition: var(--transition-2s);
+}
+
+.welcome-main-header-btn a:hover span{
+    opacity: 1;
+}
+
+/* welcome content */
+.welcome-main-content{
+    display: flex;
+    flex-direction: column;
+    padding: 80px 10px;
+}
+
+.welcome-hero{
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    align-items: center;
+    gap: 20px;
+}
+
+.welcome-hero h1{
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--light-color);
+}
+
+.welcome-hero p{
+    text-align: center;
+    font-size: 1rem;
+    width: 600px;
+    color: #b3b3b3;
+}
+
+.welcome-hero-btns{
+    margin-top: 15px;
+    display: flex;
+    gap: 20px;
+}
+
+.welcome-hero-btns a{
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid var(--dark-color);
+    background: #050505;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #c3c3c3;
+    transition: var(--transition-2s);
+}
+
+.welcome-hero-btns a.active{
+    background: var(--light-color);
+    color: var(--black);
+    font-weight: 600;
+    box-shadow: 0 0 10px #ffffff33;
+}
+
+.welcome-hero-btns a.active:hover{
+    background: #c3c3c3;
+    color: var(--black);
+    box-shadow: none;
+}
+
+.welcome-hero-btns a:hover{
+    background: #0c0c0c;
+    color: var(--light-color);
+}
