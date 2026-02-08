@@ -6,7 +6,7 @@ import { useUser } from '../hooks/useUser'
 import { Link } from 'react-router-dom'
 import Collection from '../components/profile/Collection'
 import RecentActivity from '../components/profile/RecentActivity'
-import { UserPlus } from '@geist-ui/icons'
+import { Share2, UserPlus } from '@geist-ui/icons'
 import { useEffect, useState } from 'react'
 import { socialService } from '../services/social.service'
 
@@ -19,6 +19,14 @@ const Profile = () => {
 
   const awards = user?.awards?.awards ?? []
   const [friends, setFriends] = useState([])
+
+
+  // user preferences
+  const preference = user?.settings?.profile
+  const showGames = preference?.showGames
+  const showActivity = preference?.showActivity
+  const showAchievements = preference?.showAchievements
+  const showOnlineStatus = preference?.showOnlineStatus
 
   useEffect(() => {
     if (!myUserId) return
@@ -62,6 +70,36 @@ const Profile = () => {
 
     fetchFriends()
   }, [myUserId])
+
+  const handleShareProfile = async () => {
+    if (!user?.profile?.username) return
+
+    const baseUrl = window.location.origin
+    const profileUrl = `${baseUrl}/user/${user?.profile?.username}`
+
+    const shareData = {
+      title: `${user?.profile.username} • Snakr`,
+      text: `Confira o meu perfil no Snakr.`,
+      url: profileUrl
+    }
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData)
+        return
+      } catch {
+        // usuário cancelou ou falha silenciosa
+      }
+    }
+
+    try {
+      await navigator.clipboard.writeText(profileUrl)
+      alert('Profile link copied to clipboard')
+    } catch {
+      alert('Unable to copy profile link')
+    }
+  }
+
 
   const STATUS_ORDER = {
     playing: 0,
@@ -124,19 +162,23 @@ const Profile = () => {
               </span>
             </h1>
 
-            <Link to='/settings/account'>Edit profile</Link>
+            <section className='profile-header-aside-btns'>
+              <Link to='/settings/account'>Edit profile</Link>
+              <button onClick={handleShareProfile}><Share2 size={18} /> Share profile</button>
+            </section>
           </div>
         </header>
 
         <section className='profile-content'>
           <div>
-            <Collection />
-            <RecentActivity />
+            <Collection userId={user?.id} showGames={showGames} />
+            {showActivity ? <RecentActivity /> : ''}
+
           </div>
 
           <aside className='profile-aside'>
             <section className='profile-aside-info'>
-              <h1>On-line</h1>
+              {showOnlineStatus ?? <h1>On-line</h1>}
 
               <div className='profile-aside-info-content'>
                 <article className='profile-aside-awards'>
@@ -158,8 +200,8 @@ const Profile = () => {
                 </article>
 
                 <ul>
-                  <Link><p>Games</p> <span>0</span></Link>
-                  <Link><p>Achievements</p> <span>0</span></Link>
+                  {showGames ? <Link><p>Games</p> <span>0</span></Link> : ''}
+                  {showAchievements ? <Link><p>Achievements</p> <span>0</span></Link> : ''}
                   <Link><p>Library</p></Link>
                   <Link><p>Screenshot</p></Link>
                   <Link><p>Videos</p></Link>

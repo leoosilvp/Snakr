@@ -1,4 +1,4 @@
-.welcome-main{
+.welcome-main {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6,9 +6,25 @@
     height: 100vh;
     background-image: linear-gradient(0deg, #000000, #00000075), url('https://www.shutterstock.com/image-illustration/binary-code-on-black-backdrop-600nw-2425782165.jpg');
     overflow: auto;
+    overflow-x: hidden;
 }
 
-.welcome-main-header{
+.welcome-main::-webkit-scrollbar{
+    display: flex;
+    width: 4px;
+}
+
+.welcome-main::-webkit-scrollbar-thumb{
+    background: #0a0a0a;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.welcome-main::-webkit-scrollbar-thumb:hover{
+    background: #101010;
+}
+
+.welcome-main-header {
     margin-top: 25px;
     display: flex;
     align-items: center;
@@ -22,17 +38,17 @@
     backdrop-filter: blur(5px);
 }
 
-.welcome-main-header img{
+.welcome-main-header img {
     display: flex;
     width: 35px;
 }
 
-.welcome-main-header nav ul{
+.welcome-main-header nav ul {
     display: flex;
     gap: 20px;
 }
 
-.welcome-main-header nav ul a{
+.welcome-main-header nav ul a {
     display: flex;
     align-items: center;
     font-size: 0.9rem;
@@ -42,11 +58,11 @@
     gap: 5px;
 }
 
-.welcome-main-header nav ul a:hover{
+.welcome-main-header nav ul a:hover {
     color: var(--light-color);
 }
 
-.welcome-main-header-btn a{
+.welcome-main-header-btn a {
     display: flex;
     align-items: center;
     font-size: 0.6rem;
@@ -54,29 +70,31 @@
     transition: var(--transition-2s);
 }
 
-.welcome-main-header-btn a:hover{
+.welcome-main-header-btn a:hover {
     color: var(--light-color);
 }
 
-.welcome-main-header-btn span{
+.welcome-main-header-btn span {
     position: absolute;
     margin-left: -30px;
     opacity: 0;
     transition: var(--transition-2s);
 }
 
-.welcome-main-header-btn a:hover span{
+.welcome-main-header-btn a:hover span {
     opacity: 1;
 }
 
 /* welcome content */
-.welcome-main-content{
+.welcome-main-content {
     display: flex;
+    width: 100%;
     flex-direction: column;
-    padding: 80px 10px;
+    align-items: center;
+    padding: 80px 0px;
 }
 
-.welcome-hero{
+.welcome-hero {
     display: flex;
     flex-direction: column;
     width: 800px;
@@ -84,26 +102,26 @@
     gap: 20px;
 }
 
-.welcome-hero h1{
+.welcome-hero h1 {
     text-align: center;
     font-size: 2.5rem;
     color: var(--light-color);
 }
 
-.welcome-hero p{
+.welcome-hero p {
     text-align: center;
     font-size: 1rem;
     width: 600px;
     color: #b3b3b3;
 }
 
-.welcome-hero-btns{
+.welcome-hero-btns {
     margin-top: 15px;
     display: flex;
     gap: 20px;
 }
 
-.welcome-hero-btns a{
+.welcome-hero-btns a {
     display: flex;
     align-items: center;
     gap: 7px;
@@ -117,20 +135,52 @@
     transition: var(--transition-2s);
 }
 
-.welcome-hero-btns a.active{
+.welcome-hero-btns a.active {
     background: var(--light-color);
     color: var(--black);
     font-weight: 600;
     box-shadow: 0 0 10px #ffffff33;
 }
 
-.welcome-hero-btns a.active:hover{
+.welcome-hero-btns a.active:hover {
     background: #c3c3c3;
     color: var(--black);
     box-shadow: none;
 }
 
-.welcome-hero-btns a:hover{
+.welcome-hero-btns a:hover {
     background: #0c0c0c;
     color: var(--light-color);
+}
+
+/* featured image */
+.welcome-main-featured-img {
+    margin-top: 20px;
+    perspective: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 40px 0;
+    background: linear-gradient(0deg, #0000000c, #000, #0000000c);
+}
+
+.featured-img {
+    display: flex;
+    width: 85%;
+    max-width: 1200px;
+    justify-content: center;
+    transform-style: preserve-3d;
+    transition: transform 0.3s cubic-bezier(.03, .98, .52, .99);
+    will-change: transform;
+    overflow: hidden;
+}
+
+.welcome-main-featured-img img {
+    display: flex;
+    width: 100%;
+    border: 1px solid var(--dark-color);
+    border-radius: 10px;
+    object-fit: cover;
+    transform: translateZ(10px);
 }

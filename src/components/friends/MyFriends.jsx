@@ -74,7 +74,7 @@ const MyFriends = () => {
 
   function goToProfile(username) {
     if (!username) return
-    navigate(`/${username}`)
+    navigate(`/user/${username}`)
   }
 
   async function removeFriend(friendId) {

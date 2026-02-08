@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from 'react'
 import { socialService } from '../../services/social.service'
 import { Frown, Check, X } from '@geist-ui/icons'
 import { useUser } from '../../hooks/useUser'
+import { Link } from 'react-router-dom'
 
 const Invitation = () => {
     const [received, setReceived] = useState([])
@@ -139,7 +140,7 @@ const Invitation = () => {
                             if (!u || !u.profile) return null
 
                             return (
-                                <article key={inv.id} className="invitations-card">
+                                <Link to={`/user/${u.profile.username}`} key={inv.id} className="invitations-card">
                                     <div>
                                         <img
                                             src={
@@ -162,7 +163,7 @@ const Invitation = () => {
                                             <X size={16} />
                                         </button>
                                     </section>
-                                </article>
+                                </Link>
                             )
                         })
                     )}
@@ -180,7 +181,7 @@ const Invitation = () => {
                         if (!u || !u.profile) return null
 
                         return (
-                            <article key={inv.id} className="invitations-card">
+                            <Link to={`/user/${u.profile.username}`} key={inv.id} className="invitations-card">
                                 <div>
                                     <img
                                         src={
@@ -200,7 +201,7 @@ const Invitation = () => {
                                         <X size={16} />
                                     </button>
                                 </section>
-                            </article>
+                            </Link>
                         )
                     })}
                 </section>
