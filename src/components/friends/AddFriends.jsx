@@ -2,6 +2,7 @@ import { Check, Copy, UserPlus } from "@geist-ui/icons"
 import { useUser } from "../../hooks/useUser"
 import { useState, useEffect, useRef } from "react"
 import { socialService } from "../../services/social.service"
+import { Link } from "react-router-dom"
 
 const AddFriends = () => {
     const { user } = useUser()
@@ -160,7 +161,9 @@ const AddFriends = () => {
                             {searchResults.map(u => (
                                 <div key={u.id} className="add-friend-card">
                                     <div>
-                                        <img src={u.profile?.photo || "https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg" } alt={u.profile?.username || "Unknown"} />
+                                        <Link to={`/user/${u.profile?.username}`}>
+                                            <img src={u.profile?.photo || "https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg"} alt={u.profile?.username || "Unknown"} />
+                                        </Link>
                                         <h1>{u.profile?.username || "Unknown"}</h1>
                                     </div>
                                     <button

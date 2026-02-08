@@ -45,14 +45,25 @@ const Header = () => {
 
     const { unread } = useNotifications()
 
-    const breadcrumbs = location.pathname
-        .split('/')
-        .filter(Boolean)
+    const pathname = location.pathname
+    const segments = pathname.split('/').filter(Boolean)
+
+    const isUserRoute = segments[0] === 'user'
+    const username = isUserRoute ? segments[1] : null
+
+    const dynamicSubRouteNames = {
+        ...subRouteNames,
+        ...(isUserRoute && username
+            ? { [`/user/${username}`]: username }
+            : {})
+    }
+
+    const breadcrumbs = segments
         .map((_, index, arr) => {
             const path = '/' + arr.slice(0, index + 1).join('/')
             return {
                 path,
-                label: subRouteNames[path] || routeNames[path],
+                label: dynamicSubRouteNames[path] || routeNames[path],
             }
         })
         .filter(b => b.label)

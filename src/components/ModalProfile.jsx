@@ -2,7 +2,7 @@ import { forwardRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { logout } from '../services/auth'
 import { useUser } from '../hooks/useUser'
-import { User, Home, Grid, Archive, Bookmark, Settings, LifeBuoy, BookOpen, LogOut, Layout } from '@geist-ui/icons'
+import { User, Home, Grid, Archive, Bookmark, Settings, LifeBuoy, BookOpen, LogOut, Layout, Users } from '@geist-ui/icons'
 
 const ModalProfile = forwardRef(({ isOpen, onMouseEnter, onMouseLeave }, ref) => {
 
@@ -42,6 +42,7 @@ const ModalProfile = forwardRef(({ isOpen, onMouseEnter, onMouseLeave }, ref) =>
         {user.steam_id ? '' : (<a href="https://backend-snakr.vercel.app/api/auth/steam"><i className="fa-brands fa-steam-symbol" />Conect Steam</a>)}
         <Link to="/profile"><User size={16} color='var(--gray-color)'/> Profile</Link>
         <Link to="/home"><Home size={16} color='var(--gray-color)'/> Home</Link>
+        <Link to="/friends"><Users size={16} color='var(--gray-color)'/> Friends</Link>
         <Link to="/catalog"><Grid size={16} color='var(--gray-color)'/> Catalog</Link>
         <Link to="/library"><Archive size={16} color='var(--gray-color)'/>Library</Link>
         <Link to="/wish-list"><Bookmark size={16} color='var(--gray-color)'/>Wish list</Link>
