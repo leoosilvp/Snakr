@@ -242,8 +242,18 @@
         gap: 10px;
     }
 
+    .notifications-content-header-right button:last-child{
+        display: none;
+    }
+
+    .notifications-grid{
+        gap: 0px;
+    }
+
     .notification {
-        border: 1px solid var(--border-color);
+        border: none;
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
         border-radius: 0;
     }
 
