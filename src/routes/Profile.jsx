@@ -57,6 +57,7 @@ const Profile = () => {
               id: friend.id,
               username: otherUser.profile.username,
               photo: otherUser.profile.photo,
+              level: otherUser.profile.accountLevel,
               status
             }
           })
@@ -220,12 +221,19 @@ const Profile = () => {
                         to={`/user/${friend.username}`}
                         className={`profile-card-friend ${friend.status || ''}`}
                       >
-                        <img
-                          src={friend.photo || DEFAULT_AVATAR}
-                          alt={friend.username}
-                        />
-                        <div />
-                        <h2>{friend.username}</h2>
+                        <section className='profile-card-friend-content'>
+                          <img
+                            src={friend.photo || DEFAULT_AVATAR}
+                            alt={friend.username}
+                          />
+                          <div />
+                          <h2>{friend.username}</h2>
+                        </section>
+                        <section className='profile-icon-level'>
+                          <h1 className={friend.level >= 100 ? 'pro' : friend.level >= 10 ? 'medium' : ''}>
+                            {friend.level}
+                          </h1>
+                        </section>
                       </Link>
                     ))}
 

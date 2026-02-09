@@ -126,11 +126,11 @@
     font-size: 1rem;
 }
 
-.profile-header-aside h1 span.medium{
+.profile-header-aside h1 span.medium {
     border-color: #c74040;
 }
 
-.profile-header-aside h1 span.pro{
+.profile-header-aside h1 span.pro {
     border-color: #ffcc00;
     font-size: 0.85rem;
 }
@@ -427,7 +427,7 @@
     color: #2db42a;
 }
 
-.profile-card-friend.playing div{
+.profile-card-friend.playing div {
     background: #2db42a;
 }
 
@@ -435,45 +435,73 @@
     color: #47ade4;
 }
 
-.profile-card-friend.online div{
+.profile-card-friend.online div {
     background: #47ade4;
 }
 
-.profile-card-friend{
+.profile-card-friend {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
     height: 45px;
     border-radius: 2px;
     gap: 0 !important;
 }
 
-.profile-card-friend:hover{
+.profile-card-friend:hover {
     background: var(--dark-color);
 }
 
-.profile-card-friend img{
+.profile-card-friend-content {
+    display: flex;
+    align-items: center;
+}
+
+.profile-card-friend img {
     display: flex;
     width: 45px;
     height: 45px;
     border-radius: 2px 0 0 2px;
 }
 
-.profile-card-friend div{
+.profile-card-friend div {
     display: flex;
     width: 4px;
     height: 100%;
     background: #969696;
 }
 
-.profile-card-friend h2{
+.profile-card-friend h2 {
     margin-left: 7px;
     font-size: 1rem;
     font-weight: 400;
     color: #969696;
 }
 
-.profile-no-friends{
+.profile-icon-level h1 {
+    margin-right: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 2px solid #696969;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    color: var(--light-color);
+}
+
+.profile-icon-level h1.medium {
+    border-color: #c74040;
+}
+
+.profile-icon-level h1.pro {
+    border-color: #ffcc00;
+    font-size: 0.85rem;
+}
+
+.profile-no-friends {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -481,24 +509,24 @@
     gap: 10px;
 }
 
-.profile-no-friends p{
+.profile-no-friends p {
     font-size: 0.8rem;
     font-weight: 300;
     color: var(--gray-color);
 }
 
-.profile-no-friends a{
+.profile-no-friends a {
     display: flex;
     color: var(--gray-color);
     transition: var(--transition-2s);
 }
 
-.profile-no-friends a:hover{
+.profile-no-friends a:hover {
     color: var(--light-color);
 }
 
 /* profile private */
-.profile-private{
+.profile-private {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -509,17 +537,17 @@
     color: var(--gray-color);
 }
 
-.profile-private h1{
+.profile-private h1 {
     font-size: 1.2rem;
     font-weight: 300;
 }
 
-.profile-header-aside-btns{
+.profile-header-aside-btns {
     display: flex;
     gap: 10px;
 }
 
-.profile-header-aside-btns button{
+.profile-header-aside-btns button {
     display: flex;
     align-items: center;
     width: fit-content;
@@ -534,24 +562,24 @@
     transition: var(--transition-2s);
 }
 
-.profile-header-aside-btns button:hover{
+.profile-header-aside-btns button:hover {
     background: var(--dark-color);
     color: var(--light-color);
 }
 
-.profile-header-aside-btns button.active{
+.profile-header-aside-btns button.active {
     background: var(--light-color);
     color: var(--black);
     box-shadow: 0 0 10px #ffffff35;
 }
 
-.profile-header-aside-btns button.active:hover{
+.profile-header-aside-btns button.active:hover {
     box-shadow: none;
     background: #c3c3c3;
 }
 
 
-.profile-header-aside-btns button.red{
+.profile-header-aside-btns button.red {
     color: #c74040;
     border-color: #963434;
 }
@@ -644,6 +672,20 @@
         background: #06060669;
     }
 
+    .profile-header-aside-btns a{
+        border: 1px solid #303030;
+        background: #131313;
+        color: var(--light-color);
+    }
+
+    .profile-header-aside-btns button{
+        min-width: max-content;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 10px 15px;
+    }
+
     .profile-content {
         display: flex;
         flex-direction: column-reverse;
@@ -694,6 +736,17 @@
         padding: 10px 15px;
         background: #060606a2;
         border-radius: 4px;
+    }
+
+    .profile-icon-level h1 {
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        font-size: 0.75rem;
+        margin-right: 7px;
+        border-radius: 50px;
     }
 
     .award {

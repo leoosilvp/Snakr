@@ -63,13 +63,14 @@ const User = () => {
               statusObj.status === 'playing'
                 ? 'playing'
                 : statusObj.status === 'online'
-                ? 'online'
-                : 'offline'
+                  ? 'online'
+                  : 'offline'
 
             return {
               id: friend.id,
               username: otherUser.profile.username,
               photo: otherUser.profile.photo,
+              level: otherUser.profile.accountLevel,
               status
             }
           })
@@ -197,7 +198,7 @@ const User = () => {
         '--background-img': `url(${isPublic
           ? profile?.settings?.appearance?.background || background
           : background
-        })`
+          })`
       }}
     >
       <Header />
@@ -233,8 +234,8 @@ const User = () => {
                 profile?.profile?.accountLevel >= 100
                   ? 'pro'
                   : profile?.profile?.accountLevel >= 10
-                  ? 'medium'
-                  : ''
+                    ? 'medium'
+                    : ''
               }>
                 {profile?.profile?.accountLevel}
               </span>
@@ -314,12 +315,19 @@ const User = () => {
                           to={`/user/${friend.username}`}
                           className={`profile-card-friend ${friend.status}`}
                         >
-                          <img
-                            src={friend.photo || DEFAULT_AVATAR}
-                            alt={friend.username}
-                          />
-                          <div />
-                          <h2>{friend.username}</h2>
+                          <section className='profile-card-friend-content'>
+                            <img
+                              src={friend.photo || DEFAULT_AVATAR}
+                              alt={friend.username}
+                            />
+                            <div />
+                            <h2>{friend.username}</h2>
+                          </section>
+                          <section className='profile-icon-level'>
+                            <h1 className={friend.level >= 100 ? 'pro' : friend.level >= 10 ? 'medium' : ''}>
+                              {friend.level}
+                            </h1>
+                          </section>
                         </Link>
                       ))}
 
