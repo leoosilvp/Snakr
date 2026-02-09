@@ -34,6 +34,8 @@ const subRouteNames = {
 const Header = () => {
     const { user } = useUser()
 
+    const isLogged = Boolean(user)
+
     const location = useLocation()
     const [isScrolled, setIsScrolled] = useState(false)
 
@@ -117,23 +119,25 @@ const Header = () => {
                     </Link>
 
                     {breadcrumbs.map((item) => (
-                        <span key={item.path} className="breadcrumb">
+                        <span key={item.path} className={`breadcrumb ${!isLogged && 'no-login'}`}>
                             <p>/</p>
                             <h2>{item.label}</h2>
                         </span>
                     ))}
                 </article>
 
-                <article className="header-content-right">
-                    <Link to="/notifications"><Bell size={16} /> {unread > 0 && (<div className="notification-count">{unread > 99 ? '99+' : unread}</div>)}</Link>
-                    <Link to="/wish-list"><Bookmark size={16} /></Link>
+                {isLogged &&
+                    <article className="header-content-right">
+                        <Link to="/notifications"><Bell size={16} /> {unread > 0 && (<div className="notification-count">{unread > 99 ? '99+' : unread}</div>)}</Link>
+                        <Link to="/wish-list"><Bookmark size={16} /></Link>
 
-                    <div onMouseEnter={handleAvatarMouseEnter} onMouseLeave={handleAvatarMouseLeave}>
-                        <Link to="/profile" title={user?.profile?.username}>
-                            <img src={user?.profile?.photo || 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'} />
-                        </Link>
-                    </div>
-                </article>
+                        <div onMouseEnter={handleAvatarMouseEnter} onMouseLeave={handleAvatarMouseLeave}>
+                            <Link to="/profile" title={user?.profile?.username}>
+                                <img src={user?.profile?.photo || 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'} />
+                            </Link>
+                        </div>
+                    </article>
+                }
             </section>
 
             <nav>

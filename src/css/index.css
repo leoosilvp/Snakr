@@ -677,6 +677,12 @@ input:checked+.slider::before {
     text-overflow: ellipsis;
   }
 
+  .breadcrumb.no-login h2 {
+    max-width: unset;
+    overflow: unset;
+    text-overflow: unset;
+  }
+
   .header-content-right a:hover {
     border-color: #252525;
     color: var(--gray-color);

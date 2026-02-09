@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react'
 import { usePublicProfile } from '../hooks/usePublicProfile'
 import { socialService } from '../services/social.service'
 import { useUser } from '../hooks/useUser'
-import { Lock, Mail, Share2, UserMinus, UserPlus } from '@geist-ui/icons'
+import { Lock, Mail, Share2, UserMinus, UserPlus, Users } from '@geist-ui/icons'
 
 const DEFAULT_AVATAR =
   'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'
@@ -24,6 +24,8 @@ const User = () => {
   const [friendRelationId, setFriendRelationId] = useState(null)
 
   const awards = profile?.awards?.awards ?? []
+
+  const isLogged = Boolean(user)
 
   const preference = profile?.settings?.profile
   const isPublic = preference?.isPublic
@@ -242,11 +244,17 @@ const User = () => {
             </h1>
 
             <section className='profile-header-aside-btns'>
-              {friendStatus === 'none' && (
-                <button className='active' onClick={handleAddFriend}>
-                  <UserPlus size={18} /> Add friend
+
+              {friendStatus === 'none' && isLogged == false ?
+                <button onClick={()=>window.location.href='/login'}>
+                  <Users size={18} /> Login to follow
                 </button>
-              )}
+                :
+                friendStatus === 'none' && (
+                  <button className='active' onClick={handleAddFriend}>
+                    <UserPlus size={18} /> Add friend
+                  </button>
+                )}
 
               {friendStatus === 'pending' && (
                 <button disabled>
