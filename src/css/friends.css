@@ -751,4 +751,16 @@
     }
 
 
+    /* invitations */
+    .invitations-main {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 30px;
+    }
+
+    .no-invitations p {
+        font-size: 0.8rem;
+    }
+
 }
