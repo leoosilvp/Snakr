@@ -7,6 +7,7 @@ const FRIENDS_CACHE_TTL = 2 * 60 * 1000 // 2 minutos
 let cachedFriends = null
 let lastFetch = 0
 let pendingFriendsPromise = null
+let cachedUserId = null // evita servir cache de outro usuário
 
 async function request(path, options = {}) {
   const res = await fetch(`${API_URL}${path}`, {
@@ -23,17 +24,15 @@ async function request(path, options = {}) {
     throw new Error(error.error || 'Request failed')
   }
 
+  if (res.status === 204) return null
+
   return res.json()
 }
 
 export const socialService = {
-  // ==================== USERS ====================
-
   listUsers() {
     return request('/api/user/list', { method: 'GET' })
   },
-
-  // ==================== FRIENDS ====================
 
   getCachedFriends() {
     return cachedFriends
@@ -46,7 +45,12 @@ export const socialService = {
 
     const now = Date.now()
 
-    if (!force && cachedFriends && now - lastFetch < FRIENDS_CACHE_TTL) {
+    if (
+      !force &&
+      cachedFriends &&
+      cachedUserId === myUserId &&
+      now - lastFetch < FRIENDS_CACHE_TTL
+    ) {
       return cachedFriends
     }
 
@@ -84,6 +88,7 @@ export const socialService = {
           .filter(Boolean)
 
         cachedFriends = normalized
+        cachedUserId = myUserId
         lastFetch = Date.now()
         pendingFriendsPromise = null
 
@@ -96,8 +101,6 @@ export const socialService = {
 
     return pendingFriendsPromise
   },
-
-  // ==================== FRIEND ACTIONS ====================
 
   async sendFriendRequest(friendCode = null, username = null) {
     if (!friendCode && !username) {
@@ -137,11 +140,10 @@ export const socialService = {
     return res
   },
 
-  // ==================== CACHE ====================
-
   invalidateFriendsCache() {
     cachedFriends = null
     lastFetch = 0
     pendingFriendsPromise = null
+    cachedUserId = null
   },
 }

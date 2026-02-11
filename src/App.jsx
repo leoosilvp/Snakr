@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { ConsoleBanner } from './hooks/ConsoleBanner'
-import { useOfflineOnUnload } from "./hooks/useOfflineOnUnload";
 import ChangeIcon from './hooks/ChangeIcon'
 import Home from "./routes/Home"
 import Error from "./routes/Error";
@@ -36,7 +35,6 @@ import User from "./routes/User";
 function App() {
   ConsoleBanner()
   ChangeIcon();
-  useOfflineOnUnload();
 
   const isPlaying = false
   const gameName = null

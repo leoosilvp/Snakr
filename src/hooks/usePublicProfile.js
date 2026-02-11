@@ -34,6 +34,11 @@ export function usePublicProfile() {
           throw new Error('FAILED_TO_FETCH_PROFILE')
         }
 
+        if (res.status === 204) {
+          setProfile(null)
+          return
+        }
+
         const data = await res.json()
         setProfile(data)
       } catch (err) {
