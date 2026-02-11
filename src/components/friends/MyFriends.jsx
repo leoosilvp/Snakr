@@ -33,7 +33,6 @@ const MyFriends = () => {
     fetchFriends()
   }, [myUserId])
 
-
   const normalizedFriends = useMemo(() => {
     if (!myUserId) return []
 
@@ -43,11 +42,12 @@ const MyFriends = () => {
           friend.requester_id === myUserId ? friend.addressee : friend.requester
         if (!otherUser) return null
 
-        const statusObj = otherUser.status || {}
+        const presenceObj = otherUser.presence || {}
+
         const status =
-          statusObj.status === 'playing'
+          presenceObj.status === 'playing'
             ? 'playing'
-            : statusObj.status === 'online'
+            : presenceObj.status === 'online'
               ? 'online'
               : 'offline'
 
@@ -55,7 +55,7 @@ const MyFriends = () => {
           ...friend,
           users: otherUser,
           _status: status,
-          _playing: status === 'playing' ? statusObj.playing : null,
+          _playing: status === 'playing' ? presenceObj.playing : null,
         }
       })
       .filter(Boolean)
@@ -98,7 +98,7 @@ const MyFriends = () => {
       >
         <section className='friend-img'>
           <img
-            src={user.profile.photo || "https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg" }
+            src={user.profile.photo || "https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg"}
             alt={user.profile.username || 'Unknown'}
           />
         </section>

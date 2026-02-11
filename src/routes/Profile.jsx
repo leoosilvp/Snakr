@@ -20,7 +20,6 @@ const Profile = () => {
   const awards = user?.awards?.awards ?? []
   const [friends, setFriends] = useState([])
 
-
   // user preferences
   const preference = user?.settings?.profile
   const showGames = preference?.showGames
@@ -45,7 +44,9 @@ const Profile = () => {
 
             if (!otherUser || !otherUser.profile) return null
 
-            const statusObj = otherUser.status || {}
+            // 🔥 AGORA USA PRESENCE (CORREÇÃO)
+            const statusObj = otherUser.presence || {}
+
             const status =
               statusObj.status === 'playing'
                 ? 'playing'
@@ -89,7 +90,7 @@ const Profile = () => {
         await navigator.share(shareData)
         return
       } catch {
-        // usuário cancelou ou falha silenciosa
+        //
       }
     }
 
@@ -100,7 +101,6 @@ const Profile = () => {
       alert('Unable to copy profile link')
     }
   }
-
 
   const STATUS_ORDER = {
     playing: 0,
@@ -165,7 +165,9 @@ const Profile = () => {
 
             <section className='profile-header-aside-btns'>
               <Link to='/settings/account'>Edit profile</Link>
-              <button onClick={handleShareProfile}><Share2 size={18} /> Share profile</button>
+              <button onClick={handleShareProfile}>
+                <Share2 size={18} /> Share profile
+              </button>
             </section>
           </div>
         </header>
@@ -174,7 +176,6 @@ const Profile = () => {
           <div>
             <Collection userId={user?.id} showGames={showGames} />
             {showActivity ? <RecentActivity /> : ''}
-
           </div>
 
           <aside className='profile-aside'>
