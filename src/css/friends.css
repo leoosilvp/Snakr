@@ -615,3 +615,106 @@
     color: #eb5252;
     background: #1c0000;
 }
+
+@media (width < 720px) {
+    .friends-main-content {
+        width: 100vw;
+        gap: 10px;
+    }
+
+    .friends-ctn {
+        flex-direction: column;
+        justify-content: start;
+        gap: 15px;
+    }
+
+
+    /* banner user */
+    .friends-main-me {
+        padding: 15px;
+    }
+
+    .friends-main-me img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .friends-main-me a {
+        font-size: 1rem;
+    }
+
+
+    /* aside nav */
+    .friends-main-aside {
+        position: relative;
+        top: 0;
+        flex-direction: initial;
+        width: 100vw;
+        padding: 0 10px;
+        overflow: auto;
+    }
+
+    .friends-main-aside::-webkit-scrollbar {
+        display: none;
+    }
+
+    .friends-main-aside h1 {
+        display: none;
+    }
+
+    .friends-main-aside ul {
+        flex-direction: initial;
+        gap: 5px;
+    }
+
+    .friends-main-aside ul a {
+        width: max-content;
+        padding: 6px 10px;
+        gap: 15px;
+    }
+
+    .friends-main-aside ul a:hover {
+        background: transparent;
+    }
+
+    .friends-main-aside ul a.active {
+        background: #0b0b0b;
+    }
+
+    .friends-content {
+        padding: 15px;
+    }
+
+    /* my friends */
+    .friends-main-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .friends-main-header-actions {
+        justify-content: end;
+    }
+
+    .friends-main-header-actions a:last-child {
+        display: none;
+    }
+
+    .friends-grid {
+        width: 100%;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .friend-card {
+        width: 100%;
+    }
+
+    .friend-remove-btn {
+        opacity: 1;
+        margin-left: auto;
+        margin-right: 10px;
+    }
+
+
+
+    
+}
