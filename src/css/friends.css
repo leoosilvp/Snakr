@@ -675,6 +675,7 @@
 
     .friends-main-aside ul a:hover {
         background: transparent;
+        color: #454545;
     }
 
     .friends-main-aside ul a.active {
@@ -714,7 +715,40 @@
         margin-right: 10px;
     }
 
+    /* add friend */
+    .add-friends-main {
+        overflow: visible;
+    }
+
+    .add-friends-main-header {
+        width: 100%;
+        border-radius: 5px 5px 0 0;
+    }
+
+    .add-friend-content input {
+        width: 100%;
+    }
+
+    .add-friend-list {
+        position: relative;
+        margin-top: 2px;
+        width: 100%;
+        max-height: 150px;
+    }
+
+    .add-friend-content p {
+        margin-top: 20px;
+        width: 100%;
+        font-size: 0.7rem;
+        font-weight: 100;
+        text-align: justify;
+    }
+
+    .friend-code {
+        justify-content: space-between;
+        width: 100%;
+        gap: 0px;
+    }
 
 
-    
 }
