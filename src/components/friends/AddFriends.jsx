@@ -137,7 +137,7 @@ const AddFriends = () => {
                     <h1>Enter the friend code of the person you want to add.</h1>
                     <input
                         type="text"
-                        placeholder="código do amigo"
+                        placeholder="friend code"
                         onKeyDown={async e => {
                             if (e.key === "Enter" && e.target.value) {
                                 await sendRequestByCode(e.target.value)

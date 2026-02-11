@@ -140,7 +140,7 @@ const Invitation = () => {
                             if (!u || !u.profile) return null
 
                             return (
-                                <Link to={`/user/${u.profile.username}`} key={inv.id} className="invitations-card">
+                                <Link key={inv.id} className="invitations-card">
                                     <div>
                                         <img
                                             src={
@@ -181,7 +181,7 @@ const Invitation = () => {
                         if (!u || !u.profile) return null
 
                         return (
-                            <Link to={`/user/${u.profile.username}`} key={inv.id} className="invitations-card">
+                            <Link key={inv.id} className="invitations-card">
                                 <div>
                                     <img
                                         src={
