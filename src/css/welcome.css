@@ -4,7 +4,8 @@
     align-items: center;
     width: 100vw;
     height: 100vh;
-    background-image: linear-gradient(0deg, #000000, #00000075), url('https://www.shutterstock.com/image-illustration/binary-code-on-black-backdrop-600nw-2425782165.jpg');
+    background-image: linear-gradient(0deg, #000000, #0000001e), url('https://static.vecteezy.com/system/resources/previews/043/509/997/non_2x/vr-hud-futuristic-interface-grid-line-and-dot-head-up-display-similar-pattern-digital-ui-screen-mesh-gui-digital-hi-tech-visor-backdrop-template-fui-sci-fi-dashboard-eps-display-black-and-white-vector.jpg');
+    background-size: 750px;
     overflow: auto;
     overflow-x: hidden;
 }
@@ -34,13 +35,19 @@
     padding: 10px 15px;
     border: 1px solid var(--dark-color);
     border-radius: 7px;
-    background: #00000065;
+    background: #0000001e;
     backdrop-filter: blur(5px);
+    box-shadow: 0 0 15px #00000095;
 }
 
 .welcome-main-header img {
     display: flex;
     width: 35px;
+    transition: var(--transition-2s);
+}
+
+.welcome-main-header img:hover{
+    opacity: 0.8;
 }
 
 .welcome-main-header nav ul {
@@ -91,7 +98,7 @@
     width: 100%;
     flex-direction: column;
     align-items: center;
-    padding: 80px 0px;
+    padding: 60px 0px;
 }
 
 .welcome-hero {
@@ -102,15 +109,35 @@
     gap: 20px;
 }
 
+.welcome-hero-row{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.welcome-hero-row p{
+    display: flex;
+    align-items: center;
+    width: fit-content !important;
+    gap: 10px;
+    padding: 7px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    font-size: 0.85rem !important;
+    backdrop-filter: blur(5px) ;
+    box-shadow: 0 0 15px #ffffff15;
+}
+
 .welcome-hero h1 {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 3rem;
+    font-weight: 800;
     color: var(--light-color);
 }
 
 .welcome-hero p {
     text-align: center;
-    font-size: 1rem;
+    font-size: 0.95rem;
     width: 600px;
     color: #b3b3b3;
 }
@@ -126,7 +153,7 @@
     align-items: center;
     gap: 7px;
     padding: 10px 15px;
-    border-radius: 5px;
+    border-radius: var(--border);
     border: 1px solid var(--dark-color);
     background: #050505;
     font-size: 0.9rem;

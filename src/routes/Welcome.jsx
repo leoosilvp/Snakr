@@ -2,7 +2,7 @@ import '../css/welcome.css'
 import icon from "../assets/svg/logo.svg"
 import news from '../assets/img/interface.png'
 import { Link } from 'react-router-dom'
-import { Github, GitPullRequest, StopCircle, Terminal } from '@geist-ui/icons'
+import { Github, GitPullRequest, Star, StopCircle, Terminal } from '@geist-ui/icons'
 import { useRef } from 'react'
 
 const Welcome = () => {
@@ -78,8 +78,12 @@ const Welcome = () => {
 
             <section className='welcome-main-content'>
                 <section className='welcome-hero'>
-                    <h1>The definitive game launcher for all your gaming needs</h1>
-                    <p>Snakr is a game launcher that allows you to download, play, track your stats and manage your games all in one place.</p>
+                    <section className='welcome-hero-row'>
+                        <p><Star color='#e3b709' size={16}/>Your OpenSource gaming center</p>
+                    </section>
+
+                    <h1>Your games, your rules. No walls, no gatekeepers</h1>
+                    <p>Snakr unifies your collections across platforms while giving you unrestricted access to games. No DRM. No barriers. Just pure gaming freedom.</p>
                     <div className='welcome-hero-btns'>
                         <Link to='/home' className='active'><Terminal />Access Snakr</Link>
                         <Link to='https://github.com/leoosilvp/Snakr' ><Github />GitHub</Link>
