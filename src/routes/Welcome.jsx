@@ -2,7 +2,7 @@ import '../css/welcome.css'
 import icon from "../assets/svg/logo.svg"
 import news from '../assets/img/interface.png'
 import { Link } from 'react-router-dom'
-import { Github, GitPullRequest, Star, StopCircle, Terminal } from '@geist-ui/icons'
+import { Github, GitPullRequest, Lock, Shield, Star, StopCircle, Terminal, Zap } from '@geist-ui/icons'
 import { useRef } from 'react'
 
 const Welcome = () => {
@@ -79,7 +79,7 @@ const Welcome = () => {
             <section className='welcome-main-content'>
                 <section className='welcome-hero'>
                     <section className='welcome-hero-row'>
-                        <p><Star color='#e3b709' size={16}/>Your OpenSource gaming center</p>
+                        <p><Star color='#e3b709' size={16} />Your OpenSource gaming center</p>
                     </section>
 
                     <h1>Your games, your rules. No walls, no gatekeepers</h1>
@@ -98,6 +98,38 @@ const Welcome = () => {
                         onMouseLeave={handleMouseLeave}
                     >
                         <img src={news} />
+                    </div>
+                </section>
+
+                <section className="features-section">
+                    <div className="features-grid">
+                        <article className="feature-card">
+                            <div className='feature-card-header'>
+                                <div className="feature-icon">
+                                    <Lock size={18} />
+                                </div>
+                                <h3>No DRM</h3>
+                            </div>
+                            <p>Play your games without restrictions. True ownership, no strings attached.</p>
+                        </article>
+                        <article className="feature-card">
+                            <div className='feature-card-header'>
+                                <div className="feature-icon">
+                                    <Shield size={18} />
+                                </div>
+                                <h3>Privacy First</h3>
+                            </div>
+                            <p>Your data stays yours. No tracking, no analytics, complete privacy.</p>
+                        </article>
+                        <article className="feature-card">
+                            <div className='feature-card-header'>
+                                <div className="feature-icon">
+                                    <Zap size={18} />
+                                </div>
+                                <h3>Lightning Fast</h3>
+                            </div>
+                            <p>Optimized performance for seamless gaming experience across all titles.</p>
+                        </article>
                     </div>
                 </section>
             </section>

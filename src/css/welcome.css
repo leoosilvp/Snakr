@@ -188,8 +188,8 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 40px 0;
-    background: linear-gradient(0deg, #0000000c, #000, #0000000c);
+    padding: 60px 0;
+    background: linear-gradient(0deg, #000000b3, #000000, #000000b3);
 }
 
 .featured-img {
@@ -200,14 +200,89 @@
     transform-style: preserve-3d;
     transition: transform 0.3s cubic-bezier(.03, .98, .52, .99);
     will-change: transform;
+    border: 1px solid var(--dark-color);
+    border-radius: 10px;
     overflow: hidden;
 }
 
 .welcome-main-featured-img img {
     display: flex;
     width: 100%;
-    border: 1px solid var(--dark-color);
-    border-radius: 10px;
     object-fit: cover;
     transform: translateZ(10px);
+}
+
+.features-section {
+    margin-top: 10px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.feature-card {
+    padding: 20px 15px;
+    overflow: hidden;
+    transition: var(--transition-2s);
+    border-top: 1px solid #191919;
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    opacity: 0.7;
+}
+
+.feature-card:hover {
+    opacity: 1;
+    border-color: #5b5b5b;
+    transform: translateY(-4px);
+    backdrop-filter: blur(2px);
+}
+
+.feature-card-header{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.feature-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #8686861a;
+    backdrop-filter: blur(2px);
+    border: 1px solid #ffffff33;
+    border-radius: var(--border);
+    margin-bottom: 20px;
+    color: var(--accent);
+}
+
+.feature-header {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #8686861a;
+    backdrop-filter: blur(2px);
+    border: 1px solid #ffffff33;
+    border-radius: 7px;
+    margin-bottom: 20px;
+}
+
+.feature-card h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--light-color);
+    margin-bottom: 12px;
+}
+
+.feature-card p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--gray-color);
 }
