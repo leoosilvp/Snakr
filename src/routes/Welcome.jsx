@@ -3,7 +3,7 @@ import icon from "../assets/svg/logo.svg"
 import logo from "../assets/svg/logo2.svg"
 import news from '../assets/img/interface.png'
 import { Link } from 'react-router-dom'
-import { Github, GitPullRequest, Heart, Lock, Shield, Star, StopCircle, Terminal, Zap } from '@geist-ui/icons'
+import { BarChart2, Github, GitPullRequest, Heart, Lock, Shield, Star, StopCircle, Terminal, Zap } from '@geist-ui/icons'
 import { useRef } from 'react'
 
 const Welcome = () => {
@@ -175,8 +175,27 @@ const Welcome = () => {
                     </section>
                 </section>
 
-
-
+                <section className="stats-row">
+                    <span><BarChart2 size={16}/>Growing community</span>
+                    <h1>Snakr's growth status</h1>
+                    <p>Like a snake shedding its skin, our community grows stronger every day, and the numbers speak for themselves:</p>
+                    <section className='stats-row-content'>
+                        <article className="stat-item">
+                            <div className="stat-number">100K+</div>
+                            <div className="stat-label">Active Users</div>
+                        </article>
+                        <div className="stat-divider" />
+                        <article className="stat-item">
+                            <div className="stat-number">50K+</div>
+                            <div className="stat-label">Games Available</div>
+                        </article>
+                        <div className="stat-divider" />
+                        <article className="stat-item">
+                            <div className="stat-number">24/7</div>
+                            <div className="stat-label">Community Support</div>
+                        </article>
+                    </section>
+                </section>
 
                 <footer className="welcome-footer">
                     <div className="footer-content">
