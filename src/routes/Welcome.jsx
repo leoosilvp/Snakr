@@ -132,6 +132,47 @@ const Welcome = () => {
                         </article>
                     </div>
                 </section>
+
+                <section className='about-snakr'>
+                    <section className='about-snakr-background'>
+                        <div>
+                            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/105600/header_292x136.jpg?t=1769844435" />
+                            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2397300/54d7f7be1eb9e289186fab6132dc668c3644f826/header_292x136.jpg?t=1769873014" />
+                            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/322170/header_292x136.jpg?t=1703006148" />
+                            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/312520/header_292x136.jpg?t=1769011296" />
+                            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/221100/header_292x136.jpg?t=1769695513" />
+                            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/448280/header_292x136.jpg?t=1710217876" />
+                        </div>
+                        <div className='active'>
+                            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/594650/header_292x136.jpg?t=1770652362" />
+                            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3059520/37f833ca5bd3d5c3eec2b411131f3e00f580bbe7/header.jpg?t=1767801592" />
+                            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/12210/header_292x136.jpg?t=1721061564" />
+                            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1222680/header_292x136.jpg?t=1716831270" />
+                            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3949040/cae24b4ed7f4531be51f0d63f785b7d253f92dc3/header_292x136.jpg?t=1766020280" />
+                        </div>
+                        <div>
+                            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/22380/header.jpg?t=1765992876" />
+                            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/516750/header_292x136.jpg?t=1736372299" />
+                            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2537590/header_292x136.jpg?t=1747324291" />
+                            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1551360/header_292x136.jpg?t=1746471508" />
+                            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1091500/e9047d8ec47ae3d94bb8b464fb0fc9e9972b4ac7/header_292x136.jpg?t=1769690377" />
+                            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/934700/header_292x136.jpg?t=1761231459" />
+                        </div>
+                        <div className='active'>
+                            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3527290/31bac6b2eccf09b368f5e95ce510bae2baf3cfcd/header_292x136.jpg?t=1764003551" />
+                            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2483190/27abb1584a118d50d0e3950fd48d557c51981db7/header_292x136.jpg?t=1769736903" />
+                            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/686810/fa2c71907321b36aab57edc44dbfe645f0f3a899/header_292x136_alt_assets_4.jpg?t=1770938229" />
+                            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2300320/c2a205133d23cd24faf3c152d972a1d0177661b8/header_292x136.jpg?t=1764249746" />
+                            <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3917090/6954316f59850d5eb912464e30f5644a38131e7b/header.jpg?t=1766069643" />
+                        </div>
+                    </section>
+                    <section className='about-snakr-content'>
+                        <h1>What is Snakr?</h1>
+                        <p>We believe gaming libraries should belong to players, not platforms. That's why we created Snakr - an open-source game launcher that unifies your collections across Steam, Epic, GOG, and more, while removing DRM restrictions and giving you true ownership of your games.</p>
+                        <p>Join thousands of gamers who've reclaimed control of their gaming libraries.</p>
+                        <Link to='/home'><Terminal />Access Snakr</Link>
+                    </section>
+                </section>
             </section>
         </main>
     )
