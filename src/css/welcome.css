@@ -31,7 +31,7 @@
     align-items: center;
     justify-content: space-between;
     width: 95vw;
-    max-width: 1300px;
+    max-width: 1200px;
     padding: 10px 15px;
     border: 1px solid var(--dark-color);
     border-radius: 7px;
@@ -98,7 +98,7 @@
     width: 100%;
     flex-direction: column;
     align-items: center;
-    padding: 60px 0px;
+    padding: 60px 0px 20px;
 }
 
 .welcome-hero {
@@ -290,7 +290,7 @@
 
 
 .about-snakr {
-    margin-top: 200px;
+    margin-top: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -343,7 +343,7 @@
 }
 
 .about-snakr-content h1 {
-    font-size: 3.5rem;
+    font-size: 3.7rem;
     font-weight: 600;
 }
 
@@ -354,7 +354,7 @@
 }
 
 .about-snakr-content a {
-    margin-top: 15px;
+    margin-top: 25px;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -363,10 +363,91 @@
     border-radius: var(--border);
     color: var(--black);
     font-size: 0.9rem;
-    font-weight: 500;
+    font-weight: 600;
     transition: var(--transition-2s);
 }
 
 .about-snakr-content a:hover {
     box-shadow: 0 0 10px #ffffff62;
+}
+
+
+
+
+/* Footer */
+.welcome-footer {
+    margin-top: 350px;
+    width: 100%;
+    padding: 30px 15px 0;
+    border-top: 1px solid var(--dark-color);
+    background: #0000001e;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 15px #00000095;
+    cursor: default;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.footer-section h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--light-color);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-section a {
+    display: block;
+    width: fit-content;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--gray-color);
+    margin-bottom: 8px;
+    transition: var(--transition-2s);
+}
+
+.footer-section a:hover {
+    color: var(--light-color);
+    padding-left: 4px;
+}
+
+.footer-section-logo p{
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--gray-color);
+}
+
+.footer-section-logo a{
+    transition: var(--transition-2s);
+}
+
+.footer-section-logo a:hover{
+    opacity: 0.8;
+}
+
+.footer-logo {
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 20px;
+    border-top: 1px solid var(--dark-color);
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-size: 0.8rem;
+    font-weight: 200;
+    color: var(--gray-color);
 }

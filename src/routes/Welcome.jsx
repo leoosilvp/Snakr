@@ -1,8 +1,9 @@
 import '../css/welcome.css'
 import icon from "../assets/svg/logo.svg"
+import logo from "../assets/svg/logo2.svg"
 import news from '../assets/img/interface.png'
 import { Link } from 'react-router-dom'
-import { Github, GitPullRequest, Lock, Shield, Star, StopCircle, Terminal, Zap } from '@geist-ui/icons'
+import { Github, GitPullRequest, Heart, Lock, Shield, Star, StopCircle, Terminal, Zap } from '@geist-ui/icons'
 import { useRef } from 'react'
 
 const Welcome = () => {
@@ -173,6 +174,50 @@ const Welcome = () => {
                         <Link to='/home'><Terminal />Access Snakr</Link>
                     </section>
                 </section>
+
+
+
+
+                <footer className="welcome-footer">
+                    <div className="footer-content">
+                        <div className="footer-section-logo">
+                            <Link to='/home'>
+                                <img src={logo} alt="Snakr" className="footer-logo" />
+                            </Link>
+                            <p>All your games. One place.</p>
+                        </div>
+                        <div className="footer-section">
+                            <h4>Snakr</h4>
+                            <Link to='/login'>Login</Link>
+                            <Link to='/login?view=register'>Register</Link>
+                            <Link to='/home'>Home</Link>
+                            <Link to='/profile'>Profile</Link>
+                        </div>
+                        <div className="footer-section">
+                            <h4>Product</h4>
+                            <Link to=''>Documentation</Link>
+                            <Link to='/status'>Status</Link>
+                            <Link to=''>Downloads</Link>
+                            <Link to='/contribute'>Contribute</Link>
+                        </div>
+                        <div className="footer-section">
+                            <h4>Community</h4>
+                            <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>GitHub</Link>
+                            <Link to=''>Discord</Link>
+                            <Link to=''>Instagram</Link>
+                            <Link to=''>Twitter</Link>
+                        </div>
+                        <div className="footer-section">
+                            <h4>Legal</h4>
+                            <Link to='/settings/terms%20and%20privacy'>Privacy Policy</Link>
+                            <Link to='/settings/terms%20and%20privacy'>Terms of Service</Link>
+                            <Link to='https://github.com/leoosilvp/Snakr/blob/main/LICENSE'>License</Link>
+                        </div>
+                    </div>
+                    <div className="footer-bottom">
+                        <p>Snakr | ©2026. Open source and built with <Heart size={12} /> by snakrs.</p>
+                    </div>
+                </footer>
             </section>
         </main>
     )
