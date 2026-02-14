@@ -1,12 +1,12 @@
 <div align="center">
-  <a href="https://snakr-im.vercel.app/">
+  <a href="https://snakr.one">
     <img src="./src/assets/svg/logo3.svg" width="280" alt="Snakr logo" />
   </a>
   
   <p><strong>All your games. One place.</strong></p>
 
   <p>
-    <a href="https://snakr-im.vercel.app/">snakr.com</a>
+    <a href="https://snakr.one">snakr.one</a>
   </p>
 </div>
 
