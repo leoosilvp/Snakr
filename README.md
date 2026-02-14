@@ -54,9 +54,9 @@ A arquitetura foi pensada para permitir **novas integrações de plataformas** s
 - ✅ Deploy automatizado na Vercel  
 - ✅ Autenticação completa com plataformas externas  
 - ✅ Aplicação mobile
-- 🎮 Sincronização automática de bibliotecas  
-- 🏆 Conquistas globais e comparativos entre amigos  
+- ✅ Conquistas globais e comparativos entre amigos  
 - 💬 Chat em tempo real e sistema de presença  
+- 🎮 Sincronização automática de bibliotecas  
 - 📊 Estatísticas avançadas de gameplay  
 - 🛡️ Segurança, limites de API e controle de tokens  
 
@@ -69,11 +69,6 @@ O **Snakr** está aberto a colaborações com desenvolvedores interessados em:
 - Backend (Node.js / APIs / Integrações)  
 - Arquitetura e performance  
 - Experiência social e features multiplayer
-
-### Entre em contato
-
-[![WhatsApp](https://img.shields.io/badge/WhatsApp-Contato-25D366?logo=whatsapp&logoColor=white)](https://wa.me/5511995786774)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Leonardo%20Silva-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/leeosilvp/)
 
 
 ## License
