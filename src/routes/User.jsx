@@ -28,7 +28,6 @@ const User = () => {
   const isLogged = Boolean(user)
 
   const preference = profile?.settings?.profile
-  const isPublic = preference?.isPublic
   const showGames = preference?.showGames
   const showActivity = preference?.showActivity
   const showAchievements = preference?.showAchievements
@@ -83,7 +82,7 @@ const User = () => {
     }
 
     fetchFriends()
-  }, [profile?.profile?.username, profile?.id])
+  }, [profile?.profile?.username, profile?.id, friendStatus])
 
   useEffect(() => {
     if (!user?.id || !profile?.id) return
@@ -190,6 +189,8 @@ const User = () => {
       (STATUS_ORDER[a.status] ?? 99) - (STATUS_ORDER[b.status] ?? 99)
     )
     .slice(0, 10)
+
+  const isPublic = Boolean(friendStatus === 'accepted' || (preference?.isPublic ?? true))
 
   return (
     <main
