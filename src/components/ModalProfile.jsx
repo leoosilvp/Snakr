@@ -39,7 +39,7 @@ const ModalProfile = forwardRef(({ isOpen, onMouseEnter, onMouseLeave }, ref) =>
       </Link>
 
       <section className="modal-profile-btns">
-        {user.steam_id ? '' : (<a href="/api/auth/steam"><i className="fa-brands fa-steam-symbol" />Conect Steam</a>)}
+        {user.steam_id ? '' : (<a href="/api/steam"><i className="fa-brands fa-steam-symbol" />Conect Steam</a>)}
         <Link to="/profile"><User size={16} color='var(--gray-color)'/> Profile</Link>
         <Link to="/home"><Home size={16} color='var(--gray-color)'/> Home</Link>
         <Link to="/friends"><Users size={16} color='var(--gray-color)'/> Friends</Link>

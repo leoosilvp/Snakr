@@ -42,13 +42,11 @@ const User = () => {
   }
 
   useEffect(() => {
-    if (!profile?.id) return
+    if (!profile?.profile?.username) return
 
     async function fetchFriends() {
       try {
-        const data = await socialService.listFriends({
-          myUserId: profile.id
-        })
+        const data = await socialService.listPublicProfileFriends(profile.profile.username)
 
         const acceptedFriends = data
           .filter(f => f.status === 'accepted')
@@ -60,16 +58,16 @@ const User = () => {
 
             if (!otherUser?.profile) return null
 
-            const statusObj = otherUser.status || {}
+            const presenceObj = otherUser.presence || {}
             const status =
-              statusObj.status === 'playing'
+              presenceObj.status === 'playing'
                 ? 'playing'
-                : statusObj.status === 'online'
+                : presenceObj.status === 'online'
                   ? 'online'
                   : 'offline'
 
             return {
-              id: friend.id,
+              id: otherUser.id,
               username: otherUser.profile.username,
               photo: otherUser.profile.photo,
               level: otherUser.profile.accountLevel,
@@ -85,7 +83,7 @@ const User = () => {
     }
 
     fetchFriends()
-  }, [profile?.id])
+  }, [profile?.profile?.username, profile?.id])
 
   useEffect(() => {
     if (!user?.id || !profile?.id) return
@@ -246,7 +244,7 @@ const User = () => {
             <section className='profile-header-aside-btns'>
 
               {friendStatus === 'none' && isLogged == false ?
-                <button onClick={()=>window.location.href='/login'}>
+                <button onClick={() => window.location.href = '/login'}>
                   <Users size={18} /> Login to follow
                 </button>
                 :

@@ -2,12 +2,12 @@ import { resolveUserStatus } from '../utils/resolveUserStatus'
 
 const API_URL = 'https://backend-snakr.vercel.app'
 
-const FRIENDS_CACHE_TTL = 2 * 60 * 1000 // 2 minutos
+const FRIENDS_CACHE_TTL = 2 * 60 * 1000 // 2 min
 
 let cachedFriends = null
 let lastFetch = 0
 let pendingFriendsPromise = null
-let cachedUserId = null // evita servir cache de outro usuário
+let cachedUserId = null
 
 async function request(path, options = {}) {
   const res = await fetch(`${API_URL}${path}`, {
@@ -100,6 +100,15 @@ export const socialService = {
       })
 
     return pendingFriendsPromise
+  },
+
+  async listPublicProfileFriends(username) {
+    return request(`/api/user/list?username=${username}&friends=true`, {
+      method: 'GET'
+    })
+      .then(data => {
+        return data.friends || []
+      })
   },
 
   async sendFriendRequest(friendCode = null, username = null) {
