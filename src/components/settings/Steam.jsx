@@ -20,7 +20,7 @@ const Steam = () => {
         <section className="settings-steam">
             <header className="settings-steam-header">
                 <img src="https://img.itch.zone/aW1nLzE4MzUyNzA4LnBuZw==/original/GauNfb.png" />
-                <a className={isLogged ? '' : 'active'} href={isLogged ? '#' : 'https://backend-snakr.vercel.app/api/auth/steam'}>{isLogged ? 'Conected' : 'Conect'}</a>
+                <a className={isLogged ? '' : 'active'} href={isLogged ? '#' : '/api/auth/steam'}>{isLogged ? 'Conected' : 'Conect'}</a>
             </header>
 
             {isLogged ? (
