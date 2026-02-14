@@ -105,13 +105,13 @@ const General = () => {
 
       <h1>Profile</h1>
       <select
-        value={general.settings.profile.isPublic}
+        value={String(general.settings.profile.isPublic)}
         onChange={e =>
-          updateSetting('settings.profile.isPublic', e.target.value)
+          updateSetting('settings.profile.isPublic', e.target.value === 'true')
         }
       >
-        <option value={true}>Public</option>
-        <option value={false}>Private</option>
+        <option value="true">Public</option>
+        <option value="false">Private</option>
       </select>
 
       <p>

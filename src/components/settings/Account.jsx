@@ -10,14 +10,15 @@ const DEFAULT_ACCOUNT = {
     name: '',
     bio: '',
     gender: 'male',
-    photo: null
+    photo: null,
+    birthDate: ''
   }
 }
 
 const Account = () => {
   const { user } = useUser()
   const { updateUser } = useUpdateUser()
-  
+
   const [showProfilePicModal, setShowProfilePicModal] = useState(false)
 
   const [account, setAccount] = useState(null)
@@ -90,6 +91,12 @@ const Account = () => {
           <option value="female">Female</option>
         </select>
 
+        <h1>Birthday</h1>
+        <input type="date"
+          value={account.profile.birthDate}
+          onChange={e => updateSetting('profile.birthDate', e.target.value)}
+        />
+
         <section className='delete-account-content'>
           <h1>DANGER AREA!</h1>
           <hr />
@@ -108,7 +115,7 @@ const Account = () => {
         <img src={account.profile.photo || 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'} alt="Profile picture" />
 
         <button onClick={() => setShowProfilePicModal(true)}>
-          <Edit3 size={16}/> Edit
+          <Edit3 size={16} /> Edit
         </button>
       </div>
 
