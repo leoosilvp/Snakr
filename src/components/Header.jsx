@@ -6,6 +6,7 @@ import ModalProfile from './ModalProfile'
 
 import { useNotifications } from '../hooks/useNotifications'
 import { Bell, Bookmark } from '@geist-ui/icons'
+import Search from './Search'
 
 const routeNames = {
     '/home': 'Home',
@@ -128,6 +129,7 @@ const Header = () => {
 
                 {isLogged &&
                     <article className="header-content-right">
+                        <Search />
                         <Link to="/notifications"><Bell size={16} /> {unread > 0 && (<div className="notification-count">{unread > 99 ? '99+' : unread}</div>)}</Link>
                         <Link to="/wish-list"><Bookmark size={16} /></Link>
 
