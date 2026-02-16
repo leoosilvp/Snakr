@@ -805,15 +805,8 @@ input:checked+.slider::before {
     text-overflow: unset;
   }
 
-  .search-input {
-    width: 120px;
-    overflow: hidden;
-  }
-
-  .search-games {
-    right: 15px;
-    width: 300px;
-    height: 300px;
+  .search-main {
+    display: none;
   }
 
   .header-content-right a:hover {
