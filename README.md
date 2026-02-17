@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://snakr.one">
-    <img src="./src/assets/svg/logo3.svg" width="280" alt="Snakr logo" />
+    <img src="./src/assets/svg/logo4.svg" width="280" alt="Snakr logo" />
   </a>
   
   <p><strong>All your games. One place.</strong></p>
