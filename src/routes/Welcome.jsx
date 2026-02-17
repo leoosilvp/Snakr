@@ -67,16 +67,16 @@ const Welcome = () => {
                 <section className='welcome-main-header-right'>
                     <nav>
                         <ul>
-                            <Link><BookOpen size={17} />Docs</Link>
-                            <Link><GitPullRequest size={17} />GitHub</Link>
-                            <Link><StopCircle size={17} />ONE</Link>
-                            <Link><Briefcase size={17} />Jobs</Link>
-                            <Link><Coffee size={17} />Contribute</Link>
+                            <Link to='' ><BookOpen size={17} />Docs</Link>
+                            <Link to='https://github.com/leoosilvp/Snakr' ><GitPullRequest size={17} />GitHub</Link>
+                            <Link to='' ><StopCircle size={17} />ONE</Link>
+                            <Link to='https://github.com/leoosilvp/Snakr' ><Briefcase size={17} />Jobs</Link>
+                            <Link to='/contribute' ><Coffee size={17} />Contribute</Link>
                         </ul>
                     </nav>
                     <section className='welcome-main-header-btns'>
-                        <Link>Join now</Link>
-                        <Link className='active'>Sign in</Link>
+                        <Link to='/login?view=register'>Join now</Link>
+                        <Link to='/login' className='active'>Sign in</Link>
                     </section>
                 </section>
             </header>
@@ -86,12 +86,12 @@ const Welcome = () => {
                     <section className='welcome-hero-left'>
                         <h1>Welcome to the most complete game distribution experience.</h1>
                         <div className='welcome-hero-btns'>
-                            <Link to='/home' className='active'><User size={22} />Sign in with username</Link>
+                            <Link to='/login' className='active'><User size={22} />Sign in with username</Link>
                             <Link to='https://github.com/leoosilvp/Snakr' ><Github size={22} />Have an idea? Open a P.R.</Link>
                         </div>
                         <section className='welcome-hero-left-content'>
-                            <p>By accessing your account, you confirm that you agree to the <Link>Terms of Use</Link> and <Link>Privacy Policy</Link> of the platform.</p>
-                            <p>Don't have an account? <Link>Create one.</Link></p>
+                            <p>By accessing your account, you confirm that you agree to the <Link to='/settings/terms and privacy'>Terms of Use</Link> and <Link to='/settings/terms and privacy' >Privacy Policy</Link> of the platform.</p>
+                            <p>Don't have an account? <Link to='/login?view=register' >Create one.</Link></p>
                         </section>
                     </section>
                     <img src="https://cdni.iconscout.com/illustration/premium/thumb/os-jogadores-jogam-videogame-online-illustration-svg-download-png-4231654.png" />
