@@ -157,8 +157,8 @@ const Notifications = () => {
               <BellOff size={40} />
               <p className="notifications-empty">
                 {filter === 'unread'
-                  ? 'Nenhuma notificação não lida.'
-                  : 'Nenhuma notificação disponível.'}
+                  ? 'No unread notifications.'
+                  : 'No notifications available.'}
               </p>
             </div>
           )}
