@@ -2,7 +2,7 @@ import '../css/welcome.css'
 import logo from "../assets/svg/logo2.svg"
 import news from '../assets/img/interface.png'
 import { Link } from 'react-router-dom'
-import { Award, BarChart2, BookOpen, Briefcase, Coffee, Github, GitPullRequest, Heart, Lock, Shield, Star, StopCircle, Terminal, Zap } from '@geist-ui/icons'
+import { BarChart2, BookOpen, Briefcase, Coffee, Github, GitPullRequest, Heart, Lock, Shield, StopCircle, Terminal, User, Zap } from '@geist-ui/icons'
 import { useRef } from 'react'
 
 const Welcome = () => {
@@ -83,12 +83,40 @@ const Welcome = () => {
 
             <section className='welcome-main-content'>
                 <section className='welcome-hero'>
-                    <h1>Your games, your rules. No walls, no gatekeepers</h1>
-                    <p>Snakr unifies your collections across platforms while giving you unrestricted access to games. No DRM. No barriers. Just pure gaming freedom.</p>
-                    <div className='welcome-hero-btns'>
-                        <Link to='/home' className='active'><Terminal />Access Snakr</Link>
-                        <Link to='https://github.com/leoosilvp/Snakr' ><Github />GitHub</Link>
-                    </div>
+                    <section className='welcome-hero-left'>
+                        <h1>Welcome to the most complete game distribution experience.</h1>
+                        <div className='welcome-hero-btns'>
+                            <Link to='/home' className='active'><User size={22} />Sign in with username</Link>
+                            <Link to='https://github.com/leoosilvp/Snakr' ><Github size={22} />Have an idea? Open a P.R.</Link>
+                        </div>
+                        <section className='welcome-hero-left-content'>
+                            <p>By accessing your account, you confirm that you agree to the <Link>Terms of Use</Link> and <Link>Privacy Policy</Link> of the platform.</p>
+                            <p>Don't have an account? <Link>Create one.</Link></p>
+                        </section>
+                    </section>
+                    <img src="https://cdni.iconscout.com/illustration/premium/thumb/os-jogadores-jogam-videogame-online-illustration-svg-download-png-4231654.png" />
+                </section>
+
+                <section className="stats-row">
+                    <span><BarChart2 size={16} />Growing community</span>
+                    <h1>Snakr's growth status</h1>
+                    <p>Like a snake shedding its skin, our community grows stronger every day, and the numbers speak for themselves:</p>
+                    <section className='stats-row-content'>
+                        <article className="stat-item">
+                            <div className="stat-number">100K+</div>
+                            <div className="stat-label">Active Users</div>
+                        </article>
+                        <div className="stat-divider" />
+                        <article className="stat-item">
+                            <div className="stat-number">50K+</div>
+                            <div className="stat-label">Games Available</div>
+                        </article>
+                        <div className="stat-divider" />
+                        <article className="stat-item">
+                            <div className="stat-number">24/7</div>
+                            <div className="stat-label">Community Support</div>
+                        </article>
+                    </section>
                 </section>
 
                 <section className="welcome-main-featured-img">
@@ -172,28 +200,6 @@ const Welcome = () => {
                         <p>We believe gaming libraries should belong to players, not platforms. That's why we created Snakr - an open-source game launcher that unifies your collections across Steam, Epic, GOG, and more, while removing DRM restrictions and giving you true ownership of your games.</p>
                         <p>Join thousands of gamers who've reclaimed control of their gaming libraries.</p>
                         <Link to='/home'><Terminal />Access Snakr</Link>
-                    </section>
-                </section>
-
-                <section className="stats-row">
-                    <span><BarChart2 size={16} />Growing community</span>
-                    <h1>Snakr's growth status</h1>
-                    <p>Like a snake shedding its skin, our community grows stronger every day, and the numbers speak for themselves:</p>
-                    <section className='stats-row-content'>
-                        <article className="stat-item">
-                            <div className="stat-number">100K+</div>
-                            <div className="stat-label">Active Users</div>
-                        </article>
-                        <div className="stat-divider" />
-                        <article className="stat-item">
-                            <div className="stat-number">50K+</div>
-                            <div className="stat-label">Games Available</div>
-                        </article>
-                        <div className="stat-divider" />
-                        <article className="stat-item">
-                            <div className="stat-number">24/7</div>
-                            <div className="stat-label">Community Support</div>
-                        </article>
                     </section>
                 </section>
 
