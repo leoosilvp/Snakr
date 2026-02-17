@@ -32,7 +32,7 @@
 
 .welcome-main-header-logo img {
     display: flex;
-    height: 40px;
+    height: 35px;
     transition: var(--transition-2s);
 }
 
