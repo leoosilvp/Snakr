@@ -31,7 +31,7 @@
     align-items: center;
     justify-content: space-between;
     width: 95vw;
-    max-width: 1200px;
+    max-width: 1300px;
     padding: 10px 15px;
     border: 1px solid var(--dark-color);
     border-radius: 7px;
@@ -126,6 +126,12 @@
     font-size: 0.85rem !important;
     backdrop-filter: blur(5px);
     box-shadow: 0 0 15px #ffffff15;
+    background: #0b0b0b;
+    transition: var(--transition-3s);
+}
+
+.welcome-hero-row p:hover{
+    background: #121212;
 }
 
 .welcome-hero h1 {

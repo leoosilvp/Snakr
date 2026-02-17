@@ -65,7 +65,7 @@ const Welcome = () => {
                 </Link>
                 <nav>
                     <ul>
-                        <Link to='/docs/introduction'>About Us</Link>
+                        <Link to=''>About Us</Link>
                         <Link to='/docs'>Docs</Link>
                         <Link to='/home'>Snakr</Link>
                         <Link to='/contribute' target='blanck'>Contribute</Link>
@@ -79,9 +79,9 @@ const Welcome = () => {
 
             <section className='welcome-main-content'>
                 <section className='welcome-hero'>
-                    <section className='welcome-hero-row'>
+                    <Link to='https://github.com/leoosilvp/Snakr' target='_blank' className='welcome-hero-row'>
                         <p><Star color='#e3b709' size={16} />Your OpenSource gaming center</p>
-                    </section>
+                    </Link>
 
                     <h1>Your games, your rules. No walls, no gatekeepers</h1>
                     <p>Snakr unifies your collections across platforms while giving you unrestricted access to games. No DRM. No barriers. Just pure gaming freedom.</p>
