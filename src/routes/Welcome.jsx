@@ -1,9 +1,8 @@
 import '../css/welcome.css'
-import icon from "../assets/svg/logo.svg"
 import logo from "../assets/svg/logo2.svg"
 import news from '../assets/img/interface.png'
 import { Link } from 'react-router-dom'
-import { BarChart2, Github, GitPullRequest, Heart, Lock, Shield, Star, StopCircle, Terminal, Zap } from '@geist-ui/icons'
+import { Award, BarChart2, BookOpen, Briefcase, Coffee, Github, GitPullRequest, Heart, Lock, Shield, Star, StopCircle, Terminal, Zap } from '@geist-ui/icons'
 import { useRef } from 'react'
 
 const Welcome = () => {
@@ -60,29 +59,30 @@ const Welcome = () => {
     return (
         <main className="welcome-main">
             <header className='welcome-main-header'>
-                <Link to='/home'>
-                    <img src={icon} />
-                </Link>
-                <nav>
-                    <ul>
-                        <Link to=''>About Us</Link>
-                        <Link to='/docs'>Docs</Link>
-                        <Link to='/home'>Snakr</Link>
-                        <Link to='/contribute' target='blanck'>Contribute</Link>
-                        <Link to='https://github.com/leoosilvp/Snakr' target='blanck'>GitHub <GitPullRequest size={16} /></Link>
-                    </ul>
-                </nav>
-                <section className='welcome-main-header-btn'>
-                    <Link title='Snakr crypto (SNK)'><span>(SNK)</span><StopCircle size={25} /></Link>
+                <section className='welcome-main-header-logo'>
+                    <Link to='/home'>
+                        <img src={logo} />
+                    </Link>
+                </section>
+                <section className='welcome-main-header-right'>
+                    <nav>
+                        <ul>
+                            <Link><BookOpen size={17} />Docs</Link>
+                            <Link><GitPullRequest size={17} />GitHub</Link>
+                            <Link><StopCircle size={17} />ONE</Link>
+                            <Link><Briefcase size={17} />Jobs</Link>
+                            <Link><Coffee size={17} />Contribute</Link>
+                        </ul>
+                    </nav>
+                    <section className='welcome-main-header-btns'>
+                        <Link>Join now</Link>
+                        <Link className='active'>Sign in</Link>
+                    </section>
                 </section>
             </header>
 
             <section className='welcome-main-content'>
                 <section className='welcome-hero'>
-                    <Link to='https://github.com/leoosilvp/Snakr' target='_blank' className='welcome-hero-row'>
-                        <p><Star color='#e3b709' size={16} />Your OpenSource gaming center</p>
-                    </Link>
-
                     <h1>Your games, your rules. No walls, no gatekeepers</h1>
                     <p>Snakr unifies your collections across platforms while giving you unrestricted access to games. No DRM. No barriers. Just pure gaming freedom.</p>
                     <div className='welcome-hero-btns'>
@@ -176,7 +176,7 @@ const Welcome = () => {
                 </section>
 
                 <section className="stats-row">
-                    <span><BarChart2 size={16}/>Growing community</span>
+                    <span><BarChart2 size={16} />Growing community</span>
                     <h1>Snakr's growth status</h1>
                     <p>Like a snake shedding its skin, our community grows stronger every day, and the numbers speak for themselves:</p>
                     <section className='stats-row-content'>
