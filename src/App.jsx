@@ -31,6 +31,7 @@ import Invitation from "./components/friends/Invitation";
 import { useUserStatus } from "./hooks/useUserStatus";
 import Welcome from "./routes/Welcome";
 import User from "./routes/User";
+import Catalog from "./routes/Catalog";
 
 function App() {
   ConsoleBanner()
@@ -76,8 +77,8 @@ function App() {
         </Route>
         <Route path='/security/reset-password' element={<ResetPassword />} />
         <Route path="/status" element={<Status />} />
+        <Route path="/catalog" element={<Catalog />} />
       </Routes>
-
       <Notification />
     </BrowserRouter>
   )
