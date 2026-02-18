@@ -34,40 +34,8 @@ const Catalog = () => {
                         </header>
                         <section className='catalog-filters'>
                             <div>
-                                <input id='Action' type="checkbox" />
-                                <label htmlFor="Action">Action</label>
-                            </div>
-                            <div>
-                                <input id='Casual' type="checkbox" />
-                                <label htmlFor="Casual">Casual</label>
-                            </div>
-                            <div>
-                                <input id='Race' type="checkbox" />
-                                <label htmlFor="Race">Race</label>
-                            </div>
-                            <div>
-                                <input id='Indie' type="checkbox" />
-                                <label htmlFor="Indie">Indie</label>
-                            </div>
-                            <div>
-                                <input id='RPG' type="checkbox" />
-                                <label htmlFor="RPG">RPG</label>
-                            </div>
-                            <div>
-                                <input id='Simulation' type="checkbox" />
-                                <label htmlFor="Simulation">Simulation</label>
-                            </div>
-                            <div>
-                                <input id='Violent' type="checkbox" />
-                                <label htmlFor="Violent">Violent</label>
-                            </div>
-                            <div>
-                                <input id='Sports' type="checkbox" />
-                                <label htmlFor="Sports">Sports</label>
-                            </div>
-                            <div>
-                                <input id='Strategy' type="checkbox" />
-                                <label htmlFor="Strategy">Strategy</label>
+                                <input id='1' type="checkbox" />
+                                <label htmlFor="1">example</label>
                             </div>
                         </section>
 
@@ -79,7 +47,10 @@ const Catalog = () => {
                             <p>70.160 available</p>
                         </header>
                         <section className='catalog-filters'>
-
+                            <div>
+                                <input id='2' type="checkbox" />
+                                <label htmlFor="2">example</label>
+                            </div>
                         </section>
 
                         <header className='catalog-main-filter-header'>
@@ -90,7 +61,10 @@ const Catalog = () => {
                             <p>63.008 available</p>
                         </header>
                         <section className='catalog-filters'>
-
+                            <div>
+                                <input id='3' type="checkbox" />
+                                <label htmlFor="3">example</label>
+                            </div>
                         </section>
                     </aside>
                 </section>
