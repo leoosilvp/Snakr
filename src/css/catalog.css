@@ -74,3 +74,129 @@
     font-size: 0.85rem;
     font-weight: 200;
 }
+
+.catalog-content {
+    display: flex;
+    width: 100%;
+}
+
+/* games */
+.catalog-main-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+/* filter */
+.catalog-main-filter {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background: var(--background-card);
+}
+
+.catalog-main-filter-header p {
+    margin-top: 3px;
+    display: flex;
+    font-size: 0.8rem;
+    color: var(--gray-color);
+}
+
+.catalog-main-filter-header article {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.catalog-main-filter-header div {
+    display: flex;
+    width: 10px;
+    height: 10px;
+    border-radius: 50px;
+    background: var(--primary-color);
+}
+
+.catalog-main-filter-header div.purple{
+    background: #800080;
+}
+
+.catalog-main-filter-header div.red{
+    background: #ff0000;
+}
+
+.catalog-main-filter-header h1 {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.catalog-filters {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    width: 100%;
+    height: 250px;
+    overflow: auto;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.catalog-filters::-webkit-scrollbar {
+    display: none;
+    width: 5px;
+}
+
+.catalog-filters::-webkit-scrollbar-thumb {
+    background: var(--dark-color);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.catalog-filters:hover.catalog-filters::-webkit-scrollbar{
+    display: flex;
+}
+
+.catalog-filters div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.catalog-filters div input {
+    appearance: none;
+    width: 17px;
+    height: 17px;
+    background-color: var(--dark-color);
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    position: relative;
+    cursor: pointer;
+}
+
+.catalog-filters div input:checked {
+    background: #252525;
+    border-color: #454545;
+}
+
+.catalog-filters div input:checked::after {
+    content: "";
+    position: absolute;
+    left: 5.5px;
+    top: 2px;
+    width: 2.5px;
+    height: 8px;
+    border: solid var(--gray-color);
+    border-width: 0 1.5px 1.5px 0;
+    transform: rotate(45deg);
+}
+
+.catalog-filters div label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--gray-color);
+    cursor: pointer;
+}
