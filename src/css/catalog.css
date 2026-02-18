@@ -44,8 +44,8 @@
     align-items: center;
     border: 1px solid #252525;
     border-radius: 5px;
-    padding: 0 5px;
-    height: 30px;
+    padding: 0 7px;
+    height: 35px;
     gap: 7px;
 }
 
@@ -66,7 +66,7 @@
 
 .catalog-main-header-input input {
     display: flex;
-    width: 200px;
+    width: 236px;
     background: none;
     border: none;
     outline: none;

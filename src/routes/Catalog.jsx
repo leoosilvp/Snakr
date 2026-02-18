@@ -30,7 +30,7 @@ const Catalog = () => {
                                 <div />
                                 <h1>Genres</h1>
                             </article>
-                            <p>10 available</p>
+                            <p>0 available</p>
                         </header>
                         <section className='catalog-filters'>
                             <div>
@@ -44,13 +44,10 @@ const Catalog = () => {
                                 <div className='purple' />
                                 <h1>Developers</h1>
                             </article>
-                            <p>70.160 available</p>
+                            <p>0 available</p>
                         </header>
                         <section className='catalog-filters'>
-                            <div>
-                                <input id='2' type="checkbox" />
-                                <label htmlFor="2">example</label>
-                            </div>
+                            
                         </section>
 
                         <header className='catalog-main-filter-header'>
@@ -58,13 +55,10 @@ const Catalog = () => {
                                 <div className='red' />
                                 <h1>Distributors</h1>
                             </article>
-                            <p>63.008 available</p>
+                            <p>0 available</p>
                         </header>
                         <section className='catalog-filters'>
-                            <div>
-                                <input id='3' type="checkbox" />
-                                <label htmlFor="3">example</label>
-                            </div>
+                            
                         </section>
                     </aside>
                 </section>
