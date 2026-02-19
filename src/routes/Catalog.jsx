@@ -1,7 +1,7 @@
 import '../css/catalog.css'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import { Search, Plus } from '@geist-ui/icons'
+import { Search, Plus, ChevronLeft, ChevronRight, Check } from '@geist-ui/icons'
 
 const Catalog = () => {
     return (
@@ -12,6 +12,14 @@ const Catalog = () => {
                     <section className='catalog-main-header-content'>
                         <h1>Games</h1>
                         <div className='hr' />
+                        <section className='catalog-main-header-change-page'>
+                            <button>
+                                <ChevronLeft size={20} />
+                            </button>
+                            <button>
+                                <ChevronRight size={20} />
+                            </button>
+                        </section>
                     </section>
                     <section className='catalog-main-header-input'>
                         <button>
@@ -33,7 +41,25 @@ const Catalog = () => {
                                     </div>
                                 </div>
                             </section>
-                            <button>
+                            <button title='Add the library'>
+                                <Plus size={16}/>
+                            </button>
+                        </article>
+
+                        <article className='catalog-card-game'>
+                            <section className='catalog-card-game-content'>
+                                <img src="https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg" />
+                                <div>
+                                    <h1>The Witcher 3: Wild Hunt</h1>
+                                    <div className='catalog-card-game-category'>
+                                        <p>Ação</p>
+                                        <p>Terror</p>
+                                        <p>Luta</p>
+                                    </div>
+                                </div>
+                            </section>
+                            {/* className='game-in-lib' */}
+                            <button title='Add the library'>
                                 <Plus size={16}/>
                             </button>
                         </article>
@@ -75,6 +101,17 @@ const Catalog = () => {
                             
                         </section>
                     </aside>
+                </section>
+                <section className='catalog-change-page'>
+                    <h2>-</h2>
+                    <button>
+                        <ChevronLeft size={20} />
+                    </button>
+                    <h1>1</h1>
+                    <button>
+                        <ChevronRight size={20} />
+                    </button>
+                    <h2>2</h2>
                 </section>
             </section>
             <Footer />
