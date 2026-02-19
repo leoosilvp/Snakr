@@ -1,6 +1,6 @@
 import '../css/login.css'
 import icon from '../assets/svg/icon-dark.svg'
-import { Link, Navigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { useUser } from '../hooks/useUser'
 

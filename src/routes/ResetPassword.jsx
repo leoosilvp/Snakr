@@ -23,10 +23,12 @@ const ResetPassword = () => {
     useEffect(() => {
         const hash = window.location.hash
         if (!hash) return
+
         const params = new URLSearchParams(hash.replace('#', ''))
         const at = params.get('access_token')
         const rt = params.get('refresh_token')
         const type = params.get('type')
+
         if (at && rt && type === 'recovery') {
             setAccessToken(at)
             setRefreshToken(rt)
@@ -46,20 +48,35 @@ const ResetPassword = () => {
         return Math.min(strength, 6)
     }
 
+    /*
+     * =========================
+     * 1️⃣ Enviar email de reset
+     * =========================
+     */
     async function sendResetEmail() {
         setError('')
         setSuccess(false)
-        if (!email) { setError('Please enter your email.'); return }
+
+        if (!email) {
+            setError('Please enter your email.')
+            return
+        }
+
         try {
             setLoading(true)
-            const res = await fetch('https://backend-snakr.vercel.app/api/auth/forgot-password', {
-                method: 'POST',
-                credentials: 'include',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email })
-            })
+
+            const res = await fetch(
+                'https://backend-snakr.vercel.app/api/auth/password',
+                {
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email })
+                }
+            )
 
             if (!res.ok) throw new Error()
+
             setSuccess(true)
         } catch {
             setError('Unable to send reset email. Try again later.')
@@ -68,15 +85,48 @@ const ResetPassword = () => {
         }
     }
 
+    /*
+     * =========================
+     * 2️⃣ Atualizar senha
+     * =========================
+     */
     async function resetPassword() {
         setError('')
-        if (password.length < 8) { setError('Password must be at least 8 characters.'); return }
-        if (password !== confirmPassword) { setError('Passwords do not match.'); return }
-        if (passwordStrength < 2) { setError('Password is too weak.'); return }
+
+        if (password.length < 8) {
+            setError('Password must be at least 8 characters.')
+            return
+        }
+
+        if (password !== confirmPassword) {
+            setError('Passwords do not match.')
+            return
+        }
+
+        if (passwordStrength < 2) {
+            setError('Password is too weak.')
+            return
+        }
+
         try {
             setLoading(true)
-            const res = await fetch('https://backend-snakr.vercel.app/api/auth/reset-password', { method: 'PUT', credentials: 'include', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ accessToken, refreshToken, newPassword: password }) })
+
+            const res = await fetch(
+                'https://backend-snakr.vercel.app/api/auth/password',
+                {
+                    method: 'PUT',
+                    credentials: 'include',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        accessToken,
+                        refreshToken,
+                        newPassword: password
+                    })
+                }
+            )
+
             if (!res.ok) throw new Error()
+
             setSuccess(true)
             setTimeout(() => navigate('/login'), 2500)
         } catch {
@@ -89,60 +139,150 @@ const ResetPassword = () => {
     return (
         <main className="password-reset-main">
             <header className="password-reset-main-header">
-                <Link to={`${isLogged ? '/' : '/login'}`}><img src={logo} alt="logo Snakr" /></Link>
+                <Link to={`${isLogged ? '/' : '/login'}`}>
+                    <img src={logo} alt="logo Snakr" />
+                </Link>
+
                 <section className="password-reset-main-header-btns">
-                    <Link to={`${isLogged ? '/settings/security' : '/login'}`}>{isLogged ? 'Back' : 'Login'}</Link>
-                    <Link to={`${isLogged ? '/settings' : '/login?view=register'}`} className="active">{isLogged ? 'Settings' : 'Join now'}</Link>
+                    <Link to={`${isLogged ? '/settings/security' : '/login'}`}>
+                        {isLogged ? 'Back' : 'Login'}
+                    </Link>
+                    <Link
+                        to={`${isLogged ? '/settings' : '/login?view=register'}`}
+                        className="active"
+                    >
+                        {isLogged ? 'Settings' : 'Join now'}
+                    </Link>
                 </section>
             </header>
 
             <section className="password-reset-main-content">
                 <article className="password-reset-main-card">
+
                     {!isRecovery && <>
                         <h1>{isLogged ? 'Change my password.' : 'I forgot my password.'}</h1>
-                        <input type="email" placeholder="E-mail" value={email} onChange={e => setEmail(e.target.value)} disabled={loading || success} />
-                        <p>{isLogged ? 'We will send a confirmation link to this email address to verify the change.' : 'We will send a verification link to this email if it matches a Snakr account.'}</p>
+
+                        <input
+                            type="email"
+                            placeholder="E-mail"
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                            disabled={loading || success}
+                        />
+
+                        <p>
+                            {isLogged
+                                ? 'We will send a confirmation link to this email address to verify the change.'
+                                : 'We will send a verification link to this email if it matches a Snakr account.'
+                            }
+                        </p>
+
                         {error && <span className="password-error">{error}</span>}
-                        {success && <p className="password-success">If an account exists, a reset link was sent.</p>}
+                        {success && (
+                            <p className="password-success">
+                                If an account exists, a reset link was sent.
+                            </p>
+                        )}
+
                         <section className="password-reset-main-card-btns">
-                            <button className="active" onClick={sendResetEmail} disabled={loading || success}>{loading ? 'Sending...' : 'Send e-mail'}</button>
-                            <button onClick={() => navigate('/login')}>Back</button>
+                            <button
+                                className="active"
+                                onClick={sendResetEmail}
+                                disabled={loading || success}
+                            >
+                                {loading ? 'Sending...' : 'Send e-mail'}
+                            </button>
+                            <button onClick={() => navigate('/login')}>
+                                Back
+                            </button>
                         </section>
                     </>}
 
                     {isRecovery && <>
                         <div>
                             <h1>Set a new password</h1>
-                            <p>Choose a strong password you haven’t used before to keep your account secure.</p>
+                            <p>
+                                Choose a strong password you haven’t used before to keep your account secure.
+                            </p>
                         </div>
 
                         <div className="password-input-wrapper">
-                            <input type={showPassword ? 'text' : 'password'} placeholder="New password" value={password} onChange={e => { setPassword(e.target.value); setPasswordStrength(calculatePasswordStrength(e.target.value)) }} disabled={loading || success} />
-                            <i type="button" className={`fa-regular fa-${showPassword ? 'eye' : 'eye-slash'}`} onClick={() => setShowPassword(v => !v)} />
+                            <input
+                                type={showPassword ? 'text' : 'password'}
+                                placeholder="New password"
+                                value={password}
+                                onChange={e => {
+                                    setPassword(e.target.value)
+                                    setPasswordStrength(
+                                        calculatePasswordStrength(e.target.value)
+                                    )
+                                }}
+                                disabled={loading || success}
+                            />
+                            <i
+                                type="button"
+                                className={`fa-regular fa-${showPassword ? 'eye' : 'eye-slash'}`}
+                                onClick={() => setShowPassword(v => !v)}
+                            />
                         </div>
 
                         <div className="password-input-wrapper">
-                            <input type={showPassword ? 'text' : 'password'} placeholder="Confirm password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} disabled={loading || success} />
+                            <input
+                                type={showPassword ? 'text' : 'password'}
+                                placeholder="Confirm password"
+                                value={confirmPassword}
+                                onChange={e => setConfirmPassword(e.target.value)}
+                                disabled={loading || success}
+                            />
                         </div>
 
                         <div className="password-strength">
-                            {[1, 2, 3, 4, 5, 6].map(level => <span key={level} className={`strength-box ${passwordStrength >= level ? 'active' : ''}`} />)}
+                            {[1, 2, 3, 4, 5, 6].map(level => (
+                                <span
+                                    key={level}
+                                    className={`strength-box ${passwordStrength >= level ? 'active' : ''}`}
+                                />
+                            ))}
                         </div>
 
-                        {confirmPassword && confirmPassword !== password && <span className="password-error">Passwords do not match.</span>}
+                        {confirmPassword && confirmPassword !== password &&
+                            <span className="password-error">Passwords do not match.</span>
+                        }
+
                         <p>Password must be at least 8 characters.</p>
+
                         {error && <p className="password-error">{error}</p>}
-                        {success && <p className="password-success">Password updated successfully. Redirecting…</p>}
+                        {success &&
+                            <p className="password-success">
+                                Password updated successfully. Redirecting…
+                            </p>
+                        }
 
                         <section className="password-reset-main-card-btns">
-                            <button className="active" onClick={resetPassword} disabled={loading || success || password !== confirmPassword || passwordStrength < 2}>{loading ? 'Saving...' : 'Update password'}</button>
+                            <button
+                                className="active"
+                                onClick={resetPassword}
+                                disabled={
+                                    loading ||
+                                    success ||
+                                    password !== confirmPassword ||
+                                    passwordStrength < 2
+                                }
+                            >
+                                {loading ? 'Saving...' : 'Update password'}
+                            </button>
                         </section>
                     </>}
+
                 </article>
             </section>
 
             <footer className="password-reset-main-footer">
-                <div><img src={logo} alt="" /><p>&copy; 2026</p></div>
+                <div>
+                    <img src={logo} alt="" />
+                    <p>&copy; 2026</p>
+                </div>
+
                 <ul>
                     <Link to="/settings/terms and privacy#user">User Agreement</Link>
                     <Link to="/settings/terms and privacy#policy">Privacy Policy</Link>
