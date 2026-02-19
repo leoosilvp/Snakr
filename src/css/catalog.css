@@ -78,14 +78,87 @@
 .catalog-content {
     display: flex;
     width: 100%;
+    gap: 30px;
 }
 
 /* games */
 .catalog-main-cards {
     display: flex;
     flex-direction: column;
+    padding: 10px 0;
     gap: 5px;
     width: 100%;
+}
+
+.catalog-card-game{
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 7px;
+    justify-content: space-between;
+    background: #000000f5;
+    backdrop-filter: blur(5px);
+    cursor: pointer;
+    transition: var(--transition-2s);
+}
+
+.catalog-card-game:hover{
+    transform: translateY(-3px);
+    background: #0c0c0cb8;
+}
+
+.catalog-card-game:hover.catalog-card-game button{
+    opacity: 1;
+}
+
+.catalog-card-game button{
+    display: flex;
+    opacity: 0;
+    height: fit-content;
+    border: none;
+    background: none;
+    color: var(--light-color);
+    cursor: pointer;
+    transition: var(--transition-2s);
+}
+
+.catalog-card-game button:hover{
+    transform: scale(1.2);
+}
+
+.catalog-card-game-content{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.catalog-card-game-content img{
+    display: flex;
+    height: 100px;
+    width: fit-content;
+    border-radius: 2px;
+}
+
+.catalog-card-game-content h1{
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.catalog-card-game-category{
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.catalog-card-game-category p{
+    display: flex;
+    padding: 0 5px;
+    border: 1px solid var(--dark-color);
+    border-radius: 2px;
+    background: #101010;
+    font-size: 0.8rem;
+    color: var(--gray-color);
 }
 
 /* filter */
@@ -93,7 +166,7 @@
     margin-top: 30px;
     display: flex;
     flex-direction: column;
-    width: 350px;
+    width: 360px;
     padding: 15px;
     border: 1px solid var(--border-color);
     border-radius: 5px;

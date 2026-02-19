@@ -1,7 +1,7 @@
 import '../css/catalog.css'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import { Search } from '@geist-ui/icons'
+import { Search, Plus } from '@geist-ui/icons'
 
 const Catalog = () => {
     return (
@@ -22,7 +22,21 @@ const Catalog = () => {
                 </header>
                 <section className='catalog-content'>
                     <section className='catalog-main-cards'>
-
+                        <article className='catalog-card-game'>
+                            <section className='catalog-card-game-content'>
+                                <img src="https://media.rawg.io/media/games/20a/20aa03a10cda45239fe22d035c0ebe64.jpg" />
+                                <div>
+                                    <h1>Grand Theft Auto V</h1>
+                                    <div className='catalog-card-game-category'>
+                                        <p>Ação</p>
+                                        <p>Aventura</p>
+                                    </div>
+                                </div>
+                            </section>
+                            <button>
+                                <Plus size={16}/>
+                            </button>
+                        </article>
                     </section>
                     <aside className='catalog-main-filter'>
                         <header className='catalog-main-filter-header'>
