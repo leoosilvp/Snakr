@@ -9,8 +9,11 @@ export function useUserGames() {
   async function refresh() {
     try {
       setLoading(true)
+      setError(null)
+
       const data = await gamesService.userList()
-      setGames(data)
+      setGames(data || [])
+
     } catch (err) {
       setError(err.message)
     } finally {
@@ -27,5 +30,11 @@ export function useUserGames() {
     refresh()
   }, [])
 
-  return { games, loading, error, refresh, updateGame }
+  return {
+    games,
+    loading,
+    error,
+    refresh,
+    updateGame
+  }
 }

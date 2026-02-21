@@ -11,14 +11,14 @@ export function useGameDetails(rawg_id) {
 
     let mounted = true
 
-    async function fetchDetails() {
+    async function load() {
       try {
         setLoading(true)
+        setError(null)
 
-        // 1️⃣ garante que existe no banco
+        // garante que o jogo exista (admin only)
         await gamesService.sync(rawg_id)
 
-        // 2️⃣ busca detalhes completos
         const data = await gamesService.details({ rawg_id })
 
         if (mounted) setGame(data)
@@ -30,11 +30,9 @@ export function useGameDetails(rawg_id) {
       }
     }
 
-    fetchDetails()
+    load()
 
-    return () => {
-      mounted = false
-    }
+    return () => { mounted = false }
   }, [rawg_id])
 
   return { game, loading, error }
