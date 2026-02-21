@@ -16,7 +16,6 @@ export function useGameDetails(rawg_id) {
         setLoading(true)
         setError(null)
 
-        // garante que o jogo exista (admin only)
         await gamesService.sync(rawg_id)
 
         const data = await gamesService.details({ rawg_id })

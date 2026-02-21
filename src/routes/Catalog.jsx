@@ -1,119 +1,216 @@
 import '../css/catalog.css'
+import { useState, useMemo, useEffect } from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { Search, Plus, ChevronLeft, ChevronRight, Check } from '@geist-ui/icons'
+import { useGames } from '../hooks/useGames'
+import { useUserGames } from '../hooks/useUserGames'
 
 const Catalog = () => {
+
+    const [page, setPage] = useState(1)
+    const [searchInput, setSearchInput] = useState('')
+    const [search, setSearch] = useState('')
+
+    const [selectedGenres, setSelectedGenres] = useState([])
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            setPage(1)
+            setSearch(searchInput.trim())
+        }, 400)
+
+        return () => clearTimeout(timeout)
+    }, [searchInput])
+
+    const { games, pagination, meta, loading } = useGames({
+        page,
+        search,
+        genres: selectedGenres.length ? selectedGenres.join(',') : null,
+    })
+    const { games: userGames, updateGame } = useUserGames()
+
+    const userGameIds = useMemo(() => {
+        return new Set(userGames.map(g => g.game_id))
+    }, [userGames])
+
+    function handleAdd(gameId) {
+        updateGame({
+            game_id: gameId,
+            status: 'wishlist'
+        })
+    }
+
+    function nextPage() {
+        if (pagination?.hasNext) setPage(prev => prev + 1)
+    }
+
+    function prevPage() {
+        if (pagination?.hasPrevious) setPage(prev => prev - 1)
+    }
+
+    function toggleFilter(value, list, setter) {
+        setter(prev =>
+            prev.includes(value)
+                ? prev.filter(v => v !== value)
+                : [...prev, value]
+        )
+        setPage(1)
+    }
+
     return (
         <main className='catalog-main'>
             <Header noSearch />
+
             <section className='catalog-main-content'>
+
                 <header className='catalog-main-header'>
                     <section className='catalog-main-header-content'>
                         <h1>Games</h1>
                         <div className='hr' />
                         <section className='catalog-main-header-change-page'>
-                            <button>
+                            <button
+                                onClick={prevPage}
+                                disabled={!pagination?.hasPrevious}
+                            >
                                 <ChevronLeft size={20} />
                             </button>
-                            <button>
+                            <button
+                                onClick={nextPage}
+                                disabled={!pagination?.hasNext}
+                            >
                                 <ChevronRight size={20} />
                             </button>
                         </section>
                     </section>
+
                     <section className='catalog-main-header-input'>
-                        <button>
-                            <Search size={16} />
+                        <button type="button">
+                            <Search size={25} />
                         </button>
-                        <input type="text" placeholder='search for games...' />
+                        <input
+                            type="text"
+                            placeholder='search for games...'
+                            value={searchInput}
+                            onChange={e => setSearchInput(e.target.value)}
+                        />
                     </section>
                 </header>
-                <section className='catalog-content'>
-                    <section className='catalog-main-cards'>
-                        <article className='catalog-card-game'>
-                            <section className='catalog-card-game-content'>
-                                <img src="https://media.rawg.io/media/games/20a/20aa03a10cda45239fe22d035c0ebe64.jpg" />
-                                <div>
-                                    <h1>Grand Theft Auto V</h1>
-                                    <div className='catalog-card-game-category'>
-                                        <p>Ação</p>
-                                        <p>Aventura</p>
-                                    </div>
-                                </div>
-                            </section>
-                            <button title='Add the library'>
-                                <Plus size={16}/>
-                            </button>
-                        </article>
 
-                        <article className='catalog-card-game'>
-                            <section className='catalog-card-game-content'>
-                                <img src="https://media.rawg.io/media/games/618/618c2031a07bbff6b4f611f10b6bcdbc.jpg" />
-                                <div>
-                                    <h1>The Witcher 3: Wild Hunt</h1>
-                                    <div className='catalog-card-game-category'>
-                                        <p>Ação</p>
-                                        <p>Terror</p>
-                                        <p>Luta</p>
-                                    </div>
-                                </div>
-                            </section>
-                            {/* className='game-in-lib' */}
-                            <button title='Add the library'>
-                                <Plus size={16}/>
-                            </button>
-                        </article>
+                <section className='catalog-content'>
+
+                    <section className='catalog-main-cards'>
+
+                        {loading && <p>Loading games...</p>}
+
+                        {!loading && games.length === 0 && (
+                            <p>No games found.</p>
+                        )}
+
+                        {!loading && games.map(game => {
+                            const inLibrary = userGameIds.has(game.id)
+
+                            return (
+                                <article
+                                    key={game.id}
+                                    className={`catalog-card-game ${inLibrary ? 'game-in-lib' : ''}`}
+                                >
+                                    <section className='catalog-card-game-content'>
+                                        <img
+                                            src={game.background_image}
+                                            alt={game.name}
+                                            loading="lazy"
+                                        />
+                                        <div>
+                                            <h1>{game.name}</h1>
+                                            <div className='catalog-card-game-category'>
+                                                {game.genres?.map(g => (
+                                                    <p key={g.id}>{g.name}</p>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </section>
+
+                                    <button
+                                        title='Add the library'
+                                        onClick={() => handleAdd(game.id)}
+                                        disabled={inLibrary}
+                                    >
+                                        {inLibrary
+                                            ? <Check size={16} />
+                                            : <Plus size={16} />
+                                        }
+                                    </button>
+                                </article>
+                            )
+                        })}
                     </section>
+
                     <aside className='catalog-main-filter'>
+
                         <header className='catalog-main-filter-header'>
                             <article>
                                 <div />
                                 <h1>Genres</h1>
                             </article>
-                            <p>0 available</p>
+                            <p>{meta?.genres?.length || 0} available</p>
                         </header>
+
                         <section className='catalog-filters'>
-                            <div>
-                                <input id='1' type="checkbox" />
-                                <label htmlFor="1">example</label>
-                            </div>
+                            {meta?.genres?.map(g => (
+                                <div key={g.id}>
+                                    <input
+                                        id={`genre-${g.id}`}
+                                        type="checkbox"
+                                        checked={selectedGenres.includes(String(g.id))}
+                                        onChange={() =>
+                                            toggleFilter(String(g.id), selectedGenres, setSelectedGenres)
+                                        }
+                                    />
+                                    <label htmlFor={`genre-${g.id}`}>
+                                        {g.name}
+                                    </label>
+                                </div>
+                            ))}
                         </section>
 
-                        <header className='catalog-main-filter-header'>
-                            <article>
-                                <div className='purple' />
-                                <h1>Developers</h1>
-                            </article>
-                            <p>0 available</p>
-                        </header>
-                        <section className='catalog-filters'>
-                            
-                        </section>
-
-                        <header className='catalog-main-filter-header'>
-                            <article>
-                                <div className='red' />
-                                <h1>Distributors</h1>
-                            </article>
-                            <p>0 available</p>
-                        </header>
-                        <section className='catalog-filters'>
-                            
-                        </section>
                     </aside>
                 </section>
-                <section className='catalog-change-page'>
-                    <h2>-</h2>
-                    <button>
-                        <ChevronLeft size={20} />
-                    </button>
-                    <h1>1</h1>
-                    <button>
-                        <ChevronRight size={20} />
-                    </button>
-                    <h2>2</h2>
-                </section>
+
+                {pagination && (
+                    <section className='catalog-change-page'>
+                        <h2>
+                            {pagination.page - 1 > 0
+                                ? pagination.page - 1
+                                : '-'}
+                        </h2>
+
+                        <button
+                            onClick={prevPage}
+                            disabled={!pagination.hasPrevious}
+                        >
+                            <ChevronLeft size={20} />
+                        </button>
+
+                        <h1>{pagination.page}</h1>
+
+                        <button
+                            onClick={nextPage}
+                            disabled={!pagination.hasNext}
+                        >
+                            <ChevronRight size={20} />
+                        </button>
+
+                        <h2>
+                            {pagination.page + 1 <= pagination.totalPages
+                                ? pagination.page + 1
+                                : '-'}
+                        </h2>
+                    </section>
+                )}
+
             </section>
+
             <Footer />
         </main>
     )

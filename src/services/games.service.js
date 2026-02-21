@@ -33,10 +33,6 @@ function normalizeListParam(param) {
 
 export const gamesService = {
 
-  /* =========================
-     SYNC (ADMIN ONLY)
-  ========================= */
-
   async sync(rawg_id) {
     if (!rawg_id) throw new Error('rawg_id is required')
 
@@ -45,10 +41,6 @@ export const gamesService = {
       body: JSON.stringify({ rawg_id })
     })
   },
-
-  /* =========================
-     DETAILS
-  ========================= */
 
   async details(params = {}) {
     if (!params.id && !params.rawg_id)
@@ -61,10 +53,6 @@ export const gamesService = {
 
     return request(`${BASE_URL}/games?${query}`)
   },
-
-  /* =========================
-     LIST (CATALOG)
-  ========================= */
 
   async list({
     search = '',
@@ -101,10 +89,6 @@ export const gamesService = {
 
     return request(`${BASE_URL}/games?${query}`)
   },
-
-  /* =========================
-     USER GAMES
-  ========================= */
 
   async userList() {
     return request(`${BASE_URL}/games?action=user`)
