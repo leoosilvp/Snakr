@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Search as IconSearch } from '@geist-ui/icons'
+import { Frown, Search as IconSearch } from '@geist-ui/icons'
 import { useGames } from '../hooks/useGames'
 
 const Search = () => {
@@ -69,9 +69,10 @@ const Search = () => {
                     ref={modalRef}
                 >
                     {games.length === 0 && (
-                        <p style={{ padding: '20px' }}>
-                            No games found.
-                        </p>
+                        <div className='no-games-found'>
+                            <Frown size={25} />
+                            <p>No games found.</p>
+                        </div>
                     )}
 
                     {games.map((game, index) => (

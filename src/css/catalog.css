@@ -114,6 +114,22 @@
     width: 100%;
 }
 
+.no-games-found{
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    justify-content: center;
+    color: var(--gray-color);
+}
+
+.no-games-found p{
+    font-size: 0.95rem;
+    font-weight: 300;
+}
+
 .catalog-card-game{
     display: flex;
     width: 100%;

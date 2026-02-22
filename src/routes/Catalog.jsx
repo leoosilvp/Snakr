@@ -1,34 +1,45 @@
-import '../css/catalog.css'
 import { useState, useMemo, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import GameCardSkeleton from '../components/skeletons/GameCardSkeleton'
-import { Search, Plus, ChevronLeft, ChevronRight, Check } from '@geist-ui/icons'
+import { Search, Plus, ChevronLeft, ChevronRight, Check, Frown } from '@geist-ui/icons'
 import { useGames } from '../hooks/useGames'
 import { useUserGames } from '../hooks/useUserGames'
+import '../css/catalog.css'
 
 const Catalog = () => {
 
-    const [page, setPage] = useState(1)
-    const [searchInput, setSearchInput] = useState('')
-    const [search, setSearch] = useState('')
+    const [searchParams, setSearchParams] = useSearchParams()
 
+    const searchFromUrl = searchParams.get('search') || ''
+
+    const [page, setPage] = useState(1)
+    const [searchInput, setSearchInput] = useState(searchFromUrl)
     const [selectedGenres, setSelectedGenres] = useState([])
 
     useEffect(() => {
         const timeout = setTimeout(() => {
+            const value = searchInput.trim()
+
             setPage(1)
-            setSearch(searchInput.trim())
+
+            if (value) {
+                setSearchParams({ search: value })
+            } else {
+                setSearchParams({})
+            }
         }, 400)
 
         return () => clearTimeout(timeout)
-    }, [searchInput])
+    }, [searchInput, setSearchParams])
 
     const { games, pagination, meta, loading } = useGames({
         page,
-        search,
+        search: searchFromUrl || null,
         genres: selectedGenres.length ? selectedGenres.join(',') : null,
     })
+
     const { games: userGames, updateGame } = useUserGames()
 
     const userGameIds = useMemo(() => {
@@ -105,7 +116,10 @@ const Catalog = () => {
                         {loading && <GameCardSkeleton />}
 
                         {!loading && games.length === 0 && (
-                            <p>No games found.</p>
+                            <div className='no-games-found'>
+                                <Frown size={25} />
+                                <p>No games found.</p>
+                            </div>
                         )}
 
                         {!loading && games.map(game => {
