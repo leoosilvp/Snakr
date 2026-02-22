@@ -1,7 +1,7 @@
 import '../css/profile.css'
 import Header from "../components/Header"
 import Footer from "../components/Footer"
-import Skeleton from "../components/Skeleton"
+import Skeleton from "../components/skeletons/Skeleton"
 import background from '../assets/img/background-default.png'
 import { Link, Navigate } from 'react-router-dom'
 import Collection from '../components/profile/Collection'

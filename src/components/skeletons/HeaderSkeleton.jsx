@@ -24,7 +24,7 @@ const HeaderSkeleton = () => {
 
       <nav>
         <ul>
-          {Array.from({ length: 8 }).map((_, i) => (
+          {Array.from({ length: 7 }).map((_, i) => (
             <li key={i}>
               <div className="skeleton-nav-item shimmer" />
             </li>

@@ -1,6 +1,6 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
-import Skeleton from '../components/Skeleton'
+import Skeleton from '../components/skeletons/Skeleton'
 import ProfileSkeleton from '../components/skeletons/ProfileSkeleton'
 
 export default function ProtectedRoute() {
