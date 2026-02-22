@@ -44,7 +44,6 @@ const Profile = () => {
 
             if (!otherUser || !otherUser.profile) return null
 
-            // 🔥 AGORA USA PRESENCE (CORREÇÃO)
             const statusObj = otherUser.presence || {}
 
             const status =

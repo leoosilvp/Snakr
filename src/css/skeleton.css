@@ -1,0 +1,208 @@
+/* =====================================================
+   SNAKR — GLOBAL SKELETON SYSTEM
+   ===================================================== */
+
+/* =========================
+   SHIMMER BASE
+   ========================= */
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+  background: #1a1a1a;
+  border-radius: 4px;
+}
+
+.shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  height: 100%;
+  width: 150%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    left: 150%;
+  }
+}
+
+/* =====================================================
+   PROFILE SKELETON
+   ===================================================== */
+
+/* HEADER */
+
+.skeleton-avatar-wrapper {
+  position: relative;
+  margin: 15px;
+}
+
+.skeleton-avatar {
+  width: 170px;
+  height: 170px;
+  border-radius: 3px;
+}
+
+.skeleton-username {
+  width: 200px;
+  height: 28px;
+  margin-bottom: 10px;
+}
+
+.skeleton-bio {
+  width: 400px;
+  height: 80px;
+}
+
+.skeleton-level {
+  width: 120px;
+  height: 30px;
+}
+
+.skeleton-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.skeleton-btn {
+  width: 120px;
+  height: 30px;
+  border-radius: 4px;
+}
+
+/* COLLECTION */
+
+.skeleton-title {
+  width: 150px;
+  height: 18px;
+}
+
+.skeleton-stat-number {
+  width: 60px;
+  height: 35px;
+}
+
+.skeleton-stat-label {
+  width: 80px;
+  height: 14px;
+  margin-top: 5px;
+}
+
+.skeleton-game {
+  width: 70px;
+  height: 70px;
+}
+
+/* RECENT ACTIVITY */
+
+.skeleton-activity {
+  width: 100%;
+  height: 60px;
+}
+
+/* ASIDE */
+
+.skeleton-online {
+  width: 100px;
+  height: 20px;
+}
+
+.skeleton-award {
+  width: 50px;
+  height: 50px;
+}
+
+.skeleton-link {
+  width: 100%;
+  height: 25px;
+}
+
+.skeleton-friend {
+  width: 100%;
+  height: 45px;
+}
+
+/* =====================================================
+   HEADER SKELETON
+   ===================================================== */
+
+.header-skeleton {
+  pointer-events: none;
+}
+
+/* LEFT SIDE */
+
+.skeleton-logo {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+}
+
+.skeleton-breadcrumb {
+  width: 80px;
+  height: 16px;
+}
+
+/* RIGHT SIDE */
+
+.skeleton-search {
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+}
+
+.skeleton-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.skeleton-avatar-header {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+/* NAV */
+
+.header-skeleton nav ul {
+  display: flex;
+  list-style: none;
+  gap: 5px;
+}
+
+.skeleton-nav-item {
+  width: 70px;
+  height: 23.5px;
+  margin: 0 10px 10px 10px;
+  border-radius: 3px;
+}
+
+/* =====================================================
+   RESPONSIVE ADJUSTMENTS
+   ===================================================== */
+
+@media (width < 720px) {
+  .skeleton-bio {
+    width: 100%;
+    height: 60px;
+  }
+
+  .skeleton-search {
+    width: 120px;
+  }
+
+  .skeleton-game {
+    width: 60px;
+    height: 60px;
+  }
+}
