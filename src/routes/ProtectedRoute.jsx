@@ -19,10 +19,6 @@ export default function ProtectedRoute() {
       return <Skeleton />
     }
 
-    else if (path === '/catalog') {
-      return <Skeleton />
-    }
-
     return <Skeleton />
   }
 

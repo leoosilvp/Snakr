@@ -20,12 +20,10 @@
   left: -150%;
   height: 100%;
   width: 150%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.05),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.05),
+      transparent);
   animation: shimmer 1.5s infinite;
 }
 
@@ -188,6 +186,39 @@
 }
 
 /* =====================================================
+   GAME CARD SKELETON
+   ===================================================== */
+
+.skeleton-game-image {
+  width: 180px;
+  min-width: 180px;
+  height: 100px;
+  border-radius: 2px;
+}
+
+.skeleton-game-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skeleton-game-title {
+  width: 220px;
+  height: 18px;
+}
+
+.skeleton-game-genres {
+  display: flex;
+  gap: 10px;
+}
+
+.skeleton-game-genre {
+  width: 70px;
+  height: 18px;
+  border-radius: 2px;
+}
+
+/* =====================================================
    RESPONSIVE ADJUSTMENTS
    ===================================================== */
 
@@ -204,5 +235,18 @@
   .skeleton-game {
     width: 60px;
     height: 60px;
+  }
+
+  .skeleton-game-image {
+    min-width: 100px;
+    height: 70px;
+  }
+
+  .skeleton-game-title {
+    width: 160px;
+  }
+
+  .skeleton-game-genre {
+    width: 50px;
   }
 }

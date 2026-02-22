@@ -8,7 +8,7 @@ const Home = () => {
       <Header />
 
       <section className="content">
-        <div className="feed">
+        <div className="home-main-feed">
           <section className="most-popular">
             <header className="most-popular-header">
               <h1>Most popular</h1>

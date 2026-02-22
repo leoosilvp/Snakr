@@ -12,7 +12,7 @@
     min-height: 100vh;
 }
 
-.catalog-main-header {
+.catalog-main-header { 
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -169,6 +169,7 @@
     width: fit-content;
     border-radius: 2px;
     border: 1px solid #101010;
+    object-fit: cover;
 }
 
 .catalog-card-game-content h1{
@@ -345,4 +346,102 @@
 .catalog-change-page button:hover{
     border-color: var(--gray-color);
     color: var(--light-color);
+}
+
+@media (width < 720px) {
+
+    .catalog-main-content {
+        padding: 110px 15px 60px;
+        width: 100%;
+    }
+
+    .catalog-main-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .catalog-main-header-content {
+        gap: 10px;
+    }
+
+    .catalog-main-header-content .hr {
+        display: none;
+    }
+
+    .catalog-main-header-change-page {
+        margin-left: auto;
+    }
+
+    .catalog-main-header-input {
+        width: 100%;
+    }
+
+    .catalog-main-header-input input {
+        width: 100%;
+    }
+
+    .catalog-content {
+        flex-direction: column-reverse;
+        gap: 10px;
+    }
+
+    .catalog-card-game-content img {
+        min-width: 120px;
+        width: fit-content;
+        height: 70px;
+        object-fit: cover;
+    }
+
+    .catalog-card-game h1 {
+        font-size: 0.95rem;
+    }
+
+    .catalog-card-game-category {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .catalog-card-game button {
+        opacity: 1;
+    }
+
+    .catalog-main-filter {
+        width: 100%;
+        margin-top: 15px;
+        padding: 15px;
+    }
+
+    .catalog-filters {
+        height: 250px;
+        display: grid;
+        gap: 10px 30px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .catalog-filters::-webkit-scrollbar{
+        display: flex;
+    }
+
+    .catalog-filters::-webkit-scrollbar-thumb{
+        background: #101010;
+    }
+
+    .catalog-filters div label {
+        font-size: 0.85rem;
+        width: max-content;
+    }
+
+    .catalog-change-page {
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .catalog-change-page h1 {
+        font-size: 0.9rem;
+    }
+
+    .catalog-change-page button {
+        width: 35px;
+        height: 35px;
+    }
 }

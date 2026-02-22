@@ -41,10 +41,10 @@ function App() {
   const gameName = null
 
   useUserStatus({ isPlaying, gameName })
-  
+
   return (
     <BrowserRouter>
-    <ChangeTitle />
+      <ChangeTitle />
       <Routes>
         <Route path="*" element={<Error />} />
         <Route path="/" element={<Navigate to='/home' />} />
@@ -74,10 +74,10 @@ function App() {
             <Route path="terms and privacy" element={<TermsPrivacy />} />
           </Route>
           <Route path='/contribute' element={<Contribute />} />
+          <Route path="/catalog" element={<Catalog />} />
         </Route>
         <Route path='/security/reset-password' element={<ResetPassword />} />
         <Route path="/status" element={<Status />} />
-        <Route path="/catalog" element={<Catalog />} />
       </Routes>
       <Notification />
     </BrowserRouter>

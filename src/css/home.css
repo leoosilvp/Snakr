@@ -4,6 +4,13 @@
     width: 100%;
 }
 
+.home-main-feed {
+    display: flex;
+    flex-direction: column;
+    width: 1200px;
+    min-height: 100vh;
+}
+
 .most-popular-header {
     display: flex;
     flex-direction: column;
@@ -21,4 +28,11 @@
     width: 60px;
     height: 2.5px;
     background: var(--light-color);
+}
+
+@media (width < 720px) {
+    .home-main-feed {
+        width: 100%;
+        padding: 0 20px;
+    }
 }

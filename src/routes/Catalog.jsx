@@ -2,6 +2,7 @@ import '../css/catalog.css'
 import { useState, useMemo, useEffect } from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import GameCardSkeleton from '../components/skeletons/GameCardSkeleton'
 import { Search, Plus, ChevronLeft, ChevronRight, Check } from '@geist-ui/icons'
 import { useGames } from '../hooks/useGames'
 import { useUserGames } from '../hooks/useUserGames'
@@ -101,7 +102,7 @@ const Catalog = () => {
 
                     <section className='catalog-main-cards'>
 
-                        {loading && <p>Loading games...</p>}
+                        {loading && <GameCardSkeleton />}
 
                         {!loading && games.length === 0 && (
                             <p>No games found.</p>
