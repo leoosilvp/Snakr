@@ -87,7 +87,7 @@ const Catalog = () => {
 
                     <section className='catalog-main-header-input'>
                         <button type="button">
-                            <Search size={25} />
+                            <Search size={16} />
                         </button>
                         <input
                             type="text"
