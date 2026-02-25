@@ -356,8 +356,8 @@ input:checked+.slider::before {
 .search-games-card img {
   display: flex;
   width: fit-content;
-  max-width: 70px;
-  height: 45px;
+  max-width: 50px;
+  height: fit-content;
   object-fit: cover;
   border-radius: 2px;
 }
