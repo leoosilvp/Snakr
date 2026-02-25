@@ -26,7 +26,7 @@ const Search = () => {
 
     function handleKeyDown(e) {
         if (e.key === 'Enter' && input.trim()) {
-            navigate(`/catalog?search=${encodeURIComponent(input.trim())}`)
+            navigate(`/game/${encodeURIComponent(input.trim())}`)
         }
     }
 
@@ -80,7 +80,7 @@ const Search = () => {
                             <article
                                 className='search-games-card'
                                 onClick={() =>
-                                    navigate(`/catalog?search=${encodeURIComponent(game.name)}`)
+                                    navigate(`/game/${encodeURIComponent(game.id)}`)
                                 }
                             >
                                 <img
