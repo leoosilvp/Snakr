@@ -5,7 +5,7 @@
 }
 
 .game-main-content {
-    margin: 99px 0 1px;
+    margin: 99px 0 50px;
     display: flex;
     flex-direction: column;
     width: 90%;
@@ -125,7 +125,7 @@
     cursor: pointer;
 }
 
-.game-carousel img.active{
+.game-carousel img.active {
     outline: 1.5px solid var(--light-color);
     border: 3px solid #000;
 }
@@ -189,7 +189,7 @@
     color: var(--light-color);
 }
 
-.game-download{
+.game-download {
     margin-top: 30px;
     display: flex;
     flex-direction: column;
@@ -198,12 +198,12 @@
     border: 1px solid #0b0b0b;
 }
 
-.game-download h1{
+.game-download h1 {
     font-size: 1.5rem;
     font-weight: 400;
 }
 
-.game-download div{
+.game-download div {
     margin-top: 10px;
     display: flex;
     width: 100%;
@@ -223,11 +223,11 @@
     cursor: pointer;
 }
 
-.game-download div select:hover{
+.game-download div select:hover {
     border-color: var(--gray-color);
 }
 
-.game-download div button{
+.game-download div button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -245,23 +245,23 @@
 }
 
 
-.game-download div button:hover{
+.game-download div button:hover {
     background: var(--gray-color);
 }
 
-.game-description{
+.game-description {
     margin-top: 30px;
     padding: 15px;
     background: #080808;
     border: 1px solid #0b0b0b;
 }
 
-.game-description h1{
+.game-description h1 {
     font-size: 1rem;
     font-weight: 400;
 }
 
-.game-description p{
+.game-description p {
     font-size: 0.8rem;
     font-weight: 300;
     color: var(--gray-color);
@@ -276,12 +276,12 @@
     padding: 15px;
 }
 
-.game-specs h1{
+.game-specs h1 {
     font-size: 1.3rem;
     font-weight: 300;
 }
 
-.game-specs table{
+.game-specs table {
     margin-top: 10px;
     cursor: default;
 }
@@ -329,4 +329,144 @@
 
 .game-specs tbody tr:hover {
     background-color: #0c0c0c;
+}
+
+@media (max-width: 720px) {
+
+    .game-main-content {
+        width: 100vw;
+        margin: 90px auto 40px;
+        padding: 10px;
+    }
+
+    .game-ctn-content {
+        margin-top: 30px;
+    }
+
+    .game-content {
+        flex-direction: column-reverse;
+        gap: 25px;
+    }
+
+    .game-content-carousel {
+        width: 100%;
+    }
+
+    .game-content-carousel-active {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .game-carousel {
+        display: flex;
+        gap: 8px;
+        overflow-x: auto;
+        padding: 5px 0;
+        scroll-behavior: smooth;
+    }
+
+    .game-carousel img {
+        height: 50px;
+        border-radius: 4px;
+        cursor: pointer;
+        flex-shrink: 0;
+        transition: transform 0.2s ease, outline 0.2s ease;
+    }
+
+    .game-carousel img.active {
+        outline: 2px solid var(--light-color);
+        transform: scale(1.05);
+    }
+
+    .game-content-banner{
+        width: 100%;
+    }
+
+    .game-content-banner img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    .game-content-banner p {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+
+    .game-specs table,
+    .game-specs thead,
+    .game-specs tbody,
+    .game-specs th,
+    .game-specs td,
+    .game-specs tr {
+        display: block;
+        width: 100%;
+    }
+
+    .game-specs thead {
+        display: none;
+    }
+
+    .game-specs tbody tr {
+        margin-bottom: 16px;
+        padding: 15px 18px;
+        border-radius: 10px;
+        background-color: #0a0a0a;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.35);
+        transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .game-specs tbody tr:hover {
+        transform: translateY(-2px);
+        background-color: #0c0c0c;
+    }
+
+    .game-specs tbody td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+        font-size: 0.88rem;
+        border-bottom: 1px solid #111111;
+    }
+
+    .game-specs tbody td:last-child {
+        border-bottom: none;
+    }
+
+    .game-specs td span {
+        width: 50%;
+        font-weight: 600;
+        color: #c3c3c3;
+        flex-shrink: 0;
+    }
+
+    .game-specs td {
+        color: #d1d1d1;
+    }
+
+    .game-specs {
+        padding: 15px 10px;
+    }
+
+    .game-download div select {
+        width: 60%;
+    }
+
+    .game-header-content h1 {
+        font-size: 1.4rem;
+    }
+
+    .game-description h1,
+    .game-download h1,
+    .game-specs h1 {
+        font-size: 1.2rem;
+    }
+
+    .game-description p,
+    .game-content-banner p {
+        font-size: 0.85rem;
+    }
 }
