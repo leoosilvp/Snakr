@@ -1,7 +1,7 @@
 import '../css/game.css'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
-import { ChevronRight } from '@geist-ui/icons'
+import { ChevronRight, Download } from '@geist-ui/icons'
 import { Link } from 'react-router-dom'
 
 const Game = () => {
@@ -79,6 +79,55 @@ const Game = () => {
                             <Link>Ver lista</Link>
                         </section>
                     </footer>
+                </section>
+
+                <section className='game-download'>
+                    <h1>Download: Grand Theft Auto V</h1>
+                    <div>
+                        <select>
+                            <option>Nenhuma fonte de download.</option>
+                        </select>
+                        <button><Download size={16} /> Baixar</button>
+                    </div>
+                </section>
+
+                <section className='game-info'>
+                    <table class="game-specs">
+                        <h1>Requisitos de sistema</h1>
+                        <thead>
+                            <tr>
+                                <th>Mínimo</th>
+                                <th>Recomendado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span>SO:</span> Windows 7 64-bit</td>
+                                <td><span>SO:</span> Windows 10 64-bit</td>
+                            </tr>
+                            <tr>
+                                <td><span>Processador:</span> Intel Core i5-2500K / AMD FX-6300</td>
+                                <td><span>Processador:</span> Intel Core i7-4770 / AMD Ryzen 5 1500X</td>
+                            </tr>
+                            <tr>
+                                <td><span>Memória:</span> 8 GB RAM</td>
+                                <td><span>Memória:</span> 16 GB RAM</td>
+                            </tr>
+                            <tr>
+                                <td><span>Placa de Vídeo:</span> NVIDIA GeForce GTX 770 / AMD Radeon R9 280</td>
+                                <td><span>Placa de Vídeo:</span> NVIDIA GeForce GTX 1060 / AMD Radeon RX 580</td>
+                            </tr>
+                            <tr>
+                                <td><span>Armazenamento:</span> 65 GB</td>
+                                <td><span>Armazenamento:</span> 65 GB SSD</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section className='game-description'>
+                    <h1>Sobre</h1>
+                    <p>Grand Theft Auto V is a vast open world game set in Los Santos, a sprawling sun-soaked metropolis struggling to stay afloat in an era of economic uncertainty and cheap reality TV. The game blends storytelling and gameplay in new ways as players repeatedly jump in and out of the lives of the game’s three lead characters, playing all sides of the game’s interwoven story.</p>
                 </section>
             </section>
             <Footer />

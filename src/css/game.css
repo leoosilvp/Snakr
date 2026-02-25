@@ -69,7 +69,6 @@
 .game-ctn-content {
     margin-top: 15px;
     background: #080808;
-    box-shadow: 0 0 15px #ffffff06;
     border: 1px solid #0b0b0b;
 }
 
@@ -188,4 +187,80 @@
 .game-content-footer a:hover {
     background: #252525;
     color: var(--light-color);
+}
+
+.game-description{
+    margin-top: 20px;
+}
+
+.game-description h1{
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.game-download{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    background: #080808;
+    border: 1px solid #0b0b0b;
+}
+
+.game-download h1{
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.game-download div{
+    margin-top: 10px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.game-download div select {
+    display: flex;
+    width: 450px;
+    height: 35px;
+    padding: 5px;
+    color: var(--gray-color);
+    border: 1px solid #202020;
+    border-radius: 3px;
+    background: #080808;
+    transition: var(--transition-2s);
+    cursor: pointer;
+}
+
+.game-download div select:hover{
+    border-color: var(--gray-color);
+}
+
+.game-download div button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100px;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--black);
+    background: var(--light-color);
+    cursor: pointer;
+    transition: var(--transition-2s);
+}
+
+
+.game-download div button:hover{
+    background: var(--gray-color);
+}
+
+
+.game-description p{
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--gray-color);
 }
