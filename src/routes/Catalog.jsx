@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react'
-import { useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import GameCardSkeleton from '../components/skeletons/GameCardSkeleton'
@@ -126,7 +126,8 @@ const Catalog = () => {
                             const inLibrary = userGameIds.has(game.id)
 
                             return (
-                                <article
+                                <Link 
+                                    to={`/game/${game.id}`}
                                     key={game.id}
                                     className={`catalog-card-game ${inLibrary ? 'game-in-lib' : ''}`}
                                 >
@@ -156,7 +157,7 @@ const Catalog = () => {
                                             : <Plus size={16} />
                                         }
                                     </button>
-                                </article>
+                                </Link>
                             )
                         })}
                     </section>

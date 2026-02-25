@@ -141,6 +141,7 @@
     backdrop-filter: blur(5px);
     cursor: pointer;
     transition: var(--transition-2s);
+    color: var(--light-color);
 }
 
 .catalog-card-game:hover{
