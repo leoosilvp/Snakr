@@ -189,15 +189,6 @@
     color: var(--light-color);
 }
 
-.game-description{
-    margin-top: 20px;
-}
-
-.game-description h1{
-    font-size: 1rem;
-    font-weight: 400;
-}
-
 .game-download{
     margin-top: 30px;
     display: flex;
@@ -258,9 +249,84 @@
     background: var(--gray-color);
 }
 
+.game-description{
+    margin-top: 30px;
+    padding: 15px;
+    background: #080808;
+    border: 1px solid #0b0b0b;
+}
+
+.game-description h1{
+    font-size: 1rem;
+    font-weight: 400;
+}
 
 .game-description p{
     font-size: 0.8rem;
     font-weight: 300;
     color: var(--gray-color);
+}
+
+.game-specs {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    background: #080808;
+    border: 1px solid #0b0b0b;
+    padding: 15px;
+}
+
+.game-specs h1{
+    font-size: 1.3rem;
+    font-weight: 300;
+}
+
+.game-specs table{
+    margin-top: 10px;
+    cursor: default;
+}
+
+.game-specs table {
+    width: 100%;
+    border-spacing: 0;
+    border-radius: 7px;
+    overflow: hidden;
+    border: 1px solid #0b0b0b;
+}
+
+.game-specs thead {
+    background-color: #0b0b0b;
+}
+
+.game-specs th {
+    text-align: left;
+    padding: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #c3c3c3;
+}
+
+.game-specs td {
+    padding: 12px;
+    font-size: 0.85rem;
+    color: #767676;
+}
+
+.game-specs td span {
+    font-weight: 500;
+    display: inline-block;
+    width: 150px;
+    color: #a3a3a3;
+}
+
+.game-specs tbody tr:nth-child(even) {
+    background-color: #0a0a0a;
+}
+
+.game-specs tbody tr:nth-child(odd) {
+    background-color: transparent;
+}
+
+.game-specs tbody tr:hover {
+    background-color: #0c0c0c;
 }

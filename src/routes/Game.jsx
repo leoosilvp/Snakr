@@ -91,9 +91,14 @@ const Game = () => {
                     </div>
                 </section>
 
-                <section className='game-info'>
-                    <table class="game-specs">
-                        <h1>Requisitos de sistema</h1>
+                <section className='game-description'>
+                    <h1>Sobre</h1>
+                    <p>Grand Theft Auto V is a vast open world game set in Los Santos, a sprawling sun-soaked metropolis struggling to stay afloat in an era of economic uncertainty and cheap reality TV. The game blends storytelling and gameplay in new ways as players repeatedly jump in and out of the lives of the game’s three lead characters, playing all sides of the game’s interwoven story.</p>
+                </section>
+
+                <section className='game-specs'>
+                    <h1>Requisitos de sistema</h1>
+                    <table>
                         <thead>
                             <tr>
                                 <th>Mínimo</th>
@@ -125,10 +130,7 @@ const Game = () => {
                     </table>
                 </section>
 
-                <section className='game-description'>
-                    <h1>Sobre</h1>
-                    <p>Grand Theft Auto V is a vast open world game set in Los Santos, a sprawling sun-soaked metropolis struggling to stay afloat in an era of economic uncertainty and cheap reality TV. The game blends storytelling and gameplay in new ways as players repeatedly jump in and out of the lives of the game’s three lead characters, playing all sides of the game’s interwoven story.</p>
-                </section>
+
             </section>
             <Footer />
         </main>
