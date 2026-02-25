@@ -180,9 +180,8 @@
 
 .catalog-card-game-content img{
     display: flex;
-    max-width: 180px;
-    min-width: 180px;
-    height: 100px;
+    min-width: fit-content;
+    height: 130px;
     width: fit-content;
     border-radius: 2px;
     border: 1px solid #101010;
@@ -270,6 +269,7 @@
 .catalog-filters::-webkit-scrollbar {
     display: none;
     width: 5px;
+    height: 5px;
 }
 
 .catalog-filters::-webkit-scrollbar-thumb {
@@ -369,7 +369,7 @@
 
     .catalog-main-content {
         padding: 110px 15px 60px;
-        width: 100%;
+        width: 100vw;
     }
 
     .catalog-main-header {
@@ -403,9 +403,7 @@
     }
 
     .catalog-card-game-content img {
-        min-width: 120px;
         width: fit-content;
-        height: 70px;
         object-fit: cover;
     }
 

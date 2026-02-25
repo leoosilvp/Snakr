@@ -33,18 +33,18 @@ function normalizeListParam(param) {
 
 export const gamesService = {
 
-  async sync(rawg_id) {
-    if (!rawg_id) throw new Error('rawg_id is required')
+  async sync(igdb_id) {
+    if (!igdb_id) throw new Error('igdb_id is required')
 
     return request(`${BASE_URL}/games?action=sync`, {
       method: 'POST',
-      body: JSON.stringify({ rawg_id })
+      body: JSON.stringify({ igdb_id })
     })
   },
 
   async details(params = {}) {
-    if (!params.id && !params.rawg_id)
-      throw new Error('id or rawg_id required')
+    if (!params.id && !params.igdb_id)
+      throw new Error('id or igdb_id required')
 
     const query = new URLSearchParams({
       action: 'details',
@@ -65,10 +65,7 @@ export const gamesService = {
     page = 1
   } = {}) {
 
-    const queryParams = {
-      action: 'list',
-      page
-    }
+    const queryParams = { action: 'list', page }
 
     if (search) queryParams.search = search.trim()
 

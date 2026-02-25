@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 import { gamesService } from '../services/games.service'
 
-export function useGameDetails(rawg_id) {
+export function useGameDetails(igdb_id) {
   const [game, setGame] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    if (!rawg_id) return
+    if (!igdb_id) return
 
     let mounted = true
 
@@ -16,9 +16,9 @@ export function useGameDetails(rawg_id) {
         setLoading(true)
         setError(null)
 
-        await gamesService.sync(rawg_id)
+        await gamesService.sync(igdb_id)
 
-        const data = await gamesService.details({ rawg_id })
+        const data = await gamesService.details({ igdb_id })
 
         if (mounted) setGame(data)
 
@@ -32,7 +32,7 @@ export function useGameDetails(rawg_id) {
     load()
 
     return () => { mounted = false }
-  }, [rawg_id])
+  }, [igdb_id])
 
   return { game, loading, error }
 }
