@@ -32,6 +32,7 @@ import { useUserStatus } from "./hooks/useUserStatus";
 import Welcome from "./routes/Welcome";
 import User from "./routes/User";
 import Catalog from "./routes/Catalog";
+import Game from "./routes/Game";
 
 function App() {
   ConsoleBanner()
@@ -75,6 +76,7 @@ function App() {
           </Route>
           <Route path='/contribute' element={<Contribute />} />
           <Route path="/catalog" element={<Catalog />} />
+          <Route path="/game/:game-id" element={<Game />} />
         </Route>
         <Route path='/security/reset-password' element={<ResetPassword />} />
         <Route path="/status" element={<Status />} />
