@@ -125,7 +125,21 @@
     cursor: pointer;
 }
 
-.game-carousel img.active {
+.game-carousel div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    min-width: 120px;
+    background-image: var(--hero_img);
+    background-size: cover;
+    background-position: center;
+    height: 65px;
+    font-size: 1.7rem;
+    cursor: pointer;
+}
+
+.game-carousel .active {
     outline: 1.5px solid var(--light-color);
     border: 3px solid #000;
 }

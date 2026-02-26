@@ -10,11 +10,6 @@ const Game = () => {
     const { igdb_id } = useParams()
     const { game, loading, error } = useGameDetails(igdb_id)
 
-    /**
-     * Estado profissional do carrossel
-     * Mantém controle do jogo que originou o estado
-     * Evita useEffect e cascading render
-     */
     const [carouselState, setCarouselState] = useState({
         igdb_id,
         index: 0
@@ -89,7 +84,6 @@ const Game = () => {
 
             <section className="game-main-content">
 
-                {/* HEADER */}
                 <header className="game-header-main">
                     <section className="game-header-breadcrumbs">
                         <Link to="/catalog">Catalog</Link>
@@ -113,11 +107,9 @@ const Game = () => {
                     </section>
                 </header>
 
-                {/* CONTENT */}
                 <section className="game-ctn-content">
                     <div className="game-content">
 
-                        {/* CAROUSEL */}
                         <section className="game-content-carousel">
 
                             {activeMedia?.type === 'video' && (
@@ -142,12 +134,13 @@ const Game = () => {
                                 <section className="game-carousel">
 
                                     {hasTrailer && (
-                                        <button
+                                        <div
                                             className={activeIndex === 0 ? 'active' : ''}
                                             onClick={() => handleSetIndex(0)}
+                                            style={{'--hero_img' : `url(${game.hero_image || ''})`}}
                                         >
                                             ▶
-                                        </button>
+                                        </div>
                                     )}
 
                                     {screenshots.map((img, index) => {
@@ -175,7 +168,6 @@ const Game = () => {
                             )}
                         </section>
 
-                        {/* BANNER */}
                         <section className="game-content-banner">
 
                             {game.cover?.url && (
@@ -245,7 +237,6 @@ const Game = () => {
                     </footer>
                 </section>
 
-                {/* DOWNLOAD */}
                 <section className="game-download">
                     <h1>Download: {game.name}</h1>
                     <div>
@@ -258,7 +249,6 @@ const Game = () => {
                     </div>
                 </section>
 
-                {/* DESCRIPTION */}
                 <section className="game-description">
                     <h1>Sobre</h1>
                     <p>
@@ -267,7 +257,6 @@ const Game = () => {
                     </p>
                 </section>
 
-                {/* SPECS */}
                 <section className="game-specs">
                     <h1>Requisitos de sistema</h1>
                     <table>
