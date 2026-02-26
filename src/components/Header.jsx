@@ -8,6 +8,8 @@ import { useNotifications } from '../hooks/useNotifications'
 import { Bell, Bookmark } from '@geist-ui/icons'
 import Search from './Search'
 
+import { useGameDetails } from '../hooks/useGameDetails' // ✅ IMPORT ADICIONADO
+
 const routeNames = {
     '/home': 'Home',
     '/catalog': 'Catalog',
@@ -34,7 +36,6 @@ const subRouteNames = {
 
 const Header = ({ noSearch }) => {
     const { user } = useUser()
-
     const isLogged = Boolean(user)
 
     const location = useLocation()
@@ -54,10 +55,23 @@ const Header = ({ noSearch }) => {
     const isUserRoute = segments[0] === 'user'
     const username = isUserRoute ? segments[1] : null
 
+    const isGameRoute = segments[0] === 'game'
+    const igdbId = isGameRoute ? segments[1] : null
+
+    const { game, loading } = useGameDetails(igdbId)
+
     const dynamicSubRouteNames = {
         ...subRouteNames,
         ...(isUserRoute && username
             ? { [`/user/${username}`]: username }
+            : {}),
+        ...(isGameRoute && igdbId
+            ? {
+                [`/game/${igdbId}`]:
+                    loading
+                        ? ''
+                        : game?.name || 'Game'
+            }
             : {})
     }
 
@@ -129,15 +143,32 @@ const Header = ({ noSearch }) => {
 
                 {isLogged &&
                     <article className="header-content-right">
-                        {!noSearch &&
-                            <Search />
-                        }
-                        <Link to="/notifications"><Bell size={16} /> {unread > 0 && (<div className="notification-count">{unread > 99 ? '99+' : unread}</div>)}</Link>
-                        <Link to="/wish-list"><Bookmark size={16} /></Link>
+                        {!noSearch && <Search />}
 
-                        <div onMouseEnter={handleAvatarMouseEnter} onMouseLeave={handleAvatarMouseLeave}>
+                        <Link to="/notifications">
+                            <Bell size={16} />
+                            {unread > 0 && (
+                                <div className="notification-count">
+                                    {unread > 99 ? '99+' : unread}
+                                </div>
+                            )}
+                        </Link>
+
+                        <Link to="/wish-list">
+                            <Bookmark size={16} />
+                        </Link>
+
+                        <div
+                            onMouseEnter={handleAvatarMouseEnter}
+                            onMouseLeave={handleAvatarMouseLeave}
+                        >
                             <Link to="/profile" title={user?.profile?.username}>
-                                <img src={user?.profile?.photo || 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'} />
+                                <img
+                                    src={
+                                        user?.profile?.photo ||
+                                        'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'
+                                    }
+                                />
                             </Link>
                         </div>
                     </article>
@@ -158,7 +189,12 @@ const Header = ({ noSearch }) => {
                 </ul>
             </nav>
 
-            <ModalProfile ref={modalRef} isOpen={showProfileModal} onMouseEnter={handleModalMouseEnter} onMouseLeave={handleModalMouseLeave} />
+            <ModalProfile
+                ref={modalRef}
+                isOpen={showProfileModal}
+                onMouseEnter={handleModalMouseEnter}
+                onMouseLeave={handleModalMouseLeave}
+            />
         </header>
     )
 }
