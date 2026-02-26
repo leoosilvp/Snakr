@@ -76,8 +76,8 @@ function App() {
           </Route>
           <Route path='/contribute' element={<Contribute />} />
           <Route path="/catalog" element={<Catalog />} />
+          <Route path="/game/:igdb_id" element={<Game />} />
         </Route>
-          <Route path="/game/:game-id" element={<Game />} />
         <Route path='/security/reset-password' element={<ResetPassword />} />
         <Route path="/status" element={<Status />} />
       </Routes>

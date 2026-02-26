@@ -127,13 +127,13 @@ const Catalog = () => {
 
                             return (
                                 <Link 
-                                    to={`/game/${game.id}`}
+                                    to={`/game/${game.igdb_id}`}
                                     key={game.id}
                                     className={`catalog-card-game ${inLibrary ? 'game-in-lib' : ''}`}
                                 >
                                     <section className='catalog-card-game-content'>
                                         <img
-                                            src={game.background_image}
+                                            src={game.cover_image}
                                             alt={game.name}
                                             loading="lazy"
                                         />

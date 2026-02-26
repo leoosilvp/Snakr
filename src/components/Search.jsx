@@ -80,11 +80,11 @@ const Search = () => {
                             <article
                                 className='search-games-card'
                                 onClick={() =>
-                                    navigate(`/game/${game.id}`)
+                                    navigate(`/game/${game.igdb_id}`)
                                 }
                             >
                                 <img
-                                    src={game.background_image}
+                                    src={game.cover_image}
                                     alt={game.name}
                                 />
 
