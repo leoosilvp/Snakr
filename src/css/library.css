@@ -1,10 +1,10 @@
-.library-main{
+.library-main {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.library-main-content{
+.library-main-content {
     margin: 130px 0 70px;
     display: flex;
     flex-direction: column;
@@ -21,20 +21,20 @@
     gap: 15px;
 }
 
-.library-main-header-content{
+.library-main-header-content {
     display: flex;
     width: 100%;
     gap: 10px;
     border-bottom: 1px solid var(--dark-color);
 }
 
-.library-main-header-content h1{
+.library-main-header-content h1 {
     font-size: 1rem;
     font-weight: 400;
     color: var(--gray-color);
 }
 
-.library-main-header a{
+.library-main-header a {
     display: flex;
     min-width: max-content;
     padding: 7px 15px;
@@ -43,16 +43,16 @@
     color: var(--gray-color);
 }
 
-.library-main-header a.active{
+.library-main-header a.active {
     color: var(--light-color);
     border-color: var(--light-color);
 }
 
-.library-main-header a:hover{
+.library-main-header a:hover {
     color: var(--light-color);
 }
 
-.library-main-header button{
+.library-main-header button {
     display: flex;
     min-width: max-content;
     padding: 7px 10px;
@@ -66,7 +66,93 @@
     transition: var(--transition-2s);
 }
 
-.library-main-header button:hover{
+.library-main-header button:hover {
     background: var(--dark-color);
     color: var(--light-color);
+}
+
+.library-games {
+    display: flex;
+    padding: 25px 0;
+}
+
+.library-games-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+}
+
+.library-game-card {
+    display: flex;
+    flex-direction: column;
+    width: 225px;
+    height: 285px;
+    border: 1px solid var(--dark-color);
+    border-radius: 5px;
+    overflow: hidden;
+    transition: var(--transition-2s);
+    cursor: pointer;
+}
+
+.library-game-card:hover {
+    transform: scale(1.015);
+}
+
+.library-game-card .cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    width: 225px;
+    height: 285px;
+    border-radius: 5px;
+    background: linear-gradient(45deg, #00000067, #0000001f);
+    transition: var(--transition-3s);
+}
+
+.library-game-card .cover:hover {
+    background: linear-gradient(45deg, #00000067, #00000000);
+}
+
+.library-game-card .game-time {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    margin: 7px;
+    padding: 3px 7px;
+    border: 1px solid #565656;
+    border-radius: 4px;
+    background: #00000096;
+    backdrop-filter: blur(2px);
+    font-size: 0.7rem;
+    z-index: 1;
+    gap: 5px;
+}
+
+.game-achievements {
+    display: flex;
+    flex-direction: column;
+    padding: 7px;
+    gap: 7px;
+}
+
+.game-achievements section{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.game-achievements section div{
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+    gap: 5px;
+}
+
+.progress-bar{
+    display: flex;
+    width: 100%;
+    height: 5px;
+    border-radius: 10px;
+    background: #60606080;
 }

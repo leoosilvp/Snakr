@@ -2,7 +2,7 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import '../css/library.css'
 import { Filter } from '@geist-ui/icons'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Outlet } from 'react-router-dom'
 
 const Library = () => {
     return (
@@ -18,6 +18,10 @@ const Library = () => {
                     <button onClick={() => window.location.href = '/wish-list'}>Wish list</button>
                     <button><Filter size={16} /></button>
                 </header>
+
+                <section className='library-games'>
+                    <Outlet />
+                </section>
             </section>
             <Footer />
         </main>

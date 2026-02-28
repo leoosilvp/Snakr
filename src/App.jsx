@@ -34,6 +34,7 @@ import User from "./routes/User";
 import Catalog from "./routes/Catalog";
 import Game from "./routes/Game";
 import Library from "./routes/Library";
+import AllGames from "./components/library/AllGames";
 
 function App() {
   ConsoleBanner()
@@ -79,7 +80,9 @@ function App() {
           <Route path='/contribute' element={<Contribute />} />
           <Route path="/catalog" element={<Catalog />} />
           <Route path="/game/:igdb_id" element={<Game />} />
-          <Route path="/library" element={<Library />} />
+          <Route path="/library" element={<Library />} >
+            <Route index element={<AllGames />} />
+          </Route>
         </Route>
         
         <Route path='/security/reset-password' element={<ResetPassword />} />
