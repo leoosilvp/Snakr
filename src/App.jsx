@@ -33,6 +33,7 @@ import Welcome from "./routes/Welcome";
 import User from "./routes/User";
 import Catalog from "./routes/Catalog";
 import Game from "./routes/Game";
+import Library from "./routes/Library";
 
 function App() {
   ConsoleBanner()
@@ -52,6 +53,7 @@ function App() {
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/user/:username" element={<User />} />
         <Route path="/login" element={<Login />} />
+
         <Route element={<ProtectedRoute />}>
           <Route path="/notifications" element={<PageNotifications />} />
           <Route path="/home" element={<Home />} />
@@ -77,7 +79,9 @@ function App() {
           <Route path='/contribute' element={<Contribute />} />
           <Route path="/catalog" element={<Catalog />} />
           <Route path="/game/:igdb_id" element={<Game />} />
+          <Route path="/library" element={<Library />} />
         </Route>
+        
         <Route path='/security/reset-password' element={<ResetPassword />} />
         <Route path="/status" element={<Status />} />
       </Routes>
