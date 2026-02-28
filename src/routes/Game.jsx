@@ -5,6 +5,7 @@ import Header from '../components/Header'
 import { ChevronRight, Download } from '@geist-ui/icons'
 import { Link, useParams } from 'react-router-dom'
 import { useGameDetails } from '../hooks/useGameDetails'
+import GameSkeleton from '../components/skeletons/GameSkeleton'
 
 const Game = () => {
     const { igdb_id } = useParams()
@@ -29,13 +30,7 @@ const Game = () => {
 
     if (loading) {
         return (
-            <main className="game-main">
-                <Header />
-                <section className="game-main-content">
-                    <p>Carregando...</p>
-                </section>
-                <Footer />
-            </main>
+            <GameSkeleton />
         )
     }
 
