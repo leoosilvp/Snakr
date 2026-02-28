@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { gamesService } from '../services/games.service'
 
 export function useUserGames() {
@@ -6,29 +6,38 @@ export function useUserGames() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  async function refresh() {
+  const refresh = useCallback(async (signal) => {
     try {
       setLoading(true)
       setError(null)
 
-      const data = await gamesService.userList()
-      setGames(data || [])
+      const data = await gamesService.userList({ signal })
+      setGames(Array.isArray(data) ? data : [])
 
     } catch (err) {
-      setError(err.message)
+      if (err.name !== 'AbortError') {
+        setError(err?.message || 'Failed to load user games.')
+      }
     } finally {
       setLoading(false)
     }
-  }
+  }, [])
 
-  async function updateGame(payload) {
-    await gamesService.updateUser(payload)
-    await refresh()
-  }
+  const updateGame = useCallback(async (payload) => {
+    try {
+      await gamesService.updateUser(payload)
+      await refresh()
+    } catch (err) {
+      setError(err?.message || 'Failed to update game.')
+    }
+  }, [refresh])
 
   useEffect(() => {
-    refresh()
-  }, [])
+    const controller = new AbortController()
+    refresh(controller.signal)
+
+    return () => controller.abort()
+  }, [refresh])
 
   return {
     games,
