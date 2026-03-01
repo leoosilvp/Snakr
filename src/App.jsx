@@ -36,6 +36,7 @@ import Game from "./routes/Game";
 import Library from "./routes/Library";
 import AllGames from "./components/library/AllGames";
 import Favorites from "./components/library/Favorites";
+import RecentlyPlayed from "./components/library/RecentlyPlayed";
 
 function App() {
   ConsoleBanner()
@@ -84,6 +85,7 @@ function App() {
           <Route path="/library" element={<Library />} >
             <Route index element={<Navigate to='all-games' />} />
             <Route path="all-games" element={<AllGames />} />
+            <Route path="recently-played" element={<RecentlyPlayed />} />
             <Route path="favorites" element={<Favorites />} />
           </Route>
         </Route>

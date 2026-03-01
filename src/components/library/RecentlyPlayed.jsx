@@ -1,15 +1,16 @@
 import { Award, Clock } from "@geist-ui/icons"
 import { useUserGames } from "../../hooks/useUserGames"
+import { Link } from "react-router-dom"
 
-const Favorites = () => {
+const RecentlyPlayed = () => {
     const { games, loading, error } = useUserGames()
     const safeGames = Array.isArray(games) ? games : Array.isArray(games?.results) ? games.results : Array.isArray(games?.data) ? games.data : []
-    const favoriteGames = safeGames.filter(game => game.favorite === true)
+    const playedGames = safeGames.filter(game => Number(game.hours_played) > 0.01)
 
     if (loading) {
         return (
             <main className="library-games-grid">
-                <p>Carregando favoritos...</p>
+                <p>Carregando jogos recentes...</p>
             </main>
         )
     }
@@ -22,17 +23,17 @@ const Favorites = () => {
         )
     }
 
-    if (!favoriteGames.length) {
+    if (!playedGames.length) {
         return (
             <main className="library-games-grid">
-                <p>Você ainda não tem jogos favoritos.</p>
+                <p>Você ainda não jogou nenhum jogo.</p>
             </main>
         )
     }
 
     return (
         <main className="library-games-grid">
-            {favoriteGames.map((game) => {
+            {playedGames.map((game) => {
                 const name = game.games?.name
                 const cover = game.games?.cover_image || game.games?.cover?.url
                 const unlocked = game.achievements_unlocked ?? 0
@@ -41,7 +42,7 @@ const Favorites = () => {
                 const progress = total > 0 ? Math.round((unlocked / total) * 100) : 0
 
                 return (
-                    <article to={`/game/${game.games?.igdb_id}`} key={game.game_id} className="library-game-card" title={name}>
+                    <Link to={`/game/${game.games?.igdb_id}`} key={game.game_id} className="library-game-card" title={name}>
                         <img src={cover} alt={name} />
                         <div className="cover">
                             <article className="game-time">
@@ -61,11 +62,11 @@ const Favorites = () => {
                                 <div className="progress-bar" style={{ width: `${progress}%` }} />
                             </article>
                         </div>
-                    </article>
+                    </Link>
                 )
             })}
         </main>
     )
 }
 
-export default Favorites
+export default RecentlyPlayed
