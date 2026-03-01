@@ -3,7 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import GameCardSkeleton from '../components/skeletons/GameCardSkeleton'
-import { Search, Plus, ChevronLeft, ChevronRight, Check, Frown } from '@geist-ui/icons'
+import { Search, Plus, ChevronLeft, ChevronRight, Check, Frown, ShoppingCart, List } from '@geist-ui/icons'
 import { useGames } from '../hooks/useGames'
 import { useUserGames } from '../hooks/useUserGames'
 import '../css/catalog.css'
@@ -49,7 +49,7 @@ const Catalog = () => {
     function handleAdd(gameId) {
         updateGame({
             game_id: gameId,
-            status: 'wishlist'
+            status: 'library'
         })
     }
 
@@ -158,9 +158,15 @@ const Catalog = () => {
                                     >
                                         {inLibrary
                                             ? <Check size={16} />
-                                            : <Plus size={16} />
+                                            : <ShoppingCart size={16} />
                                         }
                                     </button>
+                                    {inLibrary && (
+                                        <Link to='/library' className='card-game-in-library' >
+                                            <List size={16} />
+                                            <p className='text'>In library</p>
+                                        </Link>
+                                    )}
                                 </Link>
                             )
                         })}

@@ -152,8 +152,9 @@
 .catalog-card-game:hover.catalog-card-game button{
     opacity: 1;
 }
-
+ 
 .catalog-card-game button{
+    margin: 5px;
     display: flex;
     opacity: 0;
     height: fit-content;
@@ -165,7 +166,7 @@
 }
 
 .catalog-card-game button:hover{
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
 .catalog-card-game button.game-in-lib{
@@ -363,6 +364,30 @@
 .catalog-change-page button:hover{
     border-color: var(--gray-color);
     color: var(--light-color);
+}
+
+.card-game-in-library{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    left: 0;
+    padding: 0 5px;
+    height: 25px;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: var(--light-color);
+    background: #234567;
+    gap: 5px;
+    overflow: hidden;
+    transition: var(--transition-2s);
+}
+
+.card-game-in-library .text{
+    display: none;
+}
+
+.card-game-in-library:hover .text{
+    display: flex;
 }
 
 @media (width < 720px) {
