@@ -1,4 +1,4 @@
-import { Award, Clock } from "@geist-ui/icons"
+import { Award, Clock, Heart, HeartFill } from "@geist-ui/icons"
 import { useUserGames } from "../../hooks/useUserGames"
 
 const Favorites = () => {
@@ -39,14 +39,24 @@ const Favorites = () => {
                 const total = game.achievements_total ?? 0
                 const minutes = game.hours_played ?? 0
                 const progress = total > 0 ? Math.round((unlocked / total) * 100) : 0
+                const isFav = game.favorite
 
                 return (
                     <article to={`/game/${game.games?.igdb_id}`} key={game.game_id} className="library-game-card" title={name}>
                         <img src={cover} alt={name} />
                         <div className="cover">
-                            <article className="game-time">
-                                <Clock size={13} />
-                                {minutes} minutes
+                            <article className="ctn-game-time">
+                                <div className="game-time">
+                                    <Clock size={13} />
+                                    {minutes} minutes
+                                </div>
+                                <button className="game-fav">
+                                    {isFav ? (
+                                        <HeartFill size={15} />
+                                    ) : (
+                                        <Heart size={15} />
+                                    )}
+                                </button>
                             </article>
                             <article className="game-achievements">
                                 <section>
@@ -58,7 +68,7 @@ const Favorites = () => {
                                         <p>{progress}%</p>
                                     </div>
                                 </section>
-                                <div className="progress-bar" style={{ width: `${progress}%` }} />
+                                <div className="progress-bar" />
                             </article>
                         </div>
                     </article>

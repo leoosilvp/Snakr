@@ -115,6 +115,12 @@
     background: linear-gradient(45deg, #00000067, #00000000);
 }
 
+.library-game-card .ctn-game-time{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+} 
+
 .library-game-card .game-time {
     display: flex;
     align-items: center;
@@ -126,8 +132,31 @@
     background: #00000096;
     backdrop-filter: blur(2px);
     font-size: 0.7rem;
+    color: var(--light-color);
     z-index: 1;
     gap: 5px;
+}
+
+.library-game-card .game-fav {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    margin: 7px;
+    padding: 3px 7px;
+    border: 1px solid #565656;
+    border-radius: 4px;
+    background: #00000096;
+    backdrop-filter: blur(2px);
+    font-size: 0.7rem;
+    color: var(--light-color);
+    z-index: 1;
+    gap: 5px;
+    cursor: pointer;
+    transition: var(--transition-2s);
+}
+
+.library-game-card .game-fav:hover{
+    background: #00000068;
 }
 
 .game-achievements {
@@ -177,12 +206,12 @@
     }
 
     .library-game-card {
-        width: 185px;
-        height: 245px;
+        width: 165px;
+        height: 225px;
     }
 
     .library-game-card .cover {
-        width: 185px;
-        height: 245px;
+        width: 165px;
+        height: 225px;
     }
 }
