@@ -126,7 +126,7 @@ const Catalog = () => {
                             const inLibrary = userGameIds.has(game.id)
 
                             return (
-                                <Link 
+                                <Link
                                     to={`/game/${game.igdb_id}`}
                                     key={game.id}
                                     className={`catalog-card-game ${inLibrary ? 'game-in-lib' : ''}`}
@@ -149,7 +149,11 @@ const Catalog = () => {
 
                                     <button
                                         title='Add the library'
-                                        onClick={() => handleAdd(game.id)}
+                                        onClick={(e) => {
+                                            e.preventDefault()
+                                            e.stopPropagation()
+                                            handleAdd(game.id)
+                                        }}
                                         disabled={inLibrary}
                                     >
                                         {inLibrary
