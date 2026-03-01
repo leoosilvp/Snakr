@@ -1,15 +1,15 @@
 import { Award, Clock } from "@geist-ui/icons"
 import { useUserGames } from "../../hooks/useUserGames"
-import { Link } from "react-router-dom"
 
-const AllGames = () => {
+const Favorites = () => {
     const { games, loading, error } = useUserGames()
     const safeGames = Array.isArray(games) ? games : Array.isArray(games?.results) ? games.results : Array.isArray(games?.data) ? games.data : []
+    const favoriteGames = safeGames.filter(game => game.favorite === true)
 
     if (loading) {
         return (
             <main className="library-games-grid">
-                <p>Carregando biblioteca...</p>
+                <p>Carregando favoritos...</p>
             </main>
         )
     }
@@ -22,26 +22,27 @@ const AllGames = () => {
         )
     }
 
-    if (!safeGames.length) {
+    if (!favoriteGames.length) {
         return (
             <main className="library-games-grid">
-                <p>Sua biblioteca está vazia.</p>
+                <p>Você ainda não tem jogos favoritos.</p>
             </main>
         )
     }
 
     return (
         <main className="library-games-grid">
-            {safeGames.map((game) => {
+            {favoriteGames.map((game) => {
+                const id = game.id || game.game_id
                 const name = game.games?.name
-                const cover = game.games?.cover_image
-                const unlocked = game.achievements_unlocked ?? game.user_data?.achievements_unlocked ?? 0
-                const total = game.achievements_total ?? game.user_data?.achievements_total ?? 0
-                const minutes = game.hours_played
+                const cover = game.games?.cover_image || game.games?.cover?.url
+                const unlocked = game.achievements_unlocked ?? 0
+                const total = game.achievements_total ?? 0
+                const minutes = game.hours_played ?? 0
                 const progress = total > 0 ? Math.round((unlocked / total) * 100) : 0
 
                 return (
-                    <Link to={`/game/${game.games?.igdb_id}`} key={game.game_id} className="library-game-card" title={name}>
+                    <article key={id} className="library-game-card" title={name}>
                         <img src={cover} alt={name} />
                         <div className="cover">
                             <article className="game-time">
@@ -58,14 +59,14 @@ const AllGames = () => {
                                         <p>{progress}%</p>
                                     </div>
                                 </section>
-                                <div className="progress-bar" />
+                                <div className="progress-bar" style={{ width: `${progress}%` }} />
                             </article>
                         </div>
-                    </Link>
+                    </article>
                 )
             })}
         </main>
     )
 }
 
-export default AllGames
+export default Favorites

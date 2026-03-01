@@ -11,7 +11,7 @@ const Library = () => {
             <section className='library-main-content'>
                 <header className='library-main-header'>
                     <section className='library-main-header-content'>
-                        <NavLink>All games</NavLink>
+                        <NavLink to='all-games'>All games</NavLink>
                         <NavLink to='recently-played'>Recently played</NavLink>
                         <NavLink to='favorites'>Favorites</NavLink>
                     </section>

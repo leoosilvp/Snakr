@@ -35,6 +35,7 @@ import Catalog from "./routes/Catalog";
 import Game from "./routes/Game";
 import Library from "./routes/Library";
 import AllGames from "./components/library/AllGames";
+import Favorites from "./components/library/Favorites";
 
 function App() {
   ConsoleBanner()
@@ -81,7 +82,9 @@ function App() {
           <Route path="/catalog" element={<Catalog />} />
           <Route path="/game/:igdb_id" element={<Game />} />
           <Route path="/library" element={<Library />} >
-            <Route index element={<AllGames />} />
+            <Route index element={<Navigate to='all-games' />} />
+            <Route path="all-games" element={<AllGames />} />
+            <Route path="favorites" element={<Favorites />} />
           </Route>
         </Route>
         
