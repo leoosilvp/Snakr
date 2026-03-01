@@ -137,24 +137,52 @@
     gap: 7px;
 }
 
-.game-achievements section{
+.game-achievements section {
     display: flex;
     width: 100%;
     justify-content: space-between;
 }
 
-.game-achievements section div{
+.game-achievements section div {
     display: flex;
     align-items: center;
     font-size: 0.8rem;
     gap: 5px;
 }
 
-.progress-bar{
+.progress-bar {
     display: flex;
     width: 100%;
     height: 5px;
     border-radius: 10px;
     background: #97979780;
     backdrop-filter: blur(2px);
+}
+
+
+@media (width < 720px) {
+
+    .library-main-header {
+        padding: 0 20px;
+        width: 100vw;
+        overflow-x: auto;
+    }
+
+    .library-main-header::-webkit-scrollbar {
+        display: none;
+    }
+
+    .library-games-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .library-game-card {
+        width: 185px;
+        height: 245px;
+    }
+
+    .library-game-card .cover {
+        width: 185px;
+        height: 245px;
+    }
 }
