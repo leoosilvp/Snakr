@@ -5,7 +5,7 @@ import logo from '../assets/svg/logo.svg'
 import ModalProfile from './ModalProfile'
 
 import { useNotifications } from '../hooks/useNotifications'
-import { Bell, Bookmark } from '@geist-ui/icons'
+import { Bell, Heart } from '@geist-ui/icons'
 import Search from './Search'
 
 import { useGameDetails } from '../hooks/useGameDetails' // ✅ IMPORT ADICIONADO
@@ -154,8 +154,8 @@ const Header = ({ noSearch }) => {
                             )}
                         </Link>
 
-                        <Link to="/wish-list">
-                            <Bookmark size={16} />
+                        <Link to="/library/favorites">
+                            <Heart size={16} />
                         </Link>
 
                         <div
@@ -182,7 +182,6 @@ const Header = ({ noSearch }) => {
                     <NavLink to="/library">Library</NavLink>
                     <NavLink to="/friends">Friends</NavLink>
                     <NavLink to="/profile">Profile</NavLink>
-                    <NavLink to="/wish-list">Wish-list</NavLink>
                     <NavLink to="/gifts">Gifts</NavLink>
                     <NavLink to="/news">News</NavLink>
                     <NavLink to="/settings">Settings</NavLink>
