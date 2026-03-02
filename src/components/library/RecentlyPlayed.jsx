@@ -1,6 +1,7 @@
 import { Award, Clock, Heart, HeartFill } from "@geist-ui/icons"
 import { useUserGames } from "../../hooks/useUserGames"
 import { Link } from "react-router-dom"
+import LibrarySkeleton from "../skeletons/LibrarySkeleton"
 
 const RecentlyPlayed = () => {
     const { games, loading, error } = useUserGames()
@@ -10,7 +11,7 @@ const RecentlyPlayed = () => {
     if (loading) {
         return (
             <main className="library-games-grid">
-                <p>Carregando jogos recentes...</p>
+                <LibrarySkeleton />
             </main>
         )
     }

@@ -1,6 +1,7 @@
 import { Award, Clock, Heart, HeartFill } from "@geist-ui/icons"
 import { useUserGames } from "../../hooks/useUserGames"
 import { Link } from "react-router-dom"
+import LibrarySkeleton from "../skeletons/LibrarySkeleton"
 
 const AllGames = () => {
     const { games, loading, error } = useUserGames()
@@ -9,7 +10,7 @@ const AllGames = () => {
     if (loading) {
         return (
             <main className="library-games-grid">
-                <p>Carregando biblioteca...</p>
+                <LibrarySkeleton />
             </main>
         )
     }

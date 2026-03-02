@@ -1,5 +1,6 @@
 import { Award, Clock, Heart, HeartFill } from "@geist-ui/icons"
 import { useUserGames } from "../../hooks/useUserGames"
+import LibrarySkeleton from "../skeletons/LibrarySkeleton"
 
 const Favorites = () => {
     const { games, loading, error } = useUserGames()
@@ -9,7 +10,7 @@ const Favorites = () => {
     if (loading) {
         return (
             <main className="library-games-grid">
-                <p>Carregando favoritos...</p>
+                <LibrarySkeleton />
             </main>
         )
     }
