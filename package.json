@@ -1,7 +1,7 @@
 {
   "name": "snakr",
   "private": true,
-  "version": "2.2.1",
+  "version": "2.3.3",
   "type": "module",
   "scripts": {
     "dev": "vite",
