@@ -162,10 +162,10 @@ const Catalog = () => {
                                         }
                                     </button>
                                     {inLibrary && (
-                                        <Link to='/library' className='card-game-in-library' >
+                                        <div onClick={() => window.location.href='/library'} className='card-game-in-library' >
                                             <List size={16} />
                                             <p className='text'>In library</p>
-                                        </Link>
+                                        </div>
                                     )}
                                 </Link>
                             )
