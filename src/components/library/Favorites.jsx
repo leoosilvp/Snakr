@@ -17,8 +17,8 @@ const Favorites = () => {
 
     if (error) {
         return (
-            <main className="library-games-grid">
-                <p>{error}</p>
+            <main className="library-games-grid-error">
+                <p className="library-games-error"><AlertTriangle />{error}</p>
             </main>
         )
     }
