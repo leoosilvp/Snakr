@@ -1,4 +1,4 @@
-import { AlertTriangle, Award, Clock, Heart, HeartFill } from "@geist-ui/icons"
+import { AlertTriangle, Award, Clock, Heart, HeartFill, Inbox } from "@geist-ui/icons"
 import { useUserGames } from "../../hooks/useUserGames"
 import { Link } from "react-router-dom"
 import LibrarySkeleton from "../skeletons/LibrarySkeleton"
@@ -25,8 +25,8 @@ const AllGames = () => {
 
     if (!safeGames.length) {
         return (
-            <main className="library-games-grid">
-                <p>Sua biblioteca está vazia.</p>
+            <main className="library-games-grid-error">
+                <p className="library-games-error"><Inbox /> Your library is empty.</p>
             </main>
         )
     }

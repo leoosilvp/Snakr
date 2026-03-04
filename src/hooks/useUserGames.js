@@ -12,7 +12,7 @@ export function useUserGames() {
       setError(null)
 
       const data = await gamesService.userList({ signal })
-      setGames(Array.isAray(data) ? data : [])
+      setGames(Array.isArray(data) ? data : [])
 
     } catch (err) {
       if (err.name !== 'AbortError') {
