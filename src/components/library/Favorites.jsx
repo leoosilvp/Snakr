@@ -25,8 +25,8 @@ const Favorites = () => {
 
     if (!favoriteGames.length) {
         return (
-            <main className="library-games-grid">
-                <p>Você ainda não tem jogos favoritos.</p>
+            <main className="library-games-grid-error">
+                <p className="library-games-error"><Heart /> You don't have any favorite games yet.</p>
             </main>
         )
     }
