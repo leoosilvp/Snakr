@@ -18,8 +18,8 @@ const RecentlyPlayed = () => {
 
     if (error) {
         return (
-            <main className="library-games-grid">
-                <p>{error}</p>
+            <main className="library-games-grid-error">
+                <p className="library-games-error"><AlertTriangle />{error}</p>
             </main>
         )
     }
@@ -70,7 +70,7 @@ const RecentlyPlayed = () => {
                                         <p>{progress}%</p>
                                     </div>
                                 </section>
-                                <div className="progress-bar"/>
+                                <div className="progress-bar" />
                             </article>
                         </div>
                     </Link>
