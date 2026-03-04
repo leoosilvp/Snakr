@@ -26,8 +26,8 @@ const RecentlyPlayed = () => {
 
     if (!playedGames.length) {
         return (
-            <main className="library-games-grid">
-                <p>Você ainda não jogou nenhum jogo.</p>
+            <main className="library-games-grid-error">
+                <p className="library-games-error"><Clock /> You haven't played any games yet.</p>
             </main>
         )
     }
