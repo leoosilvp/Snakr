@@ -1,4 +1,4 @@
-import { Award, Clock, Heart, HeartFill } from "@geist-ui/icons"
+import { AlertTriangle, Award, Clock, Heart, HeartFill } from "@geist-ui/icons"
 import { useUserGames } from "../../hooks/useUserGames"
 import { Link } from "react-router-dom"
 import LibrarySkeleton from "../skeletons/LibrarySkeleton"
@@ -17,8 +17,8 @@ const AllGames = () => {
 
     if (error) {
         return (
-            <main className="library-games-grid">
-                <p>{error}</p>
+            <main className="library-games-grid-error">
+                <p className="library-games-error"><AlertTriangle />{error}</p>
             </main>
         )
     }

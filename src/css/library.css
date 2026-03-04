@@ -188,6 +188,20 @@
     backdrop-filter: blur(2px);
 }
 
+.library-games-grid-error{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.library-games-error{
+    margin-top: 20vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: var(--gray-color);
+}
 
 @media (width < 720px) {
 
