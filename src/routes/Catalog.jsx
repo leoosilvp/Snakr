@@ -162,7 +162,13 @@ const Catalog = () => {
                                         }
                                     </button>
                                     {inLibrary && (
-                                        <div onClick={() => window.location.href='/library'} className='card-game-in-library' >
+                                        <div
+                                            className='card-game-in-library'
+                                            onClick={(e) => {
+                                                e.stopPropagation()
+                                                window.location.href = '/library'
+                                            }}
+                                        >
                                             <List size={16} />
                                             <p className='text'>In library</p>
                                         </div>
