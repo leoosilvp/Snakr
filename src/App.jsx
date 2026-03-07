@@ -37,6 +37,7 @@ import Library from "./routes/Library";
 import AllGames from "./components/library/AllGames";
 import Favorites from "./components/library/Favorites";
 import RecentlyPlayed from "./components/library/RecentlyPlayed";
+import Jobs from "./routes/Jobs";
 
 function App() {
   ConsoleBanner()
@@ -92,6 +93,7 @@ function App() {
         
         <Route path='/security/reset-password' element={<ResetPassword />} />
         <Route path="/status" element={<Status />} />
+        <Route path="/jobs" element={<Jobs />} />
       </Routes>
       <Notification />
     </BrowserRouter>
