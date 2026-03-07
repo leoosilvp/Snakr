@@ -70,7 +70,7 @@ const Welcome = () => {
                             <Link to='' ><BookOpen size={17} />Docs</Link>
                             <Link to='https://github.com/leoosilvp/Snakr' ><GitPullRequest size={17} />GitHub</Link>
                             <Link to='' ><StopCircle size={17} />ONE</Link>
-                            <Link to='/jobs' ><Briefcase size={17} />Jobs</Link>
+                            <Link to='/careers' ><Briefcase size={17} />Jobs</Link>
                             <Link to='/contribute' ><Coffee size={17} />Contribute</Link>
                         </ul>
                     </nav>
