@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
 import logo from '../assets/svg/logo.svg'
 
-const Footer = () => {
+const Footer = ({bg, ln}) => {
     return (
-        <footer className="footer-main">
+        <footer className="footer-main"
+            style={{background: `${bg}`, borderTop: `${ln}`}}
+        >
             <section className="footer-nav">
                 <a href="">
                     <img src={logo} alt="logo Snakr" />
