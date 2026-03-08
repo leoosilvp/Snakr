@@ -78,6 +78,29 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
+/* rtt */
+
+.return-to-top {
+  position: fixed;
+  bottom: 95px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  border: 1px solid #252525;
+  border-radius: 50%;
+  background: #080808;
+  color: var(--gray-color);
+  cursor: pointer;
+  transition: var(--transition-2s);
+}
+
+.return-to-top:hover {
+  background: #141414;
+}
+
 /* body */
 
 .content {
@@ -886,7 +909,7 @@ input:checked+.slider::before {
   }
 
   /* skeleton */
-  .skeleton-profile{
+  .skeleton-profile {
     width: 100%;
   }
 }

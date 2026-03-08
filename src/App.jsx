@@ -38,6 +38,7 @@ import AllGames from "./components/library/AllGames";
 import Favorites from "./components/library/Favorites";
 import RecentlyPlayed from "./components/library/RecentlyPlayed";
 import Careers from "./routes/Careers";
+import RTT from "./components/RTT";
 
 function App() {
   ConsoleBanner()
@@ -96,6 +97,7 @@ function App() {
         <Route path="/careers" element={<Careers />} />
       </Routes>
       <Notification />
+      <RTT />
     </BrowserRouter>
   )
 }
