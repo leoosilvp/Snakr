@@ -49,12 +49,14 @@ function App() {
 
   useUserStatus({ isPlaying, gameName })
 
+  const isFirstLogin = Boolean(localStorage.getItem("first_login"))
+
   return (
     <BrowserRouter>
       <ChangeTitle />
       <Routes>
         <Route path="*" element={<Error />} />
-        <Route path="/" element={<Navigate to='/home' />} />
+        <Route path="/" element={<Navigate to={`${isFirstLogin == false ? '/welcome' : '/home'}`} />} />
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/user/:username" element={<User />} />
         <Route path="/login" element={<Login />} />
@@ -91,7 +93,7 @@ function App() {
             <Route path="favorites" element={<Favorites />} />
           </Route>
         </Route>
-        
+
         <Route path='/security/reset-password' element={<ResetPassword />} />
         <Route path="/status" element={<Status />} />
         <Route path="/careers" element={<Careers />} />

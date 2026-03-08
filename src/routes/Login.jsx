@@ -85,7 +85,7 @@ const Login = () => {
       }
 
       window.location.href = '/home'
-
+      localStorage.setItem("first_login", 'false')
     } catch (err) {
       setError(err.message)
     } finally {
