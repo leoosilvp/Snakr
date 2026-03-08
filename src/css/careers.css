@@ -1,3 +1,9 @@
+.careers-main {
+    display: flex;
+    flex-direction: column;
+    background: #000;
+}
+
 .careers-main-header {
     position: fixed;
     left: 0;

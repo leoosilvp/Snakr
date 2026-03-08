@@ -3,7 +3,6 @@ import logo from '../assets/svg/logo2.svg'
 import { Link } from 'react-router-dom'
 import { useUser } from '../hooks/useUser';
 import { useEffect, useState } from 'react';
-import { ChevronsUp } from '@geist-ui/icons';
 import Footer from '../components/Footer';
 
 const Careers = () => {
