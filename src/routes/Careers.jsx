@@ -28,29 +28,34 @@ const Careers = () => {
             </div>
 
             <header className={`careers-main-header ${isScrolled && 'scrolled'}`}>
-                <section className='careers-header-left'>
-                    <img src={logo} />
-                    <nav>
-                        <Link to='/home'>Home</Link>
-                        <Link to='/docs'>Docs</Link>
-                        <Link to='/one'>ONE</Link>
-                        <Link to='/contribute'>Contribute</Link>
-                    </nav>
-                </section>
-                <section className='careers-header-right'>
-                    <Link to='/welcome'>Welcome</Link>
-                    {isLogged && (
-                        <button onClick={() => window.location.href = '/profile'}>
-                            <img src={user?.profile?.photo} />
-                        </button>
-                    )}
-                </section>
+                <div className='careers-main-header-content'>
+                    <section className='careers-header-left'>
+                        <img src={logo} />
+                        <nav>
+                            <Link to='/home'>Home</Link>
+                            <Link to='/docs'>Docs</Link>
+                            <Link to='/one'>ONE</Link>
+                            <Link to='/contribute'>Contribute</Link>
+                        </nav>
+                    </section>
+                    <section className='careers-header-right'>
+                        <Link to='/welcome'>Welcome</Link>
+                        {isLogged && (
+                            <button onClick={() => window.location.href = '/profile'}>
+                                <img src={user?.profile?.photo} />
+                            </button>
+                        )}
+                    </section>
+                </div>
             </header>
 
             <section className='careers-content-main'>
-
+                <section className='careers-content-introduction'>
+                    <h1>Join the Team<br />Building What Comes Next.</h1>
+                    <Link to='#positions'>Open Positions</Link>
+                </section>
             </section>
-            <Footer bg='#000' ln='1px solid var(--dark-color)' />
+            <Footer bg='linear-gradient(0deg, #000, #00000000)' ln='none' />
         </main>
     )
 }

@@ -1,35 +1,45 @@
 .careers-main {
     display: flex;
+    width: 100vw;
     flex-direction: column;
+    align-items: center;
     background: #000;
 }
 
 .careers-bg {
-    position: fixed;
+    position: absolute;
     inset: 0;
     z-index: 0;
     pointer-events: none;
+
+    mask-image: linear-gradient(to bottom,
+            black 0%,
+            black 70%,
+            transparent 100%);
+
+    -webkit-mask-image: linear-gradient(to bottom,
+            black 0%,
+            black 70%,
+            transparent 100%);
 }
 
 .careers-grid {
     position: absolute;
     inset: 0;
     background-image:
-        linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
+        linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 75px 75px;
     mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
 }
 
 .careers-glow {
     position: absolute;
     inset: 0;
-    background: radial-gradient(
-        circle at 50% 30%,
-        rgba(255,255,255,0.08),
-        rgba(255,255,255,0.03),
-        transparent 60%
-    );
+    background: radial-gradient(circle at 50% 30%,
+            rgba(255, 255, 255, 0.08),
+            rgba(255, 255, 255, 0.03),
+            transparent 60%);
     filter: blur(120px);
     animation: glowMove 18s ease-in-out infinite alternate;
 }
@@ -54,13 +64,11 @@
 }
 
 .careers-main-header {
-    position: fixed;
-    left: 0;
-    top: 0;
     display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
     width: 100vw;
-    justify-content: space-between;
-    padding: 20px;
     border-bottom: 1px solid transparent;
     transition: var(--transition-2s);
 }
@@ -69,6 +77,15 @@
     background: #00000065;
     backdrop-filter: blur(5px);
     border-color: var(--dark-color);
+}
+
+.careers-main-header-content {
+    display: flex;
+    width: 100%;
+    max-width: 1300px;
+    justify-content: space-between;
+    padding: 20px;
+
 }
 
 .careers-main-header img {
@@ -144,6 +161,37 @@
 
 .careers-content-main {
     display: flex;
-    width: 100vw;
-    height: 1500px;
+    width: 90%;
+    max-width: 1200px;
+    min-height: 100vh;
+    padding: 100px 0 0;
+}
+
+.careers-content-introduction {
+    display: flex;
+    flex-direction: column;
+    margin-top: 145px;
+}
+
+.careers-content-introduction h1{
+    font-size: 2.8rem;
+    font-weight: 600;
+    line-height: 1.7;
+}
+
+.careers-content-introduction a{
+    margin-top: 55px;
+    display: flex;
+    width: fit-content;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--black);
+    border-radius: 50px;
+    padding: 10px 25px;
+    background: var(--light-color);
+    transition: var(--transition-2s);
+}
+
+.careers-content-introduction a:hover{
+    background: #b3b3b3;
 }
