@@ -15,18 +15,18 @@ const Careers = () => {
                 <section className='careers-header-left'>
                     <img src={logo} />
                     <nav>
-                        <Link>Home</Link>
-                        <Link>Docs</Link>
-                        <Link>ONE</Link>
-                        <Link>Contribute</Link>
+                        <Link to='/home'>Home</Link>
+                        <Link to='/docs'>Docs</Link>
+                        <Link to='/one'>ONE</Link>
+                        <Link to='/contribute'>Contribute</Link>
                     </nav>
                 </section>
                 <section className='careers-header-right'>
-                    <button>Welcome</button>
+                    <Link to='/welcome'>Welcome</Link>
                     {isLogged && (
-                        <Link>
+                        <button onClick={() => window.location.href='/profile'}>
                             <img src={user?.profile?.photo} />
-                        </Link>
+                        </button>
                     )}
                 </section>
             </header>
