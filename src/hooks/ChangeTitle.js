@@ -25,6 +25,11 @@ const ChangeTitle = () => {
       return
     }
 
+    else if (path === '/careers' && user) {
+      document.title = `Careers`
+      return
+    }
+
     document.title = 'Snakr'
   }, [unread, user, location.pathname])
 

@@ -41,9 +41,8 @@ const Careers = () => {
             </header>
 
             <section className='careers-content-main'>
-
+                
             </section>
-
             <Footer bg='#000' ln='1px solid var(--dark-color)' />
         </main>
     )
