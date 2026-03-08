@@ -20,6 +20,13 @@ const Careers = () => {
 
     return (
         <main className='careers-main'>
+
+            <div className='careers-bg'>
+                <div className='careers-grid'></div>
+                <div className='careers-glow'></div>
+                <div className='careers-noise'></div>
+            </div>
+
             <header className={`careers-main-header ${isScrolled && 'scrolled'}`}>
                 <section className='careers-header-left'>
                     <img src={logo} />
@@ -41,7 +48,7 @@ const Careers = () => {
             </header>
 
             <section className='careers-content-main'>
-                
+
             </section>
             <Footer bg='#000' ln='1px solid var(--dark-color)' />
         </main>

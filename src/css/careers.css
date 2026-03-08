@@ -4,6 +4,55 @@
     background: #000;
 }
 
+.careers-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.careers-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
+}
+
+.careers-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at 50% 30%,
+        rgba(255,255,255,0.08),
+        rgba(255,255,255,0.03),
+        transparent 60%
+    );
+    filter: blur(120px);
+    animation: glowMove 18s ease-in-out infinite alternate;
+}
+
+@keyframes glowMove {
+
+    0% {
+        transform: translateY(-120px) scale(1);
+    }
+
+    100% {
+        transform: translateY(120px) scale(1.15);
+    }
+
+}
+
+.careers-noise {
+    position: absolute;
+    inset: 0;
+    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+    opacity: 0.01;
+}
+
 .careers-main-header {
     position: fixed;
     left: 0;
@@ -12,12 +61,13 @@
     width: 100vw;
     justify-content: space-between;
     padding: 20px;
-    background: #000;
     border-bottom: 1px solid transparent;
     transition: var(--transition-2s);
 }
 
 .careers-main-header.scrolled {
+    background: #00000065;
+    backdrop-filter: blur(5px);
     border-color: var(--dark-color);
 }
 
