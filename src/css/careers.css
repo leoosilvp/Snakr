@@ -4,6 +4,8 @@
     flex-direction: column;
     align-items: center;
     background: #000;
+    position: relative;
+    overflow: hidden;
 }
 
 .careers-bg {
@@ -11,57 +13,58 @@
     inset: 0;
     z-index: 0;
     pointer-events: none;
-
-    mask-image: linear-gradient(to bottom,
-            black 0%,
-            black 70%,
-            transparent 100%);
-
-    -webkit-mask-image: linear-gradient(to bottom,
-            black 0%,
-            black 70%,
-            transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
 }
 
 .careers-grid {
     position: absolute;
     inset: 0;
-    background-image:
-        linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-    background-size: 75px 75px;
-    mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
+    background-image: linear-gradient(to right, #ffffff0c 1px, transparent 1px), linear-gradient(to bottom, #ffffff0c 1px, transparent 1px);
+    background-size: 70px 70px;
+    mask-image: radial-gradient(circle at center, black 35%, transparent 85%);
 }
 
 .careers-glow {
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 50% 30%,
-            rgba(255, 255, 255, 0.08),
-            rgba(255, 255, 255, 0.03),
-            transparent 60%);
-    filter: blur(120px);
-    animation: glowMove 18s ease-in-out infinite alternate;
+    background: radial-gradient(circle at 50% 25%, #7676761f, #ffffff0d, transparent 60%);
+    filter: blur(140px);
+    animation: glowMove 20s ease-in-out infinite alternate;
 }
 
 @keyframes glowMove {
-
     0% {
-        transform: translateY(-120px) scale(1);
+        transform: translateY(-140px) scale(1);
     }
-
     100% {
-        transform: translateY(120px) scale(1.15);
+        transform: translateY(140px) scale(1.2);
     }
+}
 
+.careers-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, #ffffff0d 50%, transparent 100%);
+    opacity: 0.35;
+}
+
+.careers-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 40%, #00000066 70%, #000000e6 100%);
 }
 
 .careers-noise {
     position: absolute;
     inset: 0;
     background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-    opacity: 0.01;
+    opacity: 0.015;
 }
+
+/* HEADER */
 
 .careers-main-header {
     display: flex;
@@ -85,7 +88,6 @@
     max-width: 1300px;
     justify-content: space-between;
     padding: 20px;
-
 }
 
 .careers-main-header img {
@@ -159,6 +161,8 @@
     height: fit-content;
 }
 
+/* CONTENT */
+
 .careers-content-main {
     display: flex;
     width: 90%;
@@ -173,13 +177,13 @@
     margin-top: 145px;
 }
 
-.careers-content-introduction h1{
+.careers-content-introduction h1 {
     font-size: 2.8rem;
     font-weight: 600;
     line-height: 1.7;
 }
 
-.careers-content-introduction a{
+.careers-content-introduction a {
     margin-top: 55px;
     display: flex;
     width: fit-content;
@@ -192,6 +196,6 @@
     transition: var(--transition-2s);
 }
 
-.careers-content-introduction a:hover{
+.careers-content-introduction a:hover {
     background: #b3b3b3;
 }
