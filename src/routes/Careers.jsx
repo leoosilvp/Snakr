@@ -67,17 +67,17 @@ const Careers = () => {
                     <section className='careers-positions-ctn'>
 
                         <aside className='careers-positions-aside'>
+
                             <div
-                                className={`careers-positions-aside-card ${activeCard === 'about' ? 'active' : ''}`}
-                                onClick={() => setActiveCard(activeCard === 'about' ? null : 'about')}
+                                className={`careers-positions-aside-card ${activeCard === 'about1' ? 'active' : ''}`}
+                                onClick={() => setActiveCard(activeCard === 'about1' ? null : 'about1')}
                             >
                                 <h1>
                                     About positions in Snakr
-                                    {activeCard ? (
-                                        <ChevronUp size={22} />
-                                    ) : (
-                                        <ChevronDown size={22} />
-                                    )}
+                                    {activeCard === 'about1'
+                                        ? <ChevronUp size={22} />
+                                        : <ChevronDown size={22} />
+                                    }
                                 </h1>
 
                                 <section>
@@ -90,7 +90,28 @@ const Careers = () => {
                                     Therefore, the opportunities at Snakr are designed for individuals interested in technology who want to actively participate in building the platform, contributing ideas, code, and improvements while growing professionally in a collaborative environment.
                                 </section>
                             </div>
+
+                            <div
+                                className={`careers-positions-aside-card ${activeCard === 'about2' ? 'active' : ''}`}
+                                onClick={() => setActiveCard(activeCard === 'about2' ? null : 'about2')}
+                            >
+                                <h1>
+                                    Requirements
+                                    {activeCard === 'about2'
+                                        ? <ChevronUp size={22} />
+                                        : <ChevronDown size={22} />
+                                    }
+                                </h1>
+
+                                <section>
+                                    To contribute to Snakr, participants should have a basic understanding of software development and the technologies used in the project. Familiarity with tools like Git, pull requests, and issue tracking is recommended.
+                                    <br /><br />
+                                    Contributors are expected to communicate clearly, collaborate with others, and follow the project’s coding standards. A willingness to learn, accept feedback, and help improve the project is essential.
+                                </section>
+                            </div>
+
                         </aside>
+
                         <section className='careers-positions-grid'>
                             <article className='careers-positions'>
                                 <div>
