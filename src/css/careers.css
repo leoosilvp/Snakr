@@ -282,10 +282,17 @@
 
 .careers-positions-aside-card {
     display: flex;
+    height: 90px;
+    overflow: hidden;
     flex-direction: column;
     padding: 30px;
     border-top: 1px solid #101010;
     border-bottom: 1px solid #101010;
+    cursor: pointer;
+}
+
+.careers-positions-aside-card.active{
+    height: fit-content;
 }
 
 .careers-positions-aside-card h1{
@@ -297,7 +304,7 @@
 }
 
 .careers-positions-aside-card section{
-    padding: 10px 0;
+    padding: 30px 0;
     font-size: 0.8rem;
-    font-weight: 300;
+    font-weight: 200;
 }

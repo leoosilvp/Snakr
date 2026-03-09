@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom'
 import { useUser } from '../hooks/useUser';
 import { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
-import { ChevronDown } from '@geist-ui/icons';
+import { ChevronDown, ChevronUp } from '@geist-ui/icons';
 
 const Careers = () => {
 
     const { user } = useUser();
     const [isScrolled, setIsScrolled] = useState(false)
+    const [activeCard, setActiveCard] = useState(null)
 
     const isLogged = Boolean(user)
 
@@ -62,10 +63,23 @@ const Careers = () => {
                     <header className='careers-content-positions-header'>
                         <h1>Open Positions at Snakr</h1>
                     </header>
+
                     <section className='careers-positions-ctn'>
+
                         <aside className='careers-positions-aside'>
-                            <div className='careers-positions-aside-card'>
-                                <h1>About positions in Snakr <ChevronDown size={22} /></h1>
+                            <div
+                                className={`careers-positions-aside-card ${activeCard === 'about' ? 'active' : ''}`}
+                                onClick={() => setActiveCard(activeCard === 'about' ? null : 'about')}
+                            >
+                                <h1>
+                                    About positions in Snakr
+                                    {activeCard ? (
+                                        <ChevronUp size={22} />
+                                    ) : (
+                                        <ChevronDown size={22} />
+                                    )}
+                                </h1>
+
                                 <section>
                                     The Snakr positions are opportunities to participate in an open-source project, meaning they are intended for people who want to contribute to the platform’s development on a voluntary basis. Open-source projects make their code publicly available, allowing anyone to study, modify, and contribute improvements to the system.
                                     <br /><br />
@@ -149,10 +163,13 @@ const Careers = () => {
                                 </div>
                                 <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>Read more</Link>
                             </article>
+
                         </section>
+
                     </section>
                 </section>
             </section>
+
             <Footer bg='linear-gradient(0deg, #000, #00000000)' ln='none' />
         </main>
     )
