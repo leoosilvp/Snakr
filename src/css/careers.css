@@ -75,10 +75,11 @@
     width: 100vw;
     border-bottom: 1px solid transparent;
     transition: var(--transition-2s);
+    z-index: 2;
 }
 
 .careers-main-header.scrolled {
-    background: #00000065;
+    background: #00000095;
     backdrop-filter: blur(5px);
     border-color: var(--dark-color);
 }
@@ -170,7 +171,7 @@
     width: 90%;
     max-width: 1200px;
     min-height: 100vh;
-    padding: 100px 0 0;
+    padding: 100px 0;
 }
 
 .careers-content-introduction {
@@ -215,10 +216,52 @@
     display: flex;
     width: 100%;
     justify-content: center;
-    padding: 10px;
+    padding: 30px;
 }
 
 .careers-content-positions-header h1{
     font-size: 1.7rem;
     font-weight: 500;
+}
+
+.careers-positions-grid {
+    display: flex;
+    flex-direction: column;
+}
+
+.careers-positions {
+    margin-top: -1px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    padding: 50px;
+    border: 1px solid #101010;
+    background: #000;
+    transition: var(--transition-2s);
+}
+
+.careers-positions:hover{
+    background: #0c0c0c;
+}
+
+.careers-positions h1{
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+.careers-positions h2{
+    margin-top: 5px;
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--gray-color);
+}
+
+.careers-positions a{
+    padding: 7px 15px;
+    border: 1px solid #2f2f2f;
+    background: #0a0a0a;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    color: #e5e5e5;
 }

@@ -67,7 +67,7 @@ const Careers = () => {
                                 <h1>Database architect</h1>
                                 <h2>Brazil, remote</h2>
                             </div>
-                            <Link to='https://github.com/leoosilvp/Snakr'>Read more</Link>
+                            <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>Read more</Link>
                         </article>
 
                         <article className='careers-positions'>
@@ -75,15 +75,15 @@ const Careers = () => {
                                 <h1>Back-end developer, Node.js</h1>
                                 <h2>Brazil, remote</h2>
                             </div>
-                            <Link to='https://github.com/leoosilvp/Snakr'>Read more</Link>
+                            <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>Read more</Link>
                         </article>
 
                         <article className='careers-positions'>
                             <div>
-                                <h1>Software engineer I/II/III</h1>
+                                <h1>Software engineer</h1>
                                 <h2>Brazil, remote</h2>
                             </div>
-                            <Link to='https://github.com/leoosilvp/Snakr'>Read more</Link>
+                            <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>Read more</Link>
                         </article>
 
                         <article className='careers-positions'>
@@ -91,7 +91,7 @@ const Careers = () => {
                                 <h1>Data Engineer</h1>
                                 <h2>Brazil, remote</h2>
                             </div>
-                            <Link to='https://github.com/leoosilvp/Snakr'>Read more</Link>
+                            <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>Read more</Link>
                         </article>
 
                         <article className='careers-positions'>
@@ -99,7 +99,7 @@ const Careers = () => {
                                 <h1>DevOps Engineer</h1>
                                 <h2>Brazil, remote</h2>
                             </div>
-                            <Link to='https://github.com/leoosilvp/Snakr'>Read more</Link>
+                            <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>Read more</Link>
                         </article>
 
                         <article className='careers-positions'>
@@ -107,7 +107,7 @@ const Careers = () => {
                                 <h1>Data scientist</h1>
                                 <h2>Brazil, remote</h2>
                             </div>
-                            <Link to='https://github.com/leoosilvp/Snakr'>Read more</Link>
+                            <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>Read more</Link>
                         </article>
 
                         <article className='careers-positions'>
@@ -115,7 +115,7 @@ const Careers = () => {
                                 <h1>Cybersecurity specialist</h1>
                                 <h2>Brazil, remote</h2>
                             </div>
-                            <Link to='https://github.com/leoosilvp/Snakr'>Read more</Link>
+                            <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>Read more</Link>
                         </article>
 
                         <article className='careers-positions'>
@@ -123,7 +123,7 @@ const Careers = () => {
                                 <h1>UI/UX specialist</h1>
                                 <h2>Brazil, remote</h2>
                             </div>
-                            <Link to='https://github.com/leoosilvp/Snakr'>Read more</Link>
+                            <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>Read more</Link>
                         </article>
 
                         <article className='careers-positions'>
@@ -131,7 +131,7 @@ const Careers = () => {
                                 <h1>Integration specialist</h1>
                                 <h2>Brazil, remote</h2>
                             </div>
-                            <Link to='https://github.com/leoosilvp/Snakr'>Read more</Link>
+                            <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>Read more</Link>
                         </article>
 
                     </section>
