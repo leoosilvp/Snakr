@@ -40,10 +40,12 @@ const Careers = () => {
                     </section>
                     <section className='careers-header-right'>
                         <Link to='/welcome'>Welcome</Link>
-                        {isLogged && (
+                        {isLogged ? (
                             <button onClick={() => window.location.href = '/profile'}>
                                 <img src={user?.profile?.photo} />
                             </button>
+                        ) : (
+                            <Link to='/login'>Login</Link>
                         )}
                     </section>
                 </div>
@@ -53,6 +55,86 @@ const Careers = () => {
                 <section className='careers-content-introduction'>
                     <h1>Join the Team<br />Building What Comes Next.</h1>
                     <Link to='#positions'>Open Positions</Link>
+                </section>
+
+                <section id='positions' className='careers-content-positions'>
+                    <header className='careers-content-positions-header'>
+                        <h1>Open Positions at Snakr</h1>
+                    </header>
+                    <section className='careers-positions-grid'>
+                        <article className='careers-positions'>
+                            <div>
+                                <h1>Database architect</h1>
+                                <h2>Brazil, remote</h2>
+                            </div>
+                            <Link to='https://github.com/leoosilvp/Snakr'>Read more</Link>
+                        </article>
+
+                        <article className='careers-positions'>
+                            <div>
+                                <h1>Back-end developer, Node.js</h1>
+                                <h2>Brazil, remote</h2>
+                            </div>
+                            <Link to='https://github.com/leoosilvp/Snakr'>Read more</Link>
+                        </article>
+
+                        <article className='careers-positions'>
+                            <div>
+                                <h1>Software engineer I/II/III</h1>
+                                <h2>Brazil, remote</h2>
+                            </div>
+                            <Link to='https://github.com/leoosilvp/Snakr'>Read more</Link>
+                        </article>
+
+                        <article className='careers-positions'>
+                            <div>
+                                <h1>Data Engineer</h1>
+                                <h2>Brazil, remote</h2>
+                            </div>
+                            <Link to='https://github.com/leoosilvp/Snakr'>Read more</Link>
+                        </article>
+
+                        <article className='careers-positions'>
+                            <div>
+                                <h1>DevOps Engineer</h1>
+                                <h2>Brazil, remote</h2>
+                            </div>
+                            <Link to='https://github.com/leoosilvp/Snakr'>Read more</Link>
+                        </article>
+
+                        <article className='careers-positions'>
+                            <div>
+                                <h1>Data scientist</h1>
+                                <h2>Brazil, remote</h2>
+                            </div>
+                            <Link to='https://github.com/leoosilvp/Snakr'>Read more</Link>
+                        </article>
+
+                        <article className='careers-positions'>
+                            <div>
+                                <h1>Cybersecurity specialist</h1>
+                                <h2>Brazil, remote</h2>
+                            </div>
+                            <Link to='https://github.com/leoosilvp/Snakr'>Read more</Link>
+                        </article>
+
+                        <article className='careers-positions'>
+                            <div>
+                                <h1>UI/UX specialist</h1>
+                                <h2>Brazil, remote</h2>
+                            </div>
+                            <Link to='https://github.com/leoosilvp/Snakr'>Read more</Link>
+                        </article>
+
+                        <article className='careers-positions'>
+                            <div>
+                                <h1>Integration specialist</h1>
+                                <h2>Brazil, remote</h2>
+                            </div>
+                            <Link to='https://github.com/leoosilvp/Snakr'>Read more</Link>
+                        </article>
+
+                    </section>
                 </section>
             </section>
             <Footer bg='linear-gradient(0deg, #000, #00000000)' ln='none' />

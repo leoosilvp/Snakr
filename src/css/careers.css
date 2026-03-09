@@ -11,6 +11,7 @@
 .careers-bg {
     position: absolute;
     inset: 0;
+    height: 100vh;
     z-index: 0;
     pointer-events: none;
     mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
@@ -165,6 +166,7 @@
 
 .careers-content-main {
     display: flex;
+    flex-direction: column;
     width: 90%;
     max-width: 1200px;
     min-height: 100vh;
@@ -198,4 +200,25 @@
 
 .careers-content-introduction a:hover {
     background: #b3b3b3;
+}
+
+.careers-content-positions {
+    margin-top: 133px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #101010;
+    background: var(--black);
+    z-index: 1;
+}
+
+.careers-content-positions-header{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 10px;
+}
+
+.careers-content-positions-header h1{
+    font-size: 1.7rem;
+    font-weight: 500;
 }
