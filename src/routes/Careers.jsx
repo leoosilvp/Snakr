@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { useUser } from '../hooks/useUser';
 import { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
+import { ChevronDown } from '@geist-ui/icons';
 
 const Careers = () => {
 
@@ -61,79 +62,94 @@ const Careers = () => {
                     <header className='careers-content-positions-header'>
                         <h1>Open Positions at Snakr</h1>
                     </header>
-                    <section className='careers-positions-grid'>
-                        <article className='careers-positions'>
-                            <div>
-                                <h1>Database architect</h1>
-                                <h2>Brazil, remote</h2>
+                    <section className='careers-positions-ctn'>
+                        <aside className='careers-positions-aside'>
+                            <div className='careers-positions-aside-card'>
+                                <h1>About positions in Snakr <ChevronDown size={22} /></h1>
+                                <section>
+                                    The Snakr positions are opportunities to participate in an open-source project, meaning they are intended for people who want to contribute to the platform’s development on a voluntary basis. Open-source projects make their code publicly available, allowing anyone to study, modify, and contribute improvements to the system.
+                                    <br /><br />
+                                    Unlike traditional job positions, these roles do not offer financial compensation, since the main goal is community collaboration and the growth of the project. In this model, developers, designers, and other contributors share their time and knowledge to help improve the software, learn new technologies, and gain practical experience working on real projects.
+                                    <br /><br />
+                                    Participating in an open-source project offers several benefits, such as developing technical skills, gaining experience in collaborative work, and building a strong portfolio. Additionally, contributions are publicly recorded, which can help demonstrate experience and engagement in the technology field.
+                                    <br /><br />
+                                    Therefore, the opportunities at Snakr are designed for individuals interested in technology who want to actively participate in building the platform, contributing ideas, code, and improvements while growing professionally in a collaborative environment.
+                                </section>
                             </div>
-                            <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>Read more</Link>
-                        </article>
+                        </aside>
+                        <section className='careers-positions-grid'>
+                            <article className='careers-positions'>
+                                <div>
+                                    <h1>Database architect</h1>
+                                    <h2>Brazil, remote</h2>
+                                </div>
+                                <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>Read more</Link>
+                            </article>
 
-                        <article className='careers-positions'>
-                            <div>
-                                <h1>Back-end developer, Node.js</h1>
-                                <h2>Brazil, remote</h2>
-                            </div>
-                            <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>Read more</Link>
-                        </article>
+                            <article className='careers-positions'>
+                                <div>
+                                    <h1>Back-end developer, Node.js</h1>
+                                    <h2>Brazil, remote</h2>
+                                </div>
+                                <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>Read more</Link>
+                            </article>
 
-                        <article className='careers-positions'>
-                            <div>
-                                <h1>Software engineer</h1>
-                                <h2>Brazil, remote</h2>
-                            </div>
-                            <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>Read more</Link>
-                        </article>
+                            <article className='careers-positions'>
+                                <div>
+                                    <h1>Software engineer</h1>
+                                    <h2>Brazil, remote</h2>
+                                </div>
+                                <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>Read more</Link>
+                            </article>
 
-                        <article className='careers-positions'>
-                            <div>
-                                <h1>Data Engineer</h1>
-                                <h2>Brazil, remote</h2>
-                            </div>
-                            <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>Read more</Link>
-                        </article>
+                            <article className='careers-positions'>
+                                <div>
+                                    <h1>Data Engineer</h1>
+                                    <h2>Brazil, remote</h2>
+                                </div>
+                                <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>Read more</Link>
+                            </article>
 
-                        <article className='careers-positions'>
-                            <div>
-                                <h1>DevOps Engineer</h1>
-                                <h2>Brazil, remote</h2>
-                            </div>
-                            <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>Read more</Link>
-                        </article>
+                            <article className='careers-positions'>
+                                <div>
+                                    <h1>DevOps Engineer</h1>
+                                    <h2>Brazil, remote</h2>
+                                </div>
+                                <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>Read more</Link>
+                            </article>
 
-                        <article className='careers-positions'>
-                            <div>
-                                <h1>Data scientist</h1>
-                                <h2>Brazil, remote</h2>
-                            </div>
-                            <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>Read more</Link>
-                        </article>
+                            <article className='careers-positions'>
+                                <div>
+                                    <h1>Data scientist</h1>
+                                    <h2>Brazil, remote</h2>
+                                </div>
+                                <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>Read more</Link>
+                            </article>
 
-                        <article className='careers-positions'>
-                            <div>
-                                <h1>Cybersecurity specialist</h1>
-                                <h2>Brazil, remote</h2>
-                            </div>
-                            <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>Read more</Link>
-                        </article>
+                            <article className='careers-positions'>
+                                <div>
+                                    <h1>Cybersecurity specialist</h1>
+                                    <h2>Brazil, remote</h2>
+                                </div>
+                                <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>Read more</Link>
+                            </article>
 
-                        <article className='careers-positions'>
-                            <div>
-                                <h1>UI/UX specialist</h1>
-                                <h2>Brazil, remote</h2>
-                            </div>
-                            <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>Read more</Link>
-                        </article>
+                            <article className='careers-positions'>
+                                <div>
+                                    <h1>UI/UX specialist</h1>
+                                    <h2>Brazil, remote</h2>
+                                </div>
+                                <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>Read more</Link>
+                            </article>
 
-                        <article className='careers-positions'>
-                            <div>
-                                <h1>Integration specialist</h1>
-                                <h2>Brazil, remote</h2>
-                            </div>
-                            <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>Read more</Link>
-                        </article>
-
+                            <article className='careers-positions'>
+                                <div>
+                                    <h1>Integration specialist</h1>
+                                    <h2>Brazil, remote</h2>
+                                </div>
+                                <Link to='https://github.com/leoosilvp/Snakr' target='_blank'>Read more</Link>
+                            </article>
+                        </section>
                     </section>
                 </section>
             </section>

@@ -38,6 +38,7 @@
     0% {
         transform: translateY(-140px) scale(1);
     }
+
     100% {
         transform: translateY(140px) scale(1.2);
     }
@@ -177,17 +178,17 @@
 .careers-content-introduction {
     display: flex;
     flex-direction: column;
-    margin-top: 145px;
+    margin-top: 129px;
 }
 
 .careers-content-introduction h1 {
     font-size: 2.8rem;
     font-weight: 600;
-    line-height: 1.7;
+    line-height: 1.57;
 }
 
 .careers-content-introduction a {
-    margin-top: 55px;
+    margin-top: 51px;
     display: flex;
     width: fit-content;
     font-size: 1rem;
@@ -212,20 +213,33 @@
     z-index: 1;
 }
 
-.careers-content-positions-header{
+.careers-content-positions-header {
     display: flex;
     width: 100%;
     justify-content: center;
     padding: 30px;
 }
 
-.careers-content-positions-header h1{
+.careers-content-positions-header h1 {
     font-size: 1.7rem;
     font-weight: 500;
 }
 
+/* POSITIONS */
+
+.careers-positions-ctn {
+    display: flex;
+}
+
+.careers-positions-aside {
+    margin-top: -1px;
+    display: flex;
+    width: 550px;
+}
+
 .careers-positions-grid {
     display: flex;
+    width: 100%;
     flex-direction: column;
 }
 
@@ -241,27 +255,49 @@
     transition: var(--transition-2s);
 }
 
-.careers-positions:hover{
-    background: #0c0c0c;
+.careers-positions:hover {
+    background: #090909;
 }
 
-.careers-positions h1{
+.careers-positions h1 {
     font-size: 1.3rem;
     font-weight: 500;
 }
 
-.careers-positions h2{
+.careers-positions h2 {
     margin-top: 5px;
     font-size: 0.95rem;
     font-weight: 400;
     color: var(--gray-color);
 }
 
-.careers-positions a{
+.careers-positions a {
     padding: 7px 15px;
     border: 1px solid #2f2f2f;
     background: #0a0a0a;
     border-radius: 50px;
     font-size: 0.9rem;
     color: #e5e5e5;
+}
+
+.careers-positions-aside-card {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    border-top: 1px solid #101010;
+    border-bottom: 1px solid #101010;
+}
+
+.careers-positions-aside-card h1{
+    display: flex;
+    font-size: 1.1rem;
+    font-weight: 500;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.careers-positions-aside-card section{
+    padding: 10px 0;
+    font-size: 0.8rem;
+    font-weight: 300;
 }
