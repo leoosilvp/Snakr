@@ -154,7 +154,7 @@ const General = () => {
       </Link>
 
       <h1>Version</h1>
-      <p>Snakr V.2.4.3</p>
+      <p>Snakr V.2.6.4</p>
     </section>
   )
 }
