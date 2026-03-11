@@ -147,8 +147,9 @@ const Login = () => {
                 <input
                   name="username"
                   type="text"
-                  maxLength={17}
-                  placeholder='Username'
+                  maxLength={30}
+                  pattern="^[a-zA-Z0-9._]+$"
+                  placeholder="Username"
                   value={form.username}
                   onChange={handleChange}
                 />
@@ -161,8 +162,9 @@ const Login = () => {
                 <input
                   name="username"
                   type="text"
-                  maxLength={17}
-                  placeholder='Username'
+                  maxLength={30}
+                  pattern="^[a-zA-Z0-9._]+$"
+                  placeholder="Username"
                   value={form.username}
                   onChange={handleChange}
                 />
