@@ -30,6 +30,68 @@
     background: var(--light-color);
 }
 
+.most-popular-grid {
+    margin-top: 30px;
+}
+
+.card-game-main {
+    display: flex;
+    gap: 10px;
+    width: 450px;
+    height: 285px;
+    border: 1px solid var(--dark-color);
+    background: var(--background-card);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.card-game-main img{
+    display: flex;
+    width: 225px;
+    height: fit-content;
+    box-shadow: 5px 0 15px #040404;
+}
+
+.card-game-main-content{
+    padding: 10px 5px;
+}
+
+.card-game-main-content h1 {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.card-game-main-content div {
+    margin-top: 3px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.card-game-main-content div p {
+    font-size: 0.65rem;
+    font-weight: 300;
+    padding: 1px 7px;
+    background: var(--dark-color);
+    border-radius: 3px;
+    color: var(--gray-color);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media (width < 720px) {
     .home-main-feed {
         width: 100%;

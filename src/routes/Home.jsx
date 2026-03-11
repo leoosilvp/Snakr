@@ -28,6 +28,7 @@ const Home = () => {
                   <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis eaque impedit omnis provident qui temporibus itaque, sapiente iusto </p>
                 </section>
               </article>
+              
             </div>
           </section>
 
