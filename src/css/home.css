@@ -31,7 +31,7 @@
     background: var(--light-color);
 }
 
-.home-next-btn{
+.home-next-btn {
     display: flex;
     height: 70px;
     align-items: center;
@@ -40,14 +40,21 @@
     border: none;
     border-radius: 1px;
     color: var(--gray-color);
+    cursor: pointer;
+    transition: var(--transition-2s);
 }
 
-.home-next-btn.l{
+.home-next-btn.l {
     background: linear-gradient(-90deg, #2b2b2b2b, #101010);
 }
 
-.home-next-btn.r{
+.home-next-btn.r {
     background: linear-gradient(90deg, #2b2b2b2b, #101010);
+}
+
+.home-next-btn:hover{
+    opacity: 0.9;
+    color: var(--light-color);
 }
 
 .most-popular-content {
@@ -77,16 +84,16 @@
     cursor: pointer;
 }
 
-.card-game-main:hover{
+.card-game-main:hover {
     transform: scale(1.01);
     background: #0b0b0b;
 }
 
-.card-game-main:hover img{
+.card-game-main:hover img {
     transform: scale(1.05);
 }
 
-.card-game-main img{
+.card-game-main img {
     display: flex;
     width: 225px;
     height: fit-content;
@@ -94,7 +101,7 @@
     transition: var(--transition-2s);
 }
 
-.card-game-main-content{
+.card-game-main-content {
     padding: 10px 10px 10px 5px;
     display: flex;
     flex-direction: column;
@@ -123,7 +130,7 @@
     color: #c3c3c3;
 }
 
-.card-game-main-content p{
+.card-game-main-content p {
     margin-top: 5px;
     font-size: 0.8rem;
     font-weight: 200;
@@ -137,7 +144,7 @@
     justify-content: space-between;
 }
 
-.card-game-main-footer div{
+.card-game-main-footer div {
     display: flex;
     align-items: center;
     font-size: 0.7rem;
@@ -160,7 +167,7 @@
     transition: var(--transition-2s);
 }
 
-.card-game-main-footer button:hover{
+.card-game-main-footer button:hover {
     background: #b3b3b3;
 }
 
@@ -172,7 +179,7 @@
     gap: 7px;
 }
 
-.most-popular-dots div{
+.most-popular-dots div {
     display: flex;
     width: 15px;
     height: 10px;
@@ -182,10 +189,30 @@
     cursor: pointer;
 }
 
-.most-popular-dots div.active{
+.most-popular-dots div.active {
     background: #1e1e1e;
 }
 
+.most-popular-in-library {
+    margin-top: 6px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    height: 25px;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: var(--light-color);
+    background: #234567;
+    gap: 5px;
+    overflow: hidden;
+    transition: var(--transition-2s);
+}
+
+
+.most-popular-in-library:hover {
+    background: #1a344d;
+}
 
 
 
