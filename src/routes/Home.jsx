@@ -1,6 +1,8 @@
+import { ShoppingCart, Users } from "@geist-ui/icons"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
 import '../css/home.css'
+import { Link } from "react-router-dom"
 
 const Home = () => {
   return (
@@ -16,19 +18,49 @@ const Home = () => {
               <div />
             </header>
             <div className="most-popular-grid">
-              <article className="card-game-main">
+
+              <Link to={`/game/:igdb_id`} className="card-game-main">
                 <img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co670h.jpg" />
                 <section className="card-game-main-content">
-                  <h1>Titulo do jogo</h1>
-                  <div>
-                    <p>ação</p>
-                    <p>aventura</p>
-                    <p>corrida</p>
-                  </div>
-                  <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis eaque impedit omnis provident qui temporibus itaque, sapiente iusto </p>
+                  <section>
+                    <h1>Titulo do jogo</h1>
+                    <div>
+                      <h2>ação</h2>
+                      <h2>aventura</h2>
+                      <h2>corrida</h2>
+                    </div>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis eaque impedit omnis provident qui temporibus itaque, sapiente iusto </p>
+                  </section>
+                  <section className="card-game-main-footer">
+                    <div>
+                      <Users size={13} /> / 1.286
+                    </div>
+                    <button><ShoppingCart size={15} />Add the library</button>
+                  </section>
                 </section>
-              </article>
-              
+              </Link>
+
+              <Link to={`/game/:igdb_id`} className="card-game-main">
+                <img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1wz4.jpg" />
+                <section className="card-game-main-content">
+                  <section>
+                    <h1>Titulo do jogo</h1>
+                    <div>
+                      <h2>ação</h2>
+                      <h2>simulação</h2>
+                      <h2>corrida</h2>
+                    </div>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis eaque impedit omnis provident qui temporibus itaque, sapiente iusto </p>
+                  </section>
+                  <section className="card-game-main-footer">
+                    <div>
+                      <Users size={13} /> / 1.031
+                    </div>
+                    <button><ShoppingCart size={15} />Add the library</button>
+                  </section>
+                </section>
+              </Link>
+
             </div>
           </section>
 

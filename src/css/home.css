@@ -7,7 +7,8 @@
 .home-main-feed {
     display: flex;
     flex-direction: column;
-    width: 1200px;
+    width: 95%;
+    max-width: 1200px;
     min-height: 100vh;
 }
 
@@ -32,17 +33,31 @@
 
 .most-popular-grid {
     margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
 }
 
 .card-game-main {
     display: flex;
     gap: 10px;
-    width: 450px;
+    width: 545px;
     height: 285px;
     border: 1px solid var(--dark-color);
     background: var(--background-card);
     border-radius: 4px;
     overflow: hidden;
+    transition: var(--transition-2s);
+    cursor: pointer;
+}
+
+.card-game-main:hover{
+    transform: scale(1.01);
+    background: #0b0b0b;
+}
+
+.card-game-main:hover img{
+    transform: scale(1.05);
 }
 
 .card-game-main img{
@@ -50,37 +65,78 @@
     width: 225px;
     height: fit-content;
     box-shadow: 5px 0 15px #040404;
+    transition: var(--transition-2s);
 }
 
 .card-game-main-content{
-    padding: 10px 5px;
+    padding: 10px 10px 10px 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .card-game-main-content h1 {
     font-size: 1.1rem;
     font-weight: 500;
+    color: var(--light-color);
 }
 
 .card-game-main-content div {
-    margin-top: 3px;
+    margin-top: 5px;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
 }
 
-.card-game-main-content div p {
+.card-game-main-content div h2 {
     font-size: 0.65rem;
     font-weight: 300;
     padding: 1px 7px;
-    background: var(--dark-color);
+    background: #1e1e1e;
     border-radius: 3px;
-    color: var(--gray-color);
+    color: #c3c3c3;
 }
 
+.card-game-main-content p{
+    margin-top: 5px;
+    font-size: 0.8rem;
+    font-weight: 200;
+    color: #d9d9d9;
+}
 
+.card-game-main-footer {
+    margin-top: auto;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
 
+.card-game-main-footer div{
+    display: flex;
+    align-items: center;
+    font-size: 0.7rem;
+    color: var(--gray-color);
+    gap: 5px;
+}
 
+.card-game-main-footer button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: var(--black);
+    border: none;
+    border-radius: 4px;
+    background: var(--light-color);
+    cursor: pointer;
+    transition: var(--transition-2s);
+}
 
+.card-game-main-footer button:hover{
+    background: #b3b3b3;
+}
 
 
 
