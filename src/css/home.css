@@ -31,8 +31,34 @@
     background: var(--light-color);
 }
 
-.most-popular-grid {
+.home-next-btn{
+    display: flex;
+    height: 70px;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    border: none;
+    border-radius: 1px;
+    color: var(--gray-color);
+}
+
+.home-next-btn.l{
+    background: linear-gradient(-90deg, #2b2b2b2b, #101010);
+}
+
+.home-next-btn.r{
+    background: linear-gradient(90deg, #2b2b2b2b, #101010);
+}
+
+.most-popular-content {
     margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.most-popular-grid {
     display: flex;
     justify-content: center;
     gap: 15px;
@@ -138,6 +164,27 @@
     background: #b3b3b3;
 }
 
+.most-popular-dots {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 7px;
+}
+
+.most-popular-dots div{
+    display: flex;
+    width: 15px;
+    height: 10px;
+    border: 1px solid #181818;
+    border-radius: 2px;
+    background: #0b0b0b;
+    cursor: pointer;
+}
+
+.most-popular-dots div.active{
+    background: #1e1e1e;
+}
 
 
 
