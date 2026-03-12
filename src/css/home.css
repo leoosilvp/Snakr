@@ -443,3 +443,262 @@
         padding: 0 20px;
     }
 }
+
+
+@media (width < 720px) {
+
+    /* ── Layout base ── */
+
+    .home-main-feed {
+        width: 100%;
+        padding: 0 16px;
+        box-sizing: border-box;
+    }
+
+
+    /* ── Banner ── */
+
+    .banner-home {
+        height: 200px;
+        border-radius: 4px;
+    }
+
+    .banner-img p {
+        width: 100%;
+        font-size: 0.78rem;
+    }
+
+
+    /* ── Cabeçalhos de seção ── */
+
+    .headers-sec-home {
+        margin-top: 24px;
+    }
+
+    .headers-sec-home h1 {
+        font-size: 1rem;
+    }
+
+    .headers-sec-home h2 {
+        font-size: 0.82rem;
+    }
+
+
+    /* ── Most Popular ── */
+
+    .most-popular-content {
+        margin-top: 16px;
+        gap: 6px;
+    }
+
+    .most-popular-grid {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .card-game-main {
+        width: 100%;
+        height: auto;
+        min-height: 130px;
+        flex-direction: row;
+    }
+
+    .card-game-main img {
+        width: 110px;
+        min-width: 110px;
+        height: auto;
+        max-height: 160px;
+        object-fit: cover;
+    }
+
+    .card-game-main-content {
+        padding: 10px 10px 10px 8px;
+        gap: 6px;
+    }
+
+    .card-game-main-content h1 {
+        font-size: 0.9rem;
+    }
+
+    .card-game-main-content p {
+        font-size: 0.72rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .card-game-main-content div h2 {
+        font-size: 0.6rem;
+        padding: 1px 5px;
+    }
+
+    .card-game-main-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .card-game-main-footer button {
+        font-size: 0.75rem;
+        padding: 6px 10px;
+        gap: 6px;
+    }
+
+    .home-next-btn {
+        width: 20px;
+        height: 55px;
+    }
+
+
+    /* ── Dots de paginação ── */
+
+    .most-popular-dots {
+        margin-top: 12px;
+        gap: 5px;
+    }
+
+    .most-popular-dots div {
+        width: 12px;
+        height: 8px;
+    }
+
+
+    /* ── Recommended ── */
+
+    .recommended-home {
+        margin-top: 24px;
+    }
+
+    .recommended-home-content {
+        gap: 6px;
+    }
+
+    .recommended-home-grid {
+        margin-top: 12px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+        gap: 12px;
+        padding: 0;
+    }
+
+    .card-game-s {
+        width: 100%;
+        max-width: 110px;
+    }
+
+    .card-game-s div {
+        height: 145px;
+    }
+
+    .card-game-s h1 {
+        width: 100%;
+        font-size: 0.65rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+
+    /* ── Feed (Featured games) ── */
+
+    .feed-home {
+        margin-top: 24px;
+    }
+
+    .feed-home-grid {
+        margin-top: 20px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .card-game-b {
+        border-radius: 3px;
+        overflow: hidden;
+    }
+
+
+    /* ── Game List ── */
+
+    .game-list-home {
+        margin-top: 30px;
+    }
+
+
+    /* ── Badge "In library" ── */
+
+    .most-popular-in-library {
+        font-size: 0.65rem;
+        height: 22px;
+        padding: 0 5px;
+    }
+
+    .game-in-library {
+        font-size: 0.65rem;
+        height: 22px;
+        padding: 0 5px;
+    }
+
+
+    /* ── Footer Home ── */
+
+    .home-footer {
+        margin-top: 50px;
+        padding: 0 8px;
+        text-align: center;
+    }
+
+    .home-footer img {
+        width: 120px;
+    }
+
+    .home-footer h1 {
+        font-size: 1.2rem;
+        line-height: 1.3;
+    }
+
+    .home-footer p {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+
+    .home-footer a {
+        font-size: 0.85rem;
+        padding: 8px 18px;
+    }
+}
+
+
+/* ── Extra pequeno: iPhone SE e similares (<= 390px) ── */
+
+@media (width < 390px) {
+
+    .home-main-feed {
+        padding: 0 12px;
+    }
+
+    .card-game-main img {
+        width: 95px;
+        min-width: 95px;
+    }
+
+    .recommended-home-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+
+    .card-game-s div {
+        height: 120px;
+    }
+
+    .feed-home-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .card-game-main-content p {
+        display: none;
+    }
+}
