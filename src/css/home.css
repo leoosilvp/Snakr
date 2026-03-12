@@ -54,20 +54,25 @@
 
 /* most popular */
 
-.most-popular-header {
+.headers-sec-home {
     margin-top: 30px;
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-.most-popular-header h1 {
+.headers-sec-home h1 {
     display: flex;
     font-size: 1.1rem;
     font-weight: 500;
 }
 
-.most-popular-header div {
+.headers-sec-home h2 {
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+.headers-sec-home div {
     display: flex;
     width: 60px;
     height: 2.5px;
@@ -258,10 +263,60 @@
 }
 
 
+/* recommended */
 
+.recommended-home{
+    margin-top: 30px;
+}
 
+.recommended-home-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: space-between;
+}
 
+.recommended-home-grid {
+    margin-top: 15px;
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
 
+.card-game-s {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: 165px;
+    overflow: hidden;
+}
+
+.card-game-s div:hover img{
+    transform: scale(1.03);
+}
+
+.card-game-s div {
+    display: flex;
+    width: 100%;
+    height: 220px;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.card-game-s div img {
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    transition: var(--transition-2s);
+}
+
+.card-game-s h1{
+    width: 150px;
+    text-overflow: ellipsis;
+    font-size: 0.7rem;
+    font-weight: 300;
+    color: var(--light-color);
+}
 
 
 

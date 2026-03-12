@@ -35,7 +35,7 @@ const MostPopular = () => {
 
     return (
         <main className="most-popular">
-            <header className="most-popular-header">
+            <header className="headers-sec-home">
                 <h1>Most popular</h1>
                 <div />
             </header>

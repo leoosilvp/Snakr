@@ -3,6 +3,7 @@ import Header from "../components/Header"
 import '../css/home.css'
 import MostPopular from "../components/home/MostPopular"
 import Banner from "../components/home/Banner"
+import Recommended from "../components/home/Recommended"
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
         <div className="home-main-feed">
           <Banner />
           <MostPopular />
+          <Recommended />
         </div>
       </section>
 
