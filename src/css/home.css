@@ -377,6 +377,14 @@
     transition: var(--transition-2s);
 }
 
+
+/* game-list */
+
+.game-list-home {
+    margin-top: 60px;
+}
+
+
 @media (width < 720px) {
     .home-main-feed {
         width: 100%;

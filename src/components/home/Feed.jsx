@@ -56,8 +56,8 @@ const Feed = () => {
                 setLoading(true)
 
                 const pages = await Promise.all(
-                    Array.from({ length: 4 }, (_, i) =>
-                        gamesService.list({ page: i + 1 })
+                    Array.from({ length: 2 }, (_, i) =>
+                        gamesService.list({ page: i + 4 })
                     )
                 )
 

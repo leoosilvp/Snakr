@@ -6,6 +6,7 @@ import Banner from "../components/home/Banner"
 import MostPopular from "../components/home/MostPopular"
 import Recommended from "../components/home/Recommended"
 import Feed from "../components/home/Feed"
+import GameList from "../components/home/GameList.jsx"
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
             <MostPopular />
             <Recommended />
             <Feed />
+            <GameList title={'You might also like'} />
           </GamesProvider>
         </div>
       </section>
