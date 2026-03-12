@@ -21,6 +21,9 @@ const Home = () => {
             <Recommended />
             <Feed />
             <GameList title={'You might also like'} />
+            <GameList title={'Fan Favorites'} />
+            <GameList title={'All Time Greats'} />
+            <GameList title={'Underrated Picks'} />
           </GamesProvider>
         </div>
       </section>
