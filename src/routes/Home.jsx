@@ -7,6 +7,7 @@ import MostPopular from "../components/home/MostPopular"
 import Recommended from "../components/home/Recommended"
 import Feed from "../components/home/Feed"
 import GameList from "../components/home/GameList.jsx"
+import FooterHome from "../components/home/FooterHome.jsx"
 
 const Home = () => {
   return (
@@ -25,6 +26,7 @@ const Home = () => {
             <GameList title={'All Time Greats'} />
             <GameList title={'Underrated Picks'} />
           </GamesProvider>
+          <FooterHome />
         </div>
       </section>
 

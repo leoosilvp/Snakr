@@ -78,6 +78,21 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
+@keyframes snake {
+    0%   { transform: rotate(0deg)  translateX(0px); }
+    10%  { transform: rotate(-6deg) translateX(4px); }
+    20%  { transform: rotate(6deg)  translateX(-4px); }
+    30%  { transform: rotate(-6deg) translateX(4px); }
+    40%  { transform: rotate(6deg)  translateX(-4px); }
+    50%  { transform: rotate(-4deg) translateX(3px); }
+    60%  { transform: rotate(4deg)  translateX(-3px); }
+    70%  { transform: rotate(-2deg) translateX(2px); }
+    80%  { transform: rotate(2deg)  translateX(-2px); }
+    90%  { transform: rotate(-1deg) translateX(1px); }
+    100% { transform: rotate(0deg)  translateX(0px); }
+}
+
+
 /* rtt */
 
 .return-to-top {
