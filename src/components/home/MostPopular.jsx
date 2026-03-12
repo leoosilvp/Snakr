@@ -1,8 +1,9 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { Link } from "react-router-dom"
 import { ChevronLeft, ChevronRight, List, ShoppingCart, Check, Users } from "@geist-ui/icons"
 import { useTopGames } from '../../hooks/useTopGames'
 import { useUserGames } from '../../hooks/useUserGames'
+import { useGamesContext } from '../../context/GamesCtx'
 
 const ITEMS_PER_PAGE = 2
 
@@ -11,10 +12,15 @@ const MostPopular = () => {
 
     const { games, loading } = useTopGames(8)
     const { games: userGames, updateGame } = useUserGames()
+    const { registerIds } = useGamesContext()
 
     const userGameIds = useMemo(() => {
         return new Set(userGames.map(g => g.game_id))
     }, [userGames])
+
+    useEffect(() => {
+        if (games.length > 0) registerIds(games.map(g => g.id))
+    }, [games, registerIds])
 
     const totalPages = Math.ceil(games.length / ITEMS_PER_PAGE)
     const visibleGames = games.slice(page * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE + ITEMS_PER_PAGE)

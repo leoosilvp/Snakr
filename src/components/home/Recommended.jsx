@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight, List } from "@geist-ui/icons"
 import { Link } from "react-router-dom"
 import { gamesService } from '../../services/games.service'
 import { useUserGames } from '../../hooks/useUserGames'
+import { useGamesContext } from '../../context/GamesCtx'
 
 const ITEMS_PER_PAGE = 6
 const TOTAL_ITEMS = 24
@@ -30,6 +31,7 @@ const Recommended = () => {
     const abortRef = useRef(null)
 
     const { games: userGames } = useUserGames()
+    const { registerIds } = useGamesContext()
 
     const userGameIds = useMemo(() => {
         return new Set(userGames.map(g => g.game_id))
@@ -42,6 +44,7 @@ const Recommended = () => {
         const cached = getCached(CACHE_KEY)
         if (cached) {
             setGames(cached)
+            registerIds(cached.map(g => g.id))
             return
         }
 
@@ -70,6 +73,7 @@ const Recommended = () => {
 
                 setCache(CACHE_KEY, shuffled)
                 setGames(shuffled)
+                registerIds(shuffled.map(g => g.id))
             } catch (err) {
                 if (cancelled || err.name === 'AbortError') return
             } finally {
@@ -82,7 +86,7 @@ const Recommended = () => {
             cancelled = true
             abortRef.current?.abort()
         }
-    }, [])
+    }, [registerIds])
 
     function prevPage() {
         setPage(prev => (prev > 0 ? prev - 1 : prev))
