@@ -4,6 +4,7 @@ import '../css/home.css'
 import MostPopular from "../components/home/MostPopular"
 import Banner from "../components/home/Banner"
 import Recommended from "../components/home/Recommended"
+import Feed from "../components/home/Feed"
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
           <Banner />
           <MostPopular />
           <Recommended />
+          <Feed />
         </div>
       </section>
 

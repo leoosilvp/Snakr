@@ -257,15 +257,38 @@
     transition: var(--transition-2s);
 }
 
-
 .most-popular-in-library:hover {
     background: #1a344d;
+}
+
+.game-in-library {
+    margin-top: 10px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    height: 25px;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: var(--light-color);
+    background: #234567;
+    gap: 5px;
+    overflow: hidden;
+    transition: var(--transition-2s);
+}
+
+.game-in-library .text {
+    display: none;
+}
+
+.game-in-library:hover .text {
+    display: flex;
 }
 
 
 /* recommended */
 
-.recommended-home{
+.recommended-home {
     margin-top: 30px;
 }
 
@@ -291,7 +314,7 @@
     overflow: hidden;
 }
 
-.card-game-s div:hover img{
+.card-game-s div:hover img {
     transform: scale(1.03);
 }
 
@@ -310,7 +333,7 @@
     transition: var(--transition-2s);
 }
 
-.card-game-s h1{
+.card-game-s h1 {
     width: 150px;
     text-overflow: ellipsis;
     font-size: 0.7rem;
@@ -319,6 +342,39 @@
 }
 
 
+/* feed */
+
+.feed-home {
+    margin-top: 30px;
+}
+
+.feed-home-grid {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+}
+
+.card-game-b {
+    display: flex;
+    width: 100%;
+}
+
+.card-game-b div {
+    width: 100%;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.card-game-b div:hover img {
+    transform: scale(1.05);
+}
+
+.card-game-b div img {
+    width: 100%;
+    height: 100%;
+    transition: var(--transition-2s);
+}
 
 @media (width < 720px) {
     .home-main-feed {

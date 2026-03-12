@@ -8,7 +8,7 @@ const ITEMS_PER_PAGE = 6
 const TOTAL_ITEMS = 24
 
 const cache = new Map()
-const CACHE_TTL = 1000 * 60 * 5
+const CACHE_TTL = 1000 * 60 * 60
 
 function getCached(key) {
     const entry = cache.get(key)
@@ -124,8 +124,8 @@ const Recommended = () => {
                                     />
                                 </div>
                                 <h1>
-                                    {game.name?.length > 24
-                                        ? game.name.slice(0, 24) + '...'
+                                    {game.name?.length > 22
+                                        ? game.name.slice(0, 22) + '...'
                                         : game.name
                                     }
                                 </h1>
