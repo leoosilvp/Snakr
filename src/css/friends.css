@@ -526,6 +526,7 @@
     flex-direction: column;
     padding: 10px;
     background: #060606;
+    gap: 10px;
 }
 
 .no-invitations {
