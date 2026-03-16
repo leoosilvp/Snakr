@@ -81,6 +81,7 @@ Este projeto, **Snakr**, é um software proprietário e todos os direitos são r
 
 Para mais detalhes, leia o arquivo completo de licença: [LICENSE](./LICENSE).
 
+</br>
 
 ## Credits & Contributors
 
