@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight, List, ShoppingCart, Check, Users } from "@ge
 import { useTopGames } from '../../hooks/useTopGames'
 import { useUserGames } from '../../hooks/useUserGames'
 import { useGamesContext } from '../../context/GamesCtx'
+import MostPopularSkeleton from '../skeletons/MostPopularSkeleton'
 
 const ITEMS_PER_PAGE = 2
 
@@ -56,7 +57,7 @@ const MostPopular = () => {
                 </button>
 
                 <div className="most-popular-grid">
-                    {!loading && visibleGames.map(game => {
+                    {!loading ? visibleGames.map(game => {
                         const inLibrary = userGameIds.has(game.id)
 
                         return (
@@ -113,7 +114,7 @@ const MostPopular = () => {
                                 )}
                             </Link>
                         )
-                    })}
+                    }) : <MostPopularSkeleton />}
                 </div>
 
                 <button
