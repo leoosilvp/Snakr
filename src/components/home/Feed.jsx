@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import { gamesService } from '../../services/games.service'
 import { useUserGames } from '../../hooks/useUserGames'
 import { useGamesContext } from '../../context/GamesCtx'
+import FeedSkeleton from '../skeletons/FeedSkeleton'
 
 const TOTAL_ITEMS = 10
 
@@ -93,7 +94,7 @@ const Feed = () => {
                 <div />
             </header>
             <section className="feed-home-grid">
-                {!loading && games.map(game => {
+                {!loading ? games.map(game => {
                     const inLibrary = userGameIds.has(game.id)
 
                     return (
@@ -124,7 +125,7 @@ const Feed = () => {
                             )}
                         </Link>
                     )
-                })}
+                }) : <FeedSkeleton />}
             </section>
         </main>
     )
