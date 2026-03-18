@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import { gamesService } from '../../services/games.service'
 import { useUserGames } from '../../hooks/useUserGames'
 import { useGamesContext } from '../../context/GamesCtx'
+import GameListSkeleton from '../skeletons/GameListSkeleton'
 
 const ITEMS_PER_PAGE = 6
 const TOTAL_ITEMS = 24
@@ -111,7 +112,7 @@ const Recommended = () => {
                 </button>
 
                 <section className="recommended-home-grid">
-                    {!loading && visibleGames.map(game => {
+                    {!loading ? visibleGames.map(game => {
                         const inLibrary = userGameIds.has(game.id)
 
                         return (
@@ -149,7 +150,7 @@ const Recommended = () => {
                                 )}
                             </Link>
                         )
-                    })}
+                    }) : <GameListSkeleton />}
                 </section>
 
                 <button
