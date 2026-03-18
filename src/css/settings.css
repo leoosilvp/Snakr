@@ -99,11 +99,13 @@
 
 .settings-general a {
     display: flex;
+    width: fit-content;
     align-items: center;
     font-size: 0.85rem;
     font-weight: 400;
     color: var(--primary-color);
     gap: 7px;
+    transition: var(--transition-2s);
 }
 
 .settings-general a div {
@@ -112,6 +114,10 @@
     height: 7px;
     background: var(--primary-color);
     border-radius: 50%;
+}
+
+.settings-general a:hover{
+    color: #005fdb;
 }
 
 .settings-general h2 {
