@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight, List } from "@geist-ui/icons"
 import { Link } from "react-router-dom"
 import { gamesService } from '../../services/games.service'
 import { useUserGames } from '../../hooks/useUserGames'
+import GameListSkeleton from '../skeletons/GameListSkeleton'
 
 const ITEMS_PER_PAGE = 6
 const TOTAL_ITEMS = 30
@@ -111,7 +112,7 @@ const GameList = ({ title = 'Games' }) => {
                 </button>
 
                 <section className="recommended-home-grid">
-                    {!loading && visibleGames.map(game => {
+                    {!loading ? visibleGames.map(game => {
                         const inLibrary = userGameIds.has(game.id)
 
                         return (
@@ -149,7 +150,7 @@ const GameList = ({ title = 'Games' }) => {
                                 )}
                             </Link>
                         )
-                    })}
+                    }) : <GameListSkeleton />}
                 </section>
 
                 <button
