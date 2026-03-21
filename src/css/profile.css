@@ -458,6 +458,24 @@
     align-items: center;
 }
 
+.profile-card-friend-content-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.profile-card-friend-content-info h2 {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #969696;
+}
+
+.profile-card-friend-content-info h3 {
+    font-size: 0.7rem;
+    font-weight: 300;
+    color: #565656;
+}
+
 .profile-card-friend img {
     display: flex;
     width: 45px;
@@ -470,13 +488,6 @@
     width: 3px;
     height: 45px;
     background: #969696;
-}
-
-.profile-card-friend h2 {
-    margin-left: 10px;
-    font-size: 1rem;
-    font-weight: 400;
-    color: #969696;
 }
 
 .profile-icon-level h1 {
@@ -672,13 +683,13 @@
         background: #06060669;
     }
 
-    .profile-header-aside-btns a{
+    .profile-header-aside-btns a {
         border: 1px solid #303030;
         background: #131313;
         color: var(--light-color);
     }
 
-    .profile-header-aside-btns button{
+    .profile-header-aside-btns button {
         min-width: max-content;
         align-items: center;
         justify-content: center;
