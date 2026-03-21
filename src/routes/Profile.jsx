@@ -201,9 +201,9 @@ const Profile = () => {
                 </article>
 
                 <ul>
-                  {showGames ? <Link><p>Games</p> <span>0</span></Link> : ''}
+                  {showGames ? <Link to='/library'><p>Games</p> <span>0</span></Link> : ''}
                   {showAchievements ? <Link><p>Achievements</p> <span>0</span></Link> : ''}
-                  <Link><p>Library</p></Link>
+                  <Link to='/library'><p>Library</p></Link>
                   <Link><p>Screenshot</p></Link>
                   <Link><p>Videos</p></Link>
                   <Link><p>Arts</p></Link>
