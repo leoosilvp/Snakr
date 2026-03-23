@@ -11,6 +11,7 @@ const Collection = ({ userId }) => {
 
   const [gamesCount, setGamesCount] = useState(0)
   const [favoritesCount, setFavoritesCount] = useState(0)
+  const [featuredGames, setFeaturedGames] = useState([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -34,11 +35,15 @@ const Collection = ({ userId }) => {
         const favorites = list.filter(g => g.favorite === true)
         setFavoritesCount(favorites.length)
 
+        const featured = list.filter(g => g.status === 'highlight')
+        setFeaturedGames(featured)
+
       } catch (err) {
         if (err.name !== 'AbortError') {
           console.error(err)
           setGamesCount(0)
           setFavoritesCount(0)
+          setFeaturedGames([])
         }
       } finally {
         setLoading(false)
@@ -85,7 +90,17 @@ const Collection = ({ userId }) => {
         <section className='profile-ctn-featured-games'>
           <h1>Featured games</h1>
           <section className='profile-featured-games'>
-            <span className="no-featured-games">No featured games.</span>
+
+            {!loading && featuredGames.length === 0 && (
+              <span className="no-featured-games">No featured games.</span>
+            )}
+
+            {!loading && featuredGames.map(item => (
+              <Link key={item.id} to={`/game/${item.games?.igdb_id}`}>
+                <img src={item.games?.cover_image} alt={item.games?.name}/>
+              </Link>
+            ))}
+
           </section>
         </section>
       </section>
