@@ -219,7 +219,7 @@
     padding: 10px;
 }
 
-.profile-statistics-in-collection div {
+.profile-statistics-in-collection a {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -227,13 +227,13 @@
     width: 100%;
 }
 
-.profile-statistics-in-collection div h1 {
+.profile-statistics-in-collection a h1 {
     font-size: 2.5rem;
     font-weight: 200;
     color: #c3c3c3;
 }
 
-.profile-statistics-in-collection div a {
+.profile-statistics-in-collection a h2 {
     display: flex;
     width: max-content;
     font-size: 1rem;

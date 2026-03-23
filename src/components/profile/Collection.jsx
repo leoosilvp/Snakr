@@ -2,7 +2,7 @@ import { Edit3 } from "@geist-ui/icons"
 import { Link } from "react-router-dom"
 import { useUser } from "../../hooks/useUser"
 
-const Collection = ({ userId, showGames }) => {
+const Collection = ({ userId }) => {
 
   const { user } = useUser()
   const isOwner = user?.id == userId
@@ -15,33 +15,29 @@ const Collection = ({ userId, showGames }) => {
       </header>
       <section className='profile-collection-content'>
         <section className='profile-statistics-in-collection'>
-          {showGames ?
-            <div>
-              <h1>0</h1>
-              <Link>Games on account</Link>
-            </div> : ''
-          }
-          <div>
+          <Link to='/library'>
             <h1>0</h1>
-            <Link>Analytics</Link>
-          </div>
-          <div>
+            <h2>Games on account</h2>
+          </Link>
+          <Link>
             <h1>0</h1>
-            <Link>Total hours played</Link>
-          </div>
-          <div>
+            <h2>Analytics</h2>
+          </Link>
+          <Link>
             <h1>0</h1>
-            <Link>On the wish list</Link>
-          </div>
+            <h2>Total hours played</h2>
+          </Link>
+          <Link to='/library/favorites'>
+            <h1>0</h1>
+            <h2>On the Favorites</h2>
+          </Link>
         </section>
-        {showGames ?
-          <section className='profile-ctn-featured-games'>
-            <h1>Featured games</h1>
-            <section className='profile-featured-games'>
-              <span className="no-featured-games">No featured games.</span>
-            </section>
-          </section> : ''
-        }
+        <section className='profile-ctn-featured-games'>
+          <h1>Featured games</h1>
+          <section className='profile-featured-games'>
+            <span className="no-featured-games">No featured games.</span>
+          </section>
+        </section>
       </section>
     </section>
   )
