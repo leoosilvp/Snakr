@@ -1,6 +1,43 @@
 const BASE_URL = 'https://backend-snakr.vercel.app/api'
 
+const cache = new Map()
+const CACHE_TTL = 1000 * 60 * 2 // 2 minutos
+
+function getCacheKey(url) {
+  return url
+}
+
+function getCached(key) {
+  const entry = cache.get(key)
+
+  if (!entry) return null
+
+  if (Date.now() > entry.expiresAt) {
+    cache.delete(key)
+    return null
+  }
+
+  return entry.data
+}
+
+function setCache(key, data) {
+  cache.set(key, {
+    data,
+    expiresAt: Date.now() + CACHE_TTL
+  })
+}
+
 async function request(url, options = {}) {
+  const method = options.method || 'GET'
+  const useCache = method === 'GET' && !options.signal
+
+  const key = getCacheKey(url)
+
+  if (useCache) {
+    const cached = getCached(key)
+    if (cached) return cached
+  }
+
   const res = await fetch(url, {
     credentials: 'include',
     headers: {
@@ -19,6 +56,10 @@ async function request(url, options = {}) {
 
   if (!res.ok) {
     throw new Error(data?.error || 'Request failed')
+  }
+
+  if (useCache) {
+    setCache(key, data)
   }
 
   return data
@@ -87,8 +128,14 @@ export const gamesService = {
     return request(`${BASE_URL}/games?${query}`)
   },
 
-  async userList() {
-    return request(`${BASE_URL}/games?action=user`)
+  async userList({ userId, signal } = {}) {
+    const queryParams = { action: 'user' }
+
+    if (userId) queryParams.userId = userId
+
+    const query = new URLSearchParams(queryParams).toString()
+
+    return request(`${BASE_URL}/games?${query}`, { signal })
   },
 
   async updateUser({ game_id, status, rating }) {
@@ -98,5 +145,9 @@ export const gamesService = {
       method: 'POST',
       body: JSON.stringify({ game_id, status, rating })
     })
+  },
+
+  clearCache() {
+    cache.clear()
   }
 }
