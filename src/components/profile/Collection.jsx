@@ -96,7 +96,7 @@ const Collection = ({ userId }) => {
             )}
 
             {!loading && featuredGames.map(item => (
-              <Link key={item.id} to={`/game/${item.games?.igdb_id}`}>
+              <Link key={item.games?.id} to={`/game/${item.games?.igdb_id}`}>
                 <img src={item.games?.cover_image} alt={item.games?.name}/>
               </Link>
             ))}

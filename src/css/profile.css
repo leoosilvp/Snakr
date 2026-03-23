@@ -805,16 +805,16 @@
         background: #06060669;
     }
 
-    .profile-statistics-in-collection div {
+    .profile-statistics-in-collection a {
         align-items: center;
         height: max-content;
     }
 
-    .profile-statistics-in-collection div h1 {
+    .profile-statistics-in-collection a h1 {
         font-size: 2rem;
     }
 
-    .profile-statistics-in-collection div a {
+    .profile-statistics-in-collection a h2 {
         text-align: center;
         width: fit-content;
         font-size: 0.75rem;
