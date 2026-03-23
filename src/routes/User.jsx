@@ -328,7 +328,9 @@ const User = () => {
                               alt={friend.username}
                             />
                             <div />
+                            <section className='profile-card-friend-content-info'>
                             <h2>{friend.username}</h2>
+                          </section>
                           </section>
                           <section className='profile-icon-level'>
                             <h1 className={friend.level >= 100 ? 'pro' : friend.level >= 10 ? 'medium' : ''}>

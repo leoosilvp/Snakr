@@ -243,7 +243,7 @@ const Profile = () => {
                           <div />
                           <section className='profile-card-friend-content-info'>
                             <h2>{friend.username}</h2>
-                            <h3>{friend.lastSeen ?? ''}</h3> {/* ← novo */}
+                            <h3>{friend.lastSeen ?? ''}</h3>
                           </section>
                         </section>
                         <section className='profile-icon-level'>
