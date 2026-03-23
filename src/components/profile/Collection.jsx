@@ -10,6 +10,7 @@ const Collection = ({ userId }) => {
   const isOwner = user?.id == userId
 
   const [gamesCount, setGamesCount] = useState(0)
+  const [favoritesCount, setFavoritesCount] = useState(0)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -27,12 +28,17 @@ const Collection = ({ userId }) => {
         })
 
         const list = Array.isArray(data) ? data : []
+
         setGamesCount(list.length)
+
+        const favorites = list.filter(g => g.favorite === true)
+        setFavoritesCount(favorites.length)
 
       } catch (err) {
         if (err.name !== 'AbortError') {
           console.error(err)
           setGamesCount(0)
+          setFavoritesCount(0)
         }
       } finally {
         setLoading(false)
@@ -55,7 +61,7 @@ const Collection = ({ userId }) => {
         <section className='profile-statistics-in-collection'>
 
           <Link to='/library'>
-            <h1>{loading ? '...' : gamesCount}</h1>
+            <h1>{loading ? 0 : gamesCount}</h1>
             <h2>Games on account</h2>
           </Link>
 
@@ -70,7 +76,7 @@ const Collection = ({ userId }) => {
           </Link>
 
           <Link to='/library/favorites'>
-            <h1>0</h1>
+            <h1>{loading ? 0 : favoritesCount}</h1>
             <h2>On the Favorites</h2>
           </Link>
 
