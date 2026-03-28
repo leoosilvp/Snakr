@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 import { useUser } from "../../hooks/useUser"
 import { useEffect, useState } from "react"
 import { gamesService } from "../../services/games.service"
-import ModalEditCollection from "./ModalEditCollection"
 
 const Collection = ({ userId }) => {
 
@@ -105,7 +104,6 @@ const Collection = ({ userId }) => {
           </section>
         </section>
       </section>
-      <ModalEditCollection />
     </section>
   )
 }

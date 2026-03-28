@@ -273,7 +273,7 @@
     gap: 10px;
 }
 
-.profile-featured-games a img{
+.profile-featured-games a img {
     display: flex;
     width: 100%;
     max-width: 98px;
@@ -281,9 +281,22 @@
     transition: var(--transition-3s);
 }
 
-.profile-featured-games a img:hover{
+.profile-featured-games a img:hover {
     transform: scale(1.05);
 }
+
+/* modal edit collection */
+
+.modal-edit-collection {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(4px);
+    z-index: 2;
+}
+
 
 /* profile recent activity */
 

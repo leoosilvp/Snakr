@@ -9,6 +9,7 @@ import RecentActivity from '../components/profile/RecentActivity'
 import { Share2, UserPlus } from '@geist-ui/icons'
 import { useEffect, useState } from 'react'
 import { socialService } from '../services/social.service'
+import ModalEditCollection from '../components/profile/ModalEditCollection'
 
 const DEFAULT_AVATAR =
   'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'
@@ -278,7 +279,8 @@ const Profile = () => {
           </aside>
         </section>
       </article>
-
+      
+      <ModalEditCollection />
       <Footer />
     </main>
   )

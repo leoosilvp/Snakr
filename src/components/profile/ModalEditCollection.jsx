@@ -1,7 +1,7 @@
 
 const ModalEditCollection = () => {
     return (
-        <article>
+        <article className="modal-edit-collection">
 
         </article>
     )
