@@ -16,17 +16,31 @@ const DEFAULT_AVATAR =
 function formatLastSeen(lastSeen) {
   if (!lastSeen) return null
 
-  const diff    = Date.now() - new Date(lastSeen).getTime()
+  const diff = Date.now() - new Date(lastSeen).getTime()
   const minutes = Math.floor(diff / 60_000)
-  const hours   = Math.floor(diff / 3_600_000)
-  const days    = Math.floor(diff / 86_400_000)
+  const hours = Math.floor(diff / 3_600_000)
+  const days = Math.floor(diff / 86_400_000)
 
-  if (minutes < 1)   return 'Online recently'
-  if (minutes < 60)  return `${minutes}m ago`
-  if (hours   < 24)  return `${hours}h ago`
-  if (days    === 1) return 'Yesterday'
-  if (days    <= 30)  return `${days} days ago`
+  if (minutes < 1) return 'Online recently'
+  if (minutes < 60) return `${minutes}m ago`
+  if (hours < 24) return `${hours}h ago`
+  if (days === 1) return 'Yesterday'
+  if (days <= 30) return `${days} days ago`
   return '+30 days ago'
+}
+
+function getLastSeenTimestamp(statusObj) {
+  if (!statusObj) return Infinity
+
+  if (statusObj.status === 'playing' || statusObj.status === 'online') {
+    return 0
+  }
+
+  if (statusObj.last_seen) {
+    return Date.now() - new Date(statusObj.last_seen).getTime()
+  }
+
+  return Infinity
 }
 
 const Profile = () => {
@@ -37,8 +51,8 @@ const Profile = () => {
   const [friends, setFriends] = useState([])
 
   const preference = user?.settings?.profile
-  const showGames        = preference?.showGames
-  const showActivity     = preference?.showActivity
+  const showGames = preference?.showGames
+  const showActivity = preference?.showActivity
   const showAchievements = preference?.showAchievements
   const showOnlineStatus = preference?.showOnlineStatus
 
@@ -69,12 +83,13 @@ const Profile = () => {
                   : 'offline'
 
             return {
-              id:       friend.id,
+              id: friend.id,
               username: otherUser.profile.username,
-              photo:    otherUser.profile.photo,
-              level:    otherUser.profile.accountLevel,
+              photo: otherUser.profile.photo,
+              level: otherUser.profile.accountLevel,
               status,
-              lastSeen: formatLastSeen(statusObj.last_seen) // ← novo
+              lastSeen: formatLastSeen(statusObj.last_seen),
+              lastSeenDelta: getLastSeenTimestamp(statusObj),
             }
           })
           .filter(Boolean)
@@ -91,13 +106,13 @@ const Profile = () => {
   const handleShareProfile = async () => {
     if (!user?.profile?.username) return
 
-    const baseUrl    = window.location.origin
+    const baseUrl = window.location.origin
     const profileUrl = `${baseUrl}/user/${user?.profile?.username}`
 
     const shareData = {
       title: `${user?.profile.username} • Snakr`,
-      text:  `Confira o meu perfil no Snakr.`,
-      url:   profileUrl
+      text: `Confira o meu perfil no Snakr.`,
+      url: profileUrl
     }
 
     if (navigator.share) {
@@ -117,14 +132,8 @@ const Profile = () => {
     }
   }
 
-  const STATUS_ORDER = {
-    playing: 0,
-    online:  1,
-    offline: 2
-  }
-
   const sortedFriends = [...friends]
-    .sort((a, b) => (STATUS_ORDER[a.status] ?? 99) - (STATUS_ORDER[b.status] ?? 99))
+    .sort((a, b) => a.lastSeenDelta - b.lastSeenDelta)
     .slice(0, 10)
 
   return (
