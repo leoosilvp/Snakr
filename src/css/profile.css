@@ -369,12 +369,12 @@
     cursor: default;
 }
 
-.modal-edit-collection-content h1{
+.modal-edit-collection-content h1 {
     font-size: 0.9rem;
     font-weight: 300;
 }
 
-.modal-edit-collection-content p{
+.modal-edit-collection-content p {
     margin-top: 5px;
     font-size: 0.8rem;
     font-weight: 300;
@@ -455,6 +455,18 @@
     height: 300px;
     padding-top: 5px;
     gap: 5px;
+    overflow: auto;
+}
+
+.search-for-collection-grid::-webkit-scrollbar {
+    display: flex;
+    width: 4px;
+    cursor: pointer;
+}
+
+.search-for-collection-grid::-webkit-scrollbar-thumb {
+    background: var(--dark-color);
+    border-radius: 20px;
 }
 
 .search-for-collection-grid hr {
@@ -472,7 +484,7 @@
     background: #101010;
 }
 
-.search-for-collection-card img{
+.search-for-collection-card img {
     display: flex;
     width: 70px;
     height: fit-content;
@@ -480,12 +492,13 @@
 
 .search-for-collection-card-content {
     display: flex;
+    width: 100%;
     flex-direction: column;
     justify-content: space-between;
     padding: 0 7px;
 }
 
-.search-for-collection-card-content h1{
+.search-for-collection-card-content h1 {
     font-size: 0.9rem;
     font-weight: 400;
 }

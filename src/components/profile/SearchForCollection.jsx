@@ -1,33 +1,97 @@
 import { Award, Search } from "@geist-ui/icons"
+import { useUser } from "../../hooks/useUser"
+import { useEffect, useState } from "react"
+import { gamesService } from "../../services/games.service"
 
 const SearchForCollection = () => {
+    const { user } = useUser()
+
+    const [games, setGames] = useState([])
+    const [query, setQuery] = useState('')
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        if (!user?.id) return
+
+        const controller = new AbortController()
+
+        async function load() {
+            try {
+                setLoading(true)
+
+                const data = await gamesService.userList({
+                    userId: user.id,
+                    signal: controller.signal
+                })
+
+                setGames(Array.isArray(data) ? data : [])
+            } catch (err) {
+                if (err.name !== 'AbortError') {
+                    console.error(err)
+                    setGames([])
+                }
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        load()
+
+        return () => controller.abort()
+    }, [user?.id])
+
+    const filtered = games.filter(item =>
+        item.games?.name?.toLowerCase().includes(query.toLowerCase())
+    )
+
     return (
         <main className="search-for-collection-main">
             <section className="search-for-collection-content">
                 <header className="search-for-collection-header">
                     <Search size={16} />
-                    <input type="text" placeholder="search.." maxLength={55} />
+                    <input type="text" placeholder="search.." maxLength={55} value={query} onChange={e => setQuery(e.target.value)} />
                 </header>
+
                 <section className="search-for-collection-grid">
-                    <article className="search-for-collection-card">
-                        <img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1wz4.jpg" />
-                        <div className="search-for-collection-card-content">
-                            <h1>The Witcher 3: Wild Hunt - Game of the Year Edition</h1>
-                            <article className="game-achievements">
-                                <section>
-                                    <div>
-                                        <Award size={16} />
-                                        <p>0</p>
+                    {loading && (
+                        <p className="search-for-collection-empty">Loading...</p>
+                    )}
+
+                    {!loading && filtered.length === 0 && (
+                        <p className="search-for-collection-empty">No games found.</p>
+                    )}
+
+                    {!loading && filtered.map(item => {
+                        const game = item.games ?? {}
+                        const achievements = game.achievements ?? []
+                        const unlocked = achievements.filter(a => a.unlocked).length
+                        const total = achievements.length
+                        const percent = total > 0 ? Math.round((unlocked / total) * 100) : 0
+
+                        return (
+                            <>
+                                <article key={game.id} className="search-for-collection-card">
+                                    <img src={game.cover_image} alt={game.name} />
+                                    <div className="search-for-collection-card-content">
+                                        <h1>{game.name}</h1>
+                                        <article className="game-achievements">
+                                            <section>
+                                                <div>
+                                                    <Award size={16} />
+                                                    <p>{unlocked}</p>
+                                                </div>
+                                                <div>
+                                                    <p>{percent}%</p>
+                                                </div>
+                                            </section>
+                                            <div className="progress-bar" style={{ '--progress': `${percent}%` }} />
+                                        </article>
                                     </div>
-                                    <div>
-                                        <p>0%</p>
-                                    </div>
-                                </section>
-                                <div className="progress-bar" />
-                            </article>
-                        </div>
-                    </article>
-                    <hr />
+                                </article>
+                                <hr />
+                            </>
+                        )
+                    })}
                 </section>
             </section>
         </main>
