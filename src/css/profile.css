@@ -326,12 +326,12 @@
     font-weight: 500;
 }
 
-.modal-edit-collection-header div{
+.modal-edit-collection-header div {
     display: flex;
     gap: 15px;
 }
 
-.modal-edit-collection-header div button{
+.modal-edit-collection-header div button {
     display: flex;
     padding: 5px 10px;
     border: 1px solid var(--border-color);
@@ -344,21 +344,67 @@
     transition: var(--transition-2s);
 }
 
-.modal-edit-collection-header div button:hover{
+.modal-edit-collection-header div button:hover {
     background: #101010;
     color: var(--light-color);
     border-color: var(--gray-color);
 }
 
-.modal-edit-collection-header div button.active{
+.modal-edit-collection-header div button.active {
     background: var(--light-color);
     color: var(--black);
 }
 
-.modal-edit-collection-header div button.active:hover{
+.modal-edit-collection-header div button.active:hover {
     background: #101010;
     color: var(--light-color);
     border-color: var(--gray-color);
+}
+
+
+.modal-edit-collection-content {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    cursor: default;
+}
+
+.modal-edit-collection-content h1{
+    font-size: 0.9rem;
+    font-weight: 300;
+}
+
+.modal-edit-collection-content p{
+    margin-top: 5px;
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--gray-color);
+}
+
+.modal-edit-collection-grid {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.modal-edit-collection-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 200px;
+    height: fit-content;
+    max-height: 30%;
+    border: 2px dashed var(--border-color);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: var(--transition-2s);
+    color: #464646;
+}
+
+.modal-edit-collection-card:hover {
+    background: #0c0c0c;
+    transform: scale(1.02);
 }
 
 
