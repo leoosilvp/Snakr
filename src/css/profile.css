@@ -408,6 +408,36 @@
 }
 
 
+
+/* search for collection */
+
+.search-for-collection-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(1px);
+}
+
+.search-for-collection-content {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    left: 0;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: var(--background-card);
+}
+
+.search-for-collection-header {
+    
+}
+
+
 /* profile recent activity */
 
 .profile-recent-activity {

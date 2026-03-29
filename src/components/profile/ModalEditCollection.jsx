@@ -1,5 +1,6 @@
 import { Plus } from "@geist-ui/icons"
 import { createPortal } from "react-dom"
+import SearchForCollection from "./SearchForCollection"
 
 const ModalEditCollection = ({ open, onClose }) => {
     if (!open) return null
@@ -43,6 +44,7 @@ const ModalEditCollection = ({ open, onClose }) => {
                         </article>
                     </div>
                 </section>
+                <SearchForCollection />
             </article>
         </main>,
         document.body
