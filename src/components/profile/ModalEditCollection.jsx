@@ -1,13 +1,16 @@
 import { Plus } from "@geist-ui/icons"
+import { createPortal } from "react-dom"
 
-const ModalEditCollection = () => {
-    return (
-        <main className="modal-edit-collection-main">
-            <article className="modal-edit-collection">
+const ModalEditCollection = ({ open, onClose }) => {
+    if (!open) return null
+
+    return createPortal(
+        <main className="modal-edit-collection-main" onClick={onClose}>
+            <article className="modal-edit-collection" onClick={e => e.stopPropagation()}>
                 <header className="modal-edit-collection-header">
                     <h1>Edit Collection</h1>
                     <div>
-                        <button>Cancel</button>
+                        <button onClick={onClose}>Cancel</button>
                         <button className="active">Save</button>
                     </div>
                 </header>
@@ -41,7 +44,8 @@ const ModalEditCollection = () => {
                     </div>
                 </section>
             </article>
-        </main>
+        </main>,
+        document.body
     )
 }
 

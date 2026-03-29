@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { useUser } from "../../hooks/useUser"
 import { useEffect, useState } from "react"
 import { gamesService } from "../../services/games.service"
+import ModalEditCollection from "./ModalEditCollection"
 
 const Collection = ({ userId }) => {
 
@@ -13,6 +14,7 @@ const Collection = ({ userId }) => {
   const [favoritesCount, setFavoritesCount] = useState(0)
   const [featuredGames, setFeaturedGames] = useState([])
   const [loading, setLoading] = useState(true)
+  const [openModal, setOpenModal] = useState(false)
 
   useEffect(() => {
     if (!userId) return
@@ -59,7 +61,11 @@ const Collection = ({ userId }) => {
     <section className='profile-collection'>
       <header className='profile-collection-header'>
         <h1>My collection</h1>
-        {isOwner ? <Link><Edit3 size={16} /> Edit collection</Link> : ''}
+        {isOwner ? (
+          <Link onClick={() => setOpenModal(true)}>
+            <Edit3 size={16} /> Edit collection
+          </Link>
+        ) : ''}
       </header>
 
       <section className='profile-collection-content'>
@@ -97,13 +103,14 @@ const Collection = ({ userId }) => {
 
             {!loading && featuredGames.map(item => (
               <Link key={item.games?.id} to={`/game/${item.games?.igdb_id}`}>
-                <img src={item.games?.cover_image} alt={item.games?.name}/>
+                <img src={item.games?.cover_image} alt={item.games?.name} />
               </Link>
             ))}
 
           </section>
         </section>
       </section>
+      <ModalEditCollection open={openModal} onClose={() => setOpenModal(false)} />
     </section>
   )
 }
