@@ -434,9 +434,61 @@
 }
 
 .search-for-collection-header {
-    
+    display: flex;
+    padding: 10px;
+    gap: 15px;
+    border-bottom: 1px dashed var(--border-color);
 }
 
+.search-for-collection-header input {
+    display: flex;
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--light-color);
+}
+
+.search-for-collection-grid {
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    padding-top: 5px;
+    gap: 5px;
+}
+
+.search-for-collection-grid hr {
+    border: 1px solid #101010;
+}
+
+.search-for-collection-card {
+    display: flex;
+    padding: 7px;
+    cursor: pointer;
+    transition: var(--transition-2s);
+}
+
+.search-for-collection-card:hover {
+    background: #101010;
+}
+
+.search-for-collection-card img{
+    display: flex;
+    width: 70px;
+    height: fit-content;
+}
+
+.search-for-collection-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 7px;
+}
+
+.search-for-collection-card-content h1{
+    font-size: 0.9rem;
+    font-weight: 400;
+}
 
 /* profile recent activity */
 
