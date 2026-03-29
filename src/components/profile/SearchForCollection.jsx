@@ -9,21 +9,19 @@ const SearchForCollection = () => {
     const [games, setGames] = useState([])
     const [query, setQuery] = useState('')
     const [loading, setLoading] = useState(true)
+    const [updating, setUpdating] = useState(null)
 
     useEffect(() => {
         if (!user?.id) return
-
         const controller = new AbortController()
 
         async function load() {
             try {
                 setLoading(true)
-
                 const data = await gamesService.userList({
                     userId: user.id,
                     signal: controller.signal
                 })
-
                 setGames(Array.isArray(data) ? data : [])
             } catch (err) {
                 if (err.name !== 'AbortError') {
@@ -36,9 +34,45 @@ const SearchForCollection = () => {
         }
 
         load()
-
         return () => controller.abort()
     }, [user?.id])
+
+    const highlightedCount = games.filter(item => item.status === 'highlight').length
+
+    const handleAddHighlight = async (item) => {
+        const game = item.games ?? {}
+        const gameId = game.id
+        const isHighlighted = item.status === 'highlight'
+        const isUpdating = updating === gameId
+        const limitReached = highlightedCount >= 6
+
+        if (isHighlighted || isUpdating || limitReached) return
+        setUpdating(gameId)
+
+        setGames(prev =>
+            prev.map(g =>
+                g.games?.id === gameId
+                    ? { ...g, status: 'highlight' }
+                    : g
+            )
+        )
+
+        try {
+            await gamesService.updateUser({ game_id: gameId, status: 'highlight' })
+            gamesService.clearCache()
+        } catch (err) {
+            console.error('Failed to add highlight', err)
+            setGames(prev =>
+                prev.map(g =>
+                    g.games?.id === gameId
+                        ? { ...g, status: item.status }
+                        : g
+                )
+            )
+        } finally {
+            setUpdating(null)
+        }
+    }
 
     const filtered = games.filter(item =>
         item.games?.name?.toLowerCase().includes(query.toLowerCase())
@@ -49,7 +83,13 @@ const SearchForCollection = () => {
             <section className="search-for-collection-content">
                 <header className="search-for-collection-header">
                     <Search size={16} />
-                    <input type="text" placeholder="search.." maxLength={55} value={query} onChange={e => setQuery(e.target.value)} />
+                    <input
+                        type="text"
+                        placeholder="search.."
+                        maxLength={55}
+                        value={query}
+                        onChange={e => setQuery(e.target.value)}
+                    />
                 </header>
 
                 <section className="search-for-collection-grid">
@@ -67,10 +107,20 @@ const SearchForCollection = () => {
                         const unlocked = achievements.filter(a => a.unlocked).length
                         const total = achievements.length
                         const percent = total > 0 ? Math.round((unlocked / total) * 100) : 0
+                        const isHighlighted = item.status === 'highlight'
+                        const limitReached = !isHighlighted && highlightedCount >= 6
 
                         return (
-                            <>
-                                <article key={game.id} className="search-for-collection-card">
+                            <div key={game.id}>
+                                <article
+                                    className={[
+                                        'search-for-collection-card',
+                                        isHighlighted ? 'highlighted' : '',
+                                        limitReached ? 'limit-reached' : '',
+                                    ].join(' ').trim()}
+                                    onClick={() => handleAddHighlight(item)}
+                                    title={game.name}
+                                >
                                     <img src={game.cover_image} alt={game.name} />
                                     <div className="search-for-collection-card-content">
                                         <h1>{game.name}</h1>
@@ -84,12 +134,15 @@ const SearchForCollection = () => {
                                                     <p>{percent}%</p>
                                                 </div>
                                             </section>
-                                            <div className="progress-bar" style={{ '--progress': `${percent}%` }} />
+                                            <div
+                                                className="progress-bar"
+                                                style={{ '--progress': `${percent}%` }}
+                                            />
                                         </article>
                                     </div>
                                 </article>
                                 <hr />
-                            </>
+                            </div>
                         )
                     })}
                 </section>

@@ -503,6 +503,15 @@
     font-weight: 400;
 }
 
+.search-for-collection-card.highlighted .search-for-collection-card-content h1{
+    color: #d5a300;
+}
+
+.search-for-collection-card.limit-reached {
+    opacity: 0.2;
+}
+
+
 /* profile recent activity */
 
 .profile-recent-activity {
