@@ -3,13 +3,11 @@ import { useUser } from "../../hooks/useUser"
 import { useEffect, useState } from "react"
 import { gamesService } from "../../services/games.service"
 
-const SearchForCollection = () => {
+const SearchForCollection = ({ onSelect, onClose, excludeIds = [] }) => {
     const { user } = useUser()
-
     const [games, setGames] = useState([])
     const [query, setQuery] = useState('')
     const [loading, setLoading] = useState(true)
-    const [updating, setUpdating] = useState(null)
 
     useEffect(() => {
         if (!user?.id) return
@@ -37,50 +35,18 @@ const SearchForCollection = () => {
         return () => controller.abort()
     }, [user?.id])
 
-    const highlightedCount = games.filter(item => item.status === 'highlight').length
-
-    const handleAddHighlight = async (item) => {
-        const game = item.games ?? {}
-        const gameId = game.id
-        const isHighlighted = item.status === 'highlight'
-        const isUpdating = updating === gameId
-        const limitReached = highlightedCount >= 6
-
-        if (isHighlighted || isUpdating || limitReached) return
-        setUpdating(gameId)
-
-        setGames(prev =>
-            prev.map(g =>
-                g.games?.id === gameId
-                    ? { ...g, status: 'highlight' }
-                    : g
-            )
-        )
-
-        try {
-            await gamesService.updateUser({ game_id: gameId, status: 'highlight' })
-            gamesService.clearCache()
-        } catch (err) {
-            console.error('Failed to add highlight', err)
-            setGames(prev =>
-                prev.map(g =>
-                    g.games?.id === gameId
-                        ? { ...g, status: item.status }
-                        : g
-                )
-            )
-        } finally {
-            setUpdating(null)
-        }
-    }
-
-    const filtered = games.filter(item =>
+    const available = games.filter(item => !excludeIds.includes(item.games?.id))
+    const filtered = available.filter(item =>
         item.games?.name?.toLowerCase().includes(query.toLowerCase())
     )
 
+    const handleAddHighlight = (item) => {
+        if (onSelect) onSelect(item)
+    }
+
     return (
-        <main className="search-for-collection-main">
-            <section className="search-for-collection-content">
+        <main className="search-for-collection-main" onClick={() => onClose?.()}>
+            <section className="search-for-collection-content" onClick={e => e.stopPropagation()}>
                 <header className="search-for-collection-header">
                     <Search size={16} />
                     <input
@@ -107,17 +73,11 @@ const SearchForCollection = () => {
                         const unlocked = achievements.filter(a => a.unlocked).length
                         const total = achievements.length
                         const percent = total > 0 ? Math.round((unlocked / total) * 100) : 0
-                        const isHighlighted = item.status === 'highlight'
-                        const limitReached = !isHighlighted && highlightedCount >= 6
 
                         return (
                             <div key={game.id}>
                                 <article
-                                    className={[
-                                        'search-for-collection-card',
-                                        isHighlighted ? 'highlighted' : '',
-                                        limitReached ? 'limit-reached' : '',
-                                    ].join(' ').trim()}
+                                    className="search-for-collection-card"
                                     onClick={() => handleAddHighlight(item)}
                                     title={game.name}
                                 >
@@ -134,10 +94,7 @@ const SearchForCollection = () => {
                                                     <p>{percent}%</p>
                                                 </div>
                                             </section>
-                                            <div
-                                                className="progress-bar"
-                                                style={{ '--progress': `${percent}%` }}
-                                            />
+                                            <div className="progress-bar" style={{ '--progress': `${percent}%` }} />
                                         </article>
                                     </div>
                                 </article>
