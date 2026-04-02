@@ -1,11 +1,43 @@
-import { Award, Clock, Heart, HeartFill } from "@geist-ui/icons"
+import { AlertTriangle, Award, Clock, Heart, HeartFill } from "@geist-ui/icons"
+import { useState, useCallback, useMemo } from "react"
 import { useUserGames } from "../../hooks/useUserGames"
+import { gamesService } from "../../services/games.service"
 import LibrarySkeleton from "../skeletons/LibrarySkeleton"
 
 const Favorites = () => {
-    const { games, loading, error } = useUserGames()
-    const safeGames = Array.isArray(games) ? games : Array.isArray(games?.results) ? games.results : Array.isArray(games?.data) ? games.data : []
-    const favoriteGames = safeGames.filter(game => game.favorite === true)
+    const { games, setGames, loading, error } = useUserGames()
+    const [favLoading, setFavLoading] = useState({})
+
+    const favoriteGames = useMemo(() => {
+        const safeGames = Array.isArray(games) ? games : Array.isArray(games?.results) ? games.results : Array.isArray(games?.data) ? games.data : []
+        return safeGames
+            .filter(game => game.favorite === true)
+            .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+    }, [games])
+
+    const toggleFavorite = useCallback(async (e, game_id, currentFav) => {
+        e.preventDefault()
+        e.stopPropagation()
+
+        if (favLoading[game_id]) return
+
+        setFavLoading((prev) => ({ ...prev, [game_id]: true }))
+
+        setGames((prev) =>
+            prev.map((g) => g.game_id === game_id ? { ...g, favorite: !currentFav } : g)
+        )
+
+        try {
+            await gamesService.updateUser({ game_id, favorite: !currentFav })
+        } catch (err) {
+            console.error("Failed to toggle favorite:", err)
+            setGames((prev) =>
+                prev.map((g) => g.game_id === game_id ? { ...g, favorite: currentFav } : g)
+            )
+        } finally {
+            setFavLoading((prev) => ({ ...prev, [game_id]: false }))
+        }
+    }, [favLoading, setGames])
 
     if (loading) {
         return (
@@ -41,9 +73,10 @@ const Favorites = () => {
                 const minutes = game.hours_played ?? 0
                 const progress = total > 0 ? Math.round((unlocked / total) * 100) : 0
                 const isFav = game.favorite
+                const isFavLoading = !!favLoading[game.game_id]
 
                 return (
-                    <article to={`/game/${game.games?.igdb_id}`} key={game.game_id} className="library-game-card" title={name}>
+                    <article key={game.game_id} className="library-game-card" title={name}>
                         <img src={cover} alt={name} />
                         <div className="cover">
                             <article className="ctn-game-time">
@@ -51,12 +84,13 @@ const Favorites = () => {
                                     <Clock size={13} />
                                     {minutes} minutes
                                 </div>
-                                <button className="game-fav">
-                                    {isFav ? (
-                                        <HeartFill size={15} />
-                                    ) : (
-                                        <Heart size={15} />
-                                    )}
+                                <button
+                                    className={`game-fav${isFav ? " active" : ""}`}
+                                    onClick={(e) => toggleFavorite(e, game.game_id, isFav)}
+                                    disabled={isFavLoading}
+                                    title="Remove from favorites"
+                                >
+                                    {isFav ? <HeartFill size={15} /> : <Heart size={15} />}
                                 </button>
                             </article>
                             <article className="game-achievements">
