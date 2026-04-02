@@ -149,6 +149,11 @@ export const socialService = {
     return res
   },
 
+  async getUserByFriendCode(friendCode) {
+    const code = friendCode.replace(/^["']|["']$/g, '').trim()
+    return request(`/api/friends?friendCode=${encodeURIComponent(code)}`, { method: 'GET' })
+  },
+
   invalidateFriendsCache() {
     cachedFriends = null
     lastFetch = 0

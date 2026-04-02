@@ -92,6 +92,14 @@ body::-webkit-scrollbar-thumb {
     100% { transform: rotate(0deg)  translateX(0px); }
 }
 
+@keyframes spinner {
+  0%{transform: rotate(0);}
+  100%{transform: rotate(360deg);}
+}
+
+.spinner {
+  animation: spinner 1.2s infinite linear;
+}
 
 /* rtt */
 

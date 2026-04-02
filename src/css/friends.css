@@ -22,7 +22,6 @@
     gap: 15px;
 }
 
-
 /* banner user */
 .friends-main-me {
     display: flex;
@@ -368,6 +367,7 @@
     max-height: 150px;
     padding: 5px;
     overflow-y: auto;
+    overflow-x: hidden;
     background: #0e0e0e;
     border-radius: 0 0 7px 7px;
     gap: 10px;
@@ -474,6 +474,16 @@
 
 .add-friend-byusername input {
     margin-top: 5px;
+}
+
+.add-friend-input-row {
+    display: flex;
+    align-items: center;
+}
+
+.add-friend-input-row i {
+    margin-top: 10px;
+    margin-left: -30px;
 }
 
 /* invitations */
