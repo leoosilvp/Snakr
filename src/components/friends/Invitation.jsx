@@ -140,7 +140,7 @@ const Invitation = () => {
                             if (!u || !u.profile) return null
 
                             return (
-                                <Link key={inv.id} className="invitations-card">
+                                <Link to={`/user/${u.profile.username}`} key={inv.id} className="invitations-card">
                                     <div>
                                         <img
                                             src={
@@ -153,12 +153,20 @@ const Invitation = () => {
                                     </div>
 
                                     <section className="invitations-card-btns">
-                                        <button onClick={() => handleAccept(inv.id)}>
+                                        <button onClick={(e) => {
+                                            e.preventDefault()
+                                            e.stopPropagation()
+                                            handleAccept(inv.id)
+                                        }}>
                                             <Check size={16} />
                                         </button>
                                         <button
                                             className="recuse"
-                                            onClick={() => handleRemove(inv.id)}
+                                            onClick={(e) => {
+                                                e.preventDefault()
+                                                e.stopPropagation()
+                                                handleRemove(inv.id)
+                                            }}
                                         >
                                             <X size={16} />
                                         </button>
@@ -181,7 +189,7 @@ const Invitation = () => {
                         if (!u || !u.profile) return null
 
                         return (
-                            <Link key={inv.id} className="invitations-card">
+                            <Link to={`/user/${u.profile.username}`} key={inv.id} className="invitations-card">
                                 <div>
                                     <img
                                         src={
@@ -196,7 +204,11 @@ const Invitation = () => {
                                 <section className="invitations-card-btns">
                                     <button
                                         className="recuse"
-                                        onClick={() => handleRemove(inv.id)}
+                                        onClick={(e) => {
+                                            e.preventDefault()
+                                            e.stopPropagation()
+                                            handleRemove(inv.id)
+                                        }}
                                     >
                                         <X size={16} />
                                     </button>
