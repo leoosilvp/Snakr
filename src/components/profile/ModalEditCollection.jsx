@@ -138,6 +138,8 @@ const ModalEditCollection = ({ open, onClose }) => {
                         ))}
                     </div>
 
+                    <p className="active">The featured games are not in any fixed order — they are displayed randomly.</p>
+
                     {activeSlot === null ? '' : (
                         <SearchForCollection onSelect={handleSelectGame} onClose={() => setActiveSlot(null)} excludeIds={excludeIds} />
                     )}
