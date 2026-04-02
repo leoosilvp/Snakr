@@ -4,42 +4,52 @@ import Footer from '../components/Footer'
 import { Mail, User, UserPlus } from '@geist-ui/icons'
 import { Link, NavLink, Outlet } from 'react-router-dom'
 import { useUser } from '../hooks/useUser'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { socialService } from '../services/social.service'
+
+const POLL_INTERVAL = 30_000
 
 export default function Friends() {
     const { user } = useUser()
     const [friendsCount, setFriendsCount] = useState(0)
     const [pendingCount, setPendingCount] = useState(0)
+    const intervalRef = useRef(null)
+    const userId = user?.id
 
     useEffect(() => {
-        if (!user?.id) return
+        if (!userId) return
 
-        let mounted = true
+        let cancelled = false
 
-        async function loadFriendsCount() {
+        async function fetchCounts(force = false) {
             try {
-                const friends = await socialService.listFriends({ myUserId: user.id })
-                if (!mounted) return
-
-                const accepted = friends.filter(f => f.status === 'accepted')
-                setFriendsCount(accepted.length)
-
-                const pending = friends.filter(
-                    f => f.status === 'pending' && f.addressee_id === user.id
-                )
-                setPendingCount(pending.length)
+                const friends = await socialService.listFriends({ myUserId: userId, force })
+                if (cancelled) return
+                setFriendsCount(friends.filter(f => f.status === 'accepted').length)
+                setPendingCount(friends.filter(f => f.status === 'pending' && f.addressee_id === userId).length)
             } catch (err) {
                 console.error('Failed to load friends count', err)
             }
         }
 
-        loadFriendsCount()
+        fetchCounts(false)
+        intervalRef.current = setInterval(() => fetchCounts(true), POLL_INTERVAL)
+
+        const onVisibilityChange = () => {
+            if (document.visibilityState === 'visible') fetchCounts(true)
+        }
+        const onOnline = () => fetchCounts(true)
+
+        document.addEventListener('visibilitychange', onVisibilityChange)
+        window.addEventListener('online', onOnline)
 
         return () => {
-            mounted = false
+            cancelled = true
+            clearInterval(intervalRef.current)
+            document.removeEventListener('visibilitychange', onVisibilityChange)
+            window.removeEventListener('online', onOnline)
         }
-    }, [user?.id])
+    }, [userId])
 
     return (
         <main className='friends-main'>
