@@ -10,10 +10,8 @@ export function useUserGames() {
     try {
       setLoading(true)
       setError(null)
-
       const data = await gamesService.userList({ signal })
       setGames(Array.isArray(data) ? data : [])
-
     } catch (err) {
       if (err.name !== 'AbortError') {
         setError(err?.message || 'Failed to load user games.')
@@ -35,12 +33,12 @@ export function useUserGames() {
   useEffect(() => {
     const controller = new AbortController()
     refresh(controller.signal)
-
     return () => controller.abort()
   }, [refresh])
 
   return {
     games,
+    setGames,
     loading,
     error,
     refresh,

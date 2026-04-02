@@ -138,12 +138,12 @@ export const gamesService = {
     return request(`${BASE_URL}/games?${query}`, { signal })
   },
 
-  async updateUser({ game_id, status, rating }) {
+  async updateUser({ game_id, status, rating, favorite }) {
     if (!game_id) throw new Error('game_id required')
 
     return request(`${BASE_URL}/games?action=user`, {
       method: 'POST',
-      body: JSON.stringify({ game_id, status, rating })
+      body: JSON.stringify({ game_id, status, rating, favorite })
     })
   },
 
