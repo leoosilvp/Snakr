@@ -1,4 +1,4 @@
-import { Check, Copy, Loader, Search, UserPlus, X } from "@geist-ui/icons"
+import { Check, Copy, Loader, Mail, UserPlus } from "@geist-ui/icons"
 import { useUser } from "../../hooks/useUser"
 import { useState, useEffect, useRef, useCallback } from "react"
 import { socialService } from "../../services/social.service"
@@ -24,6 +24,7 @@ const AddFriends = () => {
     const codeModalRef = useRef(null)
 
     const [sendingRequest, setSendingRequest] = useState({})
+    const [localPending, setLocalPending] = useState({})
 
     function removeQuotes(str) {
         if (!str || typeof str !== "string") return str
@@ -37,7 +38,32 @@ const AddFriends = () => {
         if (!cached || !userId) return false
         return cached.some(f =>
             (f.requester_id === userId || f.addressee_id === userId) &&
-            (f.status === "accepted" || f.status === "pending")
+            f.status === "accepted"
+        )
+    }
+
+    function hasPendingRequestTo(userId) {
+        if (localPending[userId]) return true
+        const cached = socialService.getCachedFriends?.()
+        if (!cached || !userId) return false
+        return cached.some(f =>
+            (f.requester_id === userId || f.addressee_id === userId) &&
+            f.status === "pending"
+        )
+    }
+
+    function getIcon(userId) {
+        if (sendingRequest[userId]) return <Loader size={16} className="spinner" />
+        if (hasRelationshipWith(userId)) return <Check size={16} />
+        if (hasPendingRequestTo(userId)) return <Mail size={16} />
+        return <UserPlus size={16} />
+    }
+
+    function isDisabled(userId) {
+        return (
+            sendingRequest[userId] ||
+            hasRelationshipWith(userId) ||
+            hasPendingRequestTo(userId)
         )
     }
 
@@ -92,32 +118,34 @@ const AddFriends = () => {
 
     const sendRequestByCode = async () => {
         if (!codePreview) return
-        const key = codePreview.id
-        setSendingRequest(prev => ({ ...prev, [key]: true }))
+        const userId = codePreview.id
+        setSendingRequest(prev => ({ ...prev, [userId]: true }))
         try {
             await socialService.sendFriendRequest(friendCodeInput, null)
+            setLocalPending(prev => ({ ...prev, [userId]: true }))
             socialService.invalidateFriendsCache()
+            socialService.listFriends({ myUserId: user?.id, force: true }).catch(() => { })
             setFriendCodeInput("")
             setCodePreview(null)
             setCodeModalOpen(false)
         } catch (err) {
             setCodeError(err.message || "Failed to send friend request")
         } finally {
-            setSendingRequest(prev => ({ ...prev, [key]: false }))
+            setSendingRequest(prev => ({ ...prev, [userId]: false }))
         }
     }
 
     const sendRequestByUsername = async (username, userId) => {
         if (!username) return
         if (username.toLowerCase() === user.profile?.username?.toLowerCase()) return
-
-        const targetUser = searchResults.find(u => u.profile?.username === username)
-        if (targetUser && hasRelationshipWith(targetUser.id)) return
+        if (hasRelationshipWith(userId) || hasPendingRequestTo(userId)) return
 
         setSendingRequest(prev => ({ ...prev, [userId]: true }))
         try {
             await socialService.sendFriendRequest(null, username)
+            setLocalPending(prev => ({ ...prev, [userId]: true }))
             socialService.invalidateFriendsCache()
+            socialService.listFriends({ myUserId: user?.id, force: true }).catch(() => { })
         } catch (err) {
             console.error(err.message || "Failed to send friend request")
         } finally {
@@ -219,19 +247,14 @@ const AddFriends = () => {
                                             <h1>{codePreview.profile?.username || "Unknown"}</h1>
                                         </div>
                                         <button
-                                            disabled={sendingRequest[codePreview.id] || hasRelationshipWith(codePreview.id)}
+                                            disabled={isDisabled(codePreview.id)}
                                             onClick={(e) => {
                                                 e.preventDefault()
                                                 e.stopPropagation()
                                                 sendRequestByCode()
                                             }}
                                         >
-                                            {hasRelationshipWith(codePreview.id)
-                                                ? <Check size={16} />
-                                                : sendingRequest[codePreview.id]
-                                                    ? <Loader size={16} />
-                                                    : <UserPlus size={16} />
-                                            }
+                                            {getIcon(codePreview.id)}
                                         </button>
                                     </Link>
                                 )}
@@ -257,7 +280,6 @@ const AddFriends = () => {
                         </div>
 
                         {modalOpen && (
-
                             <section ref={modalRef} className="add-friend-list">
                                 {searchResults.map(u => (
                                     <Link to={`/user/${u.profile?.username}`} key={u.id} className="add-friend-card">
@@ -268,19 +290,14 @@ const AddFriends = () => {
                                             <h1>{u.profile?.username || "Unknown"}</h1>
                                         </div>
                                         <button
-                                            disabled={sendingRequest[u.id] || hasRelationshipWith(u.id)}
+                                            disabled={isDisabled(u.id)}
                                             onClick={(e) => {
                                                 e.preventDefault()
                                                 e.stopPropagation()
                                                 sendRequestByUsername(u.profile?.username, u.id)
                                             }}
                                         >
-                                            {hasRelationshipWith(u.id)
-                                                ? <Check size={16} />
-                                                : sendingRequest[u.id]
-                                                    ? <Loader size={16} />
-                                                    : <UserPlus size={16} />
-                                            }
+                                            {getIcon(u.id)}
                                         </button>
                                     </Link>
                                 ))}
