@@ -35,12 +35,11 @@ const Game = () => {
         return new Set(userGames.map(g => g.game_id))
     }, [userGames])
 
-    const handleLibraryToggle = (e) => {
-        e.preventDefault()
-        if (userGameIds.has(game.id)) {
-            removeGame(game.id)
+    const handleLibraryToggle = (gameId) => {
+        if (userGameIds.has(gameId)) {
+            removeGame(gameId)
         } else {
-            updateGame({ game_id: game.id, status: 'library' })
+            updateGame({ game_id: gameId, status: 'library' })
         }
     }
 
@@ -246,7 +245,8 @@ const Game = () => {
                         <section>
                             <Link to='/catalog'><ShoppingCart size={16} /> Catalog</Link>
                             <Link
-                                onClick={handleLibraryToggle}
+                                className={inLibrary ? 'in-library' : ''}
+                                onClick={() => handleLibraryToggle(game.id)}
                                 title={inLibrary ? 'Remove from library' : 'Add to library'}
                             >
                                 {inLibrary
