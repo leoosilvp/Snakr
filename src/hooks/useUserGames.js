@@ -30,6 +30,15 @@ export function useUserGames() {
     }
   }, [refresh])
 
+  const removeGame = useCallback(async (gameId) => {
+    try {
+      await gamesService.removeUser(gameId)
+      await refresh()
+    } catch (err) {
+      setError(err?.message || 'Failed to remove game.')
+    }
+  }, [refresh])
+
   useEffect(() => {
     const controller = new AbortController()
     refresh(controller.signal)
@@ -42,6 +51,7 @@ export function useUserGames() {
     loading,
     error,
     refresh,
-    updateGame
+    updateGame,
+    removeGame
   }
 }

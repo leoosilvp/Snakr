@@ -125,7 +125,7 @@
     cursor: pointer;
 }
 
-.game-carousel div{
+.game-carousel div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -189,6 +189,7 @@
 
 .game-content-footer a {
     display: flex;
+    align-items: center;
     padding: 5px 15px;
     background: var(--dark-color);
     font-size: 0.85rem;
@@ -196,6 +197,7 @@
     color: var(--gray-color);
     border-radius: 3px;
     transition: var(--transition-2s);
+    gap: 10px;
 }
 
 .game-content-footer a:hover {
@@ -394,7 +396,7 @@
         transform: scale(1.05);
     }
 
-    .game-content-banner{
+    .game-content-banner {
         width: 100%;
     }
 
@@ -428,7 +430,7 @@
         padding: 15px 18px;
         border-radius: 10px;
         background-color: #0a0a0a;
-        box-shadow: 0 3px 6px rgba(0,0,0,0.35);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.35);
         transition: transform 0.2s ease, background 0.2s ease;
     }
 

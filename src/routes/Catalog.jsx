@@ -1,245 +1,311 @@
-import { useState, useMemo, useEffect } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
-import Header from '../components/Header'
+import { useState, useMemo } from 'react'
+import '../css/game.css'
 import Footer from '../components/Footer'
-import GameCardSkeleton from '../components/skeletons/GameCardSkeleton'
-import { Search, ChevronLeft, ChevronRight, Check, Frown, ShoppingCart, List } from '@geist-ui/icons'
-import { useGames } from '../hooks/useGames'
+import Header from '../components/Header'
+import { ChevronRight, Download, Bookmark, Minus } from '@geist-ui/icons'
+import { Link, useParams } from 'react-router-dom'
+import { useGameDetails } from '../hooks/useGameDetails'
 import { useUserGames } from '../hooks/useUserGames'
-import '../css/catalog.css'
+import GameSkeleton from '../components/skeletons/GameSkeleton'
 
-const Catalog = () => {
+const MAX_BANNER_DESCRIPTION = 200
 
-    const [searchParams, setSearchParams] = useSearchParams()
+const Game = () => {
+    const { igdb_id } = useParams()
+    const { game, loading, error } = useGameDetails(igdb_id)
+    const { games: userGames, updateGame, removeGame } = useUserGames()
 
-    const searchFromUrl = searchParams.get('search') || ''
-
-    const [page, setPage] = useState(1)
-    const [searchInput, setSearchInput] = useState(searchFromUrl)
-    const [selectedGenres, setSelectedGenres] = useState([])
-
-    useEffect(() => {
-        const timeout = setTimeout(() => {
-            const value = searchInput.trim()
-
-            setPage(1)
-
-            if (value) {
-                setSearchParams({ search: value })
-            } else {
-                setSearchParams({})
-            }
-        }, 400)
-
-        return () => clearTimeout(timeout)
-    }, [searchInput, setSearchParams])
-
-    const { games, pagination, meta, loading } = useGames({
-        page,
-        search: searchFromUrl || null,
-        genres: selectedGenres.length ? selectedGenres.join(',') : null,
+    const [carouselState, setCarouselState] = useState({
+        igdb_id,
+        index: 0
     })
 
-    const { games: userGames, updateGame } = useUserGames()
+    const activeIndex =
+        carouselState.igdb_id === igdb_id
+            ? carouselState.index
+            : 0
+
+    const handleSetIndex = (index) => {
+        setCarouselState({
+            igdb_id,
+            index
+        })
+    }
 
     const userGameIds = useMemo(() => {
         return new Set(userGames.map(g => g.game_id))
     }, [userGames])
 
-    function handleAdd(gameId) {
-        updateGame({
-            game_id: gameId,
-            status: 'library'
-        })
+    const handleLibraryToggle = (gameId) => {
+        if (userGameIds.has(gameId)) {
+            removeGame(gameId)
+        } else {
+            updateGame({ game_id: gameId, status: 'library' })
+        }
     }
 
-    function nextPage() {
-        if (pagination?.hasNext) setPage(prev => prev + 1)
-    }
-
-    function prevPage() {
-        if (pagination?.hasPrevious) setPage(prev => prev - 1)
-    }
-
-    function toggleFilter(value, list, setter) {
-        setter(prev =>
-            prev.includes(value)
-                ? prev.filter(v => v !== value)
-                : [...prev, value]
+    if (loading) {
+        return (
+            <GameSkeleton />
         )
-        setPage(1)
     }
+
+    if (error || !game) {
+        return (
+            <main className="game-main">
+                <Header />
+                <section className="game-main-content">
+                    <p>Erro ao carregar jogo.</p>
+                </section>
+                <Footer />
+            </main>
+        )
+    }
+
+    const trailer = game.videos?.[0] || null
+    const screenshots = game.screenshots || []
+    const hasTrailer = Boolean(trailer)
+    const mediaCount = screenshots.length + (hasTrailer ? 1 : 0)
+
+    const activeMedia = (() => {
+        if (hasTrailer && activeIndex === 0) {
+            return {
+                type: 'video',
+                video_id: trailer.video_id
+            }
+        }
+
+        const imageIndex = hasTrailer
+            ? activeIndex - 1
+            : activeIndex
+
+        const image = screenshots[imageIndex]
+
+        if (!image) return null
+
+        return {
+            type: 'image',
+            url: image.url
+        }
+    })()
+
+    const fullDescription = game.description || ''
+    const bannerDescription = fullDescription.length > MAX_BANNER_DESCRIPTION
+        ? fullDescription.slice(0, MAX_BANNER_DESCRIPTION).trimEnd() + '...'
+        : fullDescription
+
+    const inLibrary = userGameIds.has(game.id)
 
     return (
-        <main className='catalog-main'>
-            <Header noSearch />
+        <main className="game-main">
+            <Header />
 
-            <section className='catalog-main-content'>
+            <section className="game-main-content">
 
-                <header className='catalog-main-header'>
-                    <section className='catalog-main-header-content'>
-                        <h1>Games</h1>
-                        <div className='hr' />
-                        <section className='catalog-main-header-change-page'>
-                            <button
-                                onClick={prevPage}
-                                disabled={!pagination?.hasPrevious}
-                            >
-                                <ChevronLeft size={20} />
-                            </button>
-                            <button
-                                onClick={nextPage}
-                                disabled={!pagination?.hasNext}
-                            >
-                                <ChevronRight size={20} />
-                            </button>
-                        </section>
+                <header className="game-header-main">
+                    <section className="game-header-breadcrumbs">
+                        <Link to="/catalog">Catalog</Link>
+                        <ChevronRight size={16} />
+
+                        {game.genres?.[0] && (
+                            <>
+                                <Link to={`/catalog?filter=${game.genres[0].slug}`}>
+                                    {game.genres[0].name}
+                                </Link>
+                                <ChevronRight size={16} />
+                            </>
+                        )}
+
+                        <span>{game.name}</span>
                     </section>
 
-                    <section className='catalog-main-header-input'>
-                        <button type="button">
-                            <Search size={16} />
-                        </button>
-                        <input
-                            type="text"
-                            placeholder='search for games...'
-                            value={searchInput}
-                            onChange={e => setSearchInput(e.target.value)}
-                        />
+                    <section className="game-header-content">
+                        <h1>{game.name}</h1>
                     </section>
                 </header>
 
-                <section className='catalog-content'>
+                <section className="game-ctn-content">
+                    <div className="game-content">
 
-                    <section className='catalog-main-cards'>
+                        <section className="game-content-carousel">
 
-                        {loading && <GameCardSkeleton />}
+                            {activeMedia?.type === 'video' && (
+                                <iframe
+                                    className="game-content-carousel-active"
+                                    src={`https://www.youtube.com/embed/${activeMedia.video_id}?modestbranding=1&rel=0`}
+                                    title={game.name}
+                                    frameBorder="0"
+                                    allowFullScreen
+                                />
+                            )}
 
-                        {!loading && games.length === 0 && (
-                            <div className='no-games-found'>
-                                <Frown size={25} />
-                                <p>No games found.</p>
-                            </div>
-                        )}
+                            {activeMedia?.type === 'image' && (
+                                <img
+                                    className="game-content-carousel-active"
+                                    src={activeMedia.url}
+                                    alt={game.name}
+                                />
+                            )}
 
-                        {!loading && games.map(game => {
-                            const inLibrary = userGameIds.has(game.id)
+                            {mediaCount > 0 && (
+                                <section className="game-carousel">
 
-                            return (
-                                <Link
-                                    to={`/game/${game.igdb_id}`}
-                                    key={game.id}
-                                    className={`catalog-card-game ${inLibrary ? 'game-in-lib' : ''}`}
-                                >
-                                    <section className='catalog-card-game-content'>
-                                        <img
-                                            src={game.cover_image}
-                                            alt={game.name}
-                                            loading="lazy"
-                                        />
-                                        <div>
-                                            <h1>{game.name}</h1>
-                                            <div className='catalog-card-game-category'>
-                                                {game.genres?.map(g => (
-                                                    <p key={g.id}>{g.name}</p>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </section>
-
-                                    <button
-                                        title='Add the library'
-                                        onClick={(e) => {
-                                            e.preventDefault()
-                                            e.stopPropagation()
-                                            handleAdd(game.id)
-                                        }}
-                                        disabled={inLibrary}
-                                    >
-                                        {inLibrary
-                                            ? <Check size={16} />
-                                            : <ShoppingCart size={16} />
-                                        }
-                                    </button>
-                                    {inLibrary && (
+                                    {hasTrailer && (
                                         <div
-                                            className='card-game-in-library'
-                                            onClick={(e) => {
-                                                e.stopPropagation()
-                                                window.location.href = '/library'
-                                            }}
+                                            className={activeIndex === 0 ? 'active' : ''}
+                                            onClick={() => handleSetIndex(0)}
+                                            style={{ '--hero_img': `url(${game.hero_image || ''})` }}
                                         >
-                                            <List size={16} />
-                                            <p className='text'>In library</p>
+                                            ▶
                                         </div>
                                     )}
-                                </Link>
-                            )
-                        })}
-                    </section>
 
-                    <aside className='catalog-main-filter'>
+                                    {screenshots.map((img, index) => {
+                                        const indexOffset = hasTrailer
+                                            ? index + 1
+                                            : index
 
-                        <header className='catalog-main-filter-header'>
-                            <article>
-                                <div />
-                                <h1>Genres</h1>
-                            </article>
-                            <p>{meta?.genres?.length || 0} available</p>
-                        </header>
-
-                        <section className='catalog-filters'>
-                            {meta?.genres?.map(g => (
-                                <div key={g.id}>
-                                    <input
-                                        id={`genre-${g.id}`}
-                                        type="checkbox"
-                                        checked={selectedGenres.includes(String(g.id))}
-                                        onChange={() =>
-                                            toggleFilter(String(g.id), selectedGenres, setSelectedGenres)
-                                        }
-                                    />
-                                    <label htmlFor={`genre-${g.id}`}>
-                                        {g.name}
-                                    </label>
-                                </div>
-                            ))}
+                                        return (
+                                            <img
+                                                key={index}
+                                                src={img.url}
+                                                alt={game.name}
+                                                className={
+                                                    activeIndex === indexOffset
+                                                        ? 'active'
+                                                        : ''
+                                                }
+                                                onClick={() =>
+                                                    handleSetIndex(indexOffset)
+                                                }
+                                            />
+                                        )
+                                    })}
+                                </section>
+                            )}
                         </section>
 
-                    </aside>
+                        <section className="game-content-banner">
+
+                            {game.cover?.url && (
+                                <img
+                                    src={game.hero_image}
+                                    alt={game.name}
+                                />
+                            )}
+
+                            <p>
+                                {bannerDescription || 'Description not available.'}
+                            </p>
+
+                            <table>
+                                <tbody>
+
+                                    <tr>
+                                        <td>ANALYSIS:</td>
+                                        <td>
+                                            {game.rating
+                                                ? `${game.rating.toFixed(1)} (${game.rating_count || 0})`
+                                                : 'No reviews'}
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>RELEASE DATE:</td>
+                                        <td>
+                                            {game.release_date
+                                                ? new Date(game.release_date).toLocaleDateString('pt-BR')
+                                                : 'N/A'}
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>DEVELOPER:</td>
+                                        <td>
+                                            {game.developers?.length
+                                                ? game.developers.map(d => d.name).join(', ')
+                                                : 'N/A'}
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>DISTRIBUTOR:</td>
+                                        <td>
+                                            {game.publishers?.length
+                                                ? game.publishers.map(p => p.name).join(', ')
+                                                : 'N/A'}
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </section>
+                    </div>
+
+                    <footer className="game-content-footer">
+                        <section>
+                            <Link>Follow</Link>
+                            <Link
+                                className={inLibrary ? 'in-library' : ''}
+                                onClick={() => handleLibraryToggle(game.id)}
+                                title={inLibrary ? 'Remove from library' : 'Add to library'}
+                            >
+                                {inLibrary
+                                    ? <Minus size={14} />
+                                    : <Bookmark size={14} />
+                                }
+                                {inLibrary ? 'Remove from library' : 'Add to library'}
+                            </Link>
+                        </section>
+                        <section>
+                            <Link>View library</Link>
+                        </section>
+                    </footer>
                 </section>
 
-                {pagination && (
-                    <section className='catalog-change-page'>
-                        <h2>
-                            {pagination.page - 1 > 0
-                                ? pagination.page - 1
-                                : '-'}
-                        </h2>
-
-                        <button
-                            onClick={prevPage}
-                            disabled={!pagination.hasPrevious}
-                        >
-                            <ChevronLeft size={20} />
+                <section className="game-download">
+                    <h1>Download: {game.name}</h1>
+                    <div>
+                        <select>
+                            <option>No download source.</option>
+                        </select>
+                        <button>
+                            <Download size={16} /> Download
                         </button>
+                    </div>
+                </section>
 
-                        <h1>{pagination.page}</h1>
+                <section className="game-description">
+                    <h1>About</h1>
+                    <p>
+                        {game.description ||
+                            'Descrição não disponível.'}
+                    </p>
+                </section>
 
-                        <button
-                            onClick={nextPage}
-                            disabled={!pagination.hasNext}
-                        >
-                            <ChevronRight size={20} />
-                        </button>
-
-                        <h2>
-                            {pagination.page + 1 <= pagination.totalPages
-                                ? pagination.page + 1
-                                : '-'}
-                        </h2>
-                    </section>
-                )}
+                <section className="game-specs">
+                    <h1>System Requirements</h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Minimum</th>
+                                <th>Recommended</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    {game.minimum_requirements ||
+                                        'Not informed.'}
+                                </td>
+                                <td>
+                                    {game.recommended_requirements ||
+                                        'Not informed.'}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
 
             </section>
 
@@ -248,4 +314,4 @@ const Catalog = () => {
     )
 }
 
-export default Catalog
+export default Game

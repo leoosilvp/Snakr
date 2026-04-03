@@ -1,15 +1,18 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import '../css/game.css'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
-import { ChevronRight, Download } from '@geist-ui/icons'
+import { ChevronRight, Download, Bookmark, Minus, ShoppingCart } from '@geist-ui/icons'
 import { Link, useParams } from 'react-router-dom'
 import { useGameDetails } from '../hooks/useGameDetails'
+import { useUserGames } from '../hooks/useUserGames'
 import GameSkeleton from '../components/skeletons/GameSkeleton'
+
 
 const Game = () => {
     const { igdb_id } = useParams()
     const { game, loading, error } = useGameDetails(igdb_id)
+    const { games: userGames, updateGame, removeGame } = useUserGames()
 
     const [carouselState, setCarouselState] = useState({
         igdb_id,
@@ -26,6 +29,19 @@ const Game = () => {
             igdb_id,
             index
         })
+    }
+
+    const userGameIds = useMemo(() => {
+        return new Set(userGames.map(g => g.game_id))
+    }, [userGames])
+
+    const handleLibraryToggle = (e) => {
+        e.preventDefault()
+        if (userGameIds.has(game.id)) {
+            removeGame(game.id)
+        } else {
+            updateGame({ game_id: game.id, status: 'library' })
+        }
     }
 
     if (loading) {
@@ -73,6 +89,13 @@ const Game = () => {
         }
     })()
 
+    const fullDescription = game.description || ''
+    const bannerDescription = fullDescription.length > 400
+        ? fullDescription.slice(0, 400).trimEnd() + '...'
+        : fullDescription
+
+    const inLibrary = userGameIds.has(game.id)
+
     return (
         <main className="game-main">
             <Header />
@@ -98,7 +121,6 @@ const Game = () => {
 
                     <section className="game-header-content">
                         <h1>{game.name}</h1>
-                        <Link>Community</Link>
                     </section>
                 </header>
 
@@ -132,7 +154,7 @@ const Game = () => {
                                         <div
                                             className={activeIndex === 0 ? 'active' : ''}
                                             onClick={() => handleSetIndex(0)}
-                                            style={{'--hero_img' : `url(${game.hero_image || ''})`}}
+                                            style={{ '--hero_img': `url(${game.hero_image || ''})` }}
                                         >
                                             ▶
                                         </div>
@@ -173,24 +195,23 @@ const Game = () => {
                             )}
 
                             <p>
-                                {game.description ||
-                                    'Descrição não disponível.'}
+                                {bannerDescription || 'Description not available.'}
                             </p>
 
                             <table>
                                 <tbody>
 
                                     <tr>
-                                        <td>ANÁLISES:</td>
+                                        <td>ANALYSIS:</td>
                                         <td>
                                             {game.rating
                                                 ? `${game.rating.toFixed(1)} (${game.rating_count || 0})`
-                                                : 'Sem avaliações'}
+                                                : 'No reviews'}
                                         </td>
                                     </tr>
 
                                     <tr>
-                                        <td>DATA DE LANÇAMENTO:</td>
+                                        <td>RELEASE DATE:</td>
                                         <td>
                                             {game.release_date
                                                 ? new Date(game.release_date).toLocaleDateString('pt-BR')
@@ -199,7 +220,7 @@ const Game = () => {
                                     </tr>
 
                                     <tr>
-                                        <td>DESENVOLVEDOR:</td>
+                                        <td>DEVELOPER:</td>
                                         <td>
                                             {game.developers?.length
                                                 ? game.developers.map(d => d.name).join(', ')
@@ -208,7 +229,7 @@ const Game = () => {
                                     </tr>
 
                                     <tr>
-                                        <td>DISTRIBUIDORA:</td>
+                                        <td>DISTRIBUTOR:</td>
                                         <td>
                                             {game.publishers?.length
                                                 ? game.publishers.map(p => p.name).join(', ')
@@ -223,11 +244,20 @@ const Game = () => {
 
                     <footer className="game-content-footer">
                         <section>
-                            <Link>Seguir</Link>
-                            <Link>Adicionar à lista</Link>
+                            <Link to='/catalog'><ShoppingCart size={16} /> Catalog</Link>
+                            <Link
+                                onClick={handleLibraryToggle}
+                                title={inLibrary ? 'Remove from library' : 'Add to library'}
+                            >
+                                {inLibrary
+                                    ? <Minus size={14} />
+                                    : <Bookmark size={14} />
+                                }
+                                {inLibrary ? 'Remove from library' : 'Add to library'}
+                            </Link>
                         </section>
                         <section>
-                            <Link>Ver lista</Link>
+                            <Link to='/library'>View library</Link>
                         </section>
                     </footer>
                 </section>
@@ -236,16 +266,16 @@ const Game = () => {
                     <h1>Download: {game.name}</h1>
                     <div>
                         <select>
-                            <option>Nenhuma fonte de download.</option>
+                            <option>No download source.</option>
                         </select>
                         <button>
-                            <Download size={16} /> Baixar
+                            <Download size={16} /> Download
                         </button>
                     </div>
                 </section>
 
                 <section className="game-description">
-                    <h1>Sobre</h1>
+                    <h1>About</h1>
                     <p>
                         {game.description ||
                             'Descrição não disponível.'}
@@ -253,23 +283,23 @@ const Game = () => {
                 </section>
 
                 <section className="game-specs">
-                    <h1>Requisitos de sistema</h1>
+                    <h1>System Requirements</h1>
                     <table>
                         <thead>
                             <tr>
-                                <th>Mínimo</th>
-                                <th>Recomendado</th>
+                                <th>Minimum</th>
+                                <th>Recommended</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>
                                     {game.minimum_requirements ||
-                                        'Não informado.'}
+                                        'Not informed.'}
                                 </td>
                                 <td>
                                     {game.recommended_requirements ||
-                                        'Não informado.'}
+                                        'Not informed.'}
                                 </td>
                             </tr>
                         </tbody>

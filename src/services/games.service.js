@@ -141,9 +141,22 @@ export const gamesService = {
   async updateUser({ game_id, status, rating, favorite }) {
     if (!game_id) throw new Error('game_id required')
 
+    cache.clear()
+
     return request(`${BASE_URL}/games?action=user`, {
       method: 'POST',
       body: JSON.stringify({ game_id, status, rating, favorite })
+    })
+  },
+
+  async removeUser(game_id) {
+    if (!game_id) throw new Error('game_id required')
+
+    cache.clear()
+
+    return request(`${BASE_URL}/games?action=user`, {
+      method: 'DELETE',
+      body: JSON.stringify({ game_id })
     })
   },
 
