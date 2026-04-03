@@ -3,7 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import GameCardSkeleton from '../components/skeletons/GameCardSkeleton'
-import { Search, ChevronLeft, ChevronRight, Check, Frown, ShoppingCart, List } from '@geist-ui/icons'
+import { Search, ChevronLeft, ChevronRight, Check, Frown, List, ShoppingCart } from '@geist-ui/icons'
 import { useGames } from '../hooks/useGames'
 import { useUserGames } from '../hooks/useUserGames'
 import '../css/catalog.css'
@@ -40,17 +40,20 @@ const Catalog = () => {
         genres: selectedGenres.length ? selectedGenres.join(',') : null,
     })
 
-    const { games: userGames, updateGame } = useUserGames()
+    const { games: userGames, updateGame, removeGame } = useUserGames()
 
     const userGameIds = useMemo(() => {
         return new Set(userGames.map(g => g.game_id))
     }, [userGames])
 
-    function handleAdd(gameId) {
-        updateGame({
-            game_id: gameId,
-            status: 'library'
-        })
+    function handleLibraryToggle(e, gameId) {
+        e.preventDefault()
+        e.stopPropagation()
+        if (userGameIds.has(gameId)) {
+            removeGame(gameId)
+        } else {
+            updateGame({ game_id: gameId, status: 'library' })
+        }
     }
 
     function nextPage() {
@@ -148,19 +151,16 @@ const Catalog = () => {
                                     </section>
 
                                     <button
-                                        title='Add the library'
-                                        onClick={(e) => {
-                                            e.preventDefault()
-                                            e.stopPropagation()
-                                            handleAdd(game.id)
-                                        }}
-                                        disabled={inLibrary}
+                                        className={`catalog-card-library-btn ${inLibrary ? 'in-library' : ''}`}
+                                        title={inLibrary ? 'Remove from library' : 'Add to library'}
+                                        onClick={(e) => handleLibraryToggle(e, game.id)}
                                     >
                                         {inLibrary
                                             ? <Check size={16} />
                                             : <ShoppingCart size={16} />
                                         }
                                     </button>
+
                                     {inLibrary && (
                                         <div
                                             className='card-game-in-library'
