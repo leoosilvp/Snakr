@@ -2,12 +2,12 @@ import { useState, useMemo } from 'react'
 import '../css/game.css'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
+import AlertModal from '../components/AlertModal'
 import { ChevronRight, Download, Bookmark, Minus, ShoppingCart } from '@geist-ui/icons'
 import { Link, useParams } from 'react-router-dom'
 import { useGameDetails } from '../hooks/useGameDetails'
 import { useUserGames } from '../hooks/useUserGames'
 import GameSkeleton from '../components/skeletons/GameSkeleton'
-
 
 const Game = () => {
     const { igdb_id } = useParams()
@@ -18,6 +18,13 @@ const Game = () => {
         igdb_id,
         index: 0
     })
+
+    const [alert, setAlert] = useState(null)
+
+    const showAlert = (icon, title) => {
+        setAlert({ icon, title })
+        setTimeout(() => setAlert(null), 4000)
+    }
 
     const activeIndex =
         carouselState.igdb_id === igdb_id
@@ -38,8 +45,10 @@ const Game = () => {
     const handleLibraryToggle = (gameId) => {
         if (userGameIds.has(gameId)) {
             removeGame(gameId)
+            showAlert("Info", "Game removed from your library")
         } else {
             updateGame({ game_id: gameId, status: 'library' })
+            showAlert("CheckCircle", "Game added to your library")
         }
     }
 
@@ -97,6 +106,9 @@ const Game = () => {
 
     return (
         <main className="game-main">
+
+            {alert && <AlertModal icon={alert.icon} title={alert.title} />}
+
             <Header />
 
             <section className="game-main-content">
