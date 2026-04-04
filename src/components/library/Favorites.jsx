@@ -3,13 +3,28 @@ import { useState, useCallback, useMemo } from "react"
 import { useUserGames } from "../../hooks/useUserGames"
 import { gamesService } from "../../services/games.service"
 import LibrarySkeleton from "../skeletons/LibrarySkeleton"
+import AlertModal from "../../components/AlertModal"
 
 const Favorites = () => {
     const { games, setGames, loading, error } = useUserGames()
     const [favLoading, setFavLoading] = useState({})
 
+    const [alert, setAlert] = useState(null)
+
+    const showAlert = (icon, title) => {
+        setAlert({ icon, title })
+        setTimeout(() => setAlert(null), 4000)
+    }
+
     const favoriteGames = useMemo(() => {
-        const safeGames = Array.isArray(games) ? games : Array.isArray(games?.results) ? games.results : Array.isArray(games?.data) ? games.data : []
+        const safeGames = Array.isArray(games)
+            ? games
+            : Array.isArray(games?.results)
+                ? games.results
+                : Array.isArray(games?.data)
+                    ? games.data
+                    : []
+
         return safeGames
             .filter(game => game.favorite === true)
             .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
@@ -24,16 +39,30 @@ const Favorites = () => {
         setFavLoading((prev) => ({ ...prev, [game_id]: true }))
 
         setGames((prev) =>
-            prev.map((g) => g.game_id === game_id ? { ...g, favorite: !currentFav } : g)
+            prev.map((g) =>
+                g.game_id === game_id
+                    ? { ...g, favorite: !currentFav }
+                    : g
+            )
+        )
+        showAlert(
+            !currentFav ? "CheckCircle" : "Info",
+            !currentFav ? "Added to favorites" : "Removed from favorites"
         )
 
         try {
             await gamesService.updateUser({ game_id, favorite: !currentFav })
         } catch (err) {
             console.error("Failed to toggle favorite:", err)
+
             setGames((prev) =>
-                prev.map((g) => g.game_id === game_id ? { ...g, favorite: currentFav } : g)
+                prev.map((g) =>
+                    g.game_id === game_id
+                        ? { ...g, favorite: currentFav }
+                        : g
+                )
             )
+            showAlert("AlertTriangle", "Failed to update favorites")
         } finally {
             setFavLoading((prev) => ({ ...prev, [game_id]: false }))
         }
@@ -65,6 +94,9 @@ const Favorites = () => {
 
     return (
         <main className="library-games-grid">
+
+            {alert && <AlertModal icon={alert.icon} title={alert.title} />}
+
             {favoriteGames.map((game) => {
                 const name = game.games?.name
                 const cover = game.games?.cover_image || game.games?.cover?.url
