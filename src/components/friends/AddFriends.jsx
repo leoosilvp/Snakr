@@ -3,6 +3,7 @@ import { useUser } from "../../hooks/useUser"
 import { useState, useEffect, useRef, useCallback } from "react"
 import { socialService } from "../../services/social.service"
 import { Link } from "react-router-dom"
+import AlertModal from "../../components/AlertModal"
 
 const DEFAULT_AVATAR = "https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg"
 
@@ -25,6 +26,13 @@ const AddFriends = () => {
 
     const [sendingRequest, setSendingRequest] = useState({})
     const [localPending, setLocalPending] = useState({})
+
+    const [alert, setAlert] = useState(null)
+
+    const showAlert = (icon, title) => {
+        setAlert({ icon, title })
+        setTimeout(() => setAlert(null), 4000)
+    }
 
     function removeQuotes(str) {
         if (!str || typeof str !== "string") return str
@@ -71,6 +79,7 @@ const AddFriends = () => {
         if (!FriendCode) return
         await navigator.clipboard.writeText(FriendCode)
         setCopied(true)
+        showAlert("CheckCircle", "Friend code copied!")
         setTimeout(() => setCopied(false), 1000)
     }
 
@@ -84,6 +93,7 @@ const AddFriends = () => {
         }
         if (code === FriendCode) {
             setCodeError("That's your own friend code.")
+            showAlert("AlertTriangle", "You can't add yourself")
             setCodePreview(null)
             setCodeModalOpen(true)
             return
@@ -99,6 +109,7 @@ const AddFriends = () => {
         } catch {
             setCodePreview(null)
             setCodeError("No user found with this friend code.")
+            showAlert("Info", "User not found")
             setCodeModalOpen(true)
         } finally {
             setCodeLoading(false)
@@ -122,14 +133,20 @@ const AddFriends = () => {
         setSendingRequest(prev => ({ ...prev, [userId]: true }))
         try {
             await socialService.sendFriendRequest(friendCodeInput, null)
+
             setLocalPending(prev => ({ ...prev, [userId]: true }))
             socialService.invalidateFriendsCache()
             socialService.listFriends({ myUserId: user?.id, force: true }).catch(() => { })
+
+            showAlert("CheckCircle", "Friend request sent successfully")
+
             setFriendCodeInput("")
             setCodePreview(null)
             setCodeModalOpen(false)
         } catch (err) {
-            setCodeError(err.message || "Failed to send friend request")
+            const msg = err.message || "Failed to send friend request"
+            setCodeError(msg)
+            showAlert("AlertTriangle", msg)
         } finally {
             setSendingRequest(prev => ({ ...prev, [userId]: false }))
         }
@@ -143,11 +160,16 @@ const AddFriends = () => {
         setSendingRequest(prev => ({ ...prev, [userId]: true }))
         try {
             await socialService.sendFriendRequest(null, username)
+
             setLocalPending(prev => ({ ...prev, [userId]: true }))
             socialService.invalidateFriendsCache()
             socialService.listFriends({ myUserId: user?.id, force: true }).catch(() => { })
+
+            showAlert("CheckCircle", "Friend request sent successfully")
         } catch (err) {
-            console.error(err.message || "Failed to send friend request")
+            const msg = err.message || "Failed to send friend request"
+            console.error(msg)
+            showAlert("AlertTriangle", msg)
         } finally {
             setSendingRequest(prev => ({ ...prev, [userId]: false }))
         }
@@ -176,10 +198,11 @@ const AddFriends = () => {
                 setModalOpen(results.length > 0)
             } catch (err) {
                 console.error("Failed to search users", err)
+                showAlert("AlertTriangle", "Search failed")
             } finally {
                 setSearchLoading(false)
             }
-        }, 350)
+        }, 250)
 
         return () => clearTimeout(timeout)
     }, [searchUsername, user?.id])
@@ -202,6 +225,9 @@ const AddFriends = () => {
 
     return (
         <main className="add-friends-main">
+
+            {alert && <AlertModal icon={alert.icon} title={alert.title} />}
+
             <header className="add-friends-main-header">
                 <h1>Add friend</h1>
             </header>
