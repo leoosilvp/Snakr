@@ -68,6 +68,29 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
+@keyframes alert {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  5% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  95% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+
 @keyframes loop {
   0% {
     transform: rotateZ(0deg);
@@ -79,27 +102,94 @@ body::-webkit-scrollbar-thumb {
 }
 
 @keyframes snake {
-    0%   { transform: rotate(0deg)  translateX(0px); }
-    10%  { transform: rotate(-6deg) translateX(4px); }
-    20%  { transform: rotate(6deg)  translateX(-4px); }
-    30%  { transform: rotate(-6deg) translateX(4px); }
-    40%  { transform: rotate(6deg)  translateX(-4px); }
-    50%  { transform: rotate(-4deg) translateX(3px); }
-    60%  { transform: rotate(4deg)  translateX(-3px); }
-    70%  { transform: rotate(-2deg) translateX(2px); }
-    80%  { transform: rotate(2deg)  translateX(-2px); }
-    90%  { transform: rotate(-1deg) translateX(1px); }
-    100% { transform: rotate(0deg)  translateX(0px); }
+  0% {
+    transform: rotate(0deg) translateX(0px);
+  }
+
+  10% {
+    transform: rotate(-6deg) translateX(4px);
+  }
+
+  20% {
+    transform: rotate(6deg) translateX(-4px);
+  }
+
+  30% {
+    transform: rotate(-6deg) translateX(4px);
+  }
+
+  40% {
+    transform: rotate(6deg) translateX(-4px);
+  }
+
+  50% {
+    transform: rotate(-4deg) translateX(3px);
+  }
+
+  60% {
+    transform: rotate(4deg) translateX(-3px);
+  }
+
+  70% {
+    transform: rotate(-2deg) translateX(2px);
+  }
+
+  80% {
+    transform: rotate(2deg) translateX(-2px);
+  }
+
+  90% {
+    transform: rotate(-1deg) translateX(1px);
+  }
+
+  100% {
+    transform: rotate(0deg) translateX(0px);
+  }
 }
 
 @keyframes spinner {
-  0%{transform: rotate(0);}
-  100%{transform: rotate(360deg);}
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .spinner {
   animation: spinner 1.2s infinite linear;
 }
+
+/* alert modal */
+
+.alert-modal {
+  position: fixed;
+  top: 80px;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  padding: 10px 15px;
+  border: 1px solid var(--dark-color);
+  border-radius: 50px;
+  backdrop-filter: blur(5px);
+  font-size: 0.8rem;
+  background: #0e0e0e;
+  box-shadow: 0 0 15px #000000ea;
+  animation: alert 4.5s backwards;
+  gap: 15px;
+  z-index: 10;
+  cursor: default;
+}
+
+.alert-modal h1 {
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
 
 /* rtt */
 
