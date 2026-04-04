@@ -5,6 +5,7 @@ import { useTopGames } from '../../hooks/useTopGames'
 import { useUserGames } from '../../hooks/useUserGames'
 import { useGamesContext } from '../../context/GamesCtx'
 import MostPopularSkeleton from '../skeletons/MostPopularSkeleton'
+import AlertModal from '../../components/AlertModal'
 
 const ITEMS_PER_PAGE = 2
 
@@ -12,8 +13,15 @@ const MostPopular = () => {
     const [page, setPage] = useState(0)
 
     const { games, loading } = useTopGames(8)
-    const { games: userGames, updateGame } = useUserGames()
+    const { games: userGames, updateGame, removeGame } = useUserGames()
     const { registerIds } = useGamesContext()
+
+    const [alert, setAlert] = useState(null)
+
+    const showAlert = (icon, title) => {
+        setAlert({ icon, title })
+        setTimeout(() => setAlert(null), 4000)
+    }
 
     const userGameIds = useMemo(() => {
         return new Set(userGames.map(g => g.game_id))
@@ -26,10 +34,17 @@ const MostPopular = () => {
     const totalPages = Math.ceil(games.length / ITEMS_PER_PAGE)
     const visibleGames = games.slice(page * ITEMS_PER_PAGE, page * ITEMS_PER_PAGE + ITEMS_PER_PAGE)
 
-    function handleAdd(e, gameId) {
+    function handleAdd(e, gameId, inLibrary) {
         e.preventDefault()
         e.stopPropagation()
-        updateGame({ game_id: gameId, status: 'library' })
+
+        if (inLibrary) {
+            removeGame(gameId)
+            showAlert("Info", "Game removed from your library")
+        } else {
+            updateGame({ game_id: gameId, status: 'library' })
+            showAlert("CheckCircle", "Game added to your library")
+        }
     }
 
     function prevPage() {
@@ -42,6 +57,9 @@ const MostPopular = () => {
 
     return (
         <main className="most-popular">
+
+            {alert && <AlertModal icon={alert.icon} title={alert.title} />}
+
             <header className="headers-sec-home">
                 <h1>Most popular</h1>
                 <div />
@@ -80,7 +98,11 @@ const MostPopular = () => {
                                                 <h2 key={g.id}>{g.name}</h2>
                                             ))}
                                         </div>
-                                        <p>{game.description?.length > 200 ? game.description.slice(0, 200) + '...' : game.description}</p>
+                                        <p>
+                                            {game.description?.length > 200
+                                                ? game.description.slice(0, 200) + '...'
+                                                : game.description}
+                                        </p>
                                     </section>
 
                                     <section className="card-game-main-footer">
@@ -88,12 +110,11 @@ const MostPopular = () => {
                                             <Users size={13} /> / {game.rating_count ?? 0}
                                         </div>
                                         <button
-                                            onClick={(e) => handleAdd(e, game.id)}
-                                            disabled={inLibrary}
+                                            onClick={(e) => handleAdd(e, game.id, inLibrary)}
                                         >
                                             {inLibrary
                                                 ? <><Check size={15} />In library</>
-                                                : <><ShoppingCart size={15} />Add the library</>
+                                                : <><ShoppingCart size={15} />Add to library</>
                                             }
                                         </button>
                                     </section>
