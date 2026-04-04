@@ -4,10 +4,18 @@ import { useUserGames } from "../../hooks/useUserGames"
 import { gamesService } from "../../services/games.service"
 import { Link } from "react-router-dom"
 import LibrarySkeleton from "../skeletons/LibrarySkeleton"
+import AlertModal from "../../components/AlertModal"
 
 const AllGames = () => {
     const { games, setGames, loading, error } = useUserGames()
     const [favLoading, setFavLoading] = useState({})
+
+    const [alert, setAlert] = useState(null)
+
+    const showAlert = (icon, title) => {
+        setAlert({ icon, title })
+        setTimeout(() => setAlert(null), 4000)
+    }
 
     const safeGames = useMemo(() => {
         const list = Array.isArray(games) ? games : []
@@ -23,16 +31,29 @@ const AllGames = () => {
         setFavLoading((prev) => ({ ...prev, [game_id]: true }))
 
         setGames((prev) =>
-            prev.map((g) => g.game_id === game_id ? { ...g, favorite: !currentFav } : g)
+            prev.map((g) =>
+                g.game_id === game_id
+                    ? { ...g, favorite: !currentFav }
+                    : g
+            )
         )
-
+        showAlert(
+            !currentFav ? "CheckCircle" : "Info",
+            !currentFav ? "Added to favorites" : "Removed from favorites"
+        )
         try {
             await gamesService.updateUser({ game_id, favorite: !currentFav })
         } catch (err) {
             console.error("Failed to toggle favorite:", err)
+
             setGames((prev) =>
-                prev.map((g) => g.game_id === game_id ? { ...g, favorite: currentFav } : g)
+                prev.map((g) =>
+                    g.game_id === game_id
+                        ? { ...g, favorite: currentFav }
+                        : g
+                )
             )
+            showAlert("AlertTriangle", "Failed to update favorites")
         } finally {
             setFavLoading((prev) => ({ ...prev, [game_id]: false }))
         }
@@ -64,6 +85,9 @@ const AllGames = () => {
 
     return (
         <main className="library-games-grid">
+
+            {alert && <AlertModal icon={alert.icon} title={alert.title} />}
+
             {safeGames.map((game) => {
                 const name = game.games?.name
                 const cover = game.games?.cover_image
