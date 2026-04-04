@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useUser } from '../../hooks/useUser'
 import { useUpdateUser } from '../../hooks/useUpdateUser'
+import AlertModal from '../../components/AlertModal'
 
 const DEFAULT_NOTIFICATIONS = {
   enabled: true,
@@ -14,6 +15,13 @@ const Notifications = () => {
   const { updateUser } = useUpdateUser()
 
   const [notifications, setNotifications] = useState(null)
+
+  const [alert, setAlert] = useState(null)
+
+  const showAlert = (icon, title) => {
+    setAlert({ icon, title })
+    setTimeout(() => setAlert(null), 4000)
+  }
 
   useEffect(() => {
     if (!user?.settings?.notifications) return
@@ -29,23 +37,42 @@ const Notifications = () => {
 
   if (!notifications) return null
 
-  const updateSetting = (path, value) => {
+  const updateSetting = async (path, value) => {
     setNotifications(prev => {
       const clone = structuredClone(prev)
       const keys = path.split('.')
       let ref = clone
-      keys.slice(0, -1).forEach(k => { ref[k] ??= {}; ref = ref[k] })
+
+      keys.slice(0, -1).forEach(k => {
+        ref[k] ??= {}
+        ref = ref[k]
+      })
+
       ref[keys[keys.length - 1]] = value
       return clone
     })
-    updateUser(`settings.notifications.${path}`, value)
+
+    showAlert("Loader", "Saving changes...")
+
+    try {
+      await updateUser(`settings.notifications.${path}`, value)
+      showAlert("CheckCircle", "Preferences updated")
+    } catch (err) {
+      showAlert("AlertTriangle", err?.message || "Failed to update preferences")
+    }
   }
 
   return (
     <section className="settings-notifications">
+
+      {alert && <AlertModal icon={alert.icon} title={alert.title} />}
+
       <h1>Notifications</h1>
 
-      <select value={String(notifications?.enabled)} onChange={e => updateSetting('enabled', e.target.value === 'true')}>
+      <select
+        value={String(notifications?.enabled)}
+        onChange={e => updateSetting('enabled', e.target.value === 'true')}
+      >
         <option value="true">Enabled</option>
         <option value="false">Disabled</option>
       </select>
@@ -56,7 +83,12 @@ const Notifications = () => {
       <div className={`settings-notifications-checkbox ${notifications.enabled ? '' : 'disabled'}`}>
         <div>
           <label className="switch">
-            <input id="security-alerts" type="checkbox" checked={notifications.email.securityAlerts} onChange={e => updateSetting('email.securityAlerts', e.target.checked)} />
+            <input
+              id="security-alerts"
+              type="checkbox"
+              checked={notifications.email.securityAlerts}
+              onChange={e => updateSetting('email.securityAlerts', e.target.checked)}
+            />
             <span className="slider" />
           </label>
           <label htmlFor="security-alerts">Security alerts</label>
@@ -65,7 +97,12 @@ const Notifications = () => {
 
         <div>
           <label className="switch">
-            <input id="product-updates" type="checkbox" checked={notifications.email.productUpdates} onChange={e => updateSetting('email.productUpdates', e.target.checked)} />
+            <input
+              id="product-updates"
+              type="checkbox"
+              checked={notifications.email.productUpdates}
+              onChange={e => updateSetting('email.productUpdates', e.target.checked)}
+            />
             <span className="slider" />
           </label>
           <label htmlFor="product-updates">Product updates</label>
@@ -74,7 +111,12 @@ const Notifications = () => {
 
         <div>
           <label className="switch">
-            <input id="marketing-emails" type="checkbox" checked={notifications.email.marketing} onChange={e => updateSetting('email.marketing', e.target.checked)} />
+            <input
+              id="marketing-emails"
+              type="checkbox"
+              checked={notifications.email.marketing}
+              onChange={e => updateSetting('email.marketing', e.target.checked)}
+            />
             <span className="slider" />
           </label>
           <label htmlFor="marketing-emails">Marketing emails</label>
@@ -87,7 +129,12 @@ const Notifications = () => {
       <div className={`settings-notifications-checkbox ${notifications.enabled ? '' : 'disabled'}`}>
         <div>
           <label className="switch">
-            <input id="achievements" type="checkbox" checked={notifications.inApp.achievements} onChange={e => updateSetting('inApp.achievements', e.target.checked)} />
+            <input
+              id="achievements"
+              type="checkbox"
+              checked={notifications.inApp.achievements}
+              onChange={e => updateSetting('inApp.achievements', e.target.checked)}
+            />
             <span className="slider" />
           </label>
           <label htmlFor="achievements">Achievements</label>
@@ -96,7 +143,12 @@ const Notifications = () => {
 
         <div>
           <label className="switch">
-            <input id="friends-activity" type="checkbox" checked={notifications.inApp.friendsActivity} onChange={e => updateSetting('inApp.friendsActivity', e.target.checked)} />
+            <input
+              id="friends-activity"
+              type="checkbox"
+              checked={notifications.inApp.friendsActivity}
+              onChange={e => updateSetting('inApp.friendsActivity', e.target.checked)}
+            />
             <span className="slider" />
           </label>
           <label htmlFor="friends-activity">Friends activity</label>
@@ -105,7 +157,12 @@ const Notifications = () => {
 
         <div>
           <label className="switch">
-            <input id="library-activity" type="checkbox" checked={notifications.inApp.libraryActivity} onChange={e => updateSetting('inApp.libraryActivity', e.target.checked)} />
+            <input
+              id="library-activity"
+              type="checkbox"
+              checked={notifications.inApp.libraryActivity}
+              onChange={e => updateSetting('inApp.libraryActivity', e.target.checked)}
+            />
             <span className="slider" />
           </label>
           <label htmlFor="library-activity">Library activity</label>
@@ -119,7 +176,12 @@ const Notifications = () => {
       <div className={`settings-notifications-checkbox ${notifications.enabled ? '' : 'disabled'}`}>
         <div>
           <label className="switch">
-            <input id="enable-push" type="checkbox" checked={notifications.push.enabled} onChange={e => updateSetting('push.enabled', e.target.checked)} />
+            <input
+              id="enable-push"
+              type="checkbox"
+              checked={notifications.push.enabled}
+              onChange={e => updateSetting('push.enabled', e.target.checked)}
+            />
             <span className="slider" />
           </label>
           <label htmlFor="enable-push">Enable push notifications</label>
