@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useUser } from '../../hooks/useUser'
 import { useUpdateUser } from '../../hooks/useUpdateUser'
 import ModalChangeProfilePic from './ModalChangeProfilePic'
+import AlertModal from '../../components/AlertModal'
 import { Edit3 } from '@geist-ui/icons'
 
 const DEFAULT_ACCOUNT = {
@@ -20,8 +21,16 @@ const Account = () => {
   const { updateUser } = useUpdateUser()
 
   const [showProfilePicModal, setShowProfilePicModal] = useState(false)
-
   const [account, setAccount] = useState(null)
+
+  const [alert, setAlert] = useState(null)
+
+  const debounceTimers = useRef({})
+
+  const showAlert = (icon, title) => {
+    setAlert({ icon, title })
+    setTimeout(() => setAlert(null), 4000)
+  }
 
   useEffect(() => {
     if (!user) return
@@ -53,11 +62,27 @@ const Account = () => {
       return clone
     })
 
-    updateUser(path, value)
+    if (debounceTimers.current[path]) {
+      clearTimeout(debounceTimers.current[path])
+    }
+
+    debounceTimers.current[path] = setTimeout(async () => {
+      showAlert("Loader", "Saving changes...")
+
+      try {
+        await updateUser(path, value)
+        showAlert("CheckCircle", "Changes saved")
+      } catch (err) {
+        showAlert("AlertTriangle", err?.message || "Failed to save")
+      }
+    }, 550)
   }
 
   return (
     <section className="settings-account">
+
+      {alert && <AlertModal icon={alert.icon} title={alert.title} />}
+
       <div className="settings-account-left">
         <h1>Username</h1>
         <input
@@ -92,7 +117,8 @@ const Account = () => {
         </select>
 
         <h1>Birthday</h1>
-        <input type="date"
+        <input
+          type="date"
           value={account.profile.birthDate}
           onChange={e => updateSetting('profile.birthDate', e.target.value)}
         />
@@ -112,7 +138,10 @@ const Account = () => {
       <div className="settings-account-right">
         <h1>Profile picture</h1>
 
-        <img src={account.profile.photo || 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'} alt="Profile picture" />
+        <img
+          src={account.profile.photo || 'https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg'}
+          alt="Profile picture"
+        />
 
         <button onClick={() => setShowProfilePicModal(true)}>
           <Edit3 size={16} /> Edit

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useUser } from '../../hooks/useUser'
 import { useUpdateUser } from '../../hooks/useUpdateUser'
 import { Link } from 'react-router-dom'
@@ -29,6 +29,14 @@ const General = () => {
 
   const [alert, setAlert] = useState(null)
 
+  const debounceTimers = useRef({})
+
+  const DEBOUNCE_FIELDS = [
+    'settings.appearance.background',
+    'settings.appearance.frame',
+    'profile.country'
+  ]
+
   const showAlert = (icon, title) => {
     setAlert({ icon, title })
     setTimeout(() => setAlert(null), 4000)
@@ -53,7 +61,7 @@ const General = () => {
 
   if (!general) return null
 
-  const updateSetting = async (path, value) => {
+  const updateSetting = (path, value) => {
     setGeneral(prev => {
       const clone = structuredClone(prev)
       const keys = path.split('.')
@@ -68,13 +76,27 @@ const General = () => {
       return clone
     })
 
-    showAlert("Loader", "Saving changes...")
+    const shouldDebounce = DEBOUNCE_FIELDS.includes(path)
 
-    try {
-      await updateUser(path, value)
-      showAlert("CheckCircle", "Changes saved successfully")
-    } catch (err) {
-      showAlert("AlertTriangle", err?.message || "Failed to save changes")
+    if (debounceTimers.current[path]) {
+      clearTimeout(debounceTimers.current[path])
+    }
+
+    const execute = async () => {
+      showAlert("Loader", "Saving changes...")
+
+      try {
+        await updateUser(path, value)
+        showAlert("CheckCircle", "Changes saved successfully")
+      } catch (err) {
+        showAlert("AlertTriangle", err?.message || "Failed to save changes")
+      }
+    }
+
+    if (shouldDebounce) {
+      debounceTimers.current[path] = setTimeout(execute, 550)
+    } else {
+      execute()
     }
   }
 
