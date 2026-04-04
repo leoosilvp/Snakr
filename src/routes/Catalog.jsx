@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import GameCardSkeleton from '../components/skeletons/GameCardSkeleton'
+import AlertModal from '../components/AlertModal'
 import { Search, ChevronLeft, ChevronRight, Check, Frown, List, ShoppingCart } from '@geist-ui/icons'
 import { useGames } from '../hooks/useGames'
 import { useUserGames } from '../hooks/useUserGames'
@@ -17,6 +18,13 @@ const Catalog = () => {
     const [page, setPage] = useState(1)
     const [searchInput, setSearchInput] = useState(searchFromUrl)
     const [selectedGenres, setSelectedGenres] = useState([])
+
+    const [alert, setAlert] = useState(null)
+
+    const showAlert = (icon, title) => {
+        setAlert({ icon, title })
+        setTimeout(() => setAlert(null), 4000)
+    }
 
     useEffect(() => {
         const timeout = setTimeout(() => {
@@ -49,10 +57,13 @@ const Catalog = () => {
     function handleLibraryToggle(e, gameId) {
         e.preventDefault()
         e.stopPropagation()
+
         if (userGameIds.has(gameId)) {
             removeGame(gameId)
+            showAlert("Info", "Game removed from your library")
         } else {
             updateGame({ game_id: gameId, status: 'library' })
+            showAlert("CheckCircle", "Game added to your library")
         }
     }
 
@@ -75,6 +86,9 @@ const Catalog = () => {
 
     return (
         <main className='catalog-main'>
+
+            {alert && <AlertModal icon={alert.icon} title={alert.title} />}
+
             <Header noSearch />
 
             <section className='catalog-main-content'>

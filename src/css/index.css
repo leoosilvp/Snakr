@@ -179,7 +179,7 @@ body::-webkit-scrollbar-thumb {
   font-size: 0.8rem;
   background: #0e0e0e;
   box-shadow: 0 0 15px #000000ea;
-  animation: alert 4.5s backwards;
+  animation: alert 4.05s backwards;
   gap: 15px;
   z-index: 10;
   cursor: default;
