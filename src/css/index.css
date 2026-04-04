@@ -164,6 +164,7 @@ body::-webkit-scrollbar-thumb {
 /* alert modal */
 
 .alert-modal {
+  white-space: nowrap;
   position: fixed;
   top: 80px;
   right: 0;
@@ -186,6 +187,8 @@ body::-webkit-scrollbar-thumb {
 }
 
 .alert-modal h1 {
+  white-space: nowrap;
+  margin: 0;
   font-size: 0.8rem;
   font-weight: 300;
 }

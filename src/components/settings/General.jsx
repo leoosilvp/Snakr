@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useUser } from '../../hooks/useUser'
 import { useUpdateUser } from '../../hooks/useUpdateUser'
 import { Link } from 'react-router-dom'
+import AlertModal from '../../components/AlertModal'
 
 const DEFAULT_GENERAL = {
   settings: {
@@ -26,6 +27,13 @@ const General = () => {
 
   const [general, setGeneral] = useState(null)
 
+  const [alert, setAlert] = useState(null)
+
+  const showAlert = (icon, title) => {
+    setAlert({ icon, title })
+    setTimeout(() => setAlert(null), 4000)
+  }
+
   useEffect(() => {
     if (!user) return
 
@@ -45,7 +53,7 @@ const General = () => {
 
   if (!general) return null
 
-  const updateSetting = (path, value) => {
+  const updateSetting = async (path, value) => {
     setGeneral(prev => {
       const clone = structuredClone(prev)
       const keys = path.split('.')
@@ -60,11 +68,21 @@ const General = () => {
       return clone
     })
 
-    updateUser(path, value)
+    showAlert("Loader", "Saving changes...")
+
+    try {
+      await updateUser(path, value)
+      showAlert("CheckCircle", "Changes saved successfully")
+    } catch (err) {
+      showAlert("AlertTriangle", err?.message || "Failed to save changes")
+    }
   }
 
   return (
     <section className="settings-general">
+
+      {alert && <AlertModal icon={alert.icon} title={alert.title} />}
+
       <h2>Appearance</h2>
       <hr />
 

@@ -1,10 +1,11 @@
-import { AlertTriangle, CheckCircle, HelpCircle, Info, Send, X } from "@geist-ui/icons"
+import { AlertTriangle, CheckCircle, HelpCircle, Info, Loader, Send} from "@geist-ui/icons"
 
 const icons = {
   AlertTriangle,
   HelpCircle,
   Info,
   Send,
+  Loader,
   CheckCircle
 }
 
