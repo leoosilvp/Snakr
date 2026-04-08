@@ -2,7 +2,7 @@ import { forwardRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { logout } from '../services/auth'
 import { useUser } from '../hooks/useUser'
-import { User, Home, Grid, Archive, Settings, LifeBuoy, BookOpen, LogOut, Layout, Users, Heart } from '@geist-ui/icons'
+import { User, Home, Grid, Archive, Settings, LifeBuoy, BookOpen, LogOut, Layout, Users, Heart, Download } from '@geist-ui/icons'
 
 const ModalProfile = forwardRef(({ isOpen, onMouseEnter, onMouseLeave }, ref) => {
 
@@ -51,7 +51,7 @@ const ModalProfile = forwardRef(({ isOpen, onMouseEnter, onMouseLeave }, ref) =>
         <Link to="/settings/support"><LifeBuoy size={16} color='var(--gray-color)'/>Support</Link>
         <Link to="/docs"><BookOpen size={16} color='var(--gray-color)'/>Docs</Link>
         <hr />
-        <Link to="/settings/general#appearance"><Layout size={16} color='var(--gray-color)'/>Appearence</Link>
+        <Link to="/downloads"><Download size={16} color='var(--gray-color)'/>Downloads</Link>
         <hr />
 
         <a className="active" onClick={handleLogout}>
