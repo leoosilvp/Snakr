@@ -2,7 +2,7 @@ import { forwardRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { logout } from '../services/auth'
 import { useUser } from '../hooks/useUser'
-import { User, Home, Grid, Archive, Settings, LifeBuoy, BookOpen, LogOut, Layout, Users, Heart, Download } from '@geist-ui/icons'
+import { User, Home, Grid, Archive, Settings, LifeBuoy, BookOpen, LogOut, Users, Heart, Download } from '@geist-ui/icons'
 
 const ModalProfile = forwardRef(({ isOpen, onMouseEnter, onMouseLeave }, ref) => {
 
@@ -35,27 +35,27 @@ const ModalProfile = forwardRef(({ isOpen, onMouseEnter, onMouseLeave }, ref) =>
           <h1>{user?.profile?.username || ''}</h1>
           <h2>{user?.email || '@email.com'}</h2>
         </div>
-        {user.steam_id ? (<i className='fa-brands fa-steam-symbol'/>) : ''}
+        {user.steam_id ? (<i className='fa-brands fa-steam-symbol' />) : ''}
       </Link>
 
       <section className="modal-profile-btns">
         {user.steam_id ? '' : (<a href="/api/steam"><i className="fa-brands fa-steam-symbol" />Conect Steam</a>)}
-        <Link to="/profile"><User size={16} color='var(--gray-color)'/> Profile</Link>
-        <Link to="/home"><Home size={16} color='var(--gray-color)'/> Home</Link>
-        <Link to="/friends"><Users size={16} color='var(--gray-color)'/> Friends</Link>
-        <Link to="/catalog"><Grid size={16} color='var(--gray-color)'/> Catalog</Link>
-        <Link to="/library"><Archive size={16} color='var(--gray-color)'/>Library</Link>
-        <Link to="/wish-list"><Heart size={16} color='var(--gray-color)'/>Favorites</Link>
+        <Link to="/profile"><User size={16} color='var(--gray-color)' /> Profile</Link>
+        <Link to="/home"><Home size={16} color='var(--gray-color)' /> Home</Link>
+        <Link to="/friends"><Users size={16} color='var(--gray-color)' /> Friends</Link>
+        <Link to="/catalog"><Grid size={16} color='var(--gray-color)' /> Catalog</Link>
+        <Link to="/library"><Archive size={16} color='var(--gray-color)' />Library</Link>
+        <Link to="/wish-list"><Heart size={16} color='var(--gray-color)' />Favorites</Link>
         <hr />
-        <Link to="/settings"><Settings size={16} color='var(--gray-color)'/>Settings</Link>
-        <Link to="/settings/support"><LifeBuoy size={16} color='var(--gray-color)'/>Support</Link>
-        <Link to="/docs"><BookOpen size={16} color='var(--gray-color)'/>Docs</Link>
+        <Link to="/settings"><Settings size={16} color='var(--gray-color)' />Settings</Link>
+        <Link to="/settings/support"><LifeBuoy size={16} color='var(--gray-color)' />Support</Link>
+        <Link to="/docs"><BookOpen size={16} color='var(--gray-color)' />Docs</Link>
         <hr />
-        <Link to="/downloads"><Download size={16} color='var(--gray-color)'/>Downloads</Link>
+        <Link to="/downloads"><Download size={16} color='var(--gray-color)' />Downloads</Link>
         <hr />
 
         <a className="active" onClick={handleLogout}>
-          <LogOut size={16} color='#ca5555'/>
+          <LogOut size={16} color='#ca5555' />
           Sign Out
         </a>
       </section>
