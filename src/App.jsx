@@ -39,7 +39,7 @@ import Favorites from "./components/library/Favorites";
 import RecentlyPlayed from "./components/library/RecentlyPlayed";
 import Careers from "./routes/Careers";
 import RTT from "./components/RTT";
-import Download from "./routes/Download";
+import Downloads from "./routes/Downloads";
 
 function App() {
   ConsoleBanner()
@@ -93,7 +93,7 @@ function App() {
             <Route path="recently-played" element={<RecentlyPlayed />} />
             <Route path="favorites" element={<Favorites />} />
           </Route>
-          <Route path="/download" element={<Download />}/>
+          <Route path="/downloads" element={<Downloads />}/>
         </Route>
 
         <Route path='/security/reset-password' element={<ResetPassword />} />

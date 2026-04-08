@@ -1,6 +1,6 @@
 import '../css/download.css'
 
-const Download = () => {
+const Downloads = () => {
     return (
         <main className="download-main">
 
@@ -8,4 +8,4 @@ const Download = () => {
     )
 }
 
-export default Download
+export default Downloads

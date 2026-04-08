@@ -5,10 +5,10 @@ import logo from '../assets/svg/logo.svg'
 import ModalProfile from './ModalProfile'
 
 import { useNotifications } from '../hooks/useNotifications'
-import { Bell, Heart } from '@geist-ui/icons'
+import { Bell, Download, Heart } from '@geist-ui/icons'
 import Search from './Search'
 
-import { useGameDetails } from '../hooks/useGameDetails' // ✅ IMPORT ADICIONADO
+import { useGameDetails } from '../hooks/useGameDetails'
 
 const routeNames = {
     '/home': 'Home',
@@ -154,8 +154,8 @@ const Header = ({ noSearch }) => {
                             )}
                         </Link>
 
-                        <Link to="/library/favorites">
-                            <Heart size={16} />
+                        <Link to="/downloads">
+                            <Download size={16} />
                         </Link>
 
                         <div
@@ -183,6 +183,7 @@ const Header = ({ noSearch }) => {
                     <NavLink to="/friends">Friends</NavLink>
                     <NavLink to="/profile">Profile</NavLink>
                     <NavLink to="/gifts">Gifts</NavLink>
+                    <NavLink to="/download">Downloads</NavLink>
                     <NavLink to="/news">News</NavLink>
                     <NavLink to="/settings">Settings</NavLink>
                 </ul>
