@@ -183,7 +183,7 @@ const Header = ({ noSearch }) => {
                     <NavLink to="/friends">Friends</NavLink>
                     <NavLink to="/profile">Profile</NavLink>
                     <NavLink to="/gifts">Gifts</NavLink>
-                    <NavLink to="/download">Downloads</NavLink>
+                    <NavLink to="/downloads">Downloads</NavLink>
                     <NavLink to="/news">News</NavLink>
                     <NavLink to="/settings">Settings</NavLink>
                 </ul>
