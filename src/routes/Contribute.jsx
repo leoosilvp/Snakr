@@ -62,7 +62,7 @@ const Contribute = () => {
                     <hr />
 
                     <div className="contribute-payment">
-                        <img src='https://anonymousai-hub.github.io/DB/img/PIX-QrCode.png' alt="QR Code PIX" />
+                        <img src='https://methodpac.github.io/DB/img/PIX-QrCode.png' alt="QR Code PIX" />
 
                         <div className="contribute-payment-info">
                             <span>PIX key</span>
