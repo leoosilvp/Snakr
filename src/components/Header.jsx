@@ -19,6 +19,7 @@ const routeNames = {
     '/wish-list': 'Wish list',
     '/gifts': 'Gifts',
     '/news': 'News',
+    '/downloads': 'Downloads',
     '/settings': 'Settings',
     '/notifications': 'Notifications',
     '/contribute': 'Contribute',
