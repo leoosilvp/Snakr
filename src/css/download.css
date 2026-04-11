@@ -1,4 +1,36 @@
-.download-content {
+.download-main {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.download-content {
+    margin-top: 100px;
+    display: flex;
+    width: 90%;
+    max-width: 1200px;
     min-height: 100vh;
+}
+
+.download-content-header {
+    margin-top: 35px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+    gap: 15px;
+}
+
+.download-content-header h1 {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--gray-color);
+}
+
+.download-content-header hr {
+    display: flex;
+    width: 100%;
+    height: 1px;
+    border: none;
+    border-bottom: 1px solid var(--dark-color);
 }
