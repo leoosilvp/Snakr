@@ -20,7 +20,7 @@ const Game = () => {
     })
 
     const [alert, setAlert] = useState(null)
-
+    const [selectedUri, setSelectedUri] = useState('')
     const showAlert = (icon, title) => {
         setAlert({ icon, title })
         setTimeout(() => setAlert(null), 4000)
@@ -50,6 +50,40 @@ const Game = () => {
             updateGame({ game_id: gameId, status: 'library' })
             showAlert("CheckCircle", "Game added to your library")
         }
+    }
+
+    const downloadOptions = useMemo(() => {
+        if (!game?.download?.uris?.length) return []
+
+        return game.download.uris.map((uri, index) => {
+            const isMagnet = uri.startsWith('magnet:')
+            const isTorrent = uri.endsWith('.torrent')
+
+            let label
+            if (isMagnet) {
+                label = `Magnet Link ${game.download.uris.filter(u => u.startsWith('magnet:')).indexOf(uri) > 0
+                    ? game.download.uris.filter(u => u.startsWith('magnet:')).indexOf(uri) + 1
+                    : ''
+                    }`.trim()
+            } else if (isTorrent) {
+                label = `Torrent File ${game.download.uris.filter(u => u.endsWith('.torrent')).indexOf(uri) > 0
+                    ? game.download.uris.filter(u => u.endsWith('.torrent')).indexOf(uri) + 1
+                    : ''
+                    }`.trim()
+            } else {
+                label = `Direct Link ${index + 1}`
+            }
+
+            return { uri, label, isMagnet, isTorrent }
+        })
+    }, [game])
+
+    const defaultUri = downloadOptions[0]?.uri ?? ''
+    const activeUri = selectedUri || defaultUri
+
+    const handleDownload = () => {
+        if (!activeUri) return
+        // sem função por enquanto
     }
 
     if (loading) {
@@ -103,6 +137,8 @@ const Game = () => {
         : fullDescription
 
     const inLibrary = userGameIds.has(game.id)
+
+    const hasDownload = downloadOptions.length > 0
 
     return (
         <main className="game-main">
@@ -276,14 +312,43 @@ const Game = () => {
 
                 <section className="game-download">
                     <h1>Download: {game.name}</h1>
-                    <div>
-                        <select>
-                            <option>No download source.</option>
-                        </select>
-                        <button>
-                            <Download size={16} /> Download
-                        </button>
-                    </div>
+
+                    {hasDownload ? (
+                        <>
+                            <div>
+                                <select
+                                    value={activeUri}
+                                    onChange={e => setSelectedUri(e.target.value)}
+                                >
+                                    {downloadOptions.map((option, index) => (
+                                        <option key={index} value={option.uri}>
+                                            {game.download.fileTitle}
+                                            {game.download.fileSize && index === 0
+                                                ? ` — ${game.download.fileSize}`
+                                                : ''
+                                            }
+                                        </option>
+                                    ))}
+                                </select>
+
+                                <button
+                                    onClick={handleDownload}
+                                    disabled={!activeUri}
+                                >
+                                    <Download size={16} /> Download
+                                </button>
+                            </div>
+                        </>
+                    ) : (
+                        <div>
+                            <select disabled>
+                                <option>No download source available.</option>
+                            </select>
+                            <button disabled>
+                                <Download size={16} /> Download
+                            </button>
+                        </div>
+                    )}
                 </section>
 
                 <section className="game-description">
