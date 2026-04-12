@@ -2,44 +2,58 @@ import '../css/welcome.css'
 import logo from "../assets/svg/logo2.svg"
 import news from '../assets/img/interface.png'
 import { Link } from 'react-router-dom'
-import { BarChart2, BookOpen, Briefcase, Coffee, Github, GitPullRequest, Heart, Lock, Shield, StopCircle, Terminal, User, Zap } from '@geist-ui/icons'
-import { useRef } from 'react'
+import { BarChart2, BookOpen, Briefcase, Coffee, Github, GitPullRequest, Heart, Lock, Shield, StopCircle, Terminal, User, Zap, Star, Download, Globe, Code, Package, Layers, ArrowRight, CheckCircle, Users, Activity, TrendingUp, Clock, MessageSquare, Award } from '@geist-ui/icons'
+import { useRef, useEffect, useState } from 'react'
 
 const Welcome = () => {
 
     const cardRef = useRef(null)
-
     const currentX = useRef(0)
     const currentY = useRef(0)
     const targetX = useRef(0)
     const targetY = useRef(0)
     const animationRef = useRef(null)
 
+    const [counters, setCounters] = useState({ users: 0, games: 0, reviews: 0 })
+
+    useEffect(() => {
+        const targets = { users: 100, games: 50, reviews: 4.9 }
+        const duration = 2000
+        const steps = 60
+        const interval = duration / steps
+
+        let step = 0
+        const timer = setInterval(() => {
+            step++
+            const progress = step / steps
+            const eased = 1 - Math.pow(1 - progress, 3)
+            setCounters({
+                users: Math.floor(eased * targets.users),
+                games: Math.floor(eased * targets.games),
+                reviews: parseFloat((eased * targets.reviews).toFixed(1))
+            })
+            if (step >= steps) clearInterval(timer)
+        }, interval)
+
+        return () => clearInterval(timer)
+    }, [])
+
     const animate = () => {
         currentX.current += (targetX.current - currentX.current) * 0.08
         currentY.current += (targetY.current - currentY.current) * 0.08
-
-        cardRef.current.style.transform = `
-    rotateX(${currentX.current}deg)
-    rotateY(${currentY.current}deg)
-  `
-
+        cardRef.current.style.transform = `rotateX(${currentX.current}deg) rotateY(${currentY.current}deg)`
         animationRef.current = requestAnimationFrame(animate)
     }
 
     const handleMouseMove = (e) => {
         const card = cardRef.current
         const rect = card.getBoundingClientRect()
-
         const x = e.clientX - rect.left
         const y = e.clientY - rect.top
-
         const centerX = rect.width / 2
         const centerY = rect.height / 2
-
         targetX.current = ((y - centerY) / centerY) * -3
         targetY.current = ((x - centerX) / centerX) * 3
-
         if (!animationRef.current) {
             animationRef.current = requestAnimationFrame(animate)
         }
@@ -48,13 +62,40 @@ const Welcome = () => {
     const handleMouseLeave = () => {
         targetX.current = 0
         targetY.current = 0
-
         cancelAnimationFrame(animationRef.current)
         animationRef.current = null
-
-        cardRef.current.style.transform =
-            'rotateX(0deg) rotateY(0deg)'
+        cardRef.current.style.transform = 'rotateX(0deg) rotateY(0deg)'
     }
+
+    const testimonials = [
+        {
+            name: 'Marcus T.',
+            role: 'PC Gamer since 2008',
+            text: 'Finally. One launcher that respects me as a user. No bloat, no tracking, just my games.',
+            rating: 5
+        },
+        {
+            name: 'Rafaela C.',
+            role: 'Indie Dev & Collector',
+            text: 'I have games across 6 platforms. Snakr made my library feel like mine again.',
+            rating: 5
+        },
+        {
+            name: 'Jonas W.',
+            role: 'Open Source Contributor',
+            text: 'The codebase is clean and well-documented. Love that this exists.',
+            rating: 5
+        }
+    ]
+
+    const roadmapItems = [
+        { label: 'Unified Library', status: 'done', desc: 'Sync all platform libraries in one place' },
+        { label: 'DRM Removal Tools', status: 'done', desc: 'True ownership for your purchased games' },
+        { label: 'Cloud Save Sync', status: 'progress', desc: 'Cross-platform save file management' },
+        { label: 'Mod Manager', status: 'progress', desc: 'Install and manage mods natively' },
+        { label: 'Snakr Mobile', status: 'upcoming', desc: 'Remote play and library browsing on mobile' },
+        { label: 'Community Hub', status: 'upcoming', desc: 'Reviews, lists, and game discovery' },
+    ]
 
     return (
         <main className="welcome-main">
@@ -82,8 +123,13 @@ const Welcome = () => {
             </header>
 
             <section className='welcome-main-content'>
+                {/* HERO */}
                 <section className='welcome-hero'>
                     <section className='welcome-hero-left'>
+                        <div className='hero-badge'>
+                            <span className='hero-badge-dot' />
+                            Open Source · Free Forever · No DRM
+                        </div>
                         <h1>Welcome to the most complete game distribution experience.</h1>
                         <div className='welcome-hero-btns'>
                             <Link to='/login' className='active'><User size={22} />Sign in with username</Link>
@@ -97,18 +143,19 @@ const Welcome = () => {
                     <img src="https://cdni.iconscout.com/illustration/premium/thumb/os-jogadores-jogam-videogame-online-illustration-svg-download-png-4231654.png" />
                 </section>
 
+                {/* STATS */}
                 <section className="stats-row">
                     <span><BarChart2 size={16} />Growing community</span>
                     <h1>Snakr's growth status</h1>
                     <p>Like a snake shedding its skin, our community grows stronger every day, and the numbers speak for themselves:</p>
                     <section className='stats-row-content'>
                         <article className="stat-item">
-                            <div className="stat-number">100K+</div>
+                            <div className="stat-number">{counters.users}K+</div>
                             <div className="stat-label">Active Users</div>
                         </article>
                         <div className="stat-divider" />
                         <article className="stat-item">
-                            <div className="stat-number">50K+</div>
+                            <div className="stat-number">{counters.games}K+</div>
                             <div className="stat-label">Games Available</div>
                         </article>
                         <div className="stat-divider" />
@@ -116,9 +163,15 @@ const Welcome = () => {
                             <div className="stat-number">24/7</div>
                             <div className="stat-label">Community Support</div>
                         </article>
+                        <div className="stat-divider" />
+                        <article className="stat-item">
+                            <div className="stat-number">⭐ {counters.reviews}</div>
+                            <div className="stat-label">Average Rating</div>
+                        </article>
                     </section>
                 </section>
 
+                {/* FEATURED IMG */}
                 <section className="welcome-main-featured-img">
                     <div
                         ref={cardRef}
@@ -130,31 +183,26 @@ const Welcome = () => {
                     </div>
                 </section>
 
+                {/* FEATURES */}
                 <section className="features-section">
                     <div className="features-grid">
                         <article className="feature-card">
                             <div className='feature-card-header'>
-                                <div className="feature-icon">
-                                    <Lock size={18} />
-                                </div>
+                                <div className="feature-icon"><Lock size={18} /></div>
                                 <h3>No DRM</h3>
                             </div>
                             <p>Play your games without restrictions. True ownership, no strings attached.</p>
                         </article>
                         <article className="feature-card">
                             <div className='feature-card-header'>
-                                <div className="feature-icon">
-                                    <Shield size={18} />
-                                </div>
+                                <div className="feature-icon"><Shield size={18} /></div>
                                 <h3>Privacy First</h3>
                             </div>
                             <p>Your data stays yours. No tracking, no analytics, complete privacy.</p>
                         </article>
                         <article className="feature-card">
                             <div className='feature-card-header'>
-                                <div className="feature-icon">
-                                    <Zap size={18} />
-                                </div>
+                                <div className="feature-icon"><Zap size={18} /></div>
                                 <h3>Lightning Fast</h3>
                             </div>
                             <p>Optimized performance for seamless gaming experience across all titles.</p>
@@ -162,6 +210,9 @@ const Welcome = () => {
                     </div>
                 </section>
 
+
+
+                {/* ABOUT */}
                 <section className='about-snakr'>
                     <section className='about-snakr-background'>
                         <div>
@@ -203,6 +254,113 @@ const Welcome = () => {
                     </section>
                 </section>
 
+                {/* OPEN SOURCE */}
+                <section className='opensource-section'>
+                    <div className='opensource-left'>
+                        <div className='section-label'><Code size={14} />Open Source</div>
+                        <h2>Built in public.<br />Owned by everyone.</h2>
+                        <p>Snakr is fully open source. Read the code, fork it, audit it, improve it. No hidden agenda, no black boxes — just a community-driven platform for gamers who care about what runs on their machine.</p>
+                        <div className='opensource-actions'>
+                            <Link to='https://github.com/leoosilvp/Snakr' className='btn-primary'><Github size={16} />View on GitHub</Link>
+                            <Link to='/contribute' className='btn-ghost'><Coffee size={16} />Contribute</Link>
+                        </div>
+                        <div className='opensource-checks'>
+                            {['MIT Licensed', 'No telemetry', 'Community governed', 'Auditable code'].map((item, i) => (
+                                <div key={i} className='opensource-check'>
+                                    <CheckCircle size={14} />{item}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                    <div className='opensource-right'>
+                        <div className='code-block'>
+                            <div className='code-block-header'>
+                                <div className='code-dots'>
+                                    <span /><span /><span />
+                                </div>
+                                <span className='code-filename'>snakr.config.ts</span>
+                            </div>
+                            <pre className='code-content'>{`import { defineConfig } from 'snakr'
+
+export default defineConfig({
+  drm: false,
+  telemetry: false,
+  platforms: [
+    'steam',
+    'epic',
+    'gog',
+    'itch'
+  ],
+  privacy: {
+    tracking: false,
+    analytics: false,
+    dataSelling: false
+  }
+})`}</pre>
+                        </div>
+                    </div>
+                </section>
+
+                {/* ROADMAP */}
+                <section className='roadmap-section'>
+                    <div className='section-label'><TrendingUp size={14} />Roadmap</div>
+                    <h2>Where we're going</h2>
+                    <p className='section-sub'>Snakr is always evolving. Here's what's been built and what's coming next.</p>
+                    <div className='roadmap-grid'>
+                        {roadmapItems.map((item, i) => (
+                            <div key={i} className={`roadmap-item roadmap-${item.status}`}>
+                                <div className='roadmap-item-header'>
+                                    <div className={`roadmap-badge roadmap-badge-${item.status}`}>
+                                        {item.status === 'done' ? 'Released' : item.status === 'progress' ? 'In Progress' : 'Coming Soon'}
+                                    </div>
+                                </div>
+                                <h4>{item.label}</h4>
+                                <p>{item.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* TESTIMONIALS */}
+                <section className='testimonials-section'>
+                    <div className='section-label'><MessageSquare size={14} />Community</div>
+                    <h2>What gamers are saying</h2>
+                    <div className='testimonials-grid'>
+                        {testimonials.map((t, i) => (
+                            <div key={i} className='testimonial-card'>
+                                <div className='testimonial-stars'>
+                                    {Array.from({ length: t.rating }).map((_, s) => (
+                                        <Star key={s} size={13} fill="currentColor" />
+                                    ))}
+                                </div>
+                                <p>"{t.text}"</p>
+                                <div className='testimonial-author'>
+                                    <div className='testimonial-avatar'>{t.name[0]}</div>
+                                    <div>
+                                        <strong>{t.name}</strong>
+                                        <span>{t.role}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* CTA */}
+                <section className='cta-section'>
+                    <div className='cta-glow' />
+                    <div className='cta-content'>
+                        <div className='section-label'><Award size={14} />Get started</div>
+                        <h2>Your games.<br />Your rules.</h2>
+                        <p>Join the community that's building the future of game distribution — open, free, and yours.</p>
+                        <div className='cta-btns'>
+                            <Link to='/login?view=register' className='btn-primary btn-xl'><Download size={18} />Create free account</Link>
+                            <Link to='https://github.com/leoosilvp/Snakr' className='btn-ghost btn-xl'><Github size={18} />View source</Link>
+                        </div>
+                    </div>
+                </section>
+
+                {/* FOOTER */}
                 <footer className="welcome-footer">
                     <div className="footer-content">
                         <div className="footer-section-logo">
