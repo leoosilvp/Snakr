@@ -71,7 +71,7 @@ const Welcome = () => {
         {
             photo: 'https://avatars.githubusercontent.com/u/225023097?v=4',
             name: 'Samuel M.',
-            role: 'competitive gamer',
+            role: 'Competitive gamer',
             text: "Finally, something that doesn't try to decide for me. A clean interface, no distractions, and complete freedom to manage my library.",
             link: 'https://github.com/SamuelEDMonteiro',
             rating: 5
@@ -79,7 +79,7 @@ const Welcome = () => {
         {
             photo: 'https://avatars.githubusercontent.com/u/111513559?v=4',
             name: 'Guilherme A.',
-            role: 'Power User',
+            role: 'Gamer enthusiast',
             text: 'Lightweight, fast, and without those unnecessary layers. It looks like it was made by someone who actually uses a PC every day.',
             link: 'https://github.com/Guilherme5G',
             rating: 5
