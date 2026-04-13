@@ -18,7 +18,7 @@ const Welcome = () => {
 
     useEffect(() => {
         const targets = { users: 100, games: 50, reviews: 4.9 }
-        const duration = 2000
+        const duration = 2500
         const steps = 60
         const interval = duration / steps
 
@@ -69,21 +69,27 @@ const Welcome = () => {
 
     const testimonials = [
         {
-            name: 'Marcus T.',
-            role: 'PC Gamer since 2008',
-            text: 'Finally. One launcher that respects me as a user. No bloat, no tracking, just my games.',
+            photo: 'https://avatars.githubusercontent.com/u/225023097?v=4',
+            name: 'Samuel M.',
+            role: 'competitive gamer',
+            text: "Finally, something that doesn't try to decide for me. A clean interface, no distractions, and complete freedom to manage my library.",
+            link: 'https://github.com/SamuelEDMonteiro',
             rating: 5
         },
         {
-            name: 'Rafaela C.',
-            role: 'Indie Dev & Collector',
-            text: 'I have games across 6 platforms. Snakr made my library feel like mine again.',
+            photo: 'https://avatars.githubusercontent.com/u/111513559?v=4',
+            name: 'Guilherme A.',
+            role: 'Power User',
+            text: 'Lightweight, fast, and without those unnecessary layers. It looks like it was made by someone who actually uses a PC every day.',
+            link: 'https://github.com/Guilherme5G',
             rating: 5
         },
         {
-            name: 'Jonas W.',
-            role: 'Open Source Contributor',
-            text: 'The codebase is clean and well-documented. Love that this exists.',
+            photo: 'https://avatars.githubusercontent.com/u/149447142?v=4',
+            name: 'Yan B.',
+            role: 'PC Gamer',
+            text: "What truly sets it apart is the community. People contribute, improve, suggest things; it's not just a product, it's a living ecosystem.",
+            link: 'https://github.com/Yan2809',
             rating: 5
         }
     ]
@@ -327,7 +333,7 @@ export default defineConfig({
                     <h2>What gamers are saying</h2>
                     <div className='testimonials-grid'>
                         {testimonials.map((t, i) => (
-                            <div key={i} className='testimonial-card'>
+                            <Link to={t.link} target='_blank' key={i} className='testimonial-card'>
                                 <div className='testimonial-stars'>
                                     {Array.from({ length: t.rating }).map((_, s) => (
                                         <Star key={s} size={13} fill="currentColor" />
@@ -335,13 +341,15 @@ export default defineConfig({
                                 </div>
                                 <p>"{t.text}"</p>
                                 <div className='testimonial-author'>
-                                    <div className='testimonial-avatar'>{t.name[0]}</div>
+                                    <div className='testimonial-avatar'>
+                                        <img src={t.photo}/>
+                                    </div>
                                     <div>
                                         <strong>{t.name}</strong>
                                         <span>{t.role}</span>
                                     </div>
                                 </div>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                 </section>
