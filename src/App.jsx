@@ -84,7 +84,6 @@ function App() {
             <Route path="support" element={<Support />} />
             <Route path="terms and privacy" element={<TermsPrivacy />} />
           </Route>
-          <Route path='/contribute' element={<Contribute />} />
           <Route path="/catalog" element={<Catalog />} />
           <Route path="/game/:igdb_id" element={<Game />} />
           <Route path="/library" element={<Library />} >
@@ -93,9 +92,10 @@ function App() {
             <Route path="recently-played" element={<RecentlyPlayed />} />
             <Route path="favorites" element={<Favorites />} />
           </Route>
-          <Route path="/downloads" element={<Downloads />}/>
+          <Route path="/downloads" element={<Downloads />} />
         </Route>
 
+        <Route path='/contribute' element={<Contribute />} />
         <Route path='/security/reset-password' element={<ResetPassword />} />
         <Route path="/status" element={<Status />} />
         <Route path="/careers" element={<Careers />} />
