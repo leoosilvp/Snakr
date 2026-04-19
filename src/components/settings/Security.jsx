@@ -25,7 +25,6 @@ const Security = () => {
 
       <h1>E-mail</h1>
       <input className='readOnly' type="text" defaultValue={user?.email} readOnly />
-      <button className='reset-password disabled'>Change email address</button>
 
       <h1>Password</h1>
       <input className='readOnly' type="password" value={'**************'} readOnly />
